@@ -75,7 +75,7 @@
         "text_color": "#ffffff",
         "font_size": 20,
         "text_transform": "capitalize",
-        "font_weight": "400",
+        "font_weight": "500",
         "speed": 30,
         "direction": "left",
         "pause_on_hover": true,
