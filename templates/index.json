@@ -9,77 +9,6 @@
  */
 {
   "sections": {
-    "marquee_Y8Vb6L": {
-      "type": "marquee",
-      "blocks": {
-        "text_3hXQf6": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "Made By Professional Artist",
-            "link": ""
-          }
-        },
-        "icon_svg_NbLRtk": {
-          "type": "icon_svg",
-          "settings": {
-            "icon_name": "paw"
-          }
-        },
-        "text_6cpUD8": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "Unlimited Free Preview And Revision",
-            "link": ""
-          }
-        },
-        "icon_svg_rXDDDx": {
-          "type": "icon_svg",
-          "disabled": true,
-          "settings": {
-            "icon_name": "paw"
-          }
-        },
-        "text_Ghgbr7": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "Over 100,000+ Happy Customers",
-            "link": ""
-          }
-        },
-        "icon_svg_PQcnzz": {
-          "type": "icon_svg",
-          "disabled": true,
-          "settings": {
-            "icon_name": "paw"
-          }
-        }
-      },
-      "block_order": [
-        "text_3hXQf6",
-        "icon_svg_NbLRtk",
-        "text_6cpUD8",
-        "icon_svg_rXDDDx",
-        "text_Ghgbr7",
-        "icon_svg_PQcnzz"
-      ],
-      "name": "Marquee Ticker",
-      "settings": {
-        "background_color": "#c8765a",
-        "text_color": "#fff8f4",
-        "font_size": 14,
-        "text_transform": "none",
-        "font_weight": "400",
-        "icon_size": 16,
-        "speed": 30,
-        "direction": "left",
-        "pause_on_hover": true,
-        "gap": 48,
-        "padding_vertical": 10
-      }
-    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -109,32 +38,33 @@
       "settings": {
         "image_overlay_opacity": 40,
         "image_height": "large",
-        "image_behavior": "none",
         "desktop_content_position": "bottom-center",
-        "desktop_content_alignment": "center",
         "show_text_box": false,
+        "image_behavior": "none",
+        "desktop_content_alignment": "center",
         "color_scheme": "scheme-3",
-        "stack_images_on_mobile": false,
         "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
         "show_text_below": false
       }
     },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "collection": "all",
-        "products_to_show": 8,
         "title": "Featured products",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
         "description_style": "body",
+        "collection": "all",
+        "products_to_show": 8,
         "columns_desktop": 4,
-        "enable_desktop_slider": false,
+        "color_scheme": "scheme-1",
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
-        "color_scheme": "scheme-1",
+        "enable_desktop_slider": false,
+        "swipe_on_mobile": false,
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
@@ -142,14 +72,12 @@
         "show_rating": false,
         "quick_add": "none",
         "columns_mobile": "2",
-        "swipe_on_mobile": false,
         "padding_top": 44,
         "padding_bottom": 36
       }
     }
   },
   "order": [
-    "marquee_Y8Vb6L",
     "image_banner",
     "featured_collection"
   ]
