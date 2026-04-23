@@ -5,409 +5,356 @@
 {% endcomment %}
 
 <style>
-    .marquee-ticker {
-      background-color: {{ section.settings.background_color }};
-      overflow: hidden;
-      padding: {{ section.settings.padding_vertical }}px 0;
-    }
-  
-    .marquee-ticker__track-wrapper {
-      display: flex;
-      width: 100%;
-      overflow: hidden;
-    }
-  
+  .marquee-ticker {
+    background-color: {{ section.settings.background_color }};
+    overflow: hidden;
+    padding: {{ section.settings.padding_vertical }}px 0;
+  }
+
+  .marquee-ticker__track-wrapper {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .marquee-ticker__track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation: marquee-scroll {{ section.settings.speed }}s linear infinite;
+    {% if section.settings.direction == 'right' %}
+      animation-direction: reverse;
+    {% endif %}
+  }
+
+  .marquee-ticker__track:hover {
+    {% if section.settings.pause_on_hover %}
+      animation-play-state: paused;
+    {% endif %}
+  }
+
+  @keyframes marquee-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .marquee-ticker__item {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 0 {{ section.settings.gap }}px;
+  }
+
+  .marquee-ticker__text {
+    color: {{ section.settings.text_color }};
+    font-size: {{ section.settings.font_size }}px;
+    font-weight: {{ section.settings.font_weight }};
+    text-transform: {{ section.settings.text_transform }};
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+
+  .marquee-ticker__text a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .marquee-ticker__text a:hover {
+    text-decoration: underline;
+  }
+
+  .marquee-ticker__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: {{ section.settings.text_color }};
+    line-height: 1;
+  }
+
+  .marquee-ticker__icon svg {
+    display: block;
+    height: auto;
+    fill: {{ section.settings.text_color }};
+  }
+
+  .marquee-ticker__icon img {
+    display: block;
+    height: auto;
+  }
+
+  @media screen and (prefers-reduced-motion: reduce) {
     .marquee-ticker__track {
-      display: flex;
-      align-items: center;
-      width: max-content;
-      animation: marquee-scroll {{ section.settings.speed }}s linear infinite;
-      {% if section.settings.direction == 'right' %}
-        animation-direction: reverse;
-      {% endif %}
-    }
-  
-    .marquee-ticker__track:hover {
-      {% if section.settings.pause_on_hover %}
-        animation-play-state: paused;
-      {% endif %}
-    }
-  
-    @keyframes marquee-scroll {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-  
-    .marquee-ticker__item {
-      display: inline-flex;
-      align-items: center;
-      white-space: nowrap;
-      padding: 0 {{ section.settings.gap }}px;
-    }
-  
-    .marquee-ticker__text {
-      color: {{ section.settings.text_color }};
-      font-size: {{ section.settings.font_size }}px;
-      font-weight: {{ section.settings.font_weight }};
-      text-transform: {{ section.settings.text_transform }};
-      letter-spacing: 0.02em;
-      line-height: 1;
-    }
-  
-    .marquee-ticker__text a {
-      color: inherit;
-      text-decoration: none;
-    }
-  
-    .marquee-ticker__text a:hover {
-      text-decoration: underline;
-    }
-  
-    .marquee-ticker__icon {
-      display: inline-flex;
-      align-items: center;
+      animation: none;
+      flex-wrap: wrap;
       justify-content: center;
-      color: {{ section.settings.text_color }};
-      font-size: {{ section.settings.icon_size }}px;
-      line-height: 1;
     }
-  
-    .marquee-ticker__icon svg {
-      width: {{ section.settings.icon_size }}px;
-      height: {{ section.settings.icon_size }}px;
-      fill: {{ section.settings.text_color }};
-    }
+  }
+</style>
 
-    .marquee-ticker__icon-image {
-      display: inline-flex;
-      align-items: center;
-    }
+<div
+  class="marquee-ticker"
+  id="marquee-ticker-{{ section.id }}"
+  role="marquee"
+  aria-label="{{ 'sections.marquee_ticker.aria_label' | t }}"
+>
+  <div class="marquee-ticker__track-wrapper">
+    <div class="marquee-ticker__track">
 
-    .marquee-ticker__icon-image img {
-      width: auto;
-      display: block;
-      object-fit: contain;
-    }
-  
-    @media screen and (prefers-reduced-motion: reduce) {
-      .marquee-ticker__track {
-        animation: none;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-    }
-  </style>
-  
-  <div
-    class="marquee-ticker"
-    id="marquee-ticker-{{ section.id }}"
-    role="marquee"
-    aria-label="{{ 'sections.marquee_ticker.aria_label' | t }}"
-  >
-    <div class="marquee-ticker__track-wrapper">
-      <div class="marquee-ticker__track">
-  
-        {% comment %} Render blocks twice for seamless infinite loop {% endcomment %}
-        {% for i in (1..2) %}
-          {% for block in section.blocks %}
-            <div
-              class="marquee-ticker__item"
-              {{ block.shopify_attributes }}
-            >
-  
-              {% case block.type %}
-  
-                {% when 'text' %}
-                  <span class="marquee-ticker__text">
-                    {% if block.settings.link != blank %}
-                      <a href="{{ block.settings.link }}">
-                        {{ block.settings.text | escape }}
-                      </a>
-                    {% else %}
+      {% comment %} Render blocks twice for seamless infinite loop {% endcomment %}
+      {% for i in (1..2) %}
+        {% for block in section.blocks %}
+          <div
+            class="marquee-ticker__item"
+            {{ block.shopify_attributes }}
+          >
+
+            {% case block.type %}
+
+              {% when 'text' %}
+                <span class="marquee-ticker__text">
+                  {% if block.settings.link != blank %}
+                    <a href="{{ block.settings.link }}">
                       {{ block.settings.text | escape }}
-                    {% endif %}
-                  </span>
-  
-                {% when 'icon_emoji' %}
-                  <span
-                    class="marquee-ticker__icon"
-                    aria-hidden="true"
-                  >
-                    {{ block.settings.emoji }}
-                  </span>
-  
-                {% when 'icon_image' %}
-                  {% if block.settings.image != blank %}
-                    <span class="marquee-ticker__icon-image" aria-hidden="true">
-                      {{
-                        block.settings.image
-                        | image_url: width: 400
-                        | image_tag:
-                          loading: 'lazy',
-                          style: 'height:' | append: block.settings.image_height | append: 'px;width:auto;'
-                      }}
-                    </span>
+                    </a>
+                  {% else %}
+                    {{ block.settings.text | escape }}
                   {% endif %}
+                </span>
 
-                {% when 'icon_svg' %}
-                  <span
-                    class="marquee-ticker__icon"
-                    aria-hidden="true"
-                  >
-                    {% case block.settings.icon_name %}
+              {% when 'icon' %}
+                <span class="marquee-ticker__icon" aria-hidden="true">
+                  {% assign w = block.settings.icon_width %}
+                  {% if block.settings.icon_source == 'upload' and block.settings.icon_image != blank %}
+                    {{
+                      block.settings.icon_image
+                      | image_url: width: 400
+                      | image_tag:
+                        loading: 'lazy',
+                        style: 'width:' | append: w | append: 'px;height:auto;'
+                    }}
+                  {% else %}
+                    {% case block.settings.icon_library %}
                       {% when 'paw' %}
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M12 13.5c-2.33 0-7 1.17-7 3.5v1.5h14V17c0-2.33-4.67-3.5-7-3.5zm-3.5-4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.5-4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 0"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:{{ w }}px;height:auto;"><path d="M12 13.5c-2.33 0-7 1.17-7 3.5v1.5h14V17c0-2.33-4.67-3.5-7-3.5zm-3.5-4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.5-4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 0"/></svg>
                       {% when 'star' %}
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:{{ w }}px;height:auto;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                       {% when 'heart' %}
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:{{ w }}px;height:auto;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
                       {% when 'diamond' %}
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M19 3H5L2 9l10 12L22 9l-3-6zm-7 14.17L3.83 9.5 6.17 5h11.66l2.34 4.5L12 17.17z"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:{{ w }}px;height:auto;"><path d="M19 3H5L2 9l10 12L22 9l-3-6zm-7 14.17L3.83 9.5 6.17 5h11.66l2.34 4.5L12 17.17z"/></svg>
                       {% when 'check' %}
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:{{ w }}px;height:auto;"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
                       {% when 'arrow_right' %}
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/>
-                        </svg>
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:{{ w }}px;height:auto;"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
                       {% else %}
-                        ✦
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:{{ w }}px;height:auto;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                     {% endcase %}
-                  </span>
-  
-              {% endcase %}
-  
-            </div>
-          {% endfor %}
+                  {% endif %}
+                </span>
+
+            {% endcase %}
+
+          </div>
         {% endfor %}
-  
-      </div>
+      {% endfor %}
+
     </div>
   </div>
-  
-  {% schema %}
-  {
-    "name": "Marquee Ticker",
-    "tag": "section",
-    "class": "section",
-    "limit": 1,
-    "settings": [
-      {
-        "type": "header",
-        "content": "Кольорова схема"
-      },
-      {
-        "type": "color",
-        "id": "background_color",
-        "label": "Колір фону",
-        "default": "#c8765a"
-      },
-      {
-        "type": "color",
-        "id": "text_color",
-        "label": "Колір тексту та іконок",
-        "default": "#fff8f4"
-      },
-      {
-        "type": "header",
-        "content": "Типографіка"
-      },
-      {
-        "type": "range",
-        "id": "font_size",
-        "label": "Розмір тексту",
-        "min": 10,
-        "max": 28,
-        "step": 1,
-        "unit": "px",
-        "default": 14
-      },
-      {
-        "type": "select",
-        "id": "text_transform",
-        "label": "Регістр",
-        "options": [
-          { "value": "none",       "label": "Як є (Aa)" },
-          { "value": "uppercase",  "label": "Верхній (AA)" },
-          { "value": "lowercase",  "label": "Нижній (aa)" },
-          { "value": "capitalize", "label": "Кожне слово (Ab)" }
-        ],
-        "default": "none"
-      },
-      {
-        "type": "select",
-        "id": "font_weight",
-        "label": "Жирність шрифту",
-        "options": [
-          { "value": "300", "label": "Тонкий (300)" },
-          { "value": "400", "label": "Звичайний (400)" },
-          { "value": "600", "label": "Жирний (600)" }
-        ],
-        "default": "400"
-      },
-      {
-        "type": "header",
-        "content": "Іконки"
-      },
-      {
-        "type": "range",
-        "id": "icon_size",
-        "label": "Розмір іконок",
-        "min": 10,
-        "max": 36,
-        "step": 1,
-        "unit": "px",
-        "default": 16
-      },
-      {
-        "type": "header",
-        "content": "Прокрутка"
-      },
-      {
-        "type": "range",
-        "id": "speed",
-        "label": "Швидкість (секунди на цикл)",
-        "min": 10,
-        "max": 80,
-        "step": 5,
-        "unit": "s",
-        "default": 30
-      },
-      {
-        "type": "select",
-        "id": "direction",
-        "label": "Напрямок",
-        "options": [
-          { "value": "left",  "label": "← Ліворуч" },
-          { "value": "right", "label": "→ Праворуч" }
-        ],
-        "default": "left"
-      },
-      {
-        "type": "checkbox",
-        "id": "pause_on_hover",
-        "label": "Зупиняти при наведенні",
-        "default": true
-      },
-      {
-        "type": "header",
-        "content": "Відступи"
-      },
-      {
-        "type": "range",
-        "id": "gap",
-        "label": "Gap між блоками",
-        "min": 8,
-        "max": 96,
-        "step": 4,
-        "unit": "px",
-        "default": 48
-      },
-      {
-        "type": "range",
-        "id": "padding_vertical",
-        "label": "Вертикальний відступ",
-        "min": 4,
-        "max": 24,
-        "step": 2,
-        "unit": "px",
-        "default": 10
-      }
-    ],
-    "blocks": [
-      {
-        "type": "text",
-        "name": "Текст",
-        "settings": [
-          {
-            "type": "text",
-            "id": "text",
-            "label": "Текст",
-            "default": "Made By Professional Artist"
-          },
-          {
-            "type": "url",
-            "id": "link",
-            "label": "Посилання (необов'язково)"
-          }
-        ]
-      },
-      {
-        "type": "icon_emoji",
-        "name": "Іконка (emoji)",
-        "settings": [
-          {
-            "type": "text",
-            "id": "emoji",
-            "label": "Символ або emoji",
-            "default": "🐾",
-            "info": "Вставте emoji або символ: ★ ✦ • ◆ ❋ ✿"
-          }
-        ]
-      },
-      {
-        "type": "icon_image",
-        "name": "Іконка (зображення)",
-        "settings": [
-          {
-            "type": "image_picker",
-            "id": "image",
-            "label": "Зображення іконки"
-          },
-          {
-            "type": "range",
-            "id": "image_height",
-            "label": "Висота іконки",
-            "min": 12,
-            "max": 80,
-            "step": 2,
-            "unit": "px",
-            "default": 20
-          }
-        ]
-      },
-      {
-        "type": "icon_svg",
-        "name": "Іконка (SVG)",
-        "settings": [
-          {
-            "type": "select",
-            "id": "icon_name",
-            "label": "Іконка",
-            "options": [
-              { "value": "paw",         "label": "🐾 Лапка" },
-              { "value": "star",        "label": "★ Зірка" },
-              { "value": "heart",       "label": "♥ Серце" },
-              { "value": "diamond",     "label": "◆ Ромб" },
-              { "value": "check",       "label": "✓ Галочка" },
-              { "value": "arrow_right", "label": "→ Стрілка" }
-            ],
-            "default": "paw"
-          }
-        ]
-      }
-    ],
-    "presets": [
-      {
-        "name": "Marquee Ticker",
-        "blocks": [
-          { "type": "text",     "settings": { "text": "Made By Professional Artist" } },
-          { "type": "icon_svg", "settings": { "icon_name": "paw" } },
-          { "type": "text",     "settings": { "text": "Unlimited Free Preview And Revision" } },
-          { "type": "icon_svg", "settings": { "icon_name": "paw" } },
-          { "type": "text",     "settings": { "text": "Over 100,000+ Happy Customers" } },
-          { "type": "icon_svg", "settings": { "icon_name": "paw" } }
-        ]
-      }
-    ]
-  }
-  {% endschema %}
+</div>
+
+{% schema %}
+{
+  "name": "Marquee Ticker",
+  "tag": "section",
+  "class": "section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Кольорова схема"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Колір фону",
+      "default": "#c8765a"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Колір тексту та іконок",
+      "default": "#fff8f4"
+    },
+    {
+      "type": "header",
+      "content": "Типографіка"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Розмір тексту",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "text_transform",
+      "label": "Регістр",
+      "options": [
+        { "value": "none",       "label": "Як є (Aa)" },
+        { "value": "uppercase",  "label": "Верхній (AA)" },
+        { "value": "lowercase",  "label": "Нижній (aa)" },
+        { "value": "capitalize", "label": "Кожне слово (Ab)" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Жирність шрифту",
+      "options": [
+        { "value": "300", "label": "Тонкий (300)" },
+        { "value": "400", "label": "Звичайний (400)" },
+        { "value": "600", "label": "Жирний (600)" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "header",
+      "content": "Прокрутка"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Швидкість (секунди на цикл)",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "unit": "s",
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "Напрямок",
+      "options": [
+        { "value": "left",  "label": "← Ліворуч" },
+        { "value": "right", "label": "→ Праворуч" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Зупиняти при наведенні",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Відступи"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap між блоками",
+      "min": 8,
+      "max": 96,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "label": "Вертикальний відступ",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Текст",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Текст",
+          "default": "Made By Professional Artist"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Посилання (необов'язково)"
+        }
+      ]
+    },
+    {
+      "type": "icon",
+      "name": "Іконка",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon_source",
+          "label": "Джерело іконки",
+          "options": [
+            { "value": "library", "label": "Бібліотека (SVG)" },
+            { "value": "upload",  "label": "Власне зображення" }
+          ],
+          "default": "library"
+        },
+        {
+          "type": "select",
+          "id": "icon_library",
+          "label": "Іконка",
+          "options": [
+            { "value": "paw",         "label": "🐾 Лапка" },
+            { "value": "star",        "label": "★ Зірка" },
+            { "value": "heart",       "label": "♥ Серце" },
+            { "value": "diamond",     "label": "◆ Ромб" },
+            { "value": "check",       "label": "✓ Галочка" },
+            { "value": "arrow_right", "label": "→ Стрілка" }
+          ],
+          "default": "paw",
+          "visible_if": "{{ block.settings.icon_source == 'library' }}"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Зображення",
+          "visible_if": "{{ block.settings.icon_source == 'upload' }}"
+        },
+        {
+          "type": "range",
+          "id": "icon_width",
+          "label": "Ширина іконки",
+          "min": 2,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "default": 16
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee Ticker",
+      "blocks": [
+        { "type": "text", "settings": { "text": "Made By Professional Artist" } },
+        { "type": "icon", "settings": { "icon_source": "library", "icon_library": "paw" } },
+        { "type": "text", "settings": { "text": "Unlimited Free Preview And Revision" } },
+        { "type": "icon", "settings": { "icon_source": "library", "icon_library": "paw" } },
+        { "type": "text", "settings": { "text": "Over 100,000+ Happy Customers" } },
+        { "type": "icon", "settings": { "icon_source": "library", "icon_library": "paw" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
