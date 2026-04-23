@@ -69,6 +69,9 @@
         "text_i3ri4m",
         "icon_PXXV8X"
       ],
+      "custom_css": [
+        ".marquee-ticker__icon{padding-bottom: 6px;}"
+      ],
       "name": "Marquee Ticker",
       "settings": {
         "background_color": "#c3937d",
