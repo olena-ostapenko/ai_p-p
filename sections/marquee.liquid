@@ -120,7 +120,7 @@
                     {{ block.settings.text | escape }}
                   {% endif %}
                 </span>
-
+{% comment %} 
               {% when 'icon' %}
                 <span class="marquee-ticker__icon" aria-hidden="true">
                   {% assign w = block.settings.icon_width %}
@@ -131,7 +131,28 @@
                       | image_tag:
                         loading: 'lazy',
                         style: 'width:' | append: w | append: 'px;height:auto;'
-                    }}
+                    }} {% endcomment %}
+
+                    {% when 'icon' %}
+  <span class="marquee-ticker__icon" aria-hidden="true">
+    {% assign w = block.settings.icon_width %}
+    {% if block.settings.icon_source == 'upload' and block.settings.icon_image != blank %}
+      {{
+        block.settings.icon_image
+        | image_url: width: 100
+        | image_tag:
+          loading: 'lazy',
+          width: w,
+          height: 'auto',
+          style: 'width: inherit;'
+      }}
+      <style>
+        #marquee-ticker-{{ section.id }} .marquee-ticker__item:nth-child({{ forloop.index }}) img,
+        #marquee-ticker-{{ section.id }} .marquee-ticker__item:nth-child({{ forloop.index | plus: section.blocks.size }}) img {
+          width: {{ w }}px !important;
+          height: auto;
+        }
+      </style>
                   {% else %}
                     {% case block.settings.icon_library %}
                       {% when 'paw' %}
@@ -334,8 +355,8 @@
           "type": "range",
           "id": "icon_width",
           "label": "Ширина іконки",
-          "min": 2,
-          "max": 20,
+          "min": 10,
+          "max": 60,
           "step": 1,
           "unit": "px",
           "default": 16
