@@ -180,28 +180,28 @@
   "settings": [
     {
       "type": "header",
-      "content": "Кольорова схема"
+      "content": "Color Scheme"
     },
     {
       "type": "color",
       "id": "background_color",
-      "label": "Колір фону",
+      "label": "Background Color",
       "default": "#c8765a"
     },
     {
       "type": "color",
       "id": "text_color",
-      "label": "Колір тексту та іконок",
+      "label": "Text and Icon Color",
       "default": "#fff8f4"
     },
     {
       "type": "header",
-      "content": "Типографіка"
+      "content": "Typography"
     },
     {
       "type": "range",
       "id": "font_size",
-      "label": "Розмір тексту",
+      "label": "Font Size",
       "min": 10,
       "max": 28,
       "step": 1,
@@ -211,34 +211,34 @@
     {
       "type": "select",
       "id": "text_transform",
-      "label": "Регістр",
+      "label": "Text Transform",
       "options": [
-        { "value": "none",       "label": "Як є (Aa)" },
-        { "value": "uppercase",  "label": "Верхній (AA)" },
-        { "value": "lowercase",  "label": "Нижній (aa)" },
-        { "value": "capitalize", "label": "Кожне слово (Ab)" }
+        { "value": "none", "label": "None (Aa)" },
+        { "value": "uppercase", "label": "Uppercase (AA)" },
+        { "value": "lowercase", "label": "Lowercase (aa)" },
+        { "value": "capitalize", "label": "Capitalize (Ab)" }
       ],
       "default": "none"
     },
     {
       "type": "select",
       "id": "font_weight",
-      "label": "Жирність шрифту",
+      "label": "Font Weight",
       "options": [
-        { "value": "300", "label": "Тонкий (300)" },
-        { "value": "400", "label": "Звичайний (400)" },
-        { "value": "600", "label": "Жирний (600)" }
+        { "value": "300", "label": "Light (300)" },
+        { "value": "400", "label": "Normal (400)" },
+        { "value": "600", "label": "Bold (600)" }
       ],
       "default": "400"
     },
     {
       "type": "header",
-      "content": "Прокрутка"
+      "content": "Scrolling"
     },
     {
       "type": "range",
       "id": "speed",
-      "label": "Швидкість (секунди на цикл)",
+      "label": "Speed (seconds per cycle)",
       "min": 10,
       "max": 80,
       "step": 5,
@@ -248,27 +248,27 @@
     {
       "type": "select",
       "id": "direction",
-      "label": "Напрямок",
+      "label": "Direction",
       "options": [
-        { "value": "left",  "label": "← Ліворуч" },
-        { "value": "right", "label": "→ Праворуч" }
+        { "value": "left", "label": "← Left" },
+        { "value": "right", "label": "→ Right" }
       ],
       "default": "left"
     },
     {
       "type": "checkbox",
       "id": "pause_on_hover",
-      "label": "Зупиняти при наведенні",
+      "label": "Pause on Hover",
       "default": true
     },
     {
       "type": "header",
-      "content": "Відступи"
+      "content": "Spacing"
     },
     {
       "type": "range",
       "id": "gap",
-      "label": "Gap між блоками",
+      "label": "Gap between blocks",
       "min": 8,
       "max": 96,
       "step": 4,
@@ -278,7 +278,7 @@
     {
       "type": "range",
       "id": "padding_vertical",
-      "label": "Вертикальний відступ",
+      "label": "Vertical Padding",
       "min": 4,
       "max": 24,
       "step": 2,
@@ -289,60 +289,58 @@
   "blocks": [
     {
       "type": "text",
-      "name": "Текст",
+      "name": "Text",
       "settings": [
         {
           "type": "text",
           "id": "text",
-          "label": "Текст",
+          "label": "Text",
           "default": "Made By Professional Artist"
         },
         {
           "type": "url",
           "id": "link",
-          "label": "Посилання (необов'язково)"
+          "label": "Link (optional)"
         }
       ]
     },
     {
       "type": "icon",
-      "name": "Іконка",
+      "name": "Icon",
       "settings": [
         {
           "type": "select",
           "id": "icon_source",
-          "label": "Джерело іконки",
+          "label": "Icon Source",
           "options": [
-            { "value": "library", "label": "Бібліотека (SVG)" },
-            { "value": "upload",  "label": "Власне зображення" }
+            { "value": "library", "label": "Library (SVG)" },
+            { "value": "upload", "label": "Custom Image" }
           ],
           "default": "library"
         },
         {
           "type": "select",
           "id": "icon_library",
-          "label": "Іконка",
+          "label": "Icon",
           "options": [
-            { "value": "paw",         "label": "🐾 Лапка" },
-            { "value": "star",        "label": "★ Зірка" },
-            { "value": "heart",       "label": "♥ Серце" },
-            { "value": "diamond",     "label": "◆ Ромб" },
-            { "value": "check",       "label": "✓ Галочка" },
-            { "value": "arrow_right", "label": "→ Стрілка" }
+            { "value": "paw", "label": "🐾 Paw" },
+            { "value": "star", "label": "★ Star" },
+            { "value": "heart", "label": "♥ Heart" },
+            { "value": "diamond", "label": "◆ Diamond" },
+            { "value": "check", "label": "✓ Checkmark" },
+            { "value": "arrow_right", "label": "→ Arrow" }
           ],
-          "default": "paw",
-          "visible_if": "{{ block.settings.icon_source == 'library' }}"
+          "default": "paw"
         },
         {
           "type": "image_picker",
           "id": "icon_image",
-          "label": "Зображення",
-          "visible_if": "{{ block.settings.icon_source == 'upload' }}"
+          "label": "Image"
         },
         {
           "type": "range",
           "id": "icon_width",
-          "label": "Ширина іконки",
+          "label": "Icon Width",
           "min": 10,
           "max": 60,
           "step": 1,
