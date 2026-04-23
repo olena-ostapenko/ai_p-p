@@ -80,7 +80,7 @@
         "direction": "left",
         "pause_on_hover": true,
         "gap": 68,
-        "padding_vertical": 10
+        "padding_vertical": 6
       }
     },
     "image_banner": {
