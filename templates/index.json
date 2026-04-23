@@ -22,8 +22,9 @@
         "icon_RjEePG": {
           "type": "icon",
           "settings": {
-            "icon_source": "library",
+            "icon_source": "upload",
             "icon_library": "paw",
+            "icon_image": "shopify://shop_images/paw.svg",
             "icon_width": 16
           }
         },
@@ -34,11 +35,12 @@
             "link": ""
           }
         },
-        "icon_NY7i8U": {
+        "icon_xEgXRQ": {
           "type": "icon",
           "settings": {
-            "icon_source": "library",
+            "icon_source": "upload",
             "icon_library": "paw",
+            "icon_image": "shopify://shop_images/paw.svg",
             "icon_width": 16
           }
         },
@@ -49,11 +51,12 @@
             "link": ""
           }
         },
-        "icon_UAeUHN": {
+        "icon_PXXV8X": {
           "type": "icon",
           "settings": {
-            "icon_source": "library",
+            "icon_source": "upload",
             "icon_library": "paw",
+            "icon_image": "shopify://shop_images/paw.svg",
             "icon_width": 16
           }
         }
@@ -62,9 +65,9 @@
         "text_XztYgt",
         "icon_RjEePG",
         "text_bjNhmL",
-        "icon_NY7i8U",
+        "icon_xEgXRQ",
         "text_i3ri4m",
-        "icon_UAeUHN"
+        "icon_PXXV8X"
       ],
       "name": "Marquee Ticker",
       "settings": {
