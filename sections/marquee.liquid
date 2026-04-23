@@ -1,0 +1,368 @@
+{% comment %}
+  Section: Marquee Ticker / Announcement Bar
+  Theme: Dawn (Shopify)
+  File: sections/marquee-ticker.liquid
+{% endcomment %}
+
+<style>
+  .marquee-ticker {
+    background-color: {{ section.settings.background_color }};
+    overflow: hidden;
+    padding: {{ section.settings.padding_vertical }}px 0;
+  }
+
+  .marquee-ticker__track-wrapper {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .marquee-ticker__track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation: marquee-scroll {{ section.settings.speed }}s linear infinite;
+    {% if section.settings.direction == 'right' %}
+      animation-direction: reverse;
+    {% endif %}
+  }
+
+  .marquee-ticker__track:hover {
+    {% if section.settings.pause_on_hover %}
+      animation-play-state: paused;
+    {% endif %}
+  }
+
+  @keyframes marquee-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .marquee-ticker__item {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 0 {{ section.settings.gap }}px;
+  }
+
+  .marquee-ticker__text {
+    color: {{ section.settings.text_color }};
+    font-size: {{ section.settings.font_size }}px;
+    font-weight: {{ section.settings.font_weight }};
+    text-transform: {{ section.settings.text_transform }};
+    letter-spacing: 0.02em;
+    line-height: 1;
+  }
+
+  .marquee-ticker__text a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .marquee-ticker__text a:hover {
+    text-decoration: underline;
+  }
+
+  .marquee-ticker__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: {{ section.settings.text_color }};
+    line-height: 1;
+  }
+
+  .marquee-ticker__icon svg {
+    display: block;
+    height: auto;
+    fill: {{ section.settings.text_color }};
+  }
+
+  .marquee-ticker__icon img {
+    display: block;
+    height: auto;
+  }
+
+  @media screen and (prefers-reduced-motion: reduce) {
+    .marquee-ticker__track {
+      animation: none;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+</style>
+
+<div
+  class="marquee-ticker"
+  id="marquee-ticker-{{ section.id }}"
+  role="marquee"
+  aria-label="{{ 'sections.marquee_ticker.aria_label' | t }}"
+>
+  <div class="marquee-ticker__track-wrapper">
+    <div class="marquee-ticker__track">
+
+      {% comment %} Render blocks twice for seamless infinite loop {% endcomment %}
+      {% for i in (1..2) %}
+        {% for block in section.blocks %}
+          <div
+            class="marquee-ticker__item"
+            {{ block.shopify_attributes }}
+          >
+
+            {% case block.type %}
+
+              {% when 'text' %}
+                <span class="marquee-ticker__text">
+                  {% if block.settings.link != blank %}
+                    <a href="{{ block.settings.link }}">
+                      {{ block.settings.text | escape }}
+                    </a>
+                  {% else %}
+                    {{ block.settings.text | escape }}
+                  {% endif %}
+                </span>
+
+                    {% when 'icon' %}
+                      <span class="marquee-ticker__icon" aria-hidden="true">
+                        {% assign w = block.settings.icon_width %}
+                        {% if block.settings.icon_source == 'upload' and block.settings.icon_image != blank %}
+                          {{
+                            block.settings.icon_image
+                            | image_url: width: 100
+                            | image_tag:
+                              loading: 'lazy',
+                              width: w,
+                              height: 'auto',
+                              style: 'width: inherit;'
+                          }}
+                          <style>
+                            #marquee-ticker-{{ section.id }} .marquee-ticker__item:nth-child({{ forloop.index }}) img,
+                            #marquee-ticker-{{ section.id }} .marquee-ticker__item:nth-child({{ forloop.index | plus: section.blocks.size }}) img {
+                              width: {{ w }}px !important;
+                              height: auto;
+                            }
+                          </style>
+                  {% else %}
+                    {% case block.settings.icon_library %}
+                      {% when 'paw' %}
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:{{ w }}px;height:auto;"><path d="M12 13.5c-2.33 0-7 1.17-7 3.5v1.5h14V17c0-2.33-4.67-3.5-7-3.5zm-3.5-4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm7 0c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.5-4c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 0"/></svg>
+                      {% when 'star' %}
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:{{ w }}px;height:auto;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                      {% when 'heart' %}
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:{{ w }}px;height:auto;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                      {% when 'diamond' %}
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:{{ w }}px;height:auto;"><path d="M19 3H5L2 9l10 12L22 9l-3-6zm-7 14.17L3.83 9.5 6.17 5h11.66l2.34 4.5L12 17.17z"/></svg>
+                      {% when 'check' %}
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:{{ w }}px;height:auto;"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                      {% when 'arrow_right' %}
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:{{ w }}px;height:auto;"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+                      {% else %}
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:{{ w }}px;height:auto;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    {% endcase %}
+                  {% endif %}
+                </span>
+
+            {% endcase %}
+
+          </div>
+        {% endfor %}
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Marquee Ticker",
+  "tag": "section",
+  "class": "section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Color Scheme"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#c8765a"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text and Icon Color",
+      "default": "#fff8f4"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font Size",
+      "min": 10,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "text_transform",
+      "label": "Text Transform",
+      "options": [
+        { "value": "none", "label": "None (Aa)" },
+        { "value": "uppercase", "label": "Uppercase (AA)" },
+        { "value": "lowercase", "label": "Lowercase (aa)" },
+        { "value": "capitalize", "label": "Capitalize (Ab)" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font Weight",
+      "options": [
+        { "value": "300", "label": "Light (300)" },
+        { "value": "400", "label": "Normal (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "Bold (600)" }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "header",
+      "content": "Scrolling"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Speed (seconds per cycle)",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "unit": "s",
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "Direction",
+      "options": [
+        { "value": "left", "label": "← Left" },
+        { "value": "right", "label": "→ Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "checkbox",
+      "id": "pause_on_hover",
+      "label": "Pause on Hover",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap between blocks",
+      "min": 8,
+      "max": 96,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "label": "Vertical Padding",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 10
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Made By Professional Artist"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (optional)"
+        }
+      ]
+    },
+    {
+      "type": "icon",
+      "name": "Icon",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon_source",
+          "label": "Icon Source",
+          "options": [
+            { "value": "library", "label": "Library (SVG)" },
+            { "value": "upload", "label": "Custom Image" }
+          ],
+          "default": "library"
+        },
+        {
+          "type": "select",
+          "id": "icon_library",
+          "label": "Icon",
+          "options": [
+            { "value": "paw", "label": "🐾 Paw" },
+            { "value": "star", "label": "★ Star" },
+            { "value": "heart", "label": "♥ Heart" },
+            { "value": "diamond", "label": "◆ Diamond" },
+            { "value": "check", "label": "✓ Checkmark" },
+            { "value": "arrow_right", "label": "→ Arrow" }
+          ],
+          "default": "paw"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "icon_width",
+          "label": "Icon Width",
+          "min": 10,
+          "max": 60,
+          "step": 1,
+          "unit": "px",
+          "default": 16
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Marquee Ticker",
+      "blocks": [
+        { "type": "text", "settings": { "text": "Made By Professional Artist" } },
+        { "type": "icon", "settings": { "icon_source": "library", "icon_library": "paw" } },
+        { "type": "text", "settings": { "text": "Unlimited Free Preview And Revision" } },
+        { "type": "icon", "settings": { "icon_source": "library", "icon_library": "paw" } },
+        { "type": "text", "settings": { "text": "Over 100,000+ Happy Customers" } },
+        { "type": "icon", "settings": { "icon_source": "library", "icon_library": "paw" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
