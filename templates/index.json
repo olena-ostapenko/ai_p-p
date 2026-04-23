@@ -71,15 +71,15 @@
       ],
       "name": "Marquee Ticker",
       "settings": {
-        "background_color": "#c8765a",
-        "text_color": "#fff8f4",
-        "font_size": 14,
-        "text_transform": "none",
+        "background_color": "#c3937d",
+        "text_color": "#ffffff",
+        "font_size": 20,
+        "text_transform": "capitalize",
         "font_weight": "400",
         "speed": 30,
         "direction": "left",
         "pause_on_hover": true,
-        "gap": 48,
+        "gap": 68,
         "padding_vertical": 10
       }
     },
