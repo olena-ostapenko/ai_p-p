@@ -1,26 +1,59 @@
 {% comment %}
-  Renders a megamenu for the header.
-
-  Usage:
-  {% render 'header-mega-menu' %}
+  Hover-based mega menu for the header.
+  Blocks with type 'image_grid' or 'mega_columns_grid' override the standard dropdown
+  for any nav item whose handle matches block.settings.nav_item_handle.
+  Usage: {% render 'header-mega-menu' %}
 {% endcomment %}
 
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}
-      <li>
-        {%- if link.links != blank -%}
+      {%- liquid
+        assign mega_block = nil
+        for block in section.blocks
+          if block.type == 'image_grid' or block.type == 'mega_columns_grid'
+            if block.settings.nav_item_handle != blank
+              assign block_handle = block.settings.nav_item_handle | handleize
+              if block_handle == link.handle
+                assign mega_block = block
+                break
+              endif
+            endif
+          endif
+        endfor
+      -%}
+
+      {%- if mega_block != nil -%}
+        <li class="mega-menu-hover__wrapper" {{ mega_block.shopify_attributes }}>
+          <a
+            id="HeaderMenu-{{ link.handle }}"
+            href="{{ link.url }}"
+            class="header__menu-item list-menu__item link link--text focus-inset"
+            {% if link.current %}aria-current="page"{% endif %}
+          >
+            <span{% if link.child_active or link.current %} class="header__active-menu-item"{% endif %}>
+              {{- link.title | escape -}}
+            </span>
+          </a>
+          <div
+            class="mega-menu-hover__panel color-{{ section.settings.menu_color_scheme }} gradient global-settings-popup"
+            aria-label="{{ link.title | escape }}"
+          >
+            <div class="mega-menu-hover__panel-inner page-width">
+              {%- render 'mega-menu', block: mega_block, link: link -%}
+            </div>
+          </div>
+        </li>
+
+      {%- elsif link.links != blank -%}
+        <li>
           <header-menu>
             <details id="Details-HeaderMenu-{{ forloop.index }}" class="mega-menu">
               <summary
                 id="HeaderMenu-{{ link.handle }}"
                 class="header__menu-item list-menu__item link focus-inset"
               >
-                <span
-                  {%- if link.child_active %}
-                    class="header__active-menu-item"
-                  {% endif %}
-                >
+                <span{% if link.child_active %} class="header__active-menu-item"{% endif %}>
                   {{- link.title | escape -}}
                 </span>
                 {{- 'icon-caret.svg' | inline_asset_content -}}
@@ -40,11 +73,9 @@
                         id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
                         href="{{ childlink.url }}"
                         class="mega-menu__link mega-menu__link--level-2 link{% if childlink.current %} mega-menu__link--active{% endif %}"
-                        {% if childlink.current %}
-                          aria-current="page"
-                        {% endif %}
+                        {% if childlink.current %}aria-current="page"{% endif %}
                       >
-                        {{ childlink.title | escape }}
+                        {{- childlink.title | escape -}}
                       </a>
                       {%- if childlink.links != blank -%}
                         <ul class="list-unstyled" role="list">
@@ -54,11 +85,9 @@
                                 id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
                                 href="{{ grandchildlink.url }}"
                                 class="mega-menu__link link{% if grandchildlink.current %} mega-menu__link--active{% endif %}"
-                                {% if grandchildlink.current %}
-                                  aria-current="page"
-                                {% endif %}
+                                {% if grandchildlink.current %}aria-current="page"{% endif %}
                               >
-                                {{ grandchildlink.title | escape }}
+                                {{- grandchildlink.title | escape -}}
                               </a>
                             </li>
                           {%- endfor -%}
@@ -70,25 +99,59 @@
               </div>
             </details>
           </header-menu>
-        {%- else -%}
+        </li>
+
+      {%- else -%}
+        <li>
           <a
             id="HeaderMenu-{{ link.handle }}"
             href="{{ link.url }}"
             class="header__menu-item list-menu__item link link--text focus-inset"
-            {% if link.current %}
-              aria-current="page"
-            {% endif %}
+            {% if link.current %}aria-current="page"{% endif %}
           >
-            <span
-              {%- if link.current %}
-                class="header__active-menu-item"
-              {% endif %}
-            >
+            <span{% if link.current %} class="header__active-menu-item"{% endif %}>
               {{- link.title | escape -}}
             </span>
           </a>
-        {%- endif -%}
-      </li>
+        </li>
+      {%- endif -%}
     {%- endfor -%}
   </ul>
 </nav>
+
+<script>
+  (function () {
+    var CLOSE_DELAY = 150;
+    var timers = new WeakMap();
+
+    function open(el) {
+      clearTimeout(timers.get(el));
+      el.classList.add('is-open');
+    }
+
+    function close(el) {
+      timers.set(el, setTimeout(function () {
+        el.classList.remove('is-open');
+      }, CLOSE_DELAY));
+    }
+
+    document.querySelectorAll('.mega-menu-hover__wrapper').forEach(function (wrapper) {
+      wrapper.addEventListener('mouseenter', function () { open(wrapper); });
+      wrapper.addEventListener('mouseleave', function () { close(wrapper); });
+      wrapper.addEventListener('focusin',    function () { open(wrapper); });
+      wrapper.addEventListener('focusout',   function () { close(wrapper); });
+    });
+
+    // Always ensure --header-height is set (needed for fixed panel top offset)
+    var sectionHeader = document.querySelector('.section-header');
+    if (sectionHeader) {
+      function updateHeight() {
+        document.documentElement.style.setProperty('--header-height', sectionHeader.offsetHeight + 'px');
+      }
+      updateHeight();
+      if (typeof ResizeObserver !== 'undefined') {
+        new ResizeObserver(updateHeight).observe(sectionHeader);
+      }
+    }
+  })();
+</script>
