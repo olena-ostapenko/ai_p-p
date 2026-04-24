@@ -125,6 +125,25 @@
   .cart-count-bubble {
     bottom: 3.8rem;
   }
+
+  @media screen and (max-width: 989px) {
+    .header__decorative-line {
+      display: none;
+    }
+  }
+
+  .header__heading-logo-wrapper--mobile {
+    display: none;
+  }
+
+  @media screen and (max-width: 989px) {
+    .header__heading-logo-wrapper--desktop {
+      display: none;
+    }
+    .header__heading-logo-wrapper--mobile {
+      display: block;
+    }
+  }
 </style>
 
 {%- style -%}
@@ -148,6 +167,11 @@
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
+  }
+
+  .header__inline-menu .header__menu-item {
+    font-size: {{ section.settings.menu_font_size }}px;
+    font-weight: {{ section.settings.menu_font_weight }};
   }
 
   {%- if section.settings.custom_icon_cart != blank -%}
@@ -233,11 +257,11 @@
       {%- endif -%}
       <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
         {%- if settings.logo != blank -%}
-          <div class="header__heading-logo-wrapper">
-            {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
-            {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
-            {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
-            {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+          {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+          {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+          {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
+          {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+          <div class="header__heading-logo-wrapper{% if settings.logo_mobile != blank %} header__heading-logo-wrapper--desktop{% endif %}">
             {{
               settings.logo
               | image_url: width: 600
@@ -251,6 +275,23 @@
                 preload: true
             }}
           </div>
+          {%- if settings.logo_mobile != blank -%}
+            {%- assign mobile_logo_height = settings.logo_mobile_width | divided_by: settings.logo_mobile.aspect_ratio -%}
+            {% capture mobile_widths %}{{ settings.logo_mobile_width }}, {{ settings.logo_mobile_width | times: 2 }}{% endcapture %}
+            <div class="header__heading-logo-wrapper header__heading-logo-wrapper--mobile">
+              {{
+                settings.logo_mobile
+                | image_url: width: 300
+                | image_tag:
+                  class: 'header__heading-logo motion-reduce',
+                  widths: mobile_widths,
+                  height: mobile_logo_height,
+                  width: settings.logo_mobile_width,
+                  alt: logo_alt,
+                  preload: true
+              }}
+            </div>
+          {%- endif -%}
         {%- else -%}
           <span class="h2">{{ shop.name }}</span>
         {%- endif -%}
@@ -276,11 +317,11 @@
       {%- endif -%}
       <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
         {%- if settings.logo != blank -%}
-          <div class="header__heading-logo-wrapper">
-            {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
-            {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
-            {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
-            {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+          {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+          {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+          {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
+          {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+          <div class="header__heading-logo-wrapper{% if settings.logo_mobile != blank %} header__heading-logo-wrapper--desktop{% endif %}">
             {{
               settings.logo
               | image_url: width: 600
@@ -294,6 +335,23 @@
                 preload: true
             }}
           </div>
+          {%- if settings.logo_mobile != blank -%}
+            {%- assign mobile_logo_height = settings.logo_mobile_width | divided_by: settings.logo_mobile.aspect_ratio -%}
+            {% capture mobile_widths %}{{ settings.logo_mobile_width }}, {{ settings.logo_mobile_width | times: 2 }}{% endcapture %}
+            <div class="header__heading-logo-wrapper header__heading-logo-wrapper--mobile">
+              {{
+                settings.logo_mobile
+                | image_url: width: 300
+                | image_tag:
+                  class: 'header__heading-logo',
+                  widths: mobile_widths,
+                  height: mobile_logo_height,
+                  width: settings.logo_mobile_width,
+                  alt: logo_alt,
+                  preload: true
+              }}
+            </div>
+          {%- endif -%}
         {%- else -%}
           <span class="h2">{{ shop.name }}</span>
         {%- endif -%}
@@ -626,6 +684,37 @@
       ],
       "default": "dropdown",
       "label": "t:sections.header.settings.menu_type_desktop.label"
+    },
+    {
+      "type": "header",
+      "content": "Menu typography"
+    },
+    {
+      "type": "range",
+      "id": "menu_font_size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "menu_font_weight",
+      "label": "Font weight",
+      "default": "400",
+      "options": [
+        { "value": "100", "label": "100 — Thin" },
+        { "value": "200", "label": "200 — Extra Light" },
+        { "value": "300", "label": "300 — Light" },
+        { "value": "400", "label": "400 — Regular" },
+        { "value": "500", "label": "500 — Medium" },
+        { "value": "600", "label": "600 — Semi Bold" },
+        { "value": "700", "label": "700 — Bold" },
+        { "value": "800", "label": "800 — Extra Bold" },
+        { "value": "900", "label": "900 — Black" }
+      ]
     },
     {
       "type": "select",
