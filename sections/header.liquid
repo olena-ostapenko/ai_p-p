@@ -50,6 +50,7 @@
     display: inline-flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    width:100%;
   }
 
   summary.list-menu__item {
@@ -173,6 +174,7 @@
   .header__inline-menu .header__menu-item {
     font-size: {{ section.settings.menu_font_size }}px;
     font-weight: {{ section.settings.menu_font_weight }};
+    padding:0!important;
   }
 
   {%- if section.settings.custom_icon_cart != blank -%}
