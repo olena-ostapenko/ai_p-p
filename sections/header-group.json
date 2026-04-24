@@ -47,7 +47,7 @@
         "show_deco_line": true,
         "deco_line_color": "#7b4f2e",
         "deco_line_thickness": 2,
-        "deco_line_offset_x": 0,
+        "deco_line_offset_x": 41,
         "icon_search": "shopify://shop_images/i-search_26df1b64-0144-4af4-b5fb-e3e0b9909b90.svg",
         "icon_account": "shopify://shop_images/i-acaunt.svg",
         "icon_cart": "shopify://shop_images/i-cart.svg",
