@@ -11,7 +11,7 @@
 <details-modal class="header__search">
   <details>
     <summary
-      class="header__icon header__icon--search header__icon--summary link focus-inset modal__toggle"
+      class="header__icon header__icon--search header__icon--summary link focus-inset modal__toggle{% if section.settings.custom_icon_search != blank %} has-custom-icon{% endif %}"
       aria-haspopup="dialog"
       aria-label="{{ 'general.search.search' | t }}"
     >
@@ -19,6 +19,11 @@
         <span class="svg-wrapper">
           {{- 'icon-search.svg' | inline_asset_content -}}
         </span>
+        {%- if section.settings.custom_icon_search != blank -%}
+          <span class="custom-icon-wrapper">
+            {{- section.settings.custom_icon_search | image_url: width: 48 | image_tag: class: 'custom-icon-img', width: 24, height: 24, alt: '' -}}
+          </span>
+        {%- endif -%}
         <span class="svg-wrapper header__icon-close">
           {{- 'icon-close.svg' | inline_asset_content -}}
         </span>
