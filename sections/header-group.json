@@ -53,6 +53,9 @@
         "enable_country_selector": true,
         "enable_language_selector": true,
         "enable_customer_avatar": true,
+        "custom_icon_search": "shopify://shop_images/i-search_ed0aa6b9-4cf0-4673-b1fc-3b933998fd38.svg",
+        "custom_icon_account": "shopify://shop_images/i-acaunt.svg",
+        "custom_icon_cart": "shopify://shop_images/i-cart.svg",
         "margin_bottom": 0,
         "padding_top": 20,
         "padding_bottom": 20
