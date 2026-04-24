@@ -147,7 +147,7 @@
   }
 
   {%- if section.settings.show_decorative_line -%}
-    .header-wrapper {
+    .header {
       position: relative;
     }
     .header__decorative-line {
@@ -375,10 +375,10 @@
         {%- endif -%}
       </a>
     </div>
+    {%- if section.settings.show_decorative_line -%}
+      <div class="header__decorative-line" aria-hidden="true"></div>
+    {%- endif -%}
   </header>
-  {%- if section.settings.show_decorative_line -%}
-    <div class="header__decorative-line" aria-hidden="true"></div>
-  {%- endif -%}
 </{{ header_tag }}>
 
 {%- if settings.cart_type == 'notification' -%}
