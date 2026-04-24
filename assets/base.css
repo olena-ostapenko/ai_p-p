@@ -468,7 +468,7 @@ table:not([class]) th {
 a:empty,
 ul:empty,
 dl:empty,
-div:empty,
+div:empty:not(.header__decorative-line),
 section:empty,
 article:empty,
 p:empty,
@@ -477,9 +477,8 @@ h2:empty,
 h3:empty,
 h4:empty,
 h5:empty,
-h6:empty, 
-div:empty:not(.header__decorative-line){
-  display: none;
+h6:empty {
+    display: none;
 }
 
 .link,
