@@ -112,6 +112,7 @@
         "heading",
         "button"
       ],
+      "disabled": true,
       "settings": {
         "image_overlay_opacity": 40,
         "image_height": "large",
@@ -181,7 +182,7 @@
       ],
       "name": "t:sections.featured-product.presets.name",
       "settings": {
-        "product": "",
+        "product": "bath-mat",
         "color_scheme": "",
         "secondary_background": false,
         "media_size": "medium",
