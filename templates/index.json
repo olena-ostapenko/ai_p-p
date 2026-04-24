@@ -70,7 +70,7 @@
         "icon_PXXV8X"
       ],
       "custom_css": [
-        ".marquee-ticker__icon{padding-bottom: 6px;}"
+        ".marquee-ticker__icon {padding-bottom: 6px;}"
       ],
       "name": "Marquee Ticker",
       "settings": {
@@ -125,8 +125,79 @@
         "show_text_below": false
       }
     },
+    "featured_product_PWRebz": {
+      "type": "featured-product",
+      "blocks": {
+        "text_gxBLAJ": {
+          "type": "text",
+          "settings": {
+            "text": "{{ section.settings.product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title_mcf9dU": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1"
+          }
+        },
+        "price_XhX46K": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_x8RtDi": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_qGij7U": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_xBgbqa": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share_nhNXih": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "text_gxBLAJ",
+        "title_mcf9dU",
+        "price_XhX46K",
+        "variant_picker_x8RtDi",
+        "quantity_selector_qGij7U",
+        "buy_buttons_xBgbqa",
+        "share_nhNXih"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "",
+        "color_scheme": "",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "featured_collection": {
       "type": "featured-collection",
+      "disabled": true,
       "settings": {
         "collection": "all",
         "products_to_show": 8,
@@ -157,6 +228,7 @@
   "order": [
     "marquee_TBgwDA",
     "image_banner",
+    "featured_product_PWRebz",
     "featured_collection"
   ]
 }
