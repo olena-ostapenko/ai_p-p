@@ -42,6 +42,8 @@
         "mobile_logo_position": "center",
         "menu": "header",
         "menu_type_desktop": "mega",
+        "menu_font_size": 23,
+        "menu_font_weight": "500",
         "sticky_header_type": "on-scroll-up",
         "show_line_separator": true,
         "show_decorative_line": true,
