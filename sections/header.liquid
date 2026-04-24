@@ -121,6 +121,10 @@
     object-fit: contain;
     display: block;
   }
+
+  .cart-count-bubble {
+    bottom: 3.8rem;
+  }
 </style>
 
 {%- style -%}
@@ -145,6 +149,19 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  {%- if section.settings.custom_icon_cart != blank -%}
+    .header__icon--cart.has-custom-icon::before {
+      content: '';
+      width: 2.4rem;
+      height: 2.4rem;
+      background-image: url('{{ section.settings.custom_icon_cart | image_url: width: 48 }}');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      flex-shrink: 0;
+    }
+  {%- endif -%}
 
   {%- if section.settings.show_decorative_line -%}
     .header {
@@ -359,11 +376,6 @@
         {% else %}
           <span class="svg-wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</span>
         {% endif %}
-        {%- if section.settings.custom_icon_cart != blank -%}
-          <span class="custom-icon-wrapper">
-            {{- section.settings.custom_icon_cart | image_url: width: 48 | image_tag: class: 'custom-icon-img', width: 24, height: 24, alt: '' -}}
-          </span>
-        {%- endif -%}
         <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
         {%- if cart != empty -%}
           <div class="cart-count-bubble">
