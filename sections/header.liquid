@@ -76,20 +76,19 @@
   }
 
   /* =============================================
-     DECORATIVE LINE — абсолютне позиціювання
-     обмежена шириною .page-width контейнера
+     DECORATIVE LINE — absolute, inside .page-width
      ============================================= */
   .header {
     position: relative;
-    overflow: hidden; /* лінія не виходить за межі контейнера */
+    overflow: hidden;
   }
 
   .header__decorative-line {
     display: none;
     position: absolute;
-    left: {{ section.settings.deco_line_offset_x }}px;
+    left: 0;
     right: 0;
-    bottom: 0;
+    top: {{ section.settings.deco_line_top }}px;
     height: {{ section.settings.deco_line_thickness }}px;
     background-color: {{ section.settings.deco_line_color }};
     pointer-events: none;
@@ -123,7 +122,7 @@
   }
 
   /* =============================================
-     MENU — центрування на всю ширину контейнера
+     MENU — centered, full width, single row
      ============================================= */
   @media screen and (min-width: 990px) {
     .header__inline-menu {
@@ -132,10 +131,16 @@
       right: 0;
       display: flex;
       justify-content: center;
+      align-items: center;
       pointer-events: none;
     }
     .header__inline-menu > * {
       pointer-events: auto;
+    }
+    /* Force nav items into a single row */
+    .header__inline-menu .list-menu--inline {
+      flex-wrap: nowrap;
+      white-space: nowrap;
     }
   }
 </style>
@@ -319,12 +324,15 @@
         {%- endif -%}
       </div>
 
-      {%- comment -%} ── SEARCH ICON ── кастомна іконка через data-attr {%- endcomment -%}
+      {%- comment -%} ── SEARCH ICON ── custom icon overlay {%- endcomment -%}
       {%- if section.settings.icon_search != blank -%}
-        {%- comment -%} Рендеримо стандартний header-search, але ховаємо його SVG через CSS і додаємо свою іконку {%- endcomment -%}
         <style>
-          details.header__search > summary .svg-wrapper:first-child { display: none; }
-          details.header__search > summary::before {
+          .header__search-toggle .svg-wrapper,
+          details.header__search summary .svg-wrapper,
+          .header__icon--search .svg-wrapper { display: none !important; }
+          .header__search-toggle::after,
+          details.header__search summary::after,
+          .header__icon--search::after {
             content: '';
             display: block;
             width: 2rem;
@@ -678,18 +686,18 @@
     },
     {
       "type": "header",
-      "content": "Декоративна лінія"
+      "content": "Decorative line"
     },
     {
       "type": "checkbox",
       "id": "show_deco_line",
       "default": true,
-      "label": "Показати декоративну лінію"
+      "label": "Show decorative line"
     },
     {
       "type": "color",
       "id": "deco_line_color",
-      "label": "Колір лінії",
+      "label": "Line color",
       "default": "#7B4F2E"
     },
     {
@@ -699,37 +707,37 @@
       "max": 20,
       "step": 1,
       "unit": "px",
-      "label": "Товщина лінії",
+      "label": "Line thickness",
       "default": 2
     },
     {
       "type": "range",
-      "id": "deco_line_offset_x",
+      "id": "deco_line_top",
       "min": 0,
       "max": 100,
       "step": 1,
       "unit": "px",
-      "label": "Позиція по горизонталі (відступ зліва, px)",
-      "default": 0
+      "label": "Top position (px, 0 = top, 100 = bottom)",
+      "default": 80
     },
     {
       "type": "header",
-      "content": "Кастомні іконки"
+      "content": "Custom icons"
     },
     {
       "type": "image_picker",
       "id": "icon_search",
-      "label": "Іконка пошуку (залиште порожнім для стандартної)"
+      "label": "Search icon (leave empty for default)"
     },
     {
       "type": "image_picker",
       "id": "icon_account",
-      "label": "Іконка акаунту (залиште порожнім для стандартної)"
+      "label": "Account icon (leave empty for default)"
     },
     {
       "type": "image_picker",
       "id": "icon_cart",
-      "label": "Іконка кошика (залиште порожнім для стандартної)"
+      "label": "Cart icon (leave empty for default)"
     },
     {
       "type": "header",
