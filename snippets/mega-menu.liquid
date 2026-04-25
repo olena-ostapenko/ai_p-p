@@ -1,31 +1,40 @@
 {%- case block.type -%}
 
   {%- when 'image_grid' -%}
-    <div class="mega-menu__image-grid">
+    {%- liquid
+      assign img_item_count = 0
+      for i in (1..20)
+        assign img_key   = 'item_' | append: i | append: '_image'
+        assign title_key = 'item_' | append: i | append: '_title'
+        assign img       = block.settings[img_key]
+        assign img_title = block.settings[title_key]
+        if img != blank or img_title != blank
+          assign img_item_count = img_item_count | plus: 1
+        endif
+      endfor
+    -%}
+    <div class="mega-menu__image-grid" style="--item-count: {{ img_item_count }};">
       {%- for i in (1..20) -%}
         {%- liquid
           assign img_key   = 'item_' | append: i | append: '_image'
           assign title_key = 'item_' | append: i | append: '_title'
           assign url_key   = 'item_' | append: i | append: '_url'
-          assign width_key = 'item_' | append: i | append: '_width'
           assign img       = block.settings[img_key]
           assign img_title = block.settings[title_key]
           assign img_url   = block.settings[url_key]
-          assign img_width = block.settings[width_key] | default: 25
         -%}
         {%- if img != blank or img_title != blank -%}
           <a
             href="{{ img_url | default: '#' }}"
             class="mega-menu__image-item"
-            style="--item-width: {{ img_width }}%;"
           >
             {%- if img != blank -%}
               {{-
                 img
-                | image_url: width: 600
+                | image_url: width: 400
                 | image_tag:
                   class: 'mega-menu__image-item-img',
-                  widths: '300, 400, 600',
+                  widths: '190, 280, 400',
                   loading: 'lazy'
               -}}
             {%- endif -%}

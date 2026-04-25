@@ -57,16 +57,18 @@
 /* ── Image Grid ──────────────────────────────────────────── */
 .mega-menu__image-grid {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 1.6rem;
-  max-height: calc(2 * (200px + 1.6rem + 2.2rem));
-  overflow: hidden;
-  align-content: flex-start;
+  align-items: flex-start;
+  /* Total ideal width = N × (190px + gap) − gap */
+  width: calc(var(--item-count, 1) * (190px + 1.6rem) - 1.6rem);
+  /* Cap so items shrink proportionally instead of overflowing */
+  max-width: 100%;
 }
 
 .mega-menu__image-item {
-  flex: 0 0 calc(var(--item-width, 25%) - 1.3rem);
-  max-width: calc(var(--item-width, 25%) - 1.3rem);
+  flex: 1 1 0;
+  min-width: 0;
   text-decoration: none;
   color: inherit;
   display: flex;
@@ -81,8 +83,7 @@
 
 .mega-menu__image-item-img {
   width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
+  height: auto;
   display: block;
   border-radius: calc(var(--mega-menu-radius) * 0.75);
 }
