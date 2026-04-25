@@ -26,6 +26,7 @@
 
 .mega-menu-hover__panel.global-settings-popup {
   background: transparent;
+  border-color: transparent;
 }
 
 .mega-menu-hover__wrapper.is-open > .mega-menu-hover__panel {
