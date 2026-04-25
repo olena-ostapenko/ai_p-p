@@ -124,34 +124,73 @@
     var CLOSE_DELAY = 150;
     var timers = new WeakMap();
 
-    function open(el) {
+    function openWrapper(el) {
       clearTimeout(timers.get(el));
       el.classList.add('is-open');
     }
 
-    function close(el) {
+    function closeWrapper(el) {
       timers.set(el, setTimeout(function () {
         el.classList.remove('is-open');
       }, CLOSE_DELAY));
     }
 
-    document.querySelectorAll('.mega-menu-hover__wrapper').forEach(function (wrapper) {
-      wrapper.addEventListener('mouseenter', function () { open(wrapper); });
-      wrapper.addEventListener('mouseleave', function () { close(wrapper); });
-      wrapper.addEventListener('focusin',    function () { open(wrapper); });
-      wrapper.addEventListener('focusout',   function () { close(wrapper); });
-    });
+    function openDetails(details, timerKey) {
+      clearTimeout(timers.get(timerKey));
+      details.setAttribute('open', '');
+    }
 
-    // Always ensure --header-height is set (needed for fixed panel top offset)
-    var sectionHeader = document.querySelector('.section-header');
-    if (sectionHeader) {
-      function updateHeight() {
-        document.documentElement.style.setProperty('--header-height', sectionHeader.offsetHeight + 'px');
+    function closeDetails(details, timerKey) {
+      timers.set(timerKey, setTimeout(function () {
+        details.removeAttribute('open');
+      }, CLOSE_DELAY));
+    }
+
+    function init() {
+      // Hover for custom mega-block items
+      document.querySelectorAll('.mega-menu-hover__wrapper').forEach(function (wrapper) {
+        wrapper.addEventListener('mouseenter', function () { openWrapper(wrapper); });
+        wrapper.addEventListener('mouseleave', function () { closeWrapper(wrapper); });
+        wrapper.addEventListener('focusin',    function () { openWrapper(wrapper); });
+        wrapper.addEventListener('focusout',   function () { closeWrapper(wrapper); });
+      });
+
+      // Hover for standard details/summary dropdowns (links with children)
+      document.querySelectorAll('.header__inline-menu li > header-menu > details.mega-menu').forEach(function (details) {
+        var li = details.closest('li');
+        if (!li) return;
+
+        // Prevent summary click from toggling when hover already opened it
+        var summary = details.querySelector('summary');
+        if (summary) {
+          summary.addEventListener('click', function (e) {
+            e.preventDefault();
+          });
+        }
+
+        li.addEventListener('mouseenter', function () { openDetails(details, li); });
+        li.addEventListener('mouseleave', function () { closeDetails(details, li); });
+        li.addEventListener('focusin',    function () { openDetails(details, li); });
+        li.addEventListener('focusout',   function () { closeDetails(details, li); });
+      });
+
+      // Ensure --header-height is set for the fixed panel offset
+      var sectionHeader = document.querySelector('.section-header');
+      if (sectionHeader) {
+        function updateHeight() {
+          document.documentElement.style.setProperty('--header-height', sectionHeader.offsetHeight + 'px');
+        }
+        updateHeight();
+        if (typeof ResizeObserver !== 'undefined') {
+          new ResizeObserver(updateHeight).observe(sectionHeader);
+        }
       }
-      updateHeight();
-      if (typeof ResizeObserver !== 'undefined') {
-        new ResizeObserver(updateHeight).observe(sectionHeader);
-      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
     }
   })();
 </script>
