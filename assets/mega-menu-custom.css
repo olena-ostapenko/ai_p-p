@@ -8,7 +8,7 @@
   position: static;
 }
 
-/* ── Panel: fixed, full-width, appears below the header ─── */
+/* ── Panel: transparent full-width overlay for positioning ── */
 .mega-menu-hover__panel {
   position: fixed;
   left: 0;
@@ -20,12 +20,9 @@
   pointer-events: none;
   transition: opacity 200ms ease, visibility 200ms ease;
   transition-delay: 150ms;
-  box-shadow: var(--mega-menu-shadow);
-  border-radius: 0 0 var(--mega-menu-radius) var(--mega-menu-radius);
-}
-
-.mega-menu-hover__panel.global-settings-popup {
-  background: transparent;
+  display: flex;
+  justify-content: center;
+  background: transparent !important;
 }
 
 .mega-menu-hover__wrapper.is-open > .mega-menu-hover__panel {
@@ -35,13 +32,25 @@
   transition-delay: 0ms;
 }
 
+/* ── Panel inner: actual visible background, sized to content ── */
 .mega-menu-hover__panel-inner {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  background: rgb(var(--color-background));
+  box-shadow: var(--mega-menu-shadow);
+  border-radius: 0 0 var(--mega-menu-radius) var(--mega-menu-radius);
+  width: fit-content;
+  min-width: 24rem;
+  max-width: var(--page-width, 120rem);
+  padding: 3rem;
+  margin: 0;
 }
 
 /* Remove Dawn default underline on top-level nav links */
 .header__inline-menu .header__menu-item.link {
+  text-decoration: none;
+}
+
+/* Override Dawn's hover underline on span for mega menu trigger */
+.mega-menu-hover__wrapper > .header__menu-item:hover span {
   text-decoration: none;
 }
 
