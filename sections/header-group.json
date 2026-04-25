@@ -41,7 +41,7 @@
         "image_grid_HkPf3y": {
           "type": "image_grid",
           "settings": {
-            "nav_item_handle": "",
+            "nav_item_handle": "modern-pet-portrait",
             "item_1_image": "shopify://shop_images/Rufus_menu.jpg",
             "item_1_title": "12231",
             "item_1_url": "",
