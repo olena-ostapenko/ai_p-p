@@ -141,11 +141,12 @@
 }
 
 .mega-menu__column-title {
-  font-size: 1.1rem;
-  letter-spacing: 0.12em;
+  font-size: 23px;
+  font-weight:600;
+  letter-spacing: 0;
   text-transform: uppercase;
   opacity: 0.55;
-  margin: 0 0 1.2rem;
+  margin: 0 0 17px 0;
   white-space: nowrap;
 }
 
