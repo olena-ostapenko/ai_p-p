@@ -146,9 +146,10 @@
 .mega-menu__columns-images {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  grid-template-columns: repeat(var(--col-img-cols, 4), minmax(0, 14rem));
   gap: 1.2rem;
-  overflow: hidden;
+  justify-content: center;
+  align-content: start;
 }
 
 .mega-menu__col-img-item {
@@ -166,9 +167,16 @@
 
 .mega-menu__col-img-item-img {
   width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
+  height: auto;
+  display: block;
+  object-fit: contain;
   border-radius: calc(var(--mega-menu-radius) * 0.75);
+  box-shadow:
+    1px 1px 3px 0 rgba(0, 0, 0, 0.26),
+    4px 4px 6px 0 rgba(0, 0, 0, 0.22),
+    8px 10px 7px 0 rgba(0, 0, 0, 0.13),
+    14px 17px 9px 0 rgba(0, 0, 0, 0.04),
+    22px 27px 10px 0 rgba(0, 0, 0, 0);
 }
 
 .mega-menu__col-img-item-title {

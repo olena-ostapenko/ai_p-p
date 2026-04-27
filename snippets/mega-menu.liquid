@@ -47,6 +47,19 @@
     </div>
 
   {%- when 'mega_columns_grid' -%}
+    {%- liquid
+      assign col_img_count = 0
+      for i in (1..8)
+        assign img_key = 'img_' | append: i | append: '_image'
+        if block.settings[img_key] != blank
+          assign col_img_count = col_img_count | plus: 1
+        endif
+      endfor
+      assign col_img_cols = col_img_count
+      if col_img_cols > 4
+        assign col_img_cols = 4
+      endif
+    -%}
     <div class="mega-menu__columns-layout">
       <div class="mega-menu__columns-menus">
         {%- for i in (1..6) -%}
@@ -78,8 +91,8 @@
         {%- endfor -%}
       </div>
 
-      <div class="mega-menu__columns-images">
-        {%- for i in (1..20) -%}
+      <div class="mega-menu__columns-images" style="--col-img-cols: {{ col_img_cols }};">
+        {%- for i in (1..8) -%}
           {%- liquid
             assign img_key   = 'img_' | append: i | append: '_image'
             assign title_key = 'img_' | append: i | append: '_title'
