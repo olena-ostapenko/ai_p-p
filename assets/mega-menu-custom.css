@@ -85,7 +85,6 @@
   width: 100%;
   height: auto;
   display: block;
-  border-radius: calc(var(--mega-menu-radius) * 0.75);
 }
 
 .mega-menu__image-item-title {
