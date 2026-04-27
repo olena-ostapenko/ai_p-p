@@ -107,14 +107,17 @@
 /* ── Columns + Images ────────────────────────────────────── */
 .mega-menu__columns-layout {
   display: flex;
-  gap: 5rem;
+  gap: 3rem;
   align-items: flex-start;
+  min-width: 55rem;
 }
 
 .mega-menu__columns-menus {
+  flex: 1 1 0;
+  min-width: 0;
   display: flex;
   gap: 4rem;
-  flex-shrink: 0;
+  flex-wrap: wrap;
 }
 
 .mega-menu__column-title {
@@ -144,11 +147,11 @@
 }
 
 .mega-menu__columns-images {
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
   display: grid;
-  grid-template-columns: repeat(var(--col-img-cols, 4), minmax(0, 14rem));
+  grid-template-columns: repeat(var(--col-img-cols, 4), 1fr);
   gap: 1.2rem;
-  justify-content: center;
   align-content: start;
 }
 
