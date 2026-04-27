@@ -144,7 +144,7 @@
   font-size: 23px;
   font-weight:600;
   letter-spacing: 0;
-  text-transform: uppercase;
+  text-transform: capitalize;
   opacity: 1;
   margin: 0 0 17px 0;
   white-space: nowrap;
