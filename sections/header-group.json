@@ -41,7 +41,7 @@
         "mega_columns_grid_wTXaRA": {
           "type": "mega_columns_grid",
           "settings": {
-            "nav_item_handle": "",
+            "nav_item_handle": "pet-portraits",
             "menu_1": "best-sellers",
             "menu_2": "shop-for",
             "menu_3": "other-products",
