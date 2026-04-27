@@ -5,24 +5,35 @@
 
 /* ── Wrapper ─────────────────────────────────────────────── */
 .mega-menu-hover__wrapper {
-  position: static;
+  position: relative;
 }
 
-/* ── Panel: transparent full-width overlay for positioning ── */
+/* ── Panel: absolute, sized to content, centered under item ── */
 .mega-menu-hover__panel {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: var(--header-height, 0px);
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 100;
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
   transition: opacity 200ms ease, visibility 200ms ease;
   transition-delay: 150ms;
-  display: flex;
-  justify-content: center;
   background: transparent !important;
+}
+
+/* First nav item: panel aligned to its left edge */
+.list-menu--inline > li:first-child .mega-menu-hover__panel {
+  left: 0;
+  transform: none;
+}
+
+/* Last nav item: panel aligned to its right edge */
+.list-menu--inline > li:last-child .mega-menu-hover__panel {
+  left: auto;
+  right: 0;
+  transform: none;
 }
 
 .mega-menu-hover__wrapper.is-open > .mega-menu-hover__panel {
@@ -36,7 +47,7 @@
 .mega-menu-hover__panel-inner {
   background: rgb(var(--color-background));
   box-shadow: var(--mega-menu-shadow);
-  border-radius: 0 0 var(--mega-menu-radius) var(--mega-menu-radius);
+  border-radius: 15px;
   width: fit-content;
   min-width: 24rem;
   max-width: var(--page-width, 120rem);
@@ -60,9 +71,7 @@
   flex-wrap: nowrap;
   gap: 1.6rem;
   align-items: flex-start;
-  /* Total ideal width = N × (190px + gap) − gap */
   width: calc(var(--item-count, 1) * (190px + 1.6rem) - 1.6rem);
-  /* Cap so items shrink proportionally instead of overflowing */
   max-width: 100%;
 }
 
@@ -81,11 +90,12 @@
   opacity: 0.8;
 }
 
+/* No border-radius; image fits proportionally */
 .mega-menu__image-item-img {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: calc(var(--mega-menu-radius) * 0.75);
+  object-fit: contain;
 }
 
 .mega-menu__image-item-title {
