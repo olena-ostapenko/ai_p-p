@@ -74,6 +74,14 @@
   text-decoration: none;
 }
 
+/* Remove active/current underline on all header menu items */
+.header__active-menu-item,
+.header__menu-item:hover .header__active-menu-item {
+  text-decoration: none;
+  text-decoration-thickness: 0;
+  text-underline-offset: unset;
+}
+
 /* ── Image Grid ──────────────────────────────────────────── */
 .mega-menu__image-grid {
   display: flex;
@@ -118,7 +126,6 @@
   display: flex;
   gap: 3rem;
   align-items: flex-start;
-  min-width: 55rem;
 }
 
 .mega-menu__columns-menus {
@@ -157,7 +164,6 @@
 
 .mega-menu__columns-images {
   flex: 1 1 0;
-  min-width: 0;
   display: grid;
   grid-template-columns: repeat(var(--col-img-cols, 4), minmax(132px, 1fr));
   gap: 1.2rem;
