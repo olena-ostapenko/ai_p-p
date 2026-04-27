@@ -23,11 +23,11 @@
   display: flex;
   justify-content: center;
   background: transparent !important;
-  height:0;
+  width:fit-content;
 }
 
 .mega-menu-hover__wrapper.is-open > .mega-menu-hover__panel {
-  height:auto;
+
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
