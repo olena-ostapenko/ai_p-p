@@ -154,10 +154,10 @@
 }
 
 .mega-menu__col-img-item-img {
-  width: 100%;
+  /* width: 100%;
   aspect-ratio: 3 / 4;
   object-fit: cover;
-  border-radius: calc(var(--mega-menu-radius) * 0.75);
+  border-radius: calc(var(--mega-menu-radius) * 0.75); */
 }
 
 .mega-menu__col-img-item-title {
