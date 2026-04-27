@@ -165,6 +165,7 @@
   font-weight:400;
   color:#000000;
   font-size:21px;
+  text-decoration:none!important;
 }
 
 .mega-menu__column-link:hover {
