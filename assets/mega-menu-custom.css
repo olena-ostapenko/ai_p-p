@@ -36,7 +36,7 @@
 .mega-menu-hover__panel-inner {
   background: rgb(var(--color-background));
   box-shadow: var(--mega-menu-shadow);
-  border-radius: 0 0 var(--mega-menu-radius) var(--mega-menu-radius);
+  border-radius: var(--mega-menu-radius);
   width: fit-content;
   min-width: 24rem;
   max-width: var(--page-width, 120rem);
