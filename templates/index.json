@@ -224,12 +224,38 @@
         "padding_top": 44,
         "padding_bottom": 36
       }
+    },
+    "our_best_sellers_RoJgkQ": {
+      "type": "our-best-sellers",
+      "settings": {
+        "collection": "all",
+        "title": "Our Best Selllers",
+        "heading_size": "h1",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "enable_desktop_slider": false,
+        "swipe_on_mobile": true,
+        "full_width": false,
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "marquee_TBgwDA",
     "image_banner",
     "featured_product_PWRebz",
+    "our_best_sellers_RoJgkQ",
     "featured_collection"
   ]
 }

@@ -1,5 +1,5 @@
 :root {
-  --mega-menu-radius:15px;
+  --mega-menu-radius: var(--popup-corner-radius, 0.4rem);
   --mega-menu-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
@@ -23,11 +23,9 @@
   display: flex;
   justify-content: center;
   background: transparent !important;
-  width:fit-content;
 }
 
 .mega-menu-hover__wrapper.is-open > .mega-menu-hover__panel {
-
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
@@ -38,7 +36,7 @@
 .mega-menu-hover__panel-inner {
   background: rgb(var(--color-background));
   box-shadow: var(--mega-menu-shadow);
-  border-radius: var(--mega-menu-radius);
+  border-radius: 0 0 var(--mega-menu-radius) var(--mega-menu-radius);
   width: fit-content;
   min-width: 24rem;
   max-width: var(--page-width, 120rem);
@@ -87,6 +85,7 @@
   width: 100%;
   height: auto;
   display: block;
+  border-radius: calc(var(--mega-menu-radius) * 0.75);
 }
 
 .mega-menu__image-item-title {
@@ -137,8 +136,7 @@
 .mega-menu__columns-images {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  /* grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); */
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
   gap: 1.2rem;
   overflow: hidden;
 }
@@ -157,14 +155,10 @@
 }
 
 .mega-menu__col-img-item-img {
-  /* width: 100%;
+  width: 100%;
   aspect-ratio: 3 / 4;
   object-fit: cover;
-  border-radius: calc(var(--mega-menu-radius) * 0.75); */
-
-  width: 100%;
-    height: auto;
-    display: block;
+  border-radius: calc(var(--mega-menu-radius) * 0.75);
 }
 
 .mega-menu__col-img-item-title {
