@@ -1,5 +1,5 @@
 :root {
-  --mega-menu-radius: var(--popup-corner-radius, 0.4rem);
+  --mega-menu-radius:15px;
   --mega-menu-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
