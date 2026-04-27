@@ -36,7 +36,7 @@
             </span>
           </a>
           <div
-            class="mega-menu-hover__panel color-{{ section.settings.menu_color_scheme }} gradient"
+            class="mega-menu-hover__panel color-{{ section.settings.menu_color_scheme }} gradient{% if mega_block.type == 'mega_columns_grid' %} mega-menu-hover__panel--wide{% endif %}"
             aria-label="{{ link.title | escape }}"
           >
             <div class="mega-menu-hover__panel-inner page-width">
