@@ -142,17 +142,15 @@
 /* ── Columns + Images ────────────────────────────────────── */
 .mega-menu__columns-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto auto;
   gap: 3rem;
   align-items: start;
 }
 
 .mega-menu__columns-menus {
-  min-width: 0;
   display: flex;
-  /* gap: 4rem; */
   flex-wrap: nowrap;
-  justify-content: space-around;
+  gap: 4rem;
 }
 
 .mega-menu__column-title {
@@ -188,9 +186,8 @@
 }
 
 .mega-menu__columns-images {
-  min-width: 0;
   display: grid;
-  grid-template-columns: repeat(var(--col-img-cols, 4), minmax(132px, 1fr));
+  grid-template-columns: repeat(var(--col-img-cols, 4), 132px);
   gap: 1.2rem;
   align-content: start;
 }
