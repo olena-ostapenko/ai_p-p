@@ -14,7 +14,7 @@
 
 {%- if section.settings.menu_type_desktop == 'mega' -%}
   <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="{{ 'mega-menu-custom.css' | asset_url }}" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="{{ 'mega-menu-custom.css' | asset_url }}">
 {%- endif -%}
 
 <style>
@@ -146,6 +146,12 @@
     .header__heading-logo-wrapper--mobile {
       display: block;
     }
+  }
+
+  .mega-menu-hover__panel {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
   }
 </style>
 
