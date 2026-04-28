@@ -40,6 +40,7 @@
       "blocks": {
         "mega_columns_grid_WyqEw6": {
           "type": "mega_columns_grid",
+          "name": "Mega Menu",
           "settings": {
             "nav_item_handle": "learn-more",
             "menu_1": "learn-more",
