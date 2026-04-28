@@ -123,6 +123,11 @@
   height: auto;
   display: block;
   object-fit: contain;
+  filter: 
+        drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.26))
+        drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.22))
+        drop-shadow(8px 10px 7px rgba(0, 0, 0, 0.13))
+        drop-shadow(14px 17px 9px rgba(0, 0, 0, 0.04));
 }
 
 .mega-menu__image-item-title {
