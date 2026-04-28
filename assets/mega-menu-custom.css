@@ -176,11 +176,11 @@
 }
 
 .mega-menu__column-link {
-  text-decoration: none;
-  font-weight:500;
-  color:#000000;
-  font-size:21px;
-  text-decoration:none!important;
+  text-decoration: none !important;
+  font-weight: 500;
+  color: #000000;
+  font-size: 21px;
+  white-space: nowrap;
 }
 
 .mega-menu__column-link:hover {
