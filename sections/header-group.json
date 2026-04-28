@@ -42,8 +42,8 @@
           "type": "image_grid",
           "settings": {
             "nav_item_handle": "reviews",
-            "img_border_radius": 0,
-            "img_shadow": true,
+            "img_border_radius": 6,
+            "img_shadow": false,
             "item_1_image": "shopify://shop_images/Custom_Portrait_for_Pets_3_500x_3.png",
             "item_1_title": "reviews",
             "item_1_url": "",
