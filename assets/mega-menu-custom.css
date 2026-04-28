@@ -68,6 +68,11 @@
   margin: 0;
 }
 
+/* First li padding */
+.mega-menu-hover__wrapper:first-of-type .mega-menu-hover__panel-inner {
+  padding: 55px 94px 42px 94px; 
+}
+
 /* Remove Dawn default underline on top-level nav links */
 .header__inline-menu .header__menu-item.link {
   text-decoration: none;
