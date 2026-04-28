@@ -42,7 +42,6 @@
           "type": "image_grid",
           "settings": {
             "nav_item_handle": "custom-clothing",
-            "img_border_radius": 5,
             "item_1_image": "shopify://shop_images/Modern_Pet_Portrait_with_Name_Black_Frame_White_Background_1000x_4_1.jpg",
             "item_1_title": "embroidered pet hoodies",
             "item_1_url": "",
@@ -133,7 +132,6 @@
           "type": "image_grid",
           "settings": {
             "nav_item_handle": "modern-pet-portrait",
-            "img_border_radius": 0,
             "item_1_image": "shopify://shop_images/Rufus_menu.jpg",
             "item_1_title": "Modern Pet Portrait",
             "item_1_url": "",

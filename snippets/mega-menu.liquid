@@ -18,7 +18,7 @@
       endif
       assign img_radius = block.settings.img_border_radius | default: 0
     -%}
-    <div class="mega-menu__image-grid" style="--item-count: {{ img_item_count }}; --grid-cols: {{ grid_cols }}; --img-radius: {{ img_radius }}px;">
+    <div class="mega-menu__image-grid" style="--grid-cols: {{ grid_cols }}; --img-radius: {{ img_radius }}px; --img-filter: {% if block.settings.img_shadow %}drop-shadow(1px 1px 3px rgba(0,0,0,0.26)) drop-shadow(4px 4px 6px rgba(0,0,0,0.22)) drop-shadow(8px 10px 7px rgba(0,0,0,0.13)) drop-shadow(14px 17px 9px rgba(0,0,0,0.04)){% else %}none{% endif %};">
       {%- for i in (1..8) -%}
         {%- liquid
           assign img_key   = 'item_' | append: i | append: '_image'
