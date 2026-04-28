@@ -40,6 +40,7 @@
       "blocks": {
         "mega_columns_grid_qzRDcB": {
           "type": "mega_columns_grid",
+          "name": "Mega Menu",
           "settings": {
             "nav_item_handle": "pet-portraits",
             "menu_1": "best-sellers",
