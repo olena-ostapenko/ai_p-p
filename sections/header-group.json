@@ -41,6 +41,38 @@
         "image_grid_z6pCBN": {
           "type": "image_grid",
           "settings": {
+            "nav_item_handle": "other-products",
+            "img_border_radius": 6,
+            "img_shadow": false,
+            "item_1_image": "shopify://shop_images/Modern_Pet_Portrait_with_Name_Black_Frame_White_Background_1000x_4_1.jpg",
+            "item_1_title": "framed & unframed prints",
+            "item_1_url": "",
+            "item_2_image": "shopify://shop_images/Modern_Pet_Portrait_with_Name_Black_Frame_White_Background_1000x_4_1.jpg",
+            "item_2_title": "canvas",
+            "item_2_url": "",
+            "item_3_image": "shopify://shop_images/Modern_Pet_Portrait_with_Name_Black_Frame_White_Background_1000x_4_1.jpg",
+            "item_3_title": "cushions",
+            "item_3_url": "",
+            "item_4_image": "shopify://shop_images/Modern_Pet_Portrait_with_Name_Black_Frame_White_Background_1000x_4_1.jpg",
+            "item_4_title": "ustom pet apparel",
+            "item_4_url": "",
+            "item_5_image": "shopify://shop_images/Modern_Pet_Portrait_with_Name_Black_Frame_White_Background_1000x_4_1.jpg",
+            "item_5_title": "phone cases",
+            "item_5_url": "",
+            "item_6_image": "shopify://shop_images/Modern_Pet_Portrait_with_Name_Black_Frame_White_Background_1000x_4_1.jpg",
+            "item_6_title": "mugs",
+            "item_6_url": "",
+            "item_7_image": "shopify://shop_images/Modern_Pet_Portrait_with_Name_Black_Frame_White_Background_1000x_4_1.jpg",
+            "item_7_title": "tote bags",
+            "item_7_url": "",
+            "item_8_image": "shopify://shop_images/Modern_Pet_Portrait_with_Name_Black_Frame_White_Background_1000x_4_1.jpg",
+            "item_8_title": "gift cards",
+            "item_8_url": ""
+          }
+        },
+        "image_grid_8qkQpK": {
+          "type": "image_grid",
+          "settings": {
             "nav_item_handle": "custom-clothing",
             "img_border_radius": 6,
             "img_shadow": false,
@@ -158,6 +190,7 @@
       },
       "block_order": [
         "image_grid_z6pCBN",
+        "image_grid_8qkQpK",
         "mega_columns_grid_qzRDcB",
         "image_grid_HkPf3y"
       ],
