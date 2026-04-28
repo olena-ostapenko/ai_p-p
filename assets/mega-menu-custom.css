@@ -223,6 +223,7 @@
 .mega-menu__col-img-item-title {
   text-align: center;
   color:#000000;
+  text-transform:capitalize;
 }
 
 /* ── Mobile: hide hover panels ───────────────────────────── */
