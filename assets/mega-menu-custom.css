@@ -105,6 +105,7 @@
   flex-direction: column;
   gap: 0.8rem;
   transition: opacity 150ms ease;
+  container-type: inline-size;
 }
 
 .mega-menu__image-item:hover {
@@ -120,7 +121,7 @@
 }
 
 .mega-menu__image-item-title {
-  font-size: 1.4rem;
+  font-size: clamp(14px, 3.5cqi + 10.5px, 21px);
   text-align: center;
   font-weight: 500;
 }
