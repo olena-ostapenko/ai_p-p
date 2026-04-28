@@ -3,7 +3,7 @@
   {%- when 'image_grid' -%}
     {%- liquid
       assign img_item_count = 0
-      for i in (1..20)
+      for i in (1..8)
         assign img_key   = 'item_' | append: i | append: '_image'
         assign title_key = 'item_' | append: i | append: '_title'
         assign img       = block.settings[img_key]
@@ -12,9 +12,14 @@
           assign img_item_count = img_item_count | plus: 1
         endif
       endfor
+      assign grid_cols = img_item_count
+      if grid_cols > 4
+        assign grid_cols = 4
+      endif
+      assign img_radius = block.settings.img_border_radius | default: 0
     -%}
-    <div class="mega-menu__image-grid" style="--item-count: {{ img_item_count }};">
-      {%- for i in (1..20) -%}
+    <div class="mega-menu__image-grid" style="--item-count: {{ img_item_count }}; --grid-cols: {{ grid_cols }}; --img-radius: {{ img_radius }}px;">
+      {%- for i in (1..8) -%}
         {%- liquid
           assign img_key   = 'item_' | append: i | append: '_image'
           assign title_key = 'item_' | append: i | append: '_title'
