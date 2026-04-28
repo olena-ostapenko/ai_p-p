@@ -148,8 +148,9 @@
 .mega-menu__columns-menus {
   min-width: 0;
   display: flex;
-  gap: 4rem;
+  /* gap: 4rem; */
   flex-wrap: nowrap;
+  justify-content: space-around;
 }
 
 .mega-menu__column-title {
