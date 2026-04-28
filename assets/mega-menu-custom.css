@@ -45,8 +45,13 @@
   transform: translateX(-50%);
 }
 
-.mega-menu-hover__panel--wide .mega-menu-hover__panel-inner {
-  width: 90vw;
+/* Last nav item wide panel: absolute, right-aligned to the wrapper */
+.list-menu--inline > li:last-child .mega-menu-hover__panel--wide {
+  position: absolute;
+  top: 40px;
+  left: auto;
+  right: 0;
+  transform: none;
 }
 
 .mega-menu-hover__wrapper.is-open > .mega-menu-hover__panel {
