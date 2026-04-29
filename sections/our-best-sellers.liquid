@@ -35,7 +35,8 @@
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
-    padding-bottom: 4px;
+    padding: 15px 5px;
+    margin-top: -15px;
   }
 
   .obs-figma__rail::-webkit-scrollbar {
@@ -133,10 +134,6 @@
     border-radius: 8px;
     box-sizing: border-box;
     padding: 8px 8px 12px;
-    /* Додаємо тінь сюди */
-    box-shadow: 
-      0 1px 2px rgba(0, 0, 0, 0.05), 
-      0 3px 6px rgba(0, 0, 0, 0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     margin: 10px 5px; /* Додаємо невеликі відступи, щоб тінь не злипалася */
   }
@@ -211,6 +208,9 @@
 
     .obs-figma__nav {
       display: inline-flex;
+    }
+    .obs-figma__card {
+      box-shadow: 0 2px 4px rgba(0,0,0,0.08); 
     }
   }
 {%- endstyle -%}
