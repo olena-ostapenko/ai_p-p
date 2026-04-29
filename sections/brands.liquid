@@ -19,27 +19,27 @@
     gap: {{ section.settings.gap }}px;
   }
 
-  /* Fixed height — all items same height, image width controlled per block */
+  /* Fixed height — all items same height */
   #shopify-section-{{ section.id }} .brands__item {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
     height: {{ section.settings.item_height }}px;
+    transition: box-shadow 0.3s ease;
+    
+    {%- if section.settings.img_shadow %}
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08), 
+                  0 1px 4px rgba(0, 0, 0, 0.04);
+    {%- endif %}
   }
 
   #shopify-section-{{ section.id }} .brands__item img {
     display: block;
     width: auto;
-    max-height: {{ section.settings.item_height }}px;
+    max-height: 100%; /* Scaling inside the padded block */
     max-width: 100%;
     object-fit: contain;
-    {%- if section.settings.img_shadow %}
-    filter: drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.26))
-            drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.22))
-            drop-shadow(8px 10px 7px rgba(0, 0, 0, 0.13))
-            drop-shadow(14px 17px 9px rgba(0, 0, 0, 0.04));
-    {%- endif %}
   }
 
   /* ── Styled block ── */
@@ -48,10 +48,12 @@
     background-color: {{ section.settings.block_bg }};
     border-radius: {{ section.settings.block_border_radius }}px;
     padding: {{ section.settings.block_padding }}px;
+    /* ensure height includes padding if box-sizing isn't border-box, 
+       but Shopify themes usually handle this globally */
   }
   {%- endif -%}
 
-  /* ── Mobile: horizontal scroll, no scrollbar ── */
+  /* ── Mobile: horizontal scroll ── */
   @media screen and (max-width: 749px) {
     #shopify-section-{{ section.id }} .brands__container {
       padding-top: {{ section.settings.padding_top_mobile }}px;
@@ -70,7 +72,6 @@
       padding-left: {{ section.settings.padding_horizontal_mobile }}px;
       padding-right: {{ section.settings.padding_horizontal_mobile }}px;
       scrollbar-width: none;
-      -ms-overflow-style: none;
     }
 
     #shopify-section-{{ section.id }} .brands__track::-webkit-scrollbar {
@@ -129,71 +130,47 @@
     },
     {
       "type": "header",
-      "content": "Section Padding (Desktop)"
+      "content": "Section Padding"
     },
     {
       "type": "range",
       "id": "padding_top",
       "label": "Padding top",
-      "min": 0,
-      "max": 120,
-      "step": 4,
-      "unit": "px",
-      "default": 40
+      "min": 0, "max": 120, "step": 4, "unit": "px", "default": 40
     },
     {
       "type": "range",
       "id": "padding_bottom",
       "label": "Padding bottom",
-      "min": 0,
-      "max": 120,
-      "step": 4,
-      "unit": "px",
-      "default": 40
+      "min": 0, "max": 120, "step": 4, "unit": "px", "default": 40
     },
     {
       "type": "range",
       "id": "padding_horizontal",
       "label": "Padding horizontal",
-      "min": 0,
-      "max": 80,
-      "step": 4,
-      "unit": "px",
-      "default": 24
+      "min": 0, "max": 80, "step": 4, "unit": "px", "default": 24
     },
     {
       "type": "header",
-      "content": "Section Padding (Mobile)"
+      "content": "Mobile Settings"
     },
     {
       "type": "range",
       "id": "padding_top_mobile",
       "label": "Padding top (mobile)",
-      "min": 0,
-      "max": 80,
-      "step": 4,
-      "unit": "px",
-      "default": 24
+      "min": 0, "max": 80, "step": 4, "unit": "px", "default": 24
     },
     {
       "type": "range",
       "id": "padding_bottom_mobile",
       "label": "Padding bottom (mobile)",
-      "min": 0,
-      "max": 80,
-      "step": 4,
-      "unit": "px",
-      "default": 24
+      "min": 0, "max": 80, "step": 4, "unit": "px", "default": 24
     },
     {
       "type": "range",
       "id": "padding_horizontal_mobile",
       "label": "Padding horizontal (mobile)",
-      "min": 0,
-      "max": 40,
-      "step": 4,
-      "unit": "px",
-      "default": 16
+      "min": 0, "max": 40, "step": 4, "unit": "px", "default": 16
     },
     {
       "type": "header",
@@ -203,51 +180,34 @@
       "type": "range",
       "id": "item_height",
       "label": "Item height",
-      "info": "All items are the same height. Images scale proportionally.",
-      "min": 20,
-      "max": 200,
-      "step": 2,
-      "unit": "px",
-      "default": 54
+      "min": 20, "max": 200, "step": 2, "unit": "px", "default": 80
     },
     {
       "type": "range",
       "id": "gap",
       "label": "Gap between items (desktop)",
-      "min": 0,
-      "max": 80,
-      "step": 4,
-      "unit": "px",
-      "default": 24
+      "min": 0, "max": 80, "step": 4, "unit": "px", "default": 24
     },
     {
       "type": "range",
       "id": "gap_mobile",
       "label": "Gap between items (mobile)",
-      "min": 0,
-      "max": 60,
-      "step": 4,
-      "unit": "px",
-      "default": 16
+      "min": 0, "max": 60, "step": 4, "unit": "px", "default": 16
     },
     {
       "type": "header",
-      "content": "Image Shadow"
+      "content": "Shadow & Style"
     },
     {
       "type": "checkbox",
       "id": "img_shadow",
-      "label": "Enable drop shadow on images",
+      "label": "Enable block shadow",
       "default": false
-    },
-    {
-      "type": "header",
-      "content": "Block Style"
     },
     {
       "type": "checkbox",
       "id": "block_style",
-      "label": "Enable block style (background, border radius)",
+      "label": "Enable block style (background, radius)",
       "default": false
     },
     {
@@ -260,21 +220,13 @@
       "type": "range",
       "id": "block_border_radius",
       "label": "Block border radius",
-      "min": 0,
-      "max": 60,
-      "step": 2,
-      "unit": "px",
-      "default": 12
+      "min": 0, "max": 60, "step": 2, "unit": "px", "default": 12
     },
     {
       "type": "range",
       "id": "block_padding",
       "label": "Block inner padding",
-      "min": 0,
-      "max": 60,
-      "step": 2,
-      "unit": "px",
-      "default": 16
+      "min": 0, "max": 60, "step": 2, "unit": "px", "default": 16
     }
   ],
   "blocks": [
@@ -291,12 +243,7 @@
           "type": "range",
           "id": "image_width",
           "label": "Image max width",
-          "info": "Used as srcset sizes hint. Actual height is controlled by Item height above.",
-          "min": 40,
-          "max": 400,
-          "step": 10,
-          "unit": "px",
-          "default": 120
+          "min": 40, "max": 400, "step": 10, "unit": "px", "default": 120
         }
       ]
     }
