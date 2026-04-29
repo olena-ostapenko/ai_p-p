@@ -118,6 +118,18 @@
 
 
   @media screen and (max-width: 749px) {
+    .hero-banner-{{ section.id }} .hero-banner__image-col {
+        width: {{ section.settings.image_width_mobile }}px; /* Використовуємо нове поле */
+        max-width: 100%;
+        margin: 0 auto; /* Центруємо колонку з картинкою */
+        flex: 0 0 auto; 
+    }
+
+    .hero-banner-{{ section.id }} .hero-banner__image img {
+        width: 100%; /* Тепер вона буде розтягуватися на ширину батьківської колонки */
+        height: auto;
+    }
+
     .hero-banner-{{ section.id }} .hero-banner__container {
       padding-top: {{ section.settings.section_padding_top_mobile }}px;
       padding-bottom: {{ section.settings.section_padding_bottom_mobile }}px;
@@ -221,7 +233,7 @@
           <div class="hero-banner__image-wrapper">
             <div class="hero-banner__image">
                 {%- capture image_sizes -%}
-                    (max-width: 749px) 100vw, {{ section.settings.image_width }}px
+                    (max-width: 749px) {{ section.settings.image_width_mobile }}px, {{ section.settings.image_width }}px
                 {%- endcapture -%}
 
                 {{ section.settings.image
