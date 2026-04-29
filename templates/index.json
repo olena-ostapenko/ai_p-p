@@ -144,7 +144,7 @@
           "type": "brand",
           "settings": {
             "image": "shopify://shop_images/BuzzFeed_Logo_10.2019.svg_1.png",
-            "image_width": 91
+            "image_width": 126
           }
         },
         "brand_nfjYrJ": {
@@ -196,6 +196,8 @@
         "item_height": 54,
         "gap": 24,
         "gap_mobile": 16,
+        "item_padding_vertical": 8,
+        "item_padding_horizontal": 12,
         "img_shadow": true,
         "block_style": true,
         "block_bg": "#ffffff",
