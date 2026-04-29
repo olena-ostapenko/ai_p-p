@@ -199,7 +199,7 @@
         "img_shadow": true,
         "block_style": true,
         "block_bg": "#ffffff",
-        "block_border_radius": 6,
+        "block_border_radius": 10,
         "block_padding": 10
       }
     },
