@@ -158,21 +158,21 @@
           "type": "brand",
           "settings": {
             "image": "shopify://shop_images/cdaa4100407831d9cff65a717fbef43a84b06254-960x480_1.png",
-            "image_width": 120
+            "image_width": 117
           }
         },
         "brand_xte3Wh": {
           "type": "brand",
           "settings": {
             "image": "shopify://shop_images/Glamour-Logo_grey_svg.png",
-            "image_width": 120
+            "image_width": 123
           }
         },
         "brand_pJRXp4": {
           "type": "brand",
           "settings": {
             "image": "shopify://shop_images/Gooponlinelogo_1.png",
-            "image_width": 120
+            "image_width": 97
           }
         }
       },
