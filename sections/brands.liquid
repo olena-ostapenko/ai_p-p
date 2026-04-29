@@ -16,6 +16,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content:space-between;
     gap: {{ section.settings.gap }}px;
   }
 
@@ -81,23 +82,22 @@
       {%- if block.type == 'brand' -%}
         <div class="brands__item" {{ block.shopify_attributes }}>
           {%- if block.settings.image != blank -%}
-    {%- comment -%} Готуємо всі дані заздалегідь {%- endcomment -%}
-    {%- assign img_alt = block.settings.image.alt | escape -%}
-    {%- capture img_width -%}{{ block.settings.image_width }}px{%- endcapture -%}
-    {%- capture img_style -%}width: {{ block.settings.image_width }}px; max-width: 100%; height: auto;{%- endcapture -%}
+            {%- assign img_alt = block.settings.image.alt | escape -%}
+            {%- capture img_width -%}{{ block.settings.image_width }}px{%- endcapture -%}
+            {%- capture img_style -%}width: {{ block.settings.image_width }}px; max-width: 100%; height: auto;{%- endcapture -%}
 
-    {{ block.settings.image
-      | image_url: width: 600
-      | image_tag:
-        loading: 'lazy',
-        widths: '100, 150, 200, 300, 400, 600',
-        sizes: img_width,
-        alt: img_alt,
-        style: img_style
-    }}
-  {%- else -%}
-    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-  {%- endif -%}
+            {{ block.settings.image
+            | image_url: width: 600
+            | image_tag:
+                loading: 'lazy',
+                widths: '100, 150, 200, 300, 400, 600',
+                sizes: img_width,
+                alt: img_alt,
+                style: img_style
+            }}
+        {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
         </div>
       {%- endif -%}
     {%- endfor -%}
