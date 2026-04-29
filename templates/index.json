@@ -195,7 +195,7 @@
         "padding_horizontal_mobile": 16,
         "gap": 24,
         "gap_mobile": 16,
-        "block_style": false,
+        "block_style": true,
         "block_bg": "#FFFFFF",
         "block_border_color": "#E2E2E2",
         "block_border_size": 1,
