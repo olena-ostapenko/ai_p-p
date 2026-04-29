@@ -1,0 +1,306 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    background-color: {{ section.settings.color_scheme.settings.background }};
+  }
+
+  #shopify-section-{{ section.id }} .brands__container {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    padding-left: {{ section.settings.padding_horizontal }}px;
+    padding-right: {{ section.settings.padding_horizontal }}px;
+  }
+
+  #shopify-section-{{ section.id }} .brands__track {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: {{ section.settings.gap }}px;
+  }
+
+  #shopify-section-{{ section.id }} .brands__item {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #shopify-section-{{ section.id }} .brands__item img {
+    display: block;
+    height: auto;
+  }
+
+  /* ── Styled block ── */
+  {%- if section.settings.block_style -%}
+  #shopify-section-{{ section.id }} .brands__item {
+    background-color: {{ section.settings.block_bg }};
+    border: {{ section.settings.block_border_size }}px solid {{ section.settings.block_border_color }};
+    box-shadow: 0 0 {{ section.settings.block_border_size }}px 0 {{ section.settings.block_border_color }};
+    border-radius: {{ section.settings.block_border_radius }}px;
+    padding: {{ section.settings.block_padding }}px;
+  }
+  {%- endif -%}
+
+  /* ── Mobile: horizontal scroll, no scrollbar ── */
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .brands__container {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+      padding-left: 0;
+      padding-right: 0;
+      overflow: hidden;
+    }
+
+    #shopify-section-{{ section.id }} .brands__track {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      gap: {{ section.settings.gap_mobile }}px;
+      padding-left: {{ section.settings.padding_horizontal_mobile }}px;
+      padding-right: {{ section.settings.padding_horizontal_mobile }}px;
+      /* hide scrollbar */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    #shopify-section-{{ section.id }} .brands__track::-webkit-scrollbar {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }} .brands__item {
+      scroll-snap-align: start;
+    }
+  }
+{%- endstyle -%}
+
+<div class="brands__container">
+  <div class="brands__track">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'brand' -%}
+        <div class="brands__item" {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+    {%- comment -%} Готуємо всі дані заздалегідь {%- endcomment -%}
+    {%- assign img_alt = block.settings.image.alt | escape -%}
+    {%- capture img_width -%}{{ block.settings.image_width }}px{%- endcapture -%}
+    {%- capture img_style -%}width: {{ block.settings.image_width }}px; max-width: 100%; height: auto;{%- endcapture -%}
+
+    {{ block.settings.image
+      | image_url: width: 600
+      | image_tag:
+        loading: 'lazy',
+        widths: '100, 150, 200, 300, 400, 600',
+        sizes: img_width,
+        alt: img_alt,
+        style: img_style
+    }}
+  {%- else -%}
+    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+  {%- endif -%}
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Brands",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Color Scheme"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "label": "Padding horizontal",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Section Padding (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding top (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding bottom (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_mobile",
+      "label": "Padding horizontal (mobile)",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap between items (desktop)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "gap_mobile",
+      "label": "Gap between items (mobile)",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Block Style"
+    },
+    {
+      "type": "checkbox",
+      "id": "block_style",
+      "label": "Enable block style (border, shadow, background)",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "block_bg",
+      "label": "Block background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "block_border_color",
+      "label": "Block border & shadow color",
+      "default": "#E2E2E2"
+    },
+    {
+      "type": "range",
+      "id": "block_border_size",
+      "label": "Border & shadow size",
+      "info": "Same value is used for border width and shadow blur",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 1
+    },
+    {
+      "type": "range",
+      "id": "block_border_radius",
+      "label": "Block border radius",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "block_padding",
+      "label": "Block inner padding",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Brand",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Brand logo"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "label": "Image width",
+          "info": "Height scales proportionally.",
+          "min": 40,
+          "max": 400,
+          "step": 10,
+          "unit": "px",
+          "default": 120
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brands",
+      "blocks": [
+        { "type": "brand" },
+        { "type": "brand" },
+        { "type": "brand" },
+        { "type": "brand" },
+        { "type": "brand" }
+      ]
+    }
+  ]
+}
+{% endschema %}
