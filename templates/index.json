@@ -196,7 +196,7 @@
         "item_height": 54,
         "gap": 24,
         "gap_mobile": 16,
-        "img_shadow": true,
+        "img_shadow": false,
         "block_style": true,
         "block_bg": "#ffffff",
         "block_border_radius": 12,
@@ -205,7 +205,6 @@
     },
     "our_best_sellers_RoJgkQ": {
       "type": "our-best-sellers",
-      "disabled": true,
       "settings": {
         "collection": "all",
         "title": "Our Best Selllers",

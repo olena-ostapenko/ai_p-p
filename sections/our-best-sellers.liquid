@@ -23,7 +23,7 @@
 
   .obs-figma__rail-wrap {
     margin-top: 22px;
-    /* NO overflow:hidden — needed so box-shadow on cards is not clipped */
+    overflow: hidden;
     position: relative;
   }
 
@@ -35,8 +35,7 @@
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
-    /* padding gives room for shadow to breathe; no negative margin needed */
-    padding: 12px 8px 16px;
+    padding-bottom: 4px;
   }
 
   .obs-figma__rail::-webkit-scrollbar {
@@ -52,14 +51,6 @@
     border-radius: 8px;
     box-sizing: border-box;
     padding: 8px 8px 12px;
-    /* shadow lives on the card, not on the image */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-
-  .obs-figma__card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
   }
 
   .obs-figma__image {
@@ -155,8 +146,13 @@
     z-index: 2;
   }
 
-  .obs-figma__nav--prev { left: 0; }
-  .obs-figma__nav--next { right: 0; }
+  .obs-figma__nav--prev {
+    left: 0;
+  }
+
+  .obs-figma__nav--next {
+    right: 0;
+  }
 
   .obs-figma__nav[disabled] {
     opacity: 0;
@@ -168,8 +164,13 @@
     height: 24px;
   }
 
-  .obs-figma__nav--next .icon { transform: rotate(-90deg); }
-  .obs-figma__nav--prev .icon { transform: rotate(90deg); }
+  .obs-figma__nav--next .icon {
+    transform: rotate(-90deg);
+  }
+
+  .obs-figma__nav--prev .icon {
+    transform: rotate(90deg);
+  }
 
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
@@ -180,6 +181,10 @@
     .obs-figma__heading {
       font-size: {{ section.settings.heading_size_desktop }}px;
       line-height: 54px;
+    }
+
+    .obs-figma__rail-wrap {
+      margin-top: 22px;
     }
 
     .obs-figma__nav {
@@ -220,8 +225,12 @@
 
               <h3 class="obs-figma__title">{{ product.title | truncate: 24 }}</h3>
               <p class="obs-figma__subtitle">{{ product_desc }}</p>
-              <p class="obs-figma__price">From {{ product.price_min | money }}</p>
-              <a class="obs-figma__cta" href="{{ product.url }}">{{ section.settings.button_label }}</a>
+              <p class="obs-figma__price">
+                From {{ product.price_min | money }}
+              </p>
+              <a class="obs-figma__cta" href="{{ product.url }}">
+                {{ section.settings.button_label }}
+              </a>
             </article>
           {%- endfor -%}
         {%- else -%}
@@ -239,8 +248,13 @@
           {%- endfor -%}
         {%- endif -%}
       </div>
-
-      <button class="obs-figma__nav obs-figma__nav--prev" type="button" aria-label="Previous products" data-obs-prev="{{ section.id }}" disabled>
+      <button
+        class="obs-figma__nav obs-figma__nav--prev"
+        type="button"
+        aria-label="Previous products"
+        data-obs-prev="{{ section.id }}"
+        disabled
+      >
         <span class="icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
       </button>
       <button class="obs-figma__nav obs-figma__nav--next" type="button" aria-label="Next products" data-obs-next="{{ section.id }}">
@@ -272,8 +286,15 @@
 
     rail.addEventListener('scroll', updateNavState, { passive: true });
     window.addEventListener('resize', updateNavState);
-    prevBtn.addEventListener('click', () => rail.scrollBy({ left: -getStep(), behavior: 'smooth' }));
-    nextBtn.addEventListener('click', () => rail.scrollBy({ left: getStep(), behavior: 'smooth' }));
+
+    prevBtn.addEventListener('click', () => {
+      rail.scrollBy({ left: -getStep(), behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      rail.scrollBy({ left: getStep(), behavior: 'smooth' });
+    });
+
     updateNavState();
   })();
 </script>
@@ -283,7 +304,9 @@
   "name": "Our Best Selllers",
   "tag": "section",
   "class": "section",
-  "disabled_on": { "groups": ["header", "footer"] },
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
   "settings": [
     { "type": "collection", "id": "collection", "label": "Collection" },
     { "type": "text", "id": "title", "label": "Heading", "default": "Our Best Selllers" },
