@@ -155,17 +155,17 @@
       <div class="hero-banner__image-col">
         {%- if section.settings.image != blank -%}
           <div class="hero-banner__image-wrapper">
-           <div class="hero-banner__image">
-                {{
-                    section.settings.image
-                    | image_url: width: 1200
-                    | image_tag:
-                    loading: 'lazy',
-                    widths: '300, 400, 500, 600, 800, 1000, 1200',
-                    sizes: '(max-width: 749px) 100vw, ' | append: section.settings.image_width | append: 'px',
-                    alt: section.settings.image.alt | escape
-                }}
-                </div>
+        <div class="hero-banner__image">
+  {{
+    section.settings.image
+    | image_url: width: 1200
+    | image_tag:
+      loading: 'lazy',
+      widths: '300, 400, 500, 600, 800, 1000, 1200',
+      sizes: '(max-width: 749px) 100vw, ' | append: section.settings.image_width | append: 'px',
+      alt: section.settings.image.alt | escape
+  }}
+</div>
           </div>
         {%- else -%}
           <div class="hero-banner__image-wrapper">
