@@ -196,7 +196,7 @@
         "item_height": 54,
         "gap": 24,
         "gap_mobile": 16,
-        "item_padding_vertical": 8,
+        "item_padding_vertical": 2,
         "item_padding_horizontal": 12,
         "img_shadow": true,
         "block_style": true,
