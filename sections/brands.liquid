@@ -93,7 +93,7 @@
           {%- if block.settings.image != blank -%}
             {%- assign img_alt = block.settings.image.alt | escape -%}
             {%- capture img_sizes -%}{{ block.settings.image_width }}px{%- endcapture -%}
-            {%- capture img_style -%}width: {{ block.settings.image_width }}px; max-width: 100%; height: auto;{%- endcapture -%}
+            {%- capture img_style -%}height: 100%;width: auto;{%- endcapture -%}
 
             {{ block.settings.image
             | image_url: width: 600
