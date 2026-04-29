@@ -79,6 +79,43 @@
     opacity: 0.85;
   }
 
+
+  /* decor subtitle */
+  {%- style -%}
+  #shopify-section-{{ section.id }} .hero-banner__subtitle {
+    position: relative;
+    display: inline-block;
+  }
+
+  #shopify-section-{{ section.id }} .hero-banner__subtitle::before {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 18px;
+    background-image: url('https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_curve.svg?v=1777451004');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
+    content: '';
+    display: inline-block;
+    width: 0.75em;
+    height: 0.75em;
+    background-image: url('https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_paw.svg?v=1777450948');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    vertical-align: middle;
+    margin-left: 0.15em;
+    position: relative;
+    top: -0.1em;
+  }
+{%- endstyle -%}
+
   @media screen and (max-width: 749px) {
     .hero-banner-{{ section.id }} .hero-banner__container {
       padding-top: {{ section.settings.section_padding_top_mobile }}px;
@@ -108,6 +145,7 @@
 
     .hero-banner-{{ section.id }} .hero-banner__subtitle {
       margin-bottom: {{ section.settings.subtitle_margin_bottom_mobile }}px;
+      color: {{ section.settings.decoration_color }};
     }
 
     .hero-banner-{{ section.id }} .hero-banner__description {
