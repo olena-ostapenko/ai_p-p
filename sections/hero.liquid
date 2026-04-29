@@ -115,9 +115,7 @@
     position: relative;
     top:-4.65rem;
   }
-.hero-banner-{{ section.id }} .hero-banner__subtitle strong {
-  color: {{ section.settings.decoration_color }};
-}
+
 
   @media screen and (max-width: 749px) {
     .hero-banner-{{ section.id }} .hero-banner__image-col {
@@ -188,7 +186,9 @@
   }
   }
 
-
+.hero-banner-{{ section.id }} .hero-banner__subtitle strong {
+  color: {{ section.settings.decoration_color }};
+}
 
 {%- endstyle -%}
 
