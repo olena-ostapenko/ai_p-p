@@ -196,7 +196,7 @@
         "item_height": 54,
         "gap": 24,
         "gap_mobile": 16,
-        "img_shadow": false,
+        "img_shadow": true,
         "block_style": true,
         "block_bg": "#ffffff",
         "block_border_radius": 12,
