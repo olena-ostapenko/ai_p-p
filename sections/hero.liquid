@@ -99,7 +99,6 @@
     background-repeat: no-repeat;
     background-size: 100% 100%;
     pointer-events: none;
-    color:red;
   }
 
   #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
@@ -156,6 +155,27 @@
     .hero-banner-{{ section.id }} .hero-banner__description {
       margin-bottom: {{ section.settings.description_margin_bottom_mobile }}px;
     }
+
+    /* decor */
+      #shopify-section-{{ section.id }} .hero-banner__subtitle::before {
+          height: 12px;
+              bottom: 21px;
+  }
+
+  #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
+    content: '';
+    display: inline-block;
+    width: 0.75em;
+    height: 0.75em;
+    background-image: url('https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_paw.svg?v=1777450948');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    vertical-align: middle;
+    left: 11.75rem;
+    position: relative;
+    top:-4.65rem;
+  }
   }
 
 .hero-banner-{{ section.id }} .hero-banner__subtitle strong {
