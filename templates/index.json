@@ -69,6 +69,7 @@
         "text_i3ri4m",
         "icon_PXXV8X"
       ],
+      "disabled": true,
       "custom_css": [
         ".marquee-ticker__icon {padding-bottom: 6px;}"
       ],
@@ -89,7 +90,7 @@
     "hero_LRcXcf": {
       "type": "hero",
       "custom_css": [
-        ".hero-banner__description{max-width: 450px;}"
+        ".hero-banner__description {max-width: 550px;}"
       ],
       "name": "Hero Banner",
       "settings": {
