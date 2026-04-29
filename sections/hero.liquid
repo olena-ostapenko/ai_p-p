@@ -170,8 +170,9 @@
         {%- endif -%}
 
         {%- if section.settings.subtitle != blank -%}
-          <div class="hero-banner__subtitle">
-            {{ section.settings.subtitle }}
+          <div class="hero-banner__subtitle" style="color: {{ section.settings.decoration_color }};">
+            {{ section.settings.subtitle }} 
+            <p> {{ section.settings.decoration_color }};</p>
           </div>
         {%- endif -%}
 
