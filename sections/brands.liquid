@@ -20,43 +20,49 @@
     gap: {{ section.settings.gap }}px;
   }
 
-  /* Fixed height — all items same height */
+  /* ───── ITEM ───── */
   #shopify-section-{{ section.id }} .brands__item {
     flex: 0 0 auto;
+    height: {{ section.settings.item_height }}px;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: {{ section.settings.item_height }}px;
-    transition: box-shadow 0.3s ease;
     box-sizing: border-box;
-    
+    transition: box-shadow 0.3s ease;
+
     {%- if section.settings.img_shadow %}
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08), 
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08),
                   0 1px 4px rgba(0, 0, 0, 0.04);
     {%- endif %}
   }
 
-  
-  #shopify-section-{{ section.id }} .brands__item img {
-  height: 100%;
-  width: auto;
-  max-height: 100%;
-  object-fit: contain;
-  display: block;
-  }
-
-  /* ── Styled block ── */
+  /* ───── OPTIONAL BLOCK STYLE ───── */
   {%- if section.settings.block_style -%}
   #shopify-section-{{ section.id }} .brands__item {
     background-color: {{ section.settings.block_bg }};
     border-radius: {{ section.settings.block_border_radius }}px;
     padding: {{ section.settings.block_padding }}px;
-    /* ensure height includes padding if box-sizing isn't border-box, 
-       but Shopify themes usually handle this globally */
   }
   {%- endif -%}
 
-  /* ── Mobile: horizontal scroll ── */
+  /* ───── IMAGE WRAPPER ───── */
+  #shopify-section-{{ section.id }} .brands__image-wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ───── IMAGE ───── */
+  #shopify-section-{{ section.id }} .brands__image-wrapper img {
+    display: block;
+    height: auto;
+    max-height: calc(100% - 4px); /* breathing space */
+    width: auto;
+    object-fit: contain;
+  }
+
+  /* ───── MOBILE ───── */
   @media screen and (max-width: 749px) {
     #shopify-section-{{ section.id }} .brands__container {
       padding-top: {{ section.settings.padding_top_mobile }}px;
@@ -92,23 +98,24 @@
     {%- for block in section.blocks -%}
       {%- if block.type == 'brand' -%}
         <div class="brands__item" {{ block.shopify_attributes }}>
-          {%- if block.settings.image != blank -%}
-            {%- assign img_alt = block.settings.image.alt | escape -%}
-            {%- capture img_sizes -%}{{ block.settings.image_width }}px{%- endcapture -%}
-            {%- capture img_style -%}height: 100%;width: auto;{%- endcapture -%}
+          
+          <div class="brands__image-wrapper">
+            {%- if block.settings.image != blank -%}
+              {%- assign img_alt = block.settings.image.alt | escape -%}
 
-            {{ block.settings.image
-            | image_url: width: 600
-            | image_tag:
-                loading: 'lazy',
-                widths: '100, 150, 200, 300, 400, 600',
-                sizes: img_sizes,
-                alt: img_alt,
-                style: img_style
-            }}
-          {%- else -%}
-            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-          {%- endif -%}
+              {{ block.settings.image
+              | image_url: width: 600
+              | image_tag:
+                  loading: 'lazy',
+                  widths: '100, 150, 200, 300, 400, 600',
+                  sizes: '100vw',
+                  alt: img_alt
+              }}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </div>
+
         </div>
       {%- endif -%}
     {%- endfor -%}
@@ -153,6 +160,7 @@
       "label": "Padding horizontal",
       "min": 0, "max": 80, "step": 4, "unit": "px", "default": 24
     },
+
     {
       "type": "header",
       "content": "Mobile Settings"
@@ -175,6 +183,7 @@
       "label": "Padding horizontal (mobile)",
       "min": 0, "max": 40, "step": 4, "unit": "px", "default": 16
     },
+
     {
       "type": "header",
       "content": "Layout"
@@ -188,50 +197,52 @@
     {
       "type": "range",
       "id": "gap",
-      "label": "Gap between items (desktop)",
+      "label": "Gap (desktop)",
       "min": 0, "max": 80, "step": 4, "unit": "px", "default": 24
     },
     {
       "type": "range",
       "id": "gap_mobile",
-      "label": "Gap between items (mobile)",
+      "label": "Gap (mobile)",
       "min": 0, "max": 60, "step": 4, "unit": "px", "default": 16
     },
+
     {
       "type": "header",
-      "content": "Shadow & Style"
+      "content": "Style"
     },
     {
       "type": "checkbox",
       "id": "img_shadow",
-      "label": "Enable block shadow",
+      "label": "Shadow",
       "default": false
     },
     {
       "type": "checkbox",
       "id": "block_style",
-      "label": "Enable block style (background, radius)",
+      "label": "Block style",
       "default": false
     },
     {
       "type": "color",
       "id": "block_bg",
-      "label": "Block background color",
+      "label": "Background",
       "default": "#FFFFFF"
     },
     {
       "type": "range",
       "id": "block_border_radius",
-      "label": "Block border radius",
+      "label": "Border radius",
       "min": 0, "max": 60, "step": 2, "unit": "px", "default": 12
     },
     {
       "type": "range",
       "id": "block_padding",
-      "label": "Block inner padding",
+      "label": "Padding",
       "min": 0, "max": 60, "step": 2, "unit": "px", "default": 16
     }
   ],
+
   "blocks": [
     {
       "type": "brand",
@@ -240,22 +251,22 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Brand logo"
+          "label": "Logo"
         },
         {
           "type": "range",
           "id": "image_width",
-          "label": "Image max width",
+          "label": "Max width (optional limit)",
           "min": 40, "max": 140, "step": 1, "unit": "px", "default": 120
         }
       ]
     }
   ],
+
   "presets": [
     {
       "name": "Brands",
       "blocks": [
-        { "type": "brand" },
         { "type": "brand" },
         { "type": "brand" },
         { "type": "brand" },
