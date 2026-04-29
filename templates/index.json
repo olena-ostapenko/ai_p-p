@@ -123,9 +123,9 @@
         "image_decoration": "border",
         "decoration_color": "#e9a753",
         "decoration_width": 10,
-        "decoration_height": 80,
+        "decoration_height": 4,
         "decoration_border_radius": 16,
-        "decoration_offset": 40,
+        "decoration_offset": 0,
         "border_offset": -1
       }
     },
