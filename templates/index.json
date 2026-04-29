@@ -124,9 +124,9 @@
         "decoration_color": "#C89A2A",
         "decoration_width": 10,
         "decoration_height": 80,
-        "decoration_border_radius": 12,
-        "decoration_offset": 8,
-        "border_offset": 6
+        "decoration_border_radius": 16,
+        "decoration_offset": 40,
+        "border_offset": -5
       }
     },
     "our_best_sellers_RoJgkQ": {
