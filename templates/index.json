@@ -88,6 +88,9 @@
     },
     "hero_LRcXcf": {
       "type": "hero",
+      "custom_css": [
+        ".hero-banner__description{max-width: 450px;}"
+      ],
       "name": "Hero Banner",
       "settings": {
         "color_scheme": "scheme-4",
