@@ -137,7 +137,7 @@
           "type": "brand",
           "settings": {
             "image": "shopify://shop_images/VOGUE_LOGO_1.png",
-            "image_width": 120
+            "image_width": 111
           }
         },
         "brand_YBrggD": {
@@ -188,7 +188,7 @@
       "settings": {
         "color_scheme": "",
         "padding_top": 52,
-        "padding_bottom": 40,
+        "padding_bottom": 52,
         "padding_horizontal": 24,
         "padding_top_mobile": 24,
         "padding_bottom_mobile": 24,
