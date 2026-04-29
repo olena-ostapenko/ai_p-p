@@ -122,11 +122,85 @@
         "button_border_radius": 4,
         "image": "shopify://shop_images/Custom_Portrait_for_Pets_3_500x_1.jpg",
         "image_width": 410,
+        "image_width_mobile": 300,
         "image_border_radius": true,
         "image_border_radius_px": 12,
         "decoration_color": "#e9a753",
         "border_thickness": 10,
         "decoration_border_radius": 16
+      }
+    },
+    "brands_eP4pY4": {
+      "type": "brands",
+      "blocks": {
+        "brand_PCyiPt": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/VOGUE_LOGO_1.png",
+            "image_width": 120
+          }
+        },
+        "brand_YBrggD": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/BuzzFeed_Logo_10.2019.svg_1.png",
+            "image_width": 120
+          }
+        },
+        "brand_nfjYrJ": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/HGTV-logo-featured_1.png",
+            "image_width": 120
+          }
+        },
+        "brand_3QprKa": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/cdaa4100407831d9cff65a717fbef43a84b06254-960x480_1.png",
+            "image_width": 120
+          }
+        },
+        "brand_xte3Wh": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/Glamour-Logo_grey_svg.png",
+            "image_width": 120
+          }
+        },
+        "brand_pJRXp4": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/Gooponlinelogo_1.png",
+            "image_width": 120
+          }
+        }
+      },
+      "block_order": [
+        "brand_PCyiPt",
+        "brand_YBrggD",
+        "brand_nfjYrJ",
+        "brand_3QprKa",
+        "brand_xte3Wh",
+        "brand_pJRXp4"
+      ],
+      "name": "Brands",
+      "settings": {
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 40,
+        "padding_horizontal": 24,
+        "padding_top_mobile": 24,
+        "padding_bottom_mobile": 24,
+        "padding_horizontal_mobile": 16,
+        "gap": 24,
+        "gap_mobile": 16,
+        "block_style": false,
+        "block_bg": "#FFFFFF",
+        "block_border_color": "#E2E2E2",
+        "block_border_size": 1,
+        "block_border_radius": 12,
+        "block_padding": 16
       }
     },
     "our_best_sellers_RoJgkQ": {
@@ -179,6 +253,7 @@
   "order": [
     "marquee_TBgwDA",
     "hero_LRcXcf",
+    "brands_eP4pY4",
     "our_best_sellers_RoJgkQ",
     "featured_collection"
   ]
