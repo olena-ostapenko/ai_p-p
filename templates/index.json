@@ -90,7 +90,7 @@
     "hero_LRcXcf": {
       "type": "hero",
       "custom_css": [
-        ".hero-banner__description {max-width: 550px;}"
+        "@media screen and (min-width: 750px){.hero-banner__description {max-width: 550px;}}"
       ],
       "name": "Hero Banner",
       "settings": {
