@@ -92,7 +92,7 @@
       "settings": {
         "color_scheme": "scheme-4",
         "image_position": "left",
-        "columns_gap": 48,
+        "columns_gap": 120,
         "columns_gap_mobile": 24,
         "section_padding_top": 40,
         "section_padding_bottom": 76,
