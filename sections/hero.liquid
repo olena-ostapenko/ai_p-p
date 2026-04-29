@@ -147,7 +147,7 @@
 
     .hero-banner-{{ section.id }} .hero-banner__subtitle {
       margin-bottom: {{ section.settings.subtitle_margin_bottom_mobile }}px;
-      color: {{ section.settings.decoration_color }};
+      
     }
 
     .hero-banner-{{ section.id }} .hero-banner__description {
@@ -170,7 +170,7 @@
         {%- endif -%}
 
         {%- if section.settings.subtitle != blank -%}
-          <div class="hero-banner__subtitle">
+          <div class="hero-banner__subtitle" style="color: {{ section.settings.decoration_color }};">
             {{ section.settings.subtitle }}
           </div>
         {%- endif -%}
