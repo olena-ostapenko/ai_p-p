@@ -155,6 +155,11 @@
     }
   }
 
+  .hero-banner-{{ section.id }} .hero-banner__subtitle p,
+.hero-banner-{{ section.id }} .hero-banner__subtitle strong {
+  color: {{ section.settings.decoration_color }};
+}
+
 {%- endstyle -%}
 
 <div class="hero-banner-{{ section.id }}">
@@ -172,7 +177,6 @@
         {%- if section.settings.subtitle != blank -%}
           <div class="hero-banner__subtitle" style="color: {{ section.settings.decoration_color }};">
             {{ section.settings.subtitle }} 
-            <p> {{ section.settings.decoration_color }};</p>
           </div>
         {%- endif -%}
 
