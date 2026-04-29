@@ -117,19 +117,8 @@
   }
 
 
-  @media screen and (max-width: 749px) {
-    .hero-banner-{{ section.id }} .hero-banner__image-col {
-        width: {{ section.settings.image_width_mobile }}px; 
-        max-width: 100%;
-        margin: 0 auto; 
-        flex: 0 0 auto; 
-    }
-
-    .hero-banner-{{ section.id }} .hero-banner__image img {
-        width: 100%; 
-        height: auto;
-    }
-
+ @media screen and (max-width: 749px) {
+    /* Контейнер секції */
     .hero-banner-{{ section.id }} .hero-banner__container {
       padding-top: {{ section.settings.section_padding_top_mobile }}px;
       padding-bottom: {{ section.settings.section_padding_bottom_mobile }}px;
@@ -137,53 +126,59 @@
       padding-right: {{ section.settings.section_padding_horizontal_mobile }}px;
     }
 
+    /* Налаштування сітки */
     .hero-banner-{{ section.id }} .hero-banner__grid {
       flex-direction: column;
       gap: {{ section.settings.columns_gap_mobile }}px;
+      align-items: center; /* Центруємо колонки по горизонталі */
     }
 
-    .hero-banner-{{ section.id }} .hero-banner__text-col,
-    .hero-banner-{{ section.id }} .hero-banner__image-col {
+    /* Текстова колонка */
+    .hero-banner-{{ section.id }} .hero-banner__text-col {
       width: 100%;
-      flex: 1 1 auto;
+      text-align: center;
     }
-        .hero-banner-{{ section.id }} .hero-banner__text-col{
-            text-align: center;
-        }
+
+    /* Колонка з картинкою — тепер працює через повзунок */
+    .hero-banner-{{ section.id }} .hero-banner__image-col {
+      width: {{ section.settings.image_width_mobile }}px; 
+      max-width: 100%;
+      margin: 0 auto; 
+      flex: 0 0 auto; 
+      padding: 0; /* Прибрано жорсткий padding, щоб не заважав розміру */
+    }
 
     .hero-banner-{{ section.id }} .hero-banner__image img {
-      width: 100%;
+      width: 100%; 
+      height: auto;
+      display: block;
     }
 
-      .hero-banner-{{ section.id }} .hero-banner__image-col{
-        padding: 0 20px;
-      }
-
+    /* Маргінали для тексту */
     .hero-banner-{{ section.id }} .hero-banner__title {
       margin-bottom: {{ section.settings.title_margin_bottom_mobile }}px;
     }
 
     .hero-banner-{{ section.id }} .hero-banner__subtitle {
       margin-bottom: {{ section.settings.subtitle_margin_bottom_mobile }}px;
-      
     }
 
     .hero-banner-{{ section.id }} .hero-banner__description {
       margin-bottom: {{ section.settings.description_margin_bottom_mobile }}px;
     }
 
-    /* decor */
-      #shopify-section-{{ section.id }} .hero-banner__subtitle::before {
-          height: 12px;
-              bottom: 21px;
-  }
+    /* Декоративні елементи */
+    #shopify-section-{{ section.id }} .hero-banner__subtitle::before {
+      height: 12px;
+      bottom: 21px;
+    }
 
-  #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
-    width: 0.55em;
-    height: 0.55em;
-    left: -5.6rem;
-    top: -3.4rem;
-  }
+    #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
+      width: 0.55em;
+      height: 0.55em;
+      left: -5.6rem;
+      top: -3.4rem;
+    }
   }
 
 .hero-banner-{{ section.id }} .hero-banner__subtitle strong {
