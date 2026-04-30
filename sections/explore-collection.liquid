@@ -1,0 +1,195 @@
+{{ 'explore-collections.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .explore-collections-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  .explore-collections-{{ section.id }} .collections-grid {
+    --columns: {{ section.settings.columns_per_row }};
+  }
+{%- endstyle -%}
+
+<div class="explore-collections explore-collections-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
+  <div class="page-width">
+
+    {%- if section.settings.title != blank or section.settings.subtitle != blank -%}
+      <div class="explore-collections__header">
+        {%- if section.settings.title != blank -%}
+          <h2 class="explore-collections__title">{{ section.settings.title }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subtitle != blank -%}
+          <div class="explore-collections__subtitle">{{ section.settings.subtitle }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <ul class="collections-grid list-unstyled" role="list">
+        {%- for block in section.blocks -%}
+          {%- assign collection = block.settings.collection -%}
+          <li class="collections-grid__item" {{ block.shopify_attributes }}>
+            <a
+              class="collection-card"
+              {% if collection != blank %}
+                href="{{ collection.url }}"
+              {% else %}
+                href="#"
+              {% endif %}
+            >
+              <div class="collection-card__image-wrapper">
+                {%- liquid
+                    assign columns = section.settings.columns_per_row
+                    assign sizes = '(min-width: 990px) calc((100vw - 130px) / ' | append: columns | append: '), (min-width: 750px) calc((100vw - 120px) / 2), calc(100vw - 30px)'
+                -%}
+
+                {%- if collection != blank and collection.image -%}
+                    {{
+                    collection.image
+                    | image_url: width: 600
+                    | image_tag:
+                        loading: 'lazy',
+                        widths: '300, 400, 500, 600',
+                        sizes: sizes,
+                        class: 'collection-card__image',
+                        alt: collection.title | escape
+                    }}
+                {%- elsif collection != blank and collection.products.first and collection.products.first.featured_image -%}
+                    {{
+                    collection.products.first.featured_image
+                    | image_url: width: 600
+                    | image_tag:
+                        loading: 'lazy',
+                        widths: '300, 400, 500, 600',
+                        sizes: sizes,
+                        class: 'collection-card__image',
+                        alt: collection.title | escape
+                    }}
+                {%- else -%}
+                    <div class="collection-card__image collection-card__image--placeholder">
+                    {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                    </div>
+                {%- endif -%}
+                </div>
+
+              <div class="collection-card__info">
+                <h3 class="collection-card__title">
+                  {%- if collection != blank -%}
+                    {{ collection.title }}
+                  {%- else -%}
+                    {{ 'onboarding.collection_title' | t }}
+                  {%- endif -%}
+                </h3>
+                {%- if collection != blank and collection.description != blank -%}
+                  <p class="collection-card__description">{{ collection.description | strip_html | truncatewords: 8 }}</p>
+                {%- elsif collection == blank -%}
+                  <p class="collection-card__description">{{ 'onboarding.collection_description' | t }}</p>
+                {%- endif -%}
+              </div>
+
+              <div class="collection-card__paw" aria-hidden="true">
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_paw_b7908f55-fa7a-465b-adde-ffe6d50be06d.svg?v=1777536439"
+                  alt=""
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                >
+              </div>
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- else -%}
+      <div class="explore-collections__empty">
+        <p>{{ 'sections.collection_list.empty' | t }}</p>
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Explore Collections",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>EXPLORE OUR COLLECTIONS</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "<p>Find the perfect way to turn your pet into something truly special</p>"
+    },
+    {
+      "type": "range",
+      "id": "columns_per_row",
+      "label": "Collections per row",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Explore Collections",
+      "blocks": [
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" }
+      ]
+    }
+  ]
+}
+{% endschema %}
