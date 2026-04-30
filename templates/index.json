@@ -224,6 +224,12 @@
     "explore_collection_chWMTM": {
       "type": "explore-collection",
       "blocks": {
+        "collection_739nqj": {
+          "type": "collection",
+          "settings": {
+            "collection": "framed-unframed-prints"
+          }
+        },
         "collection_VMc9xf": {
           "type": "collection",
           "settings": {
@@ -250,6 +256,7 @@
         }
       },
       "block_order": [
+        "collection_739nqj",
         "collection_VMc9xf",
         "collection_DpWcLg",
         "collection_xr9ELD",
