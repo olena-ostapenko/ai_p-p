@@ -160,7 +160,6 @@
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
-    .section-figma__heading{ font-size: {{ section.settings.heading_size_desktop }}px; }
   }
 {%- endstyle -%}
 
@@ -248,18 +247,75 @@
 {
   "name": "Our Best Sellers",
   "settings": [
-    { "type": "collection", "id": "collection", "label": "Collection" },
-    { "type": "text", "id": "title", "label": "Heading", "default": "Our Best Selllers" },
-    { "type": "text", "id": "button_label", "label": "Button label", "default": "Create yours" },
-    { "type": "color", "id": "section_bg", "label": "Section background", "default": "#FBFBFB" },
-    { "type": "color", "id": "cta_bg", "label": "Main color", "default": "#F4844E" },
-    { "type": "color", "id": "star_color", "label": "Stars color", "default": "#E9A753" },
-    { "type": "range", "id": "products_to_show", "min": 4, "max": 12, "step": 1, "default": 8, "label": "Products to show" },
-    { "type": "range", "id": "heading_size_desktop", "min": 28, "max": 60, "step": 1, "default": 44, "label": "Heading size desktop" },
-    { "type": "range", "id": "heading_size_mobile", "min": 24, "max": 42, "step": 1, "default": 34, "label": "Heading size mobile" },
-    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 80, "label": "Top padding" },
-    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 80, "label": "Bottom padding" }
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Our Best Selllers"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Create yours"
+    },
+    {
+      "type": "color",
+      "id": "section_bg",
+      "label": "Section background",
+      "default": "#FBFBFB"
+    },
+    {
+      "type": "color",
+      "id": "cta_bg",
+      "label": "Main color",
+      "default": "#F4844E"
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Stars color",
+      "default": "#E9A753"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "default": 8,
+      "label": "Products to show"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 80,
+      "label": "Top padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 80,
+      "label": "Bottom padding"
+    }
   ],
-  "presets": [{ "name": "Our Best Sellers" }]
+  "presets": [
+    {
+      "name": "Our Best Sellers"
+    }
+  ]
 }
 {% endschema %}

@@ -335,9 +335,7 @@ text-transform: uppercase;
     font-size: calc(var(--font-heading-scale) * 2.4rem);
  
   }
-  .section-figma__heading{
-    text-align:left;
-  }
+  /* .section-figma__heading alignment handled via CSS var --section-heading-align-desktop */
 }
 
 h3,
@@ -3625,11 +3623,18 @@ details-disclosure > details {
 /*--- Fonts ---*/
 
 /* Sections */
- .section-figma__heading{
-    margin: 0 0 12px;
-    color: #000000;
+ .section-figma__heading {
+    margin: 0 0 var(--section-heading-margin-bottom, 12px);
     font-weight: 700;
     line-height: 1.2;
-    text-align:center;
+    font-size: var(--section-heading-size-mobile, 26px);
+    text-align: var(--section-heading-align-mobile, center);
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-figma__heading {
+      font-size: var(--section-heading-size-desktop, 36px);
+      text-align: var(--section-heading-align-desktop, left);
+    }
   }
 

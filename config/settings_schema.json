@@ -158,6 +158,72 @@
         "unit": "%",
         "label": "t:settings_schema.typography.settings.body_scale.label",
         "default": 100
+      },
+      {
+        "type": "header",
+        "content": "Section headings"
+      },
+      {
+        "type": "range",
+        "id": "section_heading_size_desktop",
+        "min": 20,
+        "max": 72,
+        "step": 1,
+        "unit": "px",
+        "label": "Heading size — desktop",
+        "default": 36
+      },
+      {
+        "type": "range",
+        "id": "section_heading_size_mobile",
+        "min": 16,
+        "max": 48,
+        "step": 1,
+        "unit": "px",
+        "label": "Heading size — mobile",
+        "default": 26
+      },
+      {
+        "type": "select",
+        "id": "section_heading_align_desktop",
+        "label": "Heading alignment — desktop",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          }
+        ],
+        "default": "left"
+      },
+      {
+        "type": "select",
+        "id": "section_heading_align_mobile",
+        "label": "Heading alignment — mobile",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          }
+        ],
+        "default": "center"
+      },
+      {
+        "type": "range",
+        "id": "section_heading_margin_bottom",
+        "min": 0,
+        "max": 60,
+        "step": 2,
+        "unit": "px",
+        "label": "Heading margin bottom",
+        "default": 12
       }
     ]
   },
