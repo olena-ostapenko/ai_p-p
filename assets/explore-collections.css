@@ -94,20 +94,19 @@
 }
 
 .collection-card__title {
-  font-family: var(--font-heading-family);
-  font-style: var(--font-heading-style);
+  margin: 0;
+  color: #000;
+  font-size: 19px;
   font-weight: 700;
-  font-size: calc(var(--font-heading-scale) * 1.5rem);
-  margin: 0 0 0.2rem;
   line-height: 1.3;
-  color: rgb(var(--color-foreground));
 }
 
 .collection-card__description {
-  font-size: calc(var(--font-body-scale, 1) * 1.3rem);
   margin: 0;
-  color: rgba(var(--color-foreground), 0.65);
-  line-height: calc(1 + 0.5 / var(--font-body-scale, 1));
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 /* Paw icon */
