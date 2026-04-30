@@ -18,6 +18,7 @@
     "type_body_font": "montserrat_n5",
     "body_scale": 100,
     "section_heading_size_desktop": 44,
+    "section_heading_size_mobile": 32,
     "page_width": 1300,
     "spacing_sections": 0,
     "spacing_grid_horizontal": 8,
@@ -192,11 +193,11 @@
       },
       "scheme-5": {
         "settings": {
-          "background": "#334fb4",
+          "background": "#ffffff",
           "background_gradient": "",
-          "text": "#ffffff",
-          "button": "#ffffff",
-          "button_label": "#334fb4",
+          "text": "#000000",
+          "button": "#e9a753",
+          "button_label": "#ffffff",
           "secondary_button_label": "#ffffff",
           "shadow": "#121212"
         }
