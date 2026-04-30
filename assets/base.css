@@ -327,13 +327,7 @@ h2,
 text-transform: uppercase;
 }
 
- .section-figma__heading{
-    margin: 0 0 12px;
-    color: #000000;
-    font-weight: 700;
-    line-height: 1.2;
-    text-align:center;
-  }
+
 
 @media only screen and (min-width: 750px) {
   h2,
@@ -3627,3 +3621,15 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
+
+/*--- Fonts ---*/
+
+/* Sections */
+ .section-figma__heading{
+    margin: 0 0 12px;
+    color: #000000;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align:center;
+  }
+
