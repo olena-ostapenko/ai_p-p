@@ -1,9 +1,28 @@
 {{ 'explore-collections.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+  #shopify-section-{{ section.id }} {
+    background-color: {{ section.settings.color_scheme.settings.background }};
+    color: {{ section.settings.color_scheme.settings.text }};
+  }
+
   .explore-collections-{{ section.id }} {
-    padding-top: {{ section.settings.padding_top }}px;
-    padding-bottom: {{ section.settings.padding_bottom }}px;
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  .explore-collections-{{ section.id }} .section-figma__heading {
+    font-size: {{ section.settings.heading_size_mobile }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .explore-collections-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+    .explore-collections-{{ section.id }} .section-figma__heading {
+      font-size: {{ section.settings.heading_size_desktop }}px;
+    }
   }
 
   .explore-collections-{{ section.id }} .collections-grid {
@@ -11,7 +30,7 @@
   }
 {%- endstyle -%}
 
-<div class="explore-collections explore-collections-{{ section.id }} color-{{ section.settings.color_scheme }} gradient">
+<div class="explore-collections explore-collections-{{ section.id }}">
   <div class="page-width">
 
     {%- if section.settings.title != blank or section.settings.subtitle != blank -%}
@@ -20,7 +39,7 @@
           <h2 class="section-figma__heading">{{ section.settings.title }}</h2>
         {%- endif -%}
         {%- if section.settings.subtitle != blank -%}
-          <div class="explore-collections__subtitle">{{ section.settings.subtitle }}</div>
+          <div class="explore-collections__subtitle rte">{{ section.settings.subtitle }}</div>
         {%- endif -%}
       </div>
     {%- endif -%}
@@ -40,38 +59,38 @@
             >
               <div class="collection-card__image-wrapper">
                 {%- liquid
-                    assign columns = section.settings.columns_per_row
-                    assign sizes = '(min-width: 990px) calc((100vw - 130px) / ' | append: columns | append: '), (min-width: 750px) calc((100vw - 120px) / 2), calc(100vw - 30px)'
+                  assign columns = section.settings.columns_per_row
+                  assign sizes = '(min-width: 990px) calc((100vw - 130px) / ' | append: columns | append: '), (min-width: 750px) calc((100vw - 120px) / 2), calc(50vw - 20px)'
                 -%}
 
                 {%- if collection != blank and collection.image -%}
-                    {{
+                  {{
                     collection.image
                     | image_url: width: 600
                     | image_tag:
-                        loading: 'lazy',
-                        widths: '300, 400, 500, 600',
-                        sizes: sizes,
-                        class: 'collection-card__image',
-                        alt: collection.title | escape
-                    }}
+                      loading: 'lazy',
+                      widths: '300, 400, 500, 600',
+                      sizes: sizes,
+                      class: 'collection-card__image',
+                      alt: collection.title | escape
+                  }}
                 {%- elsif collection != blank and collection.products.first and collection.products.first.featured_image -%}
-                    {{
+                  {{
                     collection.products.first.featured_image
                     | image_url: width: 600
                     | image_tag:
-                        loading: 'lazy',
-                        widths: '300, 400, 500, 600',
-                        sizes: sizes,
-                        class: 'collection-card__image',
-                        alt: collection.title | escape
-                    }}
+                      loading: 'lazy',
+                      widths: '300, 400, 500, 600',
+                      sizes: sizes,
+                      class: 'collection-card__image',
+                      alt: collection.title | escape
+                  }}
                 {%- else -%}
-                    <div class="collection-card__image collection-card__image--placeholder">
+                  <div class="collection-card__image collection-card__image--placeholder">
                     {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
-                    </div>
+                  </div>
                 {%- endif -%}
-                </div>
+              </div>
 
               <div class="collection-card__info">
                 <h3 class="collection-card__title">
@@ -92,8 +111,8 @@
                 <img
                   src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_paw_b7908f55-fa7a-465b-adde-ffe6d50be06d.svg?v=1777536439"
                   alt=""
-                  width="40"
-                  height="40"
+                  width="36"
+                  height="36"
                   loading="lazy"
                 >
               </div>
@@ -136,6 +155,26 @@
       "id": "subtitle",
       "label": "Subtitle",
       "default": "<p>Find the perfect way to turn your pet into something truly special</p>"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_desktop",
+      "min": 24,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size desktop",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "min": 18,
+      "max": 42,
+      "step": 1,
+      "unit": "px",
+      "label": "Heading size mobile",
+      "default": 26
     },
     {
       "type": "range",
