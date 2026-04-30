@@ -6,10 +6,6 @@
   width: 100%;
 }
 
-/* Header */
-.explore-collections__header {
-  margin-bottom: 32px;
-}
 
 .explore-collections__title {
   font-size: clamp(1.5rem, 3vw, 2rem);
