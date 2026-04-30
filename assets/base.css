@@ -338,7 +338,7 @@ text-transform: uppercase;
   h2,
   .h2 {
     font-size: calc(var(--font-heading-scale) * 2.4rem);
-      text-align:center;
+ 
   }
 }
 
