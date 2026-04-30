@@ -221,6 +221,50 @@
         "padding_bottom": 36
       }
     },
+    "explore_collection_chWMTM": {
+      "type": "explore-collection",
+      "blocks": {
+        "collection_VMc9xf": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "collection_DpWcLg": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "collection_xr9ELD": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
+        },
+        "collection_TT4NEd": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_VMc9xf",
+        "collection_DpWcLg",
+        "collection_xr9ELD",
+        "collection_TT4NEd"
+      ],
+      "name": "Explore Collections",
+      "settings": {
+        "color_scheme": "scheme-4",
+        "title": "<p>EXPLORE OUR COLLECTIONS</p>",
+        "subtitle": "<p>Find the perfect way to turn your pet into something truly special</p>",
+        "columns_per_row": 4,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
     "featured_collection": {
       "type": "featured-collection",
       "disabled": true,
@@ -256,6 +300,7 @@
     "hero_LRcXcf",
     "brands_eP4pY4",
     "our_best_sellers_RoJgkQ",
+    "explore_collection_chWMTM",
     "featured_collection"
   ]
 }
