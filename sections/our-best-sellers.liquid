@@ -160,13 +160,13 @@
       padding-top: {{ section.settings.padding_top }}px;
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
-    .obs-figma__heading { font-size: {{ section.settings.heading_size_desktop }}px; }
+    .section-figma__heading{ font-size: {{ section.settings.heading_size_desktop }}px; }
   }
 {%- endstyle -%}
 
 <div class="obs-figma section-{{ section.id }}-padding">
   <div class="obs-figma__inner">
-    <h2 class="obs-figma__heading title-section">{{ section.settings.title }}</h2>
+    <h2 class="section-figma__heading">{{ section.settings.title }}</h2>
 
     <div class="obs-figma__slider-container">
       <button class="obs-figma__nav obs-figma__nav--prev" type="button" data-obs-prev="{{ section.id }}" disabled>
