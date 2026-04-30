@@ -548,7 +548,7 @@
                   {%- endfor -%}
                 </div>
                 <h3 class="obs-figma__title">{{ product.title | truncate: 26 }}</h3>
-                <div class="obs-figma__desc">{{ product.description | truncate: 26 }}</div>
+                <div class="obs-figma__desc">{{ product.description | truncate: 32 }}</div>
                 <p class="obs-figma__price">From {{ product.price | money }}</p>
                 <a class="obs-figma__cta" href="{{ product.url }}">{{ section.settings.button_label }}</a>
               </article>
