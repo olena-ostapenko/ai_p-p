@@ -1,0 +1,254 @@
+/* ============================================================
+   section-home.css
+   Shared styles for homepage custom sections:
+   — our-best-sellers.liquid
+   — explore-collection.liquid
+   (and any future homepage sections)
+
+   Card background comes from Theme Settings → Product cards
+   → Color scheme (uses Dawn's .color-{scheme} .gradient system)
+   Card radius/shadow come from --product-card-* CSS vars
+   set in theme.liquid from Product cards settings
+   ============================================================ */
+
+/* ── Section header ─────────────────────────────────────── */
+/* .section-figma__heading is in base.css — not duplicated here */
+
+.sh-section__subtitle {
+  margin: 0.4rem 0 0;
+  opacity: 0.7;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.sh-section__subtitle p { margin: 0; }
+
+.sh-section__header {
+  margin-bottom: var(--section-heading-margin-bottom, 12px);
+}
+
+/* ── Shared card ─────────────────────────────────────────── */
+.sh-card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+  padding: 8px 8px 12px;
+  /* Background & colors from Theme → Product cards → Color scheme */
+  border-radius: var(--product-card-corner-radius, 0.8rem);
+  box-shadow:
+    calc(var(--product-card-shadow-horizontal-offset, 0) * 1rem)
+    calc(var(--product-card-shadow-vertical-offset, 0.2) * 1rem)
+    calc(var(--product-card-shadow-blur-radius, 1) * 1rem)
+    rgba(var(--color-shadow, 0,0,0), var(--product-card-shadow-opacity, 0.05));
+  overflow: hidden;
+  text-decoration: none;
+  color: rgb(var(--color-foreground));
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.sh-card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    calc(var(--product-card-shadow-horizontal-offset, 0) * 1rem)
+    calc((var(--product-card-shadow-vertical-offset, 0.2) + 0.4) * 1rem)
+    calc((var(--product-card-shadow-blur-radius, 1) + 1) * 1rem)
+    rgba(var(--color-shadow, 0,0,0), calc(var(--product-card-shadow-opacity, 0.05) + 0.08));
+}
+
+/* ── Card image ──────────────────────────────────────────── */
+.sh-card__image-wrap {
+  display: block;
+  aspect-ratio: 268 / 272;
+  border-radius: calc(var(--product-card-corner-radius, 0.8rem) - 2px);
+  overflow: hidden;
+  background: rgba(var(--color-foreground), 0.04);
+}
+
+.sh-card__image-wrap img,
+.sh-card__image-wrap .placeholder-svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.sh-card:hover .sh-card__image-wrap img {
+  transform: scale(1.04);
+}
+
+/* ── Card body ───────────────────────────────────────────── */
+.sh-card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+}
+
+/* ── Typography — matches obs-figma__title / __desc ─────── */
+.sh-card__title {
+  margin: 0;
+  color: #000;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.sh-card__desc,
+.sh-card__desc p,
+.sh-card__desc h6 {
+  margin: 0 0 20px;
+  color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.sh-card__desc:last-child,
+.sh-card__desc p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Paw decoration (explore-collections) ───────────────── */
+.sh-card__paw {
+  position: absolute;
+  bottom: 1rem;
+  right: 1.2rem;
+  width: 3.6rem;
+  height: 3.6rem;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.sh-card__paw img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ── Grid (explore-collections) ─────────────────────────── */
+.sh-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* centres last row */
+  gap: 20px;
+}
+
+.sh-grid__item {
+  flex: 0 0 calc((100% - (var(--sh-columns, 4) - 1) * 20px) / var(--sh-columns, 4));
+  max-width: calc((100% - (var(--sh-columns, 4) - 1) * 20px) / var(--sh-columns, 4));
+  min-width: 0;
+}
+
+/* ── Slider rail (our-best-sellers) ─────────────────────── */
+.sh-slider-wrap {
+  width: 100%;
+  overflow: hidden;
+  padding: 10px 0;
+}
+
+.sh-slider {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.sh-slider::-webkit-scrollbar { display: none; }
+
+.sh-slider .sh-card {
+  scroll-snap-align: start;
+  flex: 0 0 100%;
+}
+
+/* ── Slider nav arrows ───────────────────────────────────── */
+.sh-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 63px;
+  height: 54px;
+  border: 0;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow:
+    0 1px 2px rgba(0,0,0,0.10),
+    0 3px 3px rgba(0,0,0,0.09),
+    0 7px 4px rgba(0,0,0,0.05),
+    0 12px 5px rgba(0,0,0,0.01);
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.sh-nav--prev { left: -73px; }
+.sh-nav--next { right: -73px; }
+
+.sh-nav .icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sh-nav--next .icon { transform: rotate(-45deg); }
+.sh-nav--prev .icon { transform: rotate(45deg); }
+.sh-nav[disabled]   { opacity: 0; pointer-events: none; }
+
+/* ── Stars (our-best-sellers) ───────────────────────────── */
+.sh-stars {
+  margin: 10px 0 6px;
+  display: flex;
+  gap: 2px;
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media screen and (min-width: 600px) {
+  .sh-slider .sh-card { flex: 0 0 calc((100% - 20px) / 2); }
+}
+
+@media screen and (min-width: 990px) {
+  .sh-slider .sh-card { flex: 0 0 calc((100% - 40px) / 3); }
+  .sh-nav { display: inline-flex; }
+}
+
+@media screen and (min-width: 1200px) {
+  .sh-slider .sh-card { flex: 0 0 calc((100% - 60px) / 4); }
+}
+
+@media screen and (max-width: 989px) {
+  .sh-grid {
+    --sh-columns: 2 !important;
+    gap: 16px;
+  }
+  .sh-grid__item {
+    flex: 0 0 calc(50% - 8px);
+    max-width: calc(50% - 8px);
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .sh-grid { gap: 12px; }
+  .sh-grid__item {
+    flex: 0 0 calc(50% - 6px);
+    max-width: calc(50% - 6px);
+  }
+  .sh-card__image-wrap { aspect-ratio: 1 / 1; }
+  .sh-card__paw {
+    width: 2.8rem;
+    height: 2.8rem;
+    bottom: 0.8rem;
+    right: 0.8rem;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .sh-nav { display: inline-flex; }
+}

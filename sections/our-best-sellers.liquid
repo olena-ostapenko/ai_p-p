@@ -1,144 +1,30 @@
+{{ 'section-home.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-  .section-{{ section.id }}-padding {
+  #shopify-section-{{ section.id }} {
+    background: {{ section.settings.section_bg }};
+    overflow: hidden;
+  }
+
+  .obs-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
-  .obs-figma {
-    background: {{ section.settings.section_bg }};
-    overflow: hidden; /* Щоб кнопки, що виходять за межі, не створювали горизонтальний скрол сторінки */
+  @media screen and (min-width: 750px) {
+    .obs-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
   }
 
-  .obs-figma__inner {
-    position: relative;
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-
- 
-
-  .obs-figma__slider-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-
-  .obs-figma__rail-wrap {
-    width: 100%;
-    overflow: hidden;
-    padding: 10px 0; /* Для тіней */
-  }
-
-  .obs-figma__rail {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-
-  .obs-figma__rail::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Розрахунок ширини картинок, щоб не було обрізаних країв */
-  .obs-figma__card {
-    scroll-snap-align: start;
-    background: #ffffff;
-    border-radius: 8px;
-    box-sizing: border-box;
-    padding: 8px 8px 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    display: flex;
-    flex-direction: column;
-    /* Дефолт: 1 картка на мобайлі */
-    flex: 0 0 100%; 
-  }
-
-  @media screen and (min-width: 600px) {
-    .obs-figma__card { flex: 0 0 calc((100% - 20px) / 2); } /* 2 картки */
-  }
-  @media screen and (min-width: 990px) {
-    .obs-figma__card { flex: 0 0 calc((100% - 40px) / 3); } /* 3 картки */
-  }
-  @media screen and (min-width: 1200px) {
-    .obs-figma__card { flex: 0 0 calc((100% - 60px) / 4); } /* 4 картки */
-  }
-
-  .obs-figma__image {
-    display: block;
-    aspect-ratio: 268 / 272;
-    border-radius: 11px;
-    overflow: hidden;
-    background: #f3f3f3;
-  }
-
-  .obs-figma__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  /* СТИЛЬ КНОПОК ЯК У ВАС БУВ */
-  .obs-figma__nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 63px;
-    height: 54px;
-    border: 0;
-    border-radius: 10px;
-    background: #ffffff;
-    color: {{ section.settings.cta_bg }};
-    box-shadow:
-      0 1px 2px rgba(0, 0, 0, 0.1),
-      0 3px 3px rgba(0, 0, 0, 0.09),
-      0 7px 4px rgba(0, 0, 0, 0.05),
-      0 12px 5px rgba(0, 0, 0, 0.01);
-    cursor: pointer;
-    display: none; 
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-  }
-
-  .obs-figma__nav--prev {
-    left: -73px; 
-  }
-
-  .obs-figma__nav--next {
-    right: -73px; 
-  }
-
-  .obs-figma__nav .icon {
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .obs-figma__nav--next .icon { transform: rotate(-45deg); }
-  .obs-figma__nav--prev .icon { transform: rotate(45deg); }
-
-  .obs-figma__nav[disabled] {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  /* Інші стилі */
-  .obs-figma__stars { margin-top: 10px; margin-bottom: 6px; display: flex; gap: 2px; color: {{ section.settings.star_color }}; font-size: 24px; }
-  .obs-figma__title { margin: 0; color: #000; font-size: 19px; font-weight: 700; line-height: 1.3; }
-  .obs-figma__desc p, 
-  .obs-figma__desc h6{ margin: 0 0 20px 0; color: #000; font-size: 16px; font-weight: 500; }
-  .price-label{font-weight:500;}
-  .obs-figma__price { margin: 5px 0; color: #000; font-size: 17px; font-weight: 700; }
-  .obs-figma__cta {
-    width:fit-content;
+  /* Section-specific: nav color, stars color, CTA */
+  .obs-{{ section.id }} .sh-nav { color: {{ section.settings.cta_bg }}; }
+  .obs-{{ section.id }} .sh-stars { color: {{ section.settings.star_color }}; font-size: 24px; }
+  .obs-{{ section.id }} .sh-card__price { margin: 5px 0; color: #000; font-size: 17px; font-weight: 700; }
+  .obs-{{ section.id }} .sh-card__price .price-label { font-weight: 500; }
+  .obs-{{ section.id }} .sh-card__cta {
+    width: fit-content;
     background: {{ section.settings.cta_bg }};
     color: #ffffff;
     text-decoration: none;
@@ -150,70 +36,55 @@
     font-size: 19px;
     font-weight: 700;
   }
-
-  @media screen and (min-width: 1300px) {
-    .obs-figma__nav { display: inline-flex; }
-  }
-
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
 {%- endstyle -%}
 
-<div class="obs-figma section-{{ section.id }}-padding">
-  <div class="obs-figma__inner">
+<div class="obs-{{ section.id }}-padding obs-{{ section.id }}">
+  <div class="page-width">
+
     <h2 class="section-figma__heading">{{ section.settings.title }}</h2>
 
-    <div class="obs-figma__slider-container">
-      <button class="obs-figma__nav obs-figma__nav--prev" type="button" data-obs-prev="{{ section.id }}" disabled>
-        <span class="icon">
-           {{- 'icon-caret.svg' | inline_asset_content -}}
-        </span>
+    <div style="position: relative; display: flex; align-items: center;">
+      <button class="sh-nav sh-nav--prev" type="button" data-obs-prev="{{ section.id }}" disabled>
+        <span class="icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
       </button>
 
-      <div class="obs-figma__rail-wrap">
-        <div class="obs-figma__rail" id="obs-rail-{{ section.id }}">
+      <div class="sh-slider-wrap">
+        <div class="sh-slider" id="obs-rail-{{ section.id }}">
           {%- if section.settings.collection != blank -%}
             {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
-              <article class="obs-figma__card">
-                <a href="{{ product.url }}" class="obs-figma__image">
+              <article class="sh-card color-{{ settings.card_color_scheme }} gradient">
+                <a href="{{ product.url }}" class="sh-card__image-wrap">
                   {%- if product.featured_image != blank -%}
                     {{ product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: product.title }}
                   {%- else -%}
                     {{ 'product-1' | placeholder_svg_tag }}
                   {%- endif -%}
                 </a>
-                <div class="obs-figma__stars">
-                  {%- for i in (1..5) -%}
-                    <img 
-                      src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/star_6f70947c-dc83-43ad-a444-913b32ad7465.svg?v=1777530521" 
-                      alt="star" 
-                      class="obs-figma__star-icon"
-                      width="20"
-                      height="20"
-                      loading="lazy"
-                    >
-                  {%- endfor -%}
+                <div class="sh-card__body">
+                  <div class="sh-stars">
+                    {%- for i in (1..5) -%}
+                      <img
+                        src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/star_6f70947c-dc83-43ad-a444-913b32ad7465.svg?v=1777530521"
+                        alt="star" width="20" height="20" loading="lazy"
+                      >
+                    {%- endfor -%}
+                  </div>
+                  <h3 class="sh-card__title">{{ product.title | truncate: 26 }}</h3>
+                  <div class="sh-card__desc">{{ product.description }}</div>
+                  <p class="sh-card__price"><span class="price-label">From</span> {{ product.price | money }}</p>
+                  <a class="sh-card__cta" href="{{ product.url }}">{{ section.settings.button_label }}</a>
                 </div>
-                <h3 class="obs-figma__title">{{ product.title | truncate: 26 }}</h3>
-                <div class="obs-figma__desc">{{ product.description }}</div>
-                <p class="obs-figma__price"><span class="price-label">From</span> {{ product.price | money }}</p>
-                <a class="obs-figma__cta" href="{{ product.url }}">{{ section.settings.button_label }}</a>
               </article>
             {%- endfor -%}
           {%- endif -%}
         </div>
       </div>
 
-      <button class="obs-figma__nav obs-figma__nav--next" type="button" data-obs-next="{{ section.id }}">
-        <span class="icon">
-           {{- 'icon-caret.svg' | inline_asset_content -}}
-        </span>
+      <button class="sh-nav sh-nav--next" type="button" data-obs-next="{{ section.id }}">
+        <span class="icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
       </button>
     </div>
+
   </div>
 </div>
 
@@ -231,7 +102,7 @@
     };
 
     const scrollSlider = (direction) => {
-      const cardWidth = rail.querySelector('.obs-figma__card').offsetWidth + 20; // ширина + gap
+      const cardWidth = rail.querySelector('.sh-card').offsetWidth + 20;
       rail.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
     };
 
@@ -256,7 +127,7 @@
       "type": "text",
       "id": "title",
       "label": "Heading",
-      "default": "Our Best Selllers"
+      "default": "Our Best Sellers"
     },
     {
       "type": "text",
