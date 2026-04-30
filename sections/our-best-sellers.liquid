@@ -485,6 +485,7 @@
   .obs-figma__title { margin: 0; color: #000; font-size: 19px; font-weight: 700; line-height: 1.3; }
   .obs-figma__desc p, 
   .obs-figma__desc h6{ margin: 0 0 20px 0; color: #000; font-size: 16px; font-weight: 500; }
+  .price-label{font-weight:500;}
   .obs-figma__price { margin: 5px 0; color: #000; font-size: 17px; font-weight: 700; }
   .obs-figma__cta {
     background: {{ section.settings.cta_bg }};
@@ -549,7 +550,7 @@
                 </div>
                 <h3 class="obs-figma__title">{{ product.title | truncate: 26 }}</h3>
                 <div class="obs-figma__desc">{{ product.description }}</div>
-                <p class="obs-figma__price">From {{ product.price | money }}</p>
+                <p class="obs-figma__price"><span class="price-label">From</span> {{ product.price | money }}</p>
                 <a class="obs-figma__cta" href="{{ product.url }}">{{ section.settings.button_label }}</a>
               </article>
             {%- endfor -%}
