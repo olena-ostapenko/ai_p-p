@@ -322,7 +322,7 @@ h2,
 text-transform: uppercase;
 }
 
- .obs-figma__heading {
+ .section-figma__heading{
     margin: 0 0 22px;
     color: #000000;
     font-weight: 700;
