@@ -208,7 +208,7 @@
     "our_best_sellers_RoJgkQ": {
       "type": "our-best-sellers",
       "settings": {
-        "collection": "all",
+        "collection": "best-sellar",
         "title": "Our Best Selllers",
         "button_label": "Create yours",
         "section_bg": "#fbfbfb",
