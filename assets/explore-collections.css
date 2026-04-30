@@ -61,6 +61,8 @@
   aspect-ratio: 268 / 272;
   overflow: hidden;
   background: rgba(var(--color-foreground), 0.04);
+  padding:8px;
+  border-radius:11px;
 }
 
 .collection-card__image {
