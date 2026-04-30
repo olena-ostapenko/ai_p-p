@@ -1,4 +1,4 @@
-{%- style -%}
+{% comment %} {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
@@ -339,5 +339,275 @@
       }
     }
   ]
+}
+{% endschema %} {% endcomment %}
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  .obs-figma {
+    background: {{ section.settings.section_bg }};
+    overflow: clip; /* Щоб кнопки не обрізалися, якщо виходять за край екрану на малих моніторах */
+  }
+
+  .obs-figma__inner {
+    position: relative;
+    max-width: 1200px; /* Або ваша стандартна ширина */
+    margin: 0 auto;
+  }
+
+  .obs-figma__heading {
+    margin: 0;
+    color: #000000;
+    font-weight: 700;
+    font-size: {{ section.settings.heading_size_mobile }}px;
+    line-height: 1.2;
+    padding: 0 15px;
+  }
+
+  .obs-figma__slider-container {
+    position: relative;
+    margin-top: 22px;
+    /* Додаємо невеликий падінг з боків, щоб на мобайлі картки не липнули до краю, 
+       або прибираємо його, якщо слайдер має бути на всю ширину */
+  }
+
+  .obs-figma__rail-wrap {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .obs-figma__rail {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding: 0 15px 10px; /* Падінг для мобілки */
+  }
+
+  .obs-figma__rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .obs-figma__card {
+    flex: 0 0 283px;
+    width: 283px;
+    min-height: 443px;
+    scroll-snap-align: start;
+    background: #ffffff;
+    border-radius: 8px;
+    box-sizing: border-box;
+    padding: 8px 8px 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  }
+
+  .obs-figma__image {
+    display: block;
+    width: 100%;
+    height: 272px;
+    border-radius: 11px;
+    overflow: hidden;
+    background: #f3f3f3;
+  }
+
+  .obs-figma__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .obs-figma__stars {
+    margin-top: 10px;
+    display: flex;
+    gap: 2px;
+    color: {{ section.settings.star_color }};
+    font-size: 24px;
+  }
+
+  .obs-figma__title { margin: 5px 0 0; font-size: 19px; font-weight: 700; color: #000; }
+  .obs-figma__subtitle { margin: 0; font-size: 16px; font-weight: 500; color: #666; }
+  .obs-figma__price { margin: 5px 0; font-size: 17px; font-weight: 700; color: #000; }
+
+  .obs-figma__cta {
+    margin-top: auto;
+    min-height: 35px;
+    border-radius: 30px;
+    background: {{ section.settings.cta_bg }};
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 28px;
+    font-size: 18px;
+    font-weight: 700;
+    transition: transform 0.2s;
+  }
+
+  /* НАВІГАЦІЯ */
+  .obs-figma__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 54px;
+    height: 54px;
+    border: 0;
+    border-radius: 50%; /* Круглі кнопки часто виглядають краще "поза" межами */
+    background: #ffffff;
+    color: {{ section.settings.cta_bg }};
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    display: none; /* Ховаємо на мобайлі */
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all 0.3s ease;
+  }
+
+  .obs-figma__nav--prev {
+    left: -30px; /* Виносимо вліво */
+  }
+
+  .obs-figma__nav--next {
+    right: -30px; /* Виносимо вправо */
+  }
+
+  .obs-figma__nav:hover {
+    background: {{ section.settings.cta_bg }};
+    color: #fff;
+  }
+
+  .obs-figma__nav[disabled] {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .obs-figma__nav .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .obs-figma__nav--next .icon { transform: rotate(-90deg); }
+  .obs-figma__nav--prev .icon { transform: rotate(90deg); }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+    .obs-figma__heading {
+      font-size: {{ section.settings.heading_size_desktop }}px;
+      padding: 0;
+    }
+    .obs-figma__rail {
+      padding: 0 0 10px 0;
+    }
+    .obs-figma__nav {
+      display: flex;
+    }
+  }
+
+  /* Адаптація для великих екранів, щоб кнопки не виходили за межі в'юпорту */
+  @media screen and (max-width: 1300px) {
+    .obs-figma__nav--prev { left: 5px; }
+    .obs-figma__nav--next { right: 5px; }
+  }
+{%- endstyle -%}
+
+<div class="obs-figma section-{{ section.id }}-padding">
+  <div class="page-width obs-figma__inner">
+    <h2 class="obs-figma__heading">{{ section.settings.title }}</h2>
+
+    <div class="obs-figma__slider-container">
+      <!-- Кнопки тепер ТУТ, поза rail-wrap -->
+      <button class="obs-figma__nav obs-figma__nav--prev" type="button" data-obs-prev="{{ section.id }}" disabled>
+        <span class="icon">{% render 'icon-caret' %}</span>
+      </button>
+
+      <div class="obs-figma__rail-wrap">
+        <div class="obs-figma__rail" id="obs-rail-{{ section.id }}">
+          {%- if section.settings.collection != blank and section.settings.collection.products.size > 0 -%}
+            {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+              <article class="obs-figma__card">
+                <a href="{{ product.url }}" class="obs-figma__image">
+                  {%- if product.featured_image != blank -%}
+                    {{ product.featured_image | image_url: width: 536 | image_tag: loading: 'lazy', widths: '268,536', alt: product.title }}
+                  {%- else -%}
+                    {{ 'product-1' | placeholder_svg_tag }}
+                  {%- endif -%}
+                </a>
+                <div class="obs-figma__stars">★★★★★</div>
+                <h3 class="obs-figma__title">{{ product.title | truncate: 30 }}</h3>
+                <p class="obs-figma__price">From {{ product.price | money }}</p>
+                <a class="obs-figma__cta" href="{{ product.url }}">{{ section.settings.button_label }}</a>
+              </article>
+            {%- endfor -%}
+          {%- endif -%}
+        </div>
+      </div>
+
+      <button class="obs-figma__nav obs-figma__nav--next" type="button" data-obs-next="{{ section.id }}">
+        <span class="icon">{% render 'icon-caret' %}</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const initSlider = () => {
+      const sectionId = {{ section.id | json }};
+      const rail = document.getElementById(`obs-rail-${sectionId}`);
+      const prevBtn = document.querySelector(`[data-obs-prev="${sectionId}"]`);
+      const nextBtn = document.querySelector(`[data-obs-next="${sectionId}"]`);
+      
+      if (!rail || !prevBtn || !nextBtn) return;
+
+      const getStep = () => {
+        const card = rail.querySelector('.obs-figma__card');
+        return card ? card.offsetWidth + 20 : 300;
+      };
+
+      const updateButtons = () => {
+        prevBtn.disabled = rail.scrollLeft <= 5;
+        nextBtn.disabled = rail.scrollLeft + rail.offsetWidth >= rail.scrollWidth - 5;
+      };
+
+      prevBtn.onclick = () => rail.scrollBy({ left: -getStep(), behavior: 'smooth' });
+      nextBtn.onclick = () => rail.scrollBy({ left: getStep(), behavior: 'smooth' });
+      
+      rail.addEventListener('scroll', updateButtons);
+      window.addEventListener('resize', updateButtons);
+      updateButtons();
+    };
+
+    document.addEventListener('shopify:section:load', initSlider);
+    initSlider();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Our Best Sellers",
+  "settings": [
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Our Best Sellers" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Create yours" },
+    { "type": "color", "id": "section_bg", "label": "Section background", "default": "#FBFBFB" },
+    { "type": "color", "id": "cta_bg", "label": "Button/Nav color", "default": "#F4844E" },
+    { "type": "color", "id": "star_color", "label": "Stars color", "default": "#E9A753" },
+    { "type": "range", "id": "products_to_show", "min": 4, "max": 12, "step": 1, "default": 8, "label": "Products to show" },
+    { "type": "range", "id": "heading_size_desktop", "min": 28, "max": 60, "step": 1, "default": 44, "label": "Heading size desktop" },
+    { "type": "range", "id": "heading_size_mobile", "min": 24, "max": 42, "step": 1, "default": 34, "label": "Heading size mobile" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 80, "label": "Top padding" },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 80, "label": "Bottom padding" }
+  ],
+  "presets": [{ "name": "Our Best Sellers" }]
 }
 {% endschema %}
