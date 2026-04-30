@@ -189,10 +189,6 @@
     max-width: calc((100% - 12px) / 2);
   }
 
-  .explore-collections__header {
-    margin-bottom: 20px;
-  }
-
   .explore-collections__title {
     font-size: 1.25rem;
   }
