@@ -1,0 +1,222 @@
+/* ============================================
+   Explore Collections Section
+   ============================================ */
+
+.explore-collections {
+  width: 100%;
+}
+
+/* Header */
+.explore-collections__header {
+  margin-bottom: 32px;
+}
+
+.explore-collections__title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+  line-height: 1.2;
+}
+
+.explore-collections__title p {
+  margin: 0;
+}
+
+.explore-collections__subtitle {
+  font-size: 0.95rem;
+  color: currentColor;
+  opacity: 0.7;
+  margin: 0;
+}
+
+.explore-collections__subtitle p {
+  margin: 0;
+}
+
+/* Grid */
+.collections-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+  /* Center last row */
+  justify-content: center;
+}
+
+.collections-grid__item {
+  list-style: none;
+  /* Calculate width based on --columns variable */
+  flex: 0 0 calc((100% - (var(--columns) - 1) * 20px) / var(--columns));
+  max-width: calc((100% - (var(--columns) - 1) * 20px) / var(--columns));
+  min-width: 0;
+}
+
+/* Align first row left while keeping last row centered */
+.collections-grid::before {
+  content: '';
+  flex: 0 0 calc((100% - (var(--columns) - 1) * 20px) / var(--columns));
+  max-width: calc((100% - (var(--columns) - 1) * 20px) / var(--columns));
+  order: 1;
+  display: none;
+}
+
+/* Card */
+.collection-card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--color-background);
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  height: 100%;
+}
+
+.collection-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Image */
+.collection-card__image-wrapper {
+  width: 100%;
+  aspect-ratio: 268 / 272;
+  overflow: hidden;
+  background: #f0ece8;
+}
+
+.collection-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.collection-card:hover .collection-card__image {
+  transform: scale(1.04);
+}
+
+.collection-card__image--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0ece8;
+}
+
+.collection-card__image--placeholder .placeholder-svg {
+  width: 60%;
+  height: 60%;
+  opacity: 0.4;
+}
+
+/* Info */
+.collection-card__info {
+  padding: 12px 14px 28px;
+  flex: 1;
+}
+
+.collection-card__title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0 0 2px;
+  line-height: 1.3;
+}
+
+.collection-card__description {
+  font-size: 0.8rem;
+  margin: 0;
+  opacity: 0.65;
+  line-height: 1.4;
+}
+
+/* Paw icon — bottom right corner */
+.collection-card__paw {
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.collection-card__paw img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Empty state */
+.explore-collections__empty {
+  text-align: center;
+  padding: 40px 0;
+  opacity: 0.5;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+/* 3 columns on tablet */
+@media screen and (max-width: 989px) {
+  .collections-grid {
+    --columns: 2 !important;
+    gap: 16px;
+  }
+
+  .collections-grid__item {
+    flex: 0 0 calc((100% - 16px) / 2);
+    max-width: calc((100% - 16px) / 2);
+  }
+}
+
+/* 2 columns on small tablet */
+@media screen and (max-width: 749px) {
+  .collections-grid {
+    --columns: 2 !important;
+    gap: 12px;
+  }
+
+  .collections-grid__item {
+    flex: 0 0 calc((100% - 12px) / 2);
+    max-width: calc((100% - 12px) / 2);
+  }
+
+  .explore-collections__header {
+    margin-bottom: 20px;
+  }
+
+  .explore-collections__title {
+    font-size: 1.25rem;
+  }
+
+  .collection-card__image-wrapper {
+    aspect-ratio: 1 / 1;
+  }
+
+  .collection-card__info {
+    padding: 10px 10px 26px;
+  }
+
+  .collection-card__title {
+    font-size: 0.85rem;
+  }
+
+  .collection-card__description {
+    font-size: 0.75rem;
+  }
+
+  .collection-card__paw {
+    width: 28px;
+    height: 28px;
+    bottom: 8px;
+    right: 8px;
+  }
+}
