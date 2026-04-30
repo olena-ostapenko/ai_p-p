@@ -323,10 +323,9 @@ text-transform: uppercase;
 }
 
  .section-figma__heading{
-    margin: 0 0 22px;
+    margin: 0 0 12px;
     color: #000000;
     font-weight: 700;
-    font-size: {{ section.settings.heading_size_mobile }}px;
     line-height: 1.2;
   }
 
