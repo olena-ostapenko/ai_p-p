@@ -472,9 +472,8 @@
     justify-content: center;
   }
 
-  /* Повороти стрілок як у вашому коді */
-  .obs-figma__nav--next .icon { transform: rotate(-90deg); }
-  .obs-figma__nav--prev .icon { transform: rotate(90deg); }
+  .obs-figma__nav--next .icon { transform: rotate(-180deg); }
+  .obs-figma__nav--prev .icon { transform: rotate(180deg); }
 
   .obs-figma__nav[disabled] {
     opacity: 0;
@@ -519,7 +518,6 @@
     <div class="obs-figma__slider-container">
       <button class="obs-figma__nav obs-figma__nav--prev" type="button" data-obs-prev="{{ section.id }}" disabled>
         <span class="icon">
-           {% comment %} Використовуємо ваш шлях до svg {% endcomment %}
            {{- 'icon-caret.svg' | inline_asset_content -}}
         </span>
       </button>
