@@ -259,6 +259,18 @@
           "settings": {
             "collection": "mugs"
           }
+        },
+        "collection_EnLTfy": {
+          "type": "collection",
+          "settings": {
+            "collection": "tote-bags"
+          }
+        },
+        "collection_E6dh3R": {
+          "type": "collection",
+          "settings": {
+            "collection": "gift-cards"
+          }
         }
       },
       "block_order": [
@@ -267,7 +279,9 @@
         "collection_DpWcLg",
         "collection_xr9ELD",
         "collection_TT4NEd",
-        "collection_KtcawT"
+        "collection_KtcawT",
+        "collection_EnLTfy",
+        "collection_E6dh3R"
       ],
       "name": "Explore Collections",
       "settings": {
