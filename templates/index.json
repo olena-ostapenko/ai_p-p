@@ -253,6 +253,12 @@
           "settings": {
             "collection": "phone-cases"
           }
+        },
+        "collection_KtcawT": {
+          "type": "collection",
+          "settings": {
+            "collection": "mugs"
+          }
         }
       },
       "block_order": [
@@ -260,7 +266,8 @@
         "collection_VMc9xf",
         "collection_DpWcLg",
         "collection_xr9ELD",
-        "collection_TT4NEd"
+        "collection_TT4NEd",
+        "collection_KtcawT"
       ],
       "name": "Explore Collections",
       "settings": {
