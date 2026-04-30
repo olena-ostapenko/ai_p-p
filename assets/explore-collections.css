@@ -42,7 +42,7 @@
   position: relative;
   border-radius: 1.2rem;
   overflow: hidden;
-  background: rgb(var(--color-background));
+  background: #ffffff;
   text-decoration: none;
   color: rgb(var(--color-foreground));
   box-shadow: 0 0.1rem 0.4rem rgba(var(--color-foreground), 0.06);
