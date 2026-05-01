@@ -2,62 +2,62 @@
 
 {%- style -%}
 
-/* Батьківська картка */
+/* Основна біла картка */
 .sh-card {
   position: relative;
-  background-color: #ffffff; /* Переконайтеся, що тут чіткий колір */
+  background-color: #ffffff; /* Або rgb(var(--color-background)) */
   border-radius: 20px;
   border-bottom-right-radius: 0;
-  overflow: visible; 
+  overflow: visible; /* Дозволяємо декоративним елементам виходити за межі */
 }
 
-/* Контейнер лапки (заплатка) */
+/* Бежевий куточок (заплатка кольору фону секції) */
 .sh-card__paw {
   position: absolute;
-  bottom: -1px; /* Притискаємо щільно до низу */
-  right: -1px;  /* Притискаємо щільно до краю */
+  bottom: 0;
+  right: 0;
   width: 70px;
   height: 70px;
   background-color: {{ section.settings.color_scheme.settings.background }}; 
-  border-top-left-radius: 35px;
+  border-top-left-radius: 30px; /* Внутрішнє заокруглення */
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2;
+  z-index: 1;
 }
 
-/* Псевдоелементи - створюємо "вушка" для плавного переходу */
+/* Псевдоелементи для безшовного з'єднання */
 .sh-card__paw::before,
 .sh-card__paw::after {
   content: "";
   position: absolute;
-  width: 25px;
-  height: 25px;
-  background: transparent;
+  width: 30px;
+  height: 30px;
+  background-color: #ffffff; /* МАЄ БУТИ КОЛІР КАРТКИ */
 }
 
-/* Верхній кут */
+/* Верхній перехід */
 .sh-card__paw::before {
-  top: -25px;
-  right: 1px;
-  border-bottom-right-radius: 25px;
-  /* Тінь МАЄ бути кольору картки. Якщо картка біла - ставимо #ffffff */
-  box-shadow: 10px 10px 0 0 #ffffff; 
+  top: -30px;
+  right: 0;
+  /* Вирізаємо кут, щоб зробити ввігнутість */
+  -webkit-mask-image: radial-gradient(circle 30px at 0 0, transparent 98%, black 100%);
+  mask-image: radial-gradient(circle 30px at 0 0, transparent 98%, black 100%);
 }
 
-/* Лівий кут */
+/* Лівий перехід */
 .sh-card__paw::after {
-  bottom: 1px;
-  left: -25px;
-  border-bottom-right-radius: 25px;
-  box-shadow: 10px 10px 0 0 #ffffff;
+  bottom: 0;
+  left: -30px;
+  /* Вирізаємо кут */
+  -webkit-mask-image: radial-gradient(circle 30px at 100% 0, transparent 98%, black 100%);
+  mask-image: radial-gradient(circle 30px at 100% 0, transparent 98%, black 100%);
 }
 
 .sh-card__paw img {
-  width: 32px;
+  width: 34px;
   height: auto;
-  position: relative;
-  z-index: 5;
+  z-index: 2;
 }
 
 
