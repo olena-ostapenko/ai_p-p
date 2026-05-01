@@ -1,0 +1,655 @@
+{{ 'why-choose-us.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    background-color: {{ section.settings.color_scheme.settings.background }};
+    color: {{ section.settings.color_scheme.settings.text }};
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .wcu-{{ section.id }} .wcu-features {
+    gap: {{ section.settings.blocks_gap }}px;
+  }
+
+  .wcu-{{ section.id }} .wcu-badge {
+    background-color: {{ section.settings.badge_bg }};
+  }
+
+  /* Icon circle background inherits from color scheme button color */
+  .wcu-{{ section.id }} .wcu-feature__icon {
+    background-color: rgb(var(--color-button));
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign desktop_class = ''
+  if section.settings.desktop_order == 'photos_right'
+    assign desktop_class = 'wcu--photos-right'
+  endif
+
+  assign mobile_class = 'wcu--mobile-photos-first'
+  if section.settings.mobile_order == 'text_first'
+    assign mobile_class = 'wcu--mobile-text-first'
+  endif
+
+  assign photo_1 = section.settings.photo_1
+  assign photo_2 = section.settings.photo_2
+  assign photo_3 = section.settings.photo_3
+  assign photo_4 = section.settings.photo_4
+  assign photo_5 = section.settings.photo_5
+  assign photo_6 = section.settings.photo_6
+-%}
+
+<div class="wcu-section wcu-{{ section.id }} {{ desktop_class }} {{ mobile_class }}">
+  <div class="page-width">
+
+    {%- comment -%} ── Photos column ── {%- endcomment -%}
+    <div class="wcu-col-photos">
+      <div class="wcu-photos">
+
+        {%- comment -%} Photo 1 — 323px — always required {%- endcomment -%}
+        <div class="wcu-photo wcu-photo--323 wcu-photo--1">
+          {%- if photo_1 != blank -%}
+            {{ photo_1 | image_url: width: 646 | image_tag: loading: 'lazy', alt: '' }}
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+
+          {%- if section.settings.badge_1_name != blank or section.settings.badge_1_review != blank -%}
+            <div class="wcu-badge wcu-badge--{{ section.settings.badge_1_position }}">
+              {%- if section.settings.badge_1_avatar != blank -%}
+                <div class="wcu-badge__avatar">
+                  {{ section.settings.badge_1_avatar | image_url: width: 72 | image_tag: loading: 'lazy', alt: section.settings.badge_1_name }}
+                </div>
+              {%- endif -%}
+              <div class="wcu-badge__text">
+                {%- if section.settings.badge_1_name != blank -%}
+                  <p class="wcu-badge__name">{{ section.settings.badge_1_name }}</p>
+                {%- endif -%}
+                {%- if section.settings.badge_1_review != blank -%}
+                  <p class="wcu-badge__review">{{ section.settings.badge_1_review }}</p>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        </div>
+
+        {%- comment -%} Photo 2 — 282px — always required {%- endcomment -%}
+        <div class="wcu-photo wcu-photo--282 wcu-photo--2">
+          {%- if photo_2 != blank -%}
+            {{ photo_2 | image_url: width: 564 | image_tag: loading: 'lazy', alt: '' }}
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+
+          {%- if section.settings.badge_2_name != blank or section.settings.badge_2_review != blank -%}
+            <div class="wcu-badge wcu-badge--{{ section.settings.badge_2_position }}">
+              {%- if section.settings.badge_2_avatar != blank -%}
+                <div class="wcu-badge__avatar">
+                  {{ section.settings.badge_2_avatar | image_url: width: 72 | image_tag: loading: 'lazy', alt: section.settings.badge_2_name }}
+                </div>
+              {%- endif -%}
+              <div class="wcu-badge__text">
+                {%- if section.settings.badge_2_name != blank -%}
+                  <p class="wcu-badge__name">{{ section.settings.badge_2_name }}</p>
+                {%- endif -%}
+                {%- if section.settings.badge_2_review != blank -%}
+                  <p class="wcu-badge__review">{{ section.settings.badge_2_review }}</p>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        </div>
+
+        {%- comment -%} Photo 3 — 194px — always required {%- endcomment -%}
+        <div class="wcu-photo wcu-photo--194 wcu-photo--3">
+          {%- if photo_3 != blank -%}
+            {{ photo_3 | image_url: width: 388 | image_tag: loading: 'lazy', alt: '' }}
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+
+          {%- if section.settings.badge_3_name != blank or section.settings.badge_3_review != blank -%}
+            <div class="wcu-badge wcu-badge--{{ section.settings.badge_3_position }}">
+              {%- if section.settings.badge_3_avatar != blank -%}
+                <div class="wcu-badge__avatar">
+                  {{ section.settings.badge_3_avatar | image_url: width: 72 | image_tag: loading: 'lazy', alt: section.settings.badge_3_name }}
+                </div>
+              {%- endif -%}
+              <div class="wcu-badge__text">
+                {%- if section.settings.badge_3_name != blank -%}
+                  <p class="wcu-badge__name">{{ section.settings.badge_3_name }}</p>
+                {%- endif -%}
+                {%- if section.settings.badge_3_review != blank -%}
+                  <p class="wcu-badge__review">{{ section.settings.badge_3_review }}</p>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        </div>
+
+        {%- comment -%} Photo 4 — 153px — optional {%- endcomment -%}
+        {%- if photo_4 != blank -%}
+          <div class="wcu-photo wcu-photo--153 wcu-photo--4">
+            {{ photo_4 | image_url: width: 306 | image_tag: loading: 'lazy', alt: '' }}
+            {%- if section.settings.badge_4_name != blank or section.settings.badge_4_review != blank -%}
+              <div class="wcu-badge wcu-badge--{{ section.settings.badge_4_position }}">
+                {%- if section.settings.badge_4_avatar != blank -%}
+                  <div class="wcu-badge__avatar">
+                    {{ section.settings.badge_4_avatar | image_url: width: 72 | image_tag: loading: 'lazy', alt: section.settings.badge_4_name }}
+                  </div>
+                {%- endif -%}
+                <div class="wcu-badge__text">
+                  {%- if section.settings.badge_4_name != blank -%}
+                    <p class="wcu-badge__name">{{ section.settings.badge_4_name }}</p>
+                  {%- endif -%}
+                  {%- if section.settings.badge_4_review != blank -%}
+                    <p class="wcu-badge__review">{{ section.settings.badge_4_review }}</p>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} Photo 5 — 130px — optional {%- endcomment -%}
+        {%- if photo_5 != blank -%}
+          <div class="wcu-photo wcu-photo--130 wcu-photo--5">
+            {{ photo_5 | image_url: width: 260 | image_tag: loading: 'lazy', alt: '' }}
+            {%- if section.settings.badge_5_name != blank or section.settings.badge_5_review != blank -%}
+              <div class="wcu-badge wcu-badge--{{ section.settings.badge_5_position }}">
+                {%- if section.settings.badge_5_avatar != blank -%}
+                  <div class="wcu-badge__avatar">
+                    {{ section.settings.badge_5_avatar | image_url: width: 72 | image_tag: loading: 'lazy', alt: section.settings.badge_5_name }}
+                  </div>
+                {%- endif -%}
+                <div class="wcu-badge__text">
+                  {%- if section.settings.badge_5_name != blank -%}
+                    <p class="wcu-badge__name">{{ section.settings.badge_5_name }}</p>
+                  {%- endif -%}
+                  {%- if section.settings.badge_5_review != blank -%}
+                    <p class="wcu-badge__review">{{ section.settings.badge_5_review }}</p>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        {%- comment -%} Photo 6 — 93px — optional {%- endcomment -%}
+        {%- if photo_6 != blank -%}
+          <div class="wcu-photo wcu-photo--93 wcu-photo--6">
+            {{ photo_6 | image_url: width: 186 | image_tag: loading: 'lazy', alt: '' }}
+            {%- if section.settings.badge_6_name != blank or section.settings.badge_6_review != blank -%}
+              <div class="wcu-badge wcu-badge--{{ section.settings.badge_6_position }}">
+                {%- if section.settings.badge_6_avatar != blank -%}
+                  <div class="wcu-badge__avatar">
+                    {{ section.settings.badge_6_avatar | image_url: width: 72 | image_tag: loading: 'lazy', alt: section.settings.badge_6_name }}
+                  </div>
+                {%- endif -%}
+                <div class="wcu-badge__text">
+                  {%- if section.settings.badge_6_name != blank -%}
+                    <p class="wcu-badge__name">{{ section.settings.badge_6_name }}</p>
+                  {%- endif -%}
+                  {%- if section.settings.badge_6_review != blank -%}
+                    <p class="wcu-badge__review">{{ section.settings.badge_6_review }}</p>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+      </div>
+    </div>
+
+    {%- comment -%} ── Text column ── {%- endcomment -%}
+    <div class="wcu-col-text">
+
+      {%- if section.settings.title != blank -%}
+        {%- liquid
+          assign title_parts = section.settings.title | split: ' '
+          assign accent_word = section.settings.title_accent_word | downcase | strip
+        -%}
+        <h2 class="section-figma__heading">
+          {%- for word in title_parts -%}
+            {%- assign word_lower = word | downcase | strip -%}
+            {%- if word_lower == accent_word and accent_word != blank -%}
+              <span class="wcu-title__accent">{{ word }}</span>
+            {%- else -%}
+              {{ word }}
+            {%- endif -%}
+            {%- unless forloop.last -%} {% endunless -%}
+          {%- endfor -%}
+        </h2>
+      {%- endif -%}
+
+      <div class="wcu-features">
+        {%- for block in section.blocks -%}
+          {%- assign icon_size = block.settings.icon_size | default: 56 -%}
+          <div class="wcu-feature" {{ block.shopify_attributes }}>
+
+            {%- if block.settings.show_icon -%}
+              <div class="wcu-feature__icon" style="width:{{ icon_size }}px;height:{{ icon_size }}px;min-width:{{ icon_size }}px;">
+                {%- if block.settings.icon != blank -%}
+                  {{ block.settings.icon | image_url: width: 120 | image_tag: loading: 'lazy', alt: block.settings.title }}
+                {%- else -%}
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:55%;height:55%">
+                    <circle cx="12" cy="12" r="10" stroke="rgb(var(--color-button-text))" stroke-width="2"/>
+                    <path d="M12 8v4l3 3" stroke="rgb(var(--color-button-text))" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            <div class="wcu-feature__body">
+              {%- if block.settings.title != blank -%}
+                <p class="wcu-feature__title">{{ block.settings.title }}</p>
+              {%- endif -%}
+              {%- if block.settings.description != blank -%}
+                <p class="wcu-feature__desc">{{ block.settings.description }}</p>
+              {%- endif -%}
+            </div>
+
+          </div>
+        {%- endfor -%}
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Why Choose Us",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "desktop_order",
+      "label": "Desktop column order",
+      "options": [
+        { "value": "photos_left",  "label": "Photos left, text right" },
+        { "value": "photos_right", "label": "Photos right, text left" }
+      ],
+      "default": "photos_left"
+    },
+    {
+      "type": "select",
+      "id": "mobile_order",
+      "label": "Mobile column order",
+      "options": [
+        { "value": "photos_first", "label": "Photos first, text below" },
+        { "value": "text_first",   "label": "Text first, photos below" }
+      ],
+      "default": "photos_first"
+    },
+    {
+      "type": "range",
+      "id": "blocks_gap",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Gap between feature blocks",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title",
+      "default": "WHY SHOULD CHOOSE US"
+    },
+    {
+      "type": "text",
+      "id": "title_accent_word",
+      "label": "Accent word (from title)",
+      "info": "Enter one word from the title to highlight in button color",
+      "default": "US"
+    },
+    {
+      "type": "header",
+      "content": "Badge style"
+    },
+    {
+      "type": "color",
+      "id": "badge_bg",
+      "label": "Badge background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": "Photos"
+    },
+    {
+      "type": "image_picker",
+      "id": "photo_1",
+      "label": "Photo 1 (large, 323px) — required"
+    },
+    {
+      "type": "header",
+      "content": "Badge for photo 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_1_avatar",
+      "label": "Badge 1 — avatar"
+    },
+    {
+      "type": "text",
+      "id": "badge_1_name",
+      "label": "Badge 1 — name"
+    },
+    {
+      "type": "text",
+      "id": "badge_1_review",
+      "label": "Badge 1 — review text"
+    },
+    {
+      "type": "select",
+      "id": "badge_1_position",
+      "label": "Badge 1 — position",
+      "options": [
+        { "value": "left",  "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Photo 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "photo_2",
+      "label": "Photo 2 (large, 282px) — required"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_2_avatar",
+      "label": "Badge 2 — avatar"
+    },
+    {
+      "type": "text",
+      "id": "badge_2_name",
+      "label": "Badge 2 — name"
+    },
+    {
+      "type": "text",
+      "id": "badge_2_review",
+      "label": "Badge 2 — review text"
+    },
+    {
+      "type": "select",
+      "id": "badge_2_position",
+      "label": "Badge 2 — position",
+      "options": [
+        { "value": "left",  "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "header",
+      "content": "Photo 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "photo_3",
+      "label": "Photo 3 (medium, 194px) — required"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_3_avatar",
+      "label": "Badge 3 — avatar"
+    },
+    {
+      "type": "text",
+      "id": "badge_3_name",
+      "label": "Badge 3 — name"
+    },
+    {
+      "type": "text",
+      "id": "badge_3_review",
+      "label": "Badge 3 — review text"
+    },
+    {
+      "type": "select",
+      "id": "badge_3_position",
+      "label": "Badge 3 — position",
+      "options": [
+        { "value": "left",  "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "header",
+      "content": "Photo 4 (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "photo_4",
+      "label": "Photo 4 (153px) — optional"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_4_avatar",
+      "label": "Badge 4 — avatar"
+    },
+    {
+      "type": "text",
+      "id": "badge_4_name",
+      "label": "Badge 4 — name"
+    },
+    {
+      "type": "text",
+      "id": "badge_4_review",
+      "label": "Badge 4 — review text"
+    },
+    {
+      "type": "select",
+      "id": "badge_4_position",
+      "label": "Badge 4 — position",
+      "options": [
+        { "value": "left",  "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Photo 5 (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "photo_5",
+      "label": "Photo 5 (130px) — optional"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_5_avatar",
+      "label": "Badge 5 — avatar"
+    },
+    {
+      "type": "text",
+      "id": "badge_5_name",
+      "label": "Badge 5 — name"
+    },
+    {
+      "type": "text",
+      "id": "badge_5_review",
+      "label": "Badge 5 — review text"
+    },
+    {
+      "type": "select",
+      "id": "badge_5_position",
+      "label": "Badge 5 — position",
+      "options": [
+        { "value": "left",  "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Photo 6 (optional)"
+    },
+    {
+      "type": "image_picker",
+      "id": "photo_6",
+      "label": "Photo 6 (93px) — optional"
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_6_avatar",
+      "label": "Badge 6 — avatar"
+    },
+    {
+      "type": "text",
+      "id": "badge_6_name",
+      "label": "Badge 6 — name"
+    },
+    {
+      "type": "text",
+      "id": "badge_6_review",
+      "label": "Badge 6 — review text"
+    },
+    {
+      "type": "select",
+      "id": "badge_6_position",
+      "label": "Badge 6 — position",
+      "options": [
+        { "value": "left",  "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature block",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_icon",
+          "label": "Show icon circle",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "icon_size",
+          "min": 32,
+          "max": 80,
+          "step": 4,
+          "unit": "px",
+          "label": "Icon circle size",
+          "default": 56
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Feature title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Describe this feature in a short sentence."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Choose Us",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Handcrafted By Real Artists",
+            "description": "Every portrait is carefully created by professional artists to capture your pet's unique personality"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Unlimited Revisions",
+            "description": "We work with you until you absolutely love the final result — no limits on edits"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Fast & Easy Process",
+            "description": "Upload your photo, preview your artwork in 1–2 days, and approve it for production"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "title": "Premium Quality Products",
+            "description": "From canvas to apparel, every item is made with high-quality materials designed to last"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
