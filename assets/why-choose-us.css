@@ -9,7 +9,12 @@
   gap: 60px;
 }
 
-.wcu-col-photos { flex: 0 0 650px; min-width: 650px; }
+.wcu-col-photos {
+  /* Max 650px, scales down with viewport */
+  flex: 0 0 min(650px, 48vw);
+  min-width: 0;
+  width: min(650px, 48vw);
+}
 .wcu-col-text   { flex: 1; min-width: 0; }
 
 .wcu-section.wcu--photos-right .wcu-col-photos { order: 2; }
@@ -18,8 +23,11 @@
 /* ── Photos collage container ───────────────────────────── */
 .wcu-photos {
   position: relative;
-  width: 650px;
-  height: 600px;
+  width: 100%;   /* fills col-photos */
+  /* Height scales proportionally: 600/650 ≈ 0.923 */
+  aspect-ratio: 650 / 600;
+  /* Scale factor: actual-width / design-width (650) */
+  --wcu-s: calc(min(650px, 48vw) / 650);
 }
 
 /* ── Photo wrap — relative container for circle + badge ─── */
@@ -28,12 +36,12 @@
 }
 
 /* Positions matching the design */
-.wcu-photo-wrap--1 { left: 80px;  top: 50px;   }  /* 323px — large, center */
-.wcu-photo-wrap--2 { left: 340px; top: 0;      }  /* 282px — right top, overlaps */
-.wcu-photo-wrap--3 { left: 350px; bottom: 0;   }  /* 194px — right bottom */
-.wcu-photo-wrap--4 { left: 0;     top: 320px;  }  /* 153px — left lower */
-.wcu-photo-wrap--5 { left: 0;     top: 150px;  }  /* 130px — left upper */
-.wcu-photo-wrap--6 { left: 60px;  bottom: 10px;}  /* 93px  — tiny bottom left */
+.wcu-photo-wrap--1 { left: calc(80px  * var(--wcu-s)); top:    calc(50px  * var(--wcu-s)); }
+.wcu-photo-wrap--2 { left: calc(340px * var(--wcu-s)); top:    0;                                      }
+.wcu-photo-wrap--3 { left: calc(350px * var(--wcu-s)); bottom: 0;                                      }
+.wcu-photo-wrap--4 { left: 0;                          top:    calc(320px * var(--wcu-s));             }
+.wcu-photo-wrap--5 { left: 0;                          top:    calc(150px * var(--wcu-s));             }
+.wcu-photo-wrap--6 { left: calc(60px  * var(--wcu-s)); bottom: calc(10px  * var(--wcu-s));             }
 
 /* ── Circle photo ───────────────────────────────────────── */
 .wcu-photo {
@@ -51,12 +59,12 @@
 }
 
 /* Sizes */
-.wcu-photo--323 { width: 323px; height: 323px; }
-.wcu-photo--282 { width: 282px; height: 282px; }
-.wcu-photo--194 { width: 194px; height: 194px; }
-.wcu-photo--153 { width: 153px; height: 153px; }
-.wcu-photo--130 { width: 130px; height: 130px; }
-.wcu-photo--93  { width: 93px;  height: 93px;  }
+.wcu-photo--323 { width: calc(323px * var(--wcu-s)); height: calc(323px * var(--wcu-s)); }
+.wcu-photo--282 { width: calc(282px * var(--wcu-s)); height: calc(282px * var(--wcu-s)); }
+.wcu-photo--194 { width: calc(194px * var(--wcu-s)); height: calc(194px * var(--wcu-s)); }
+.wcu-photo--153 { width: calc(153px * var(--wcu-s)); height: calc(153px * var(--wcu-s)); }
+.wcu-photo--130 { width: calc(130px * var(--wcu-s)); height: calc(130px * var(--wcu-s)); }
+.wcu-photo--93  { width: calc(93px  * var(--wcu-s)); height: calc(93px  * var(--wcu-s)); }
 
 /* ── Badge — positioned relative to photo-wrap ─────────── */
 /* Sits at bottom center of the circle, overlapping it      */
@@ -185,30 +193,23 @@
   .wcu-section.wcu--mobile-photos-first .wcu-col-photos { order: -1; }
   .wcu-section.wcu--mobile-photos-first .wcu-col-text   { order: 0; }
 
+  .wcu-col-photos {
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+  }
   .wcu-photos {
     width: 100%;
-    max-width: 460px;
+    max-width: 650px;
     margin: 0 auto;
+    --wcu-s: min(1, calc(90vw / 650));
   }
 }
 
 @media screen and (max-width: 749px) {
-  .wcu-photos { height: 400px; }
-
-  .wcu-photo--323 { width: 220px; height: 220px; }
-  .wcu-photo--282 { width: 190px; height: 190px; }
-  .wcu-photo--194 { width: 132px; height: 132px; }
-  .wcu-photo--153 { width: 104px; height: 104px; }
-  .wcu-photo--130 { width: 88px;  height: 88px;  }
-  .wcu-photo--93  { width: 63px;  height: 63px;  }
-
-  .wcu-photo-wrap--1 { left: 28px;  top: 28px;   }
-  .wcu-photo-wrap--2 { left: 116px; top: 0;      }
-  .wcu-photo-wrap--3 { left: 99px;  bottom: 0;   }
-  .wcu-photo-wrap--4 { left: 0;     top: 198px;  }
-  .wcu-photo-wrap--5 { left: 0;     top: 89px;   }
-  .wcu-photo-wrap--6 { left: 14px;  bottom: 7px; }
-
+  /* Scale is handled automatically via --wcu-s on .wcu-photos */
+  /* Badge shrinks on very small screens */
   .wcu-badge         { padding: 6px 10px 6px 6px; gap: 6px; }
   .wcu-badge__avatar { width: 28px; height: 28px; }
   .wcu-badge__name   { font-size: 13px; line-height: 20px; }
