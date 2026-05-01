@@ -165,6 +165,7 @@
   transform: translateY(-50%);
   width: 63px;
   height: 54px;
+  border-radius:10px;
   border: 0;
   /* Nav button radius from Theme Settings → Buttons */
   border-radius: var(--buttons-radius, 10px);
