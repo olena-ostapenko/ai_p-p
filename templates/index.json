@@ -291,6 +291,84 @@
         "padding_bottom": 36
       }
     },
+    "why_choose_us_UeWLM6": {
+      "type": "why-choose-us",
+      "blocks": {
+        "feature_3mCmca": {
+          "type": "feature",
+          "settings": {
+            "show_icon": true,
+            "icon_size": 56,
+            "title": "Handcrafted By Real Artists",
+            "description": "Every portrait is carefully created by professional artists to capture your pet's unique personality"
+          }
+        },
+        "feature_Ki3A4a": {
+          "type": "feature",
+          "settings": {
+            "show_icon": true,
+            "icon_size": 56,
+            "title": "Unlimited Revisions",
+            "description": "We work with you until you absolutely love the final result — no limits on edits"
+          }
+        },
+        "feature_NJPPfq": {
+          "type": "feature",
+          "settings": {
+            "show_icon": true,
+            "icon_size": 56,
+            "title": "Fast & Easy Process",
+            "description": "Upload your photo, preview your artwork in 1–2 days, and approve it for production"
+          }
+        },
+        "feature_Cc8awL": {
+          "type": "feature",
+          "settings": {
+            "show_icon": true,
+            "icon_size": 56,
+            "title": "Premium Quality Products",
+            "description": "From canvas to apparel, every item is made with high-quality materials designed to last"
+          }
+        }
+      },
+      "block_order": [
+        "feature_3mCmca",
+        "feature_Ki3A4a",
+        "feature_NJPPfq",
+        "feature_Cc8awL"
+      ],
+      "name": "Why Choose Us",
+      "settings": {
+        "color_scheme": "scheme-5",
+        "desktop_order": "photos_left",
+        "mobile_order": "photos_first",
+        "blocks_gap": 24,
+        "title": "WHY SHOULD CHOOSE US",
+        "title_accent_word": "US",
+        "badge_bg": "#FFFFFF",
+        "photo_1": "shopify://shop_images/chose_1.jpg",
+        "badge_1_name": "",
+        "badge_1_review": "",
+        "badge_1_position": "left",
+        "badge_2_name": "",
+        "badge_2_review": "",
+        "badge_2_position": "right",
+        "badge_3_name": "",
+        "badge_3_review": "",
+        "badge_3_position": "right",
+        "badge_4_name": "",
+        "badge_4_review": "",
+        "badge_4_position": "left",
+        "badge_5_name": "",
+        "badge_5_review": "",
+        "badge_5_position": "left",
+        "badge_6_name": "",
+        "badge_6_review": "",
+        "badge_6_position": "left",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
     "featured_collection": {
       "type": "featured-collection",
       "disabled": true,
@@ -327,6 +405,7 @@
     "brands_eP4pY4",
     "our_best_sellers_RoJgkQ",
     "explore_collection_chWMTM",
+    "why_choose_us_UeWLM6",
     "featured_collection"
   ]
 }
