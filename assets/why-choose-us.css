@@ -10,10 +10,9 @@
 }
 
 .wcu-col-photos {
-  /* Max 650px, scales down with viewport */
-  flex: 0 0 min(650px, 48vw);
+  flex: 0 0 min(650px, 46vw);
+  width: min(650px, 46vw);
   min-width: 0;
-  width: min(650px, 48vw);
 }
 .wcu-col-text   { flex: 1; min-width: 0; }
 
@@ -23,11 +22,8 @@
 /* ── Photos collage container ───────────────────────────── */
 .wcu-photos {
   position: relative;
-  width: 100%;   /* fills col-photos */
-  /* Height scales proportionally: 600/650 ≈ 0.923 */
+  width: 100%;
   aspect-ratio: 650 / 600;
-  /* Scale factor: actual-width / design-width (650) */
-  --wcu-s: calc(min(650px, 48vw) / 650);
 }
 
 /* ── Photo wrap — relative container for circle + badge ─── */
@@ -36,12 +32,12 @@
 }
 
 /* Positions matching the design */
-.wcu-photo-wrap--1 { left: calc(80px  * var(--wcu-s)); top:    calc(50px  * var(--wcu-s)); }
-.wcu-photo-wrap--2 { left: calc(340px * var(--wcu-s)); top:    0;                                      }
-.wcu-photo-wrap--3 { left: calc(350px * var(--wcu-s)); bottom: 0;                                      }
-.wcu-photo-wrap--4 { left: 0;                          top:    calc(320px * var(--wcu-s));             }
-.wcu-photo-wrap--5 { left: 0;                          top:    calc(150px * var(--wcu-s));             }
-.wcu-photo-wrap--6 { left: calc(60px  * var(--wcu-s)); bottom: calc(10px  * var(--wcu-s));             }
+.wcu-photo-wrap--1 { left: 12.31%; top:    8.33%;  }
+.wcu-photo-wrap--2 { left: 52.31%; top:    0;      }
+.wcu-photo-wrap--3 { left: 53.85%; bottom: 0;      }
+.wcu-photo-wrap--4 { left: 0;      top:    53.33%; }
+.wcu-photo-wrap--5 { left: 0;      top:    25.00%; }
+.wcu-photo-wrap--6 { left: 9.23%;  bottom: 1.67%;  }
 
 /* ── Circle photo ───────────────────────────────────────── */
 .wcu-photo {
@@ -59,12 +55,13 @@
 }
 
 /* Sizes */
-.wcu-photo--323 { width: calc(323px * var(--wcu-s)); height: calc(323px * var(--wcu-s)); }
-.wcu-photo--282 { width: calc(282px * var(--wcu-s)); height: calc(282px * var(--wcu-s)); }
-.wcu-photo--194 { width: calc(194px * var(--wcu-s)); height: calc(194px * var(--wcu-s)); }
-.wcu-photo--153 { width: calc(153px * var(--wcu-s)); height: calc(153px * var(--wcu-s)); }
-.wcu-photo--130 { width: calc(130px * var(--wcu-s)); height: calc(130px * var(--wcu-s)); }
-.wcu-photo--93  { width: calc(93px  * var(--wcu-s)); height: calc(93px  * var(--wcu-s)); }
+/* Sizes as % of container width — auto-scales with container */
+.wcu-photo--323 { width: 49.69%; aspect-ratio: 1; height: auto; }
+.wcu-photo--282 { width: 43.38%; aspect-ratio: 1; height: auto; }
+.wcu-photo--194 { width: 29.85%; aspect-ratio: 1; height: auto; }
+.wcu-photo--153 { width: 23.54%; aspect-ratio: 1; height: auto; }
+.wcu-photo--130 { width: 20.00%; aspect-ratio: 1; height: auto; }
+.wcu-photo--93  { width: 14.31%; aspect-ratio: 1; height: auto; }
 
 /* ── Badge — positioned relative to photo-wrap ─────────── */
 /* Sits at bottom center of the circle, overlapping it      */
@@ -203,7 +200,7 @@
     width: 100%;
     max-width: 650px;
     margin: 0 auto;
-    --wcu-s: min(1, calc(90vw / 650));
+    /* % sizes + aspect-ratio handle scaling automatically */
   }
 }
 
