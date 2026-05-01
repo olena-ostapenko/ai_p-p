@@ -62,8 +62,11 @@
   opacity: 0.5;
 }
 @media screen and (max-width: 749px) {
+  .sh-card__body {
+    padding-bottom: 10px;
+}
   .ec-card__paw {
-  bottom: 10px;
+  bottom: 5px;
   right: 5px;
   width: 24px;
   height: 21px;
