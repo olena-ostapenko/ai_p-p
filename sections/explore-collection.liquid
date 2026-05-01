@@ -1,6 +1,68 @@
 {{ 'section-home.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+
+/* Налаштування картки */
+.sh-card {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  background-color: rgb(var(--color-background)); /* Колір картки */
+  border-radius: 20px;
+  overflow: hidden; /* Щоб картинка зверху не вилазила */
+  /* Прибираємо радіус там, де буде лапка */
+  border-bottom-right-radius: 0; 
+}
+
+/* Сама "заплатка" у кутку */
+.sh-card__paw {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 70px;  /* Розмір квадрата заплатки */
+  height: 70px;
+  background-color: {{ section.settings.color_scheme.settings.background }}; /* КОЛІР ФОНУ СЕКЦІЇ */
+  border-top-left-radius: 25px; /* Заокруглення внутрішнього кута */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+/* Псевдоелементи для створення плавних переходів (від'ємних радіусів) */
+.sh-card__paw::before,
+.sh-card__paw::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  pointer-events: none;
+}
+
+/* Верхній перехід */
+.sh-card__paw::before {
+  top: -20px;
+  right: 0;
+  border-bottom-right-radius: 20px;
+  box-shadow: 10px 10px 0 10px rgb(var(--color-background)); /* Колір картки */
+}
+
+/* Лівий перехід */
+.sh-card__paw::after {
+  bottom: 0;
+  left: -20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 10px 10px 0 10px rgb(var(--color-background)); /* Колір картки */
+}
+
+.sh-card__paw img {
+  width: 36px;
+  height: auto;
+  z-index: 3;
+}
+
+
   #shopify-section-{{ section.id }} {
     background-color: {{ section.settings.color_scheme.settings.background }};
     color: {{ section.settings.color_scheme.settings.text }};
