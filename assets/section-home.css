@@ -14,12 +14,6 @@
 /* ── Section header ─────────────────────────────────────── */
 /* .section-figma__heading is in base.css — not duplicated here */
 
-.sh-section__subtitle {
-  /* margin: 0.4rem 0 0;
-  opacity: 0.7;
-  font-size: 0.95rem;
-  line-height: 1.5; */
-}
 
 .sh-section__subtitle p { margin: 0; }
 
