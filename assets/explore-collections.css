@@ -52,8 +52,8 @@
 /* ── Paw icon — top right corner of the image ────────────── */
 .ec-card__paw {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  bottom: 3px;
+  right: 7px;
   width: 34px;
   height: 34px;
   pointer-events: none;
