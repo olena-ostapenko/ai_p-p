@@ -4,25 +4,6 @@
    Shared card styles are in section-home.css
    ============================================================ */
 
-/* ── Override grid to CSS Grid for equal card heights ────── */
-.ec-section .sh-grid {
-  display: grid;
-  grid-template-columns: repeat(var(--sh-columns, 4), 1fr);
-  align-items: stretch;
-}
-
-.ec-section .sh-grid__item {
-  display: flex;
-  flex: unset;
-  max-width: unset;
-}
-
-@media screen and (max-width: 989px) {
-  .ec-section .sh-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 /* ── Shadow wrapper (keeps shadow outside clip-path) ──────── */
 .ec-card__wrap {
   display: flex;
@@ -50,11 +31,17 @@
 /* ── Card shape from Rectangle_11.svg ────────────────────── */
 .ec-card__wrap .sh-card {
   clip-path: url(#ec-card-shape);
-  border-radius: 0; /* clip-path handles the shape */
-  box-shadow: none; /* shadow is on wrapper */
+  border-radius: 0;
+  box-shadow: none;
   transition: none;
-  height: 100%;     /* stretch to wrapper height — equalizes all cards in row */
   width: 100%;
+  /* Fixed total height = fixed image + fixed body — all cards identical */
+  height: 100%;
+}
+
+/* Body fixed min-height so short text doesn't make card smaller */
+.ec-card__wrap .sh-card__body {
+  min-height: 90px;
 }
 
 /* ── Image wrap — position relative for paw overlay ──────── */
