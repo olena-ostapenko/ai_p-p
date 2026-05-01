@@ -4,6 +4,25 @@
    Shared card styles are in section-home.css
    ============================================================ */
 
+/* ── Override grid to CSS Grid for equal card heights ────── */
+.ec-section .sh-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--sh-columns, 4), 1fr);
+  align-items: stretch;
+}
+
+.ec-section .sh-grid__item {
+  display: flex;
+  flex: unset;
+  max-width: unset;
+}
+
+@media screen and (max-width: 989px) {
+  .ec-section .sh-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /* ── Shadow wrapper (keeps shadow outside clip-path) ──────── */
 .ec-card__wrap {
   display: flex;
