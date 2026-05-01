@@ -2,63 +2,7 @@
 
 {%- style -%}
 
-/* Основна біла картка */
-.sh-card {
-  position: relative;
-  background-color: #ffffff; /* Або rgb(var(--color-background)) */
-  border-radius: 20px;
-  border-bottom-right-radius: 0;
-  overflow: visible; /* Дозволяємо декоративним елементам виходити за межі */
-}
 
-/* Бежевий куточок (заплатка кольору фону секції) */
-.sh-card__paw {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 70px;
-  height: 70px;
-  background-color: {{ section.settings.color_scheme.settings.background }}; 
-  border-top-left-radius: 30px; /* Внутрішнє заокруглення */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-}
-
-/* Псевдоелементи для безшовного з'єднання */
-.sh-card__paw::before,
-.sh-card__paw::after {
-  content: "";
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  background-color: #ffffff; /* МАЄ БУТИ КОЛІР КАРТКИ */
-}
-
-/* Верхній перехід */
-.sh-card__paw::before {
-  top: -30px;
-  right: 0;
-  /* Вирізаємо кут, щоб зробити ввігнутість */
-  -webkit-mask-image: radial-gradient(circle 30px at 0 0, transparent 98%, black 100%);
-  mask-image: radial-gradient(circle 30px at 0 0, transparent 98%, black 100%);
-}
-
-/* Лівий перехід */
-.sh-card__paw::after {
-  bottom: 0;
-  left: -30px;
-  /* Вирізаємо кут */
-  -webkit-mask-image: radial-gradient(circle 30px at 100% 0, transparent 98%, black 100%);
-  mask-image: radial-gradient(circle 30px at 100% 0, transparent 98%, black 100%);
-}
-
-.sh-card__paw img {
-  width: 34px;
-  height: auto;
-  z-index: 2;
-}
 
 
   #shopify-section-{{ section.id }} {
@@ -102,6 +46,25 @@
         {%- for block in section.blocks -%}
           {%- assign collection = block.settings.collection -%}
           <li class="sh-grid__item" {{ block.shopify_attributes }}>
+
+<svg width="0" height="0" style="position: absolute;">
+  <defs>
+    <clipPath id="paw-clip" clipPathUnits="objectBoundingBox">
+      <!-- Це математичний шлях кривої, адаптований під розміри блоку -->
+      <path d="M 0,0 
+               H 1 
+               V 0.7 
+               C 1,0.85 0.9,0.85 0.85,0.85 
+               H 0.8 
+               C 0.7,0.85 0.7,0.9 0.7,1 
+               H 0 
+               V 0 
+               Z" />
+    </clipPath>
+  </defs>
+</svg>
+
+
             <a
               class="sh-card color-{{ settings.card_color_scheme }} gradient"
               {% if collection != blank %}href="{{ collection.url }}"{% else %}href="#"{% endif %}
