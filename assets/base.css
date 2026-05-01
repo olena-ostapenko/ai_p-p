@@ -3630,6 +3630,9 @@ details-disclosure > details {
     font-size: var(--section-heading-size-mobile, 26px);
     text-align: var(--section-heading-align-mobile, center);
   }
+  .section-figma__heading p {
+    margin:0;
+  }
 
   @media screen and (min-width: 750px) {
     .section-figma__heading {
