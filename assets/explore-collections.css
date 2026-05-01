@@ -45,7 +45,7 @@
 }
 
 /* ── Image wrap — position relative for paw overlay ──────── */
-.sh-card  {
+.sh-grid__item  {
   position: relative;
 }
 
