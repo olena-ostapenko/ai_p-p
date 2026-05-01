@@ -3,30 +3,36 @@
 {%- style -%}
 .sh-card {
   position: relative;
-  background-color: #ffffff;
-  border-radius: 28px; /* Загальний радіус картки */
-  clip-path: url(#paw-clip);
-  transition: transform 0.3s ease;
+  background-color: #ffffff; /* Або ваш колір картки */
+  
+  /* Застосовуємо маску */
+  -webkit-clip-path: url(#card-mask);
+  clip-path: url(#card-mask);
+  
+  /* Прибираємо стандартні бордери, якщо вони є, 
+     бо маска сама створює радіуси */
+  border: none;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
+/* Позиціонуємо лапку точно у виїмку */
 .sh-card__paw {
   position: absolute;
-  /* Значення bottom та right мають відповідати 
-     пропорціям вирізу в SVG (приблизно 12% від ширини/висоти) */
-  bottom: 2%; 
-  right: 3%;
-  width: 45px;
-  height: 45px;
+  bottom: 5.5%; /* Підібрано під вигин маски */
+  right: 5.5%;
+  width: 36px;
+  height: 36px;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 5;
 }
 
-/* Якщо у вас є бордер, clip-path його обріже. 
-   Для бордера краще використовувати drop-shadow на батьківському елементі */
-.sh-grid__item {
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.05));
+.sh-card__paw img {
+  width: 100%;
+  height: auto;
 }
 
 
@@ -75,25 +81,14 @@
 
 <svg width="0" height="0" style="position: absolute;">
   <defs>
-    <clipPath id="paw-clip" clipPathUnits="objectBoundingBox">
-      <!-- 
-        M 0,0 - початок (верхній лівий)
-        H 1 - лінія вправо
-        V 0.75 - лінія вниз до початку вигину
-        C 1, 0.85, 0.95, 0.88, 0.85, 0.88 - перша частина S-вигину
-        H 0.8 - коротка пряма (можна прибрати для ще більшої плавності)
-        C 0.72, 0.88, 0.7, 0.92, 0.7, 1 - друга частина S-вигину до самого низу
-        H 0 - лінія вліво
-        Z - закрити контур
-      -->
-      <path d="M 0,0 
-               L 1,0 
-               L 1,0.78 
-               C 1,0.85 0.96,0.88 0.88,0.88 
-               L 0.82,0.88 
-               C 0.74,0.88 0.7,0.92 0.7,1 
-               L 0,1 
-               Z" />
+    <clipPath id="card-mask" clipPathUnits="objectBoundingBox">
+      <path d="M0,0.046 C0,0.021,0.02,0,0.046,0 
+               H0.954 C0.979,0,1,0.021,1,0.046 
+               V0.783 C1,0.803,0.987,0.822,0.966,0.828 
+               C0.916,0.841,0.876,0.88,0.862,0.931 
+               C0.855,0.955,0.835,0.972,0.81,0.972 
+               H0.046 C0.021,0.972,0,0.952,0,0.927 
+               V0.046 Z" />
     </clipPath>
   </defs>
 </svg>
