@@ -28,12 +28,12 @@
 }
 
 /* Positions matching the design */
-.wcu-photo-wrap--1 { left: 50px;  top: 10px;   }
-.wcu-photo-wrap--2 { right: 0;    top: 0;      }
-.wcu-photo-wrap--3 { right: 20px; bottom: 30px;}
-.wcu-photo-wrap--4 { left: 0;     bottom: 80px;}
-.wcu-photo-wrap--5 { left: 0;     top: 230px;  }
-.wcu-photo-wrap--6 { left: 50px;  bottom: 30px;}
+.wcu-photo-wrap--1 { left: 40px;  top: 40px;   }  /* 323px — large, center-left */
+.wcu-photo-wrap--2 { left: 170px; top: 0;      }  /* 282px — overlaps photo 1, right */
+.wcu-photo-wrap--3 { left: 145px; bottom: 0;   }  /* 194px — bottom center */
+.wcu-photo-wrap--4 { left: 0;     top: 290px;  }  /* 153px — left, below midpoint */
+.wcu-photo-wrap--5 { left: 0;     top: 130px;  }  /* 130px — left, above center */
+.wcu-photo-wrap--6 { left: 20px;  bottom: 10px;}  /* 93px  — tiny, bottom left */
 
 /* ── Circle photo ───────────────────────────────────────── */
 .wcu-photo {
@@ -202,12 +202,12 @@
   .wcu-photo--130 { width: 88px;  height: 88px;  }
   .wcu-photo--93  { width: 63px;  height: 63px;  }
 
-  .wcu-photo-wrap--1 { left: 34px;  top: 7px;    }
-  .wcu-photo-wrap--2 { right: 0;    top: 0;      }
-  .wcu-photo-wrap--3 { right: 14px; bottom: 20px;}
-  .wcu-photo-wrap--4 { left: 0;     bottom: 55px;}
-  .wcu-photo-wrap--5 { left: 0;     top: 156px;  }
-  .wcu-photo-wrap--6 { left: 34px;  bottom: 20px;}
+  .wcu-photo-wrap--1 { left: 28px;  top: 28px;   }
+  .wcu-photo-wrap--2 { left: 116px; top: 0;      }
+  .wcu-photo-wrap--3 { left: 99px;  bottom: 0;   }
+  .wcu-photo-wrap--4 { left: 0;     top: 198px;  }
+  .wcu-photo-wrap--5 { left: 0;     top: 89px;   }
+  .wcu-photo-wrap--6 { left: 14px;  bottom: 7px; }
 
   .wcu-badge         { padding: 6px 10px 6px 6px; gap: 6px; }
   .wcu-badge__avatar { width: 28px; height: 28px; }
