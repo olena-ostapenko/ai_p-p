@@ -9,7 +9,7 @@
   gap: 60px;
 }
 
-.wcu-col-photos { flex: 0 0 auto; }
+.wcu-col-photos { flex: 0 0 650px; min-width: 650px; }
 .wcu-col-text   { flex: 1; min-width: 0; }
 
 .wcu-section.wcu--photos-right .wcu-col-photos { order: 2; }
@@ -18,8 +18,8 @@
 /* ── Photos collage container ───────────────────────────── */
 .wcu-photos {
   position: relative;
-  width: 480px;
-  height: 580px;
+  width: 650px;
+  height: 600px;
 }
 
 /* ── Photo wrap — relative container for circle + badge ─── */
@@ -28,12 +28,12 @@
 }
 
 /* Positions matching the design */
-.wcu-photo-wrap--1 { left: 40px;  top: 40px;   }  /* 323px — large, center-left */
-.wcu-photo-wrap--2 { left: 170px; top: 0;      }  /* 282px — overlaps photo 1, right */
-.wcu-photo-wrap--3 { left: 145px; bottom: 0;   }  /* 194px — bottom center */
-.wcu-photo-wrap--4 { left: 0;     top: 290px;  }  /* 153px — left, below midpoint */
-.wcu-photo-wrap--5 { left: 0;     top: 130px;  }  /* 130px — left, above center */
-.wcu-photo-wrap--6 { left: 20px;  bottom: 10px;}  /* 93px  — tiny, bottom left */
+.wcu-photo-wrap--1 { left: 80px;  top: 50px;   }  /* 323px — large, center */
+.wcu-photo-wrap--2 { left: 340px; top: 0;      }  /* 282px — right top, overlaps */
+.wcu-photo-wrap--3 { left: 350px; bottom: 0;   }  /* 194px — right bottom */
+.wcu-photo-wrap--4 { left: 0;     top: 320px;  }  /* 153px — left lower */
+.wcu-photo-wrap--5 { left: 0;     top: 150px;  }  /* 130px — left upper */
+.wcu-photo-wrap--6 { left: 60px;  bottom: 10px;}  /* 93px  — tiny bottom left */
 
 /* ── Circle photo ───────────────────────────────────────── */
 .wcu-photo {
