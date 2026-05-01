@@ -61,6 +61,14 @@
   transform: rotate(-45deg); 
   opacity: 0.5;
 }
+@media screen and (max-width: 749px) {
+  .ec-card__paw {
+
+  width: 24px;
+  height: 21px;
+
+}
+}
 
 .ec-card__paw img {
   width: 100%;
