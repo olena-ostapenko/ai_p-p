@@ -2,15 +2,16 @@
 
 {%- style -%}
 
-/* Налаштування картки */
+/* Налаштування картки (залишаємо, як було) */
 .sh-card {
   position: relative;
   display: block;
   text-decoration: none;
   background-color: rgb(var(--color-background)); /* Колір картки */
   border-radius: 20px;
-  overflow: hidden; /* Щоб картинка зверху не вилазила */
-  /* Прибираємо радіус там, де буде лапка */
+  /* Важливо: дозволяємо псевдоелементам виходити за межі, 
+     щоб тінь могла "заходити" під картку */
+  overflow: visible; 
   border-bottom-right-radius: 0; 
 }
 
@@ -19,47 +20,53 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 70px;  /* Розмір квадрата заплатки */
+  width: 70px;  
   height: 70px;
   background-color: {{ section.settings.color_scheme.settings.background }}; /* КОЛІР ФОНУ СЕКЦІЇ */
-  border-top-left-radius: 25px; /* Заокруглення внутрішнього кута */
+  border-top-left-radius: 30px; /* Трохи збільшимо радіус для плавності */
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
 }
 
-/* Псевдоелементи для створення плавних переходів (від'ємних радіусів) */
+/* Псевдоелементи для створення "виїмок" */
 .sh-card__paw::before,
 .sh-card__paw::after {
   content: "";
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 30px; /* Трохи більше для кращого перекриття */
+  height: 30px;
   background: transparent;
   pointer-events: none;
+  z-index: 1; /* Мають бути ПІД лапкою, але НАД карткою */
 }
 
-/* Верхній перехід */
+/* Верхній перехід (виправлений) */
 .sh-card__paw::before {
-  top: -20px;
+  top: -30px; /* Рівно на висоту псевдоелемента */
   right: 0;
-  border-bottom-right-radius: 20px;
-  box-shadow: 10px 10px 0 10px rgb(var(--color-background)); /* Колір картки */
+  border-bottom-right-radius: 30px;
+  /* Магія: Жорстка тінь без розмиття КОЛЬОРУ КАРТКИ */
+  /* Зміщення 0 15px, розпил 0, колір жорстко білий (або rgb(var(--color-background))) */
+  box-shadow: 0 15px 0 0 rgb(var(--color-background)); 
 }
 
-/* Лівий перехід */
+/* Лівий перехід (виправлений) */
 .sh-card__paw::after {
   bottom: 0;
-  left: -20px;
-  border-bottom-right-radius: 20px;
-  box-shadow: 10px 10px 0 10px rgb(var(--color-background)); /* Колір картки */
+  left: -30px; /* Рівно на ширину псевдоелемента */
+  border-bottom-right-radius: 30px;
+  /* Зміщення 15px 0, розпил 0, колір жорстко білий */
+  box-shadow: 15px 0 0 0 rgb(var(--color-background)); 
 }
 
+/* Сама іконка лапки */
 .sh-card__paw img {
   width: 36px;
   height: auto;
-  z-index: 3;
+  position: relative;
+  z-index: 3; /* Найвищий шар */
 }
 
 
