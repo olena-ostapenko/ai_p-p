@@ -4,27 +4,29 @@
 .sh-card {
   position: relative;
   background-color: #ffffff;
-  border-radius: 24px;
-  /* Застосовуємо наш SVG-трафарет */
-  clip-path: url(#paw-clip); 
-  
-  display: flex;
-  flex-direction: column;
+  border-radius: 28px; /* Загальний радіус картки */
+  clip-path: url(#paw-clip);
+  transition: transform 0.3s ease;
 }
 
-/* Блок з лапкою тепер просто висить під карткою або в кутку секції */
 .sh-card__paw {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  /* Значення bottom та right мають відповідати 
+     пропорціям вирізу в SVG (приблизно 12% від ширини/висоти) */
+  bottom: 2%; 
+  right: 3%;
   width: 45px;
   height: 45px;
-  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
 }
 
-.sh-card__paw img {
-  width: 100%;
-  height: auto;
+/* Якщо у вас є бордер, clip-path його обріже. 
+   Для бордера краще використовувати drop-shadow на батьківському елементі */
+.sh-grid__item {
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.05));
 }
 
 
@@ -74,15 +76,23 @@
 <svg width="0" height="0" style="position: absolute;">
   <defs>
     <clipPath id="paw-clip" clipPathUnits="objectBoundingBox">
-      <!-- Це математичний шлях кривої, адаптований під розміри блоку -->
+      <!-- 
+        M 0,0 - початок (верхній лівий)
+        H 1 - лінія вправо
+        V 0.75 - лінія вниз до початку вигину
+        C 1, 0.85, 0.95, 0.88, 0.85, 0.88 - перша частина S-вигину
+        H 0.8 - коротка пряма (можна прибрати для ще більшої плавності)
+        C 0.72, 0.88, 0.7, 0.92, 0.7, 1 - друга частина S-вигину до самого низу
+        H 0 - лінія вліво
+        Z - закрити контур
+      -->
       <path d="M 0,0 
-               H 1 
-               V 0.7 
-               C 1,0.85 0.9,0.85 0.85,0.85 
-               H 0.8 
-               C 0.7,0.85 0.7,0.9 0.7,1 
-               H 0 
-               V 0 
+               L 1,0 
+               L 1,0.78 
+               C 1,0.85 0.96,0.88 0.88,0.88 
+               L 0.82,0.88 
+               C 0.74,0.88 0.7,0.92 0.7,1 
+               L 0,1 
                Z" />
     </clipPath>
   </defs>
