@@ -139,6 +139,7 @@
   flex: 0 0 calc((100% - (var(--sh-columns, 4) - 1) * 20px) / var(--sh-columns, 4));
   max-width: calc((100% - (var(--sh-columns, 4) - 1) * 20px) / var(--sh-columns, 4));
   min-width: 0;
+  display: flex; /* makes .sh-card stretch to full item height */
 }
 
 /* ── Slider rail (our-best-sellers) ─────────────────────── */
@@ -150,6 +151,7 @@
 
 .sh-slider {
   display: flex;
+  align-items: stretch; /* equal height for all visible cards */
   gap: 20px;
   overflow-x: auto;
   scroll-behavior: smooth;
