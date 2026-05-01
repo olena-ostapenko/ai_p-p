@@ -2,71 +2,62 @@
 
 {%- style -%}
 
-/* Налаштування картки (залишаємо, як було) */
+/* Батьківська картка */
 .sh-card {
   position: relative;
-  display: block;
-  text-decoration: none;
-  background-color: rgb(var(--color-background)); /* Колір картки */
+  background-color: #ffffff; /* Переконайтеся, що тут чіткий колір */
   border-radius: 20px;
-  /* Важливо: дозволяємо псевдоелементам виходити за межі, 
-     щоб тінь могла "заходити" під картку */
+  border-bottom-right-radius: 0;
   overflow: visible; 
-  border-bottom-right-radius: 0; 
 }
 
-/* Сама "заплатка" у кутку */
+/* Контейнер лапки (заплатка) */
 .sh-card__paw {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 70px;  
+  bottom: -1px; /* Притискаємо щільно до низу */
+  right: -1px;  /* Притискаємо щільно до краю */
+  width: 70px;
   height: 70px;
-  background-color: {{ section.settings.color_scheme.settings.background }}; /* КОЛІР ФОНУ СЕКЦІЇ */
-  border-top-left-radius: 30px; /* Трохи збільшимо радіус для плавності */
+  background-color: {{ section.settings.color_scheme.settings.background }}; 
+  border-top-left-radius: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
 }
 
-/* Псевдоелементи для створення "виїмок" */
+/* Псевдоелементи - створюємо "вушка" для плавного переходу */
 .sh-card__paw::before,
 .sh-card__paw::after {
   content: "";
   position: absolute;
-  width: 30px; /* Трохи більше для кращого перекриття */
-  height: 30px;
+  width: 25px;
+  height: 25px;
   background: transparent;
-  pointer-events: none;
-  z-index: 1; /* Мають бути ПІД лапкою, але НАД карткою */
 }
 
-/* Верхній перехід (виправлений) */
+/* Верхній кут */
 .sh-card__paw::before {
-  top: -30px; /* Рівно на висоту псевдоелемента */
-  right: 0;
-  border-bottom-right-radius: 30px;
-  /* Магія: Жорстка тінь без розмиття КОЛЬОРУ КАРТКИ */
-  /* Зміщення 0 15px, розпил 0, колір жорстко білий (або rgb(var(--color-background))) */
-  box-shadow: 0 15px 0 0 rgb(var(--color-background)); 
+  top: -25px;
+  right: 1px;
+  border-bottom-right-radius: 25px;
+  /* Тінь МАЄ бути кольору картки. Якщо картка біла - ставимо #ffffff */
+  box-shadow: 10px 10px 0 0 #ffffff; 
 }
 
-/* Лівий перехід (виправлений) */
+/* Лівий кут */
 .sh-card__paw::after {
-  bottom: 0;
-  left: -30px; /* Рівно на ширину псевдоелемента */
-  border-bottom-right-radius: 30px;
-  /* Зміщення 15px 0, розпил 0, колір жорстко білий */
-  box-shadow: 15px 0 0 0 rgb(var(--color-background)); 
+  bottom: 1px;
+  left: -25px;
+  border-bottom-right-radius: 25px;
+  box-shadow: 10px 10px 0 0 #ffffff;
 }
 
-/* Сама іконка лапки */
 .sh-card__paw img {
-  width: 36px;
+  width: 32px;
   height: auto;
   position: relative;
-  z-index: 3; /* Найвищий шар */
+  z-index: 5;
 }
 
 
