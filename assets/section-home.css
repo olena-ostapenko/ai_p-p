@@ -36,25 +36,52 @@
   padding: 8px 8px 12px;
   width: 100%; /* always fill grid item / slider slot */
   /* Background & colors from Theme → Product cards → Color scheme */
+  /* Note: border-radius used as fallback; shaped variant uses clip-path */
+  border-radius: var(--product-card-corner-radius, 0.8rem);
+  /* shadow is on .sh-card__shadow-wrap so clip-path doesn't cut it */
+  overflow: hidden;
+  text-decoration: none;
+  color: rgb(var(--color-foreground));
+  transition: transform 0.25s ease;
+}
+
+/* Wrapper that carries the shadow outside of clip-path */
+.sh-card__shadow-wrap {
   border-radius: var(--product-card-corner-radius, 0.8rem);
   box-shadow:
     calc(var(--product-card-shadow-horizontal-offset, 0) * 1rem)
     calc(var(--product-card-shadow-vertical-offset, 0.2) * 1rem)
     calc(var(--product-card-shadow-blur-radius, 1) * 1rem)
     rgba(var(--color-shadow, 0,0,0), var(--product-card-shadow-opacity, 0.05));
-  overflow: hidden;
-  text-decoration: none;
-  color: rgb(var(--color-foreground));
   transition: box-shadow 0.25s ease, transform 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sh-card__shadow-wrap:has(.sh-card--shaped) {
+  /* match shadow to card shape visually */
+  border-bottom-right-radius: 30% 15%;
 }
 
 .sh-card:hover {
   transform: translateY(-2px);
+}
+
+.sh-card__shadow-wrap:hover {
   box-shadow:
     calc(var(--product-card-shadow-horizontal-offset, 0) * 1rem)
     calc((var(--product-card-shadow-vertical-offset, 0.2) + 0.4) * 1rem)
     calc((var(--product-card-shadow-blur-radius, 1) + 1) * 1rem)
     rgba(var(--color-shadow, 0,0,0), calc(var(--product-card-shadow-opacity, 0.05) + 0.08));
+}
+
+/* ── Card shape (matches Rectangle_11.svg from design) ──── */
+/* SVG clipPath is injected once in section-home.liquid snippet */
+.sh-card--shaped {
+  clip-path: url(#sh-card-shape);
+  /* Fallback border-radius for browsers without clip-path support */
+  border-radius: var(--product-card-corner-radius, 0.8rem);
 }
 
 /* ── Card image ──────────────────────────────────────────── */

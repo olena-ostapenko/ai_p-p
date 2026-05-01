@@ -1,42 +1,6 @@
 {{ 'section-home.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
-.sh-card {
-  position: relative;
-  background-color: #ffffff; /* Або ваш колір картки */
-  
-  /* Застосовуємо маску */
-  -webkit-clip-path: url(#card-mask);
-  clip-path: url(#card-mask);
-  
-  /* Прибираємо стандартні бордери, якщо вони є, 
-     бо маска сама створює радіуси */
-  border: none;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-/* Позиціонуємо лапку точно у виїмку */
-.sh-card__paw {
-  position: absolute;
-  bottom: 5.5%; /* Підібрано під вигин маски */
-  right: 5.5%;
-  width: 36px;
-  height: 36px;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.sh-card__paw img {
-  width: 100%;
-  height: auto;
-}
-
-
-
   #shopify-section-{{ section.id }} {
     background-color: {{ section.settings.color_scheme.settings.background }};
     color: {{ section.settings.color_scheme.settings.text }};
@@ -59,6 +23,14 @@
   }
 {%- endstyle -%}
 
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <clipPath id="sh-card-shape" clipPathUnits="objectBoundingBox">
+      <path d="M0.971731 0H0.028269C0.012656 0 0 0.008977 0 0.02005V0.97995C0 0.991023 0.012663 1 0.028275 1H0.740714C0.755442 1 0.767569 0.991875 0.769788 0.981551C0.791905 0.878734 0.891413 0.866917 0.968908 0.869298C0.985604 0.869812 1 0.860654 1 0.848805V0.02005C1 0.008977 0.987343 0 0.971731 0Z"/>
+    </clipPath>
+  </defs>
+</svg>
+
 <div class="ec-{{ section.id }}-padding ec-{{ section.id }}">
   <div class="page-width">
 
@@ -78,24 +50,9 @@
         {%- for block in section.blocks -%}
           {%- assign collection = block.settings.collection -%}
           <li class="sh-grid__item" {{ block.shopify_attributes }}>
-
-<svg width="0" height="0" style="position: absolute;">
-  <defs>
-    <clipPath id="card-mask" clipPathUnits="objectBoundingBox">
-      <path d="M0,0.046 C0,0.021,0.02,0,0.046,0 
-               H0.954 C0.979,0,1,0.021,1,0.046 
-               V0.783 C1,0.803,0.987,0.822,0.966,0.828 
-               C0.916,0.841,0.876,0.88,0.862,0.931 
-               C0.855,0.955,0.835,0.972,0.81,0.972 
-               H0.046 C0.021,0.972,0,0.952,0,0.927 
-               V0.046 Z" />
-    </clipPath>
-  </defs>
-</svg>
-
-
+            <div class="sh-card__shadow-wrap">
             <a
-              class="sh-card color-{{ settings.card_color_scheme }} gradient"
+              class="sh-card sh-card--shaped color-{{ settings.card_color_scheme }} gradient"
               {% if collection != blank %}href="{{ collection.url }}"{% else %}href="#"{% endif %}
             >
               {%- liquid
@@ -155,6 +112,7 @@
                 >
               </div>
             </a>
+            </div>
           </li>
         {%- endfor -%}
       </ul>
