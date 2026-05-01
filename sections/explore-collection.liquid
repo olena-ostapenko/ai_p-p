@@ -1,4 +1,5 @@
 {{ 'section-home.css' | asset_url | stylesheet_tag }}
+{{ 'explore-collections.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   #shopify-section-{{ section.id }} {
@@ -25,7 +26,7 @@
 
 <svg width="0" height="0" style="position:absolute">
   <defs>
-    <clipPath id="sh-card-shape" clipPathUnits="objectBoundingBox">
+    <clipPath id="ec-card-shape" clipPathUnits="objectBoundingBox">
       <path d="M0.971731 0H0.028269C0.012656 0 0 0.008977 0 0.02005V0.97995C0 0.991023 0.012663 1 0.028275 1H0.740714C0.755442 1 0.767569 0.991875 0.769788 0.981551C0.791905 0.878734 0.891413 0.866917 0.968908 0.869298C0.985604 0.869812 1 0.860654 1 0.848805V0.02005C1 0.008977 0.987343 0 0.971731 0Z"/>
     </clipPath>
   </defs>
@@ -50,7 +51,7 @@
         {%- for block in section.blocks -%}
           {%- assign collection = block.settings.collection -%}
           <li class="sh-grid__item" {{ block.shopify_attributes }}>
-            <div class="sh-card__shadow-wrap">
+            <div class="ec-card__wrap">
             <a
               class="sh-card sh-card--shaped color-{{ settings.card_color_scheme }} gradient"
               {% if collection != blank %}href="{{ collection.url }}"{% else %}href="#"{% endif %}
@@ -71,6 +72,9 @@
                       sizes: sizes,
                       alt: collection.title | escape
                   }}
+                  <div class="ec-card__paw" aria-hidden="true">
+                    <img src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_paw_b7908f55-fa7a-465b-adde-ffe6d50be06d.svg?v=1777536439" alt="" width="40" height="40" loading="lazy">
+                  </div>
                 </span>
               {%- elsif collection != blank and collection.products.first and collection.products.first.featured_image -%}
                 <span class="sh-card__image-wrap">
@@ -83,10 +87,16 @@
                       sizes: sizes,
                       alt: collection.title | escape
                   }}
+                  <div class="ec-card__paw" aria-hidden="true">
+                    <img src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_paw_b7908f55-fa7a-465b-adde-ffe6d50be06d.svg?v=1777536439" alt="" width="40" height="40" loading="lazy">
+                  </div>
                 </span>
               {%- else -%}
                 <span class="sh-card__image-wrap">
                   {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  <div class="ec-card__paw" aria-hidden="true">
+                    <img src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_paw_b7908f55-fa7a-465b-adde-ffe6d50be06d.svg?v=1777536439" alt="" width="40" height="40" loading="lazy">
+                  </div>
                 </span>
               {%- endif -%}
 
@@ -105,12 +115,6 @@
                 {%- endif -%}
               </div>
 
-              <div class="sh-card__paw" aria-hidden="true">
-                <img
-                  src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_paw_b7908f55-fa7a-465b-adde-ffe6d50be06d.svg?v=1777536439"
-                  alt="" width="36" height="36" loading="lazy"
-                >
-              </div>
             </a>
             </div>
           </li>
