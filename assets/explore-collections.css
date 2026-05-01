@@ -53,6 +53,8 @@
   border-radius: 0; /* clip-path handles the shape */
   box-shadow: none; /* shadow is on wrapper */
   transition: none;
+  height: 100%;     /* stretch to wrapper height — equalizes all cards in row */
+  width: 100%;
 }
 
 /* ── Image wrap — position relative for paw overlay ──────── */
