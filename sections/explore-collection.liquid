@@ -1,7 +1,31 @@
 {{ 'section-home.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+.sh-card {
+  position: relative;
+  background-color: #ffffff;
+  border-radius: 24px;
+  /* Застосовуємо наш SVG-трафарет */
+  clip-path: url(#paw-clip); 
+  
+  display: flex;
+  flex-direction: column;
+}
 
+/* Блок з лапкою тепер просто висить під карткою або в кутку секції */
+.sh-card__paw {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 45px;
+  height: 45px;
+  z-index: 10;
+}
+
+.sh-card__paw img {
+  width: 100%;
+  height: auto;
+}
 
 
 
