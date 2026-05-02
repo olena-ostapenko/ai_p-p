@@ -81,7 +81,7 @@
 
 
   /* decor subtitle */
-
+  {%- if section.settings.enable_subtitle_decor -%}
   #shopify-section-{{ section.id }} .hero-banner__subtitle {
     position: relative;
     display: inline-block;
@@ -115,6 +115,7 @@
     position: relative;
     top:-4.65rem;
   }
+  {%- endif -%}
 
 
  @media screen and (max-width: 749px) {
@@ -168,6 +169,7 @@
     }
 
     /* Декоративні елементи */
+    {%- if section.settings.enable_subtitle_decor -%}
     #shopify-section-{{ section.id }} .hero-banner__subtitle::before {
       height: 12px;
       bottom: 21px;
@@ -179,6 +181,7 @@
       left: -5.6rem;
       top: -3.4rem;
     }
+    {%- endif -%}
   }
 
 .hero-banner-{{ section.id }} .hero-banner__subtitle strong {
@@ -405,6 +408,12 @@
     {
       "type": "header",
       "content": "Subtitle"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_subtitle_decor",
+      "label": "Enable subtitle decorators (curve + paw)",
+      "default": true
     },
     {
       "type": "richtext",
