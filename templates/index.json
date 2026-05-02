@@ -487,7 +487,7 @@
             "image": "shopify://shop_images/spike.png",
             "size": 60,
             "pos_x": 45,
-            "pos_y": 35,
+            "pos_y": 48,
             "rotation": 0,
             "opacity": 80
           }
@@ -508,8 +508,19 @@
           "settings": {
             "image": "shopify://shop_images/Vector-1.svg",
             "size": 32,
-            "pos_x": 50,
-            "pos_y": 50,
+            "pos_x": 52,
+            "pos_y": 59,
+            "rotation": 0,
+            "opacity": 80
+          }
+        },
+        "decor_7WHFcc": {
+          "type": "decor",
+          "settings": {
+            "image": "shopify://shop_images/mdi_heart_1db04b03-b28f-4755-a509-8b4b82a7bce0.png",
+            "size": 24,
+            "pos_x": 48,
+            "pos_y": 62,
             "rotation": 0,
             "opacity": 80
           }
@@ -520,7 +531,8 @@
         "decor_b4GFNK",
         "decor_xQGgne",
         "decor_xLJKmT",
-        "decor_k9pTkQ"
+        "decor_k9pTkQ",
+        "decor_7WHFcc"
       ],
       "custom_css": [
         ".hero-banner__subtitle p {font-weight: 600;}",
@@ -550,9 +562,9 @@
         "description": "<p>Soft, cozy, and completely personalized — our custom-shaped pillows are designed to capture your pet’s unique look and personality.<br/><br/></p>",
         "description_margin_bottom": 28,
         "description_margin_bottom_mobile": 20,
-        "button_label": "Shop Now",
+        "button_label": "Create yours",
         "button_link": "",
-        "button_open_new_tab": false,
+        "button_open_new_tab": true,
         "button_bg_color": "#f4844e",
         "button_text_color": "#ffffff",
         "button_padding_vertical": 14,
