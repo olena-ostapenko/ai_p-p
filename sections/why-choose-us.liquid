@@ -20,28 +20,30 @@
   .wcu-{{ section.id }} .wcu-title__accent { color: {{ section.settings.color_scheme.settings.button }}; }
   .wcu-{{ section.id }} .wcu-feature__icon { background-color: {{ section.settings.color_scheme.settings.button }}; }
 
-  /* Photo positions and sizes from block settings */
-  {%- for block in section.blocks -%}
-    {%- if block.type == 'photo' -%}
-      {%- assign safe_id = block.id | replace: '-', '_' -%}
-      .wcu-photo-wrap--{{ safe_id }} {
-        {%- if block.settings.anchor_x == 'left' -%}
-          left: {{ block.settings.pos_x }}%;
-        {%- else -%}
-          right: {{ block.settings.pos_x }}%;
-        {%- endif -%}
-        {%- if block.settings.anchor_y == 'top' -%}
-          top: {{ block.settings.pos_y }}%;
-        {%- else -%}
-          bottom: {{ block.settings.pos_y }}%;
-        {%- endif -%}
-      }
-      .wcu-photo-wrap--{{ safe_id }} .wcu-photo {
-        width: {{ block.settings.size }}px;
-        height: {{ block.settings.size }}px;
-      }
-    {%- endif -%}
-  {%- endfor -%}
+  /* Photo positions and sizes — desktop only */
+  @media screen and (min-width: 990px) {
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'photo' -%}
+        {%- assign safe_id = block.id | replace: '-', '_' -%}
+        .wcu-photo-wrap--{{ safe_id }} {
+          {%- if block.settings.anchor_x == 'left' -%}
+            left: {{ block.settings.pos_x }}%;
+          {%- else -%}
+            right: {{ block.settings.pos_x }}%;
+          {%- endif -%}
+          {%- if block.settings.anchor_y == 'top' -%}
+            top: {{ block.settings.pos_y }}%;
+          {%- else -%}
+            bottom: {{ block.settings.pos_y }}%;
+          {%- endif -%}
+        }
+        .wcu-photo-wrap--{{ safe_id }} .wcu-photo {
+          width: {{ block.settings.size }}px;
+          height: {{ block.settings.size }}px;
+        }
+      {%- endif -%}
+    {%- endfor -%}
+  }
 {%- endstyle -%}
 
 {%- liquid
