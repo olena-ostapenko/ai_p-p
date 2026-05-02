@@ -62,10 +62,18 @@
     <div class="wcu-col-photos">
       <div class="wcu-photos">
 
+        {%- assign mobile_idx = 0 -%}
         {%- for block in section.blocks -%}
           {%- if block.type == 'photo' -%}
             {%- assign safe_id = block.id | replace: '-', '_' -%}
-            <div class="wcu-photo-wrap wcu-photo-wrap--{{ safe_id }}{% unless block.settings.show_on_mobile %} wcu-photo-wrap--hide-mobile{% endunless %}" {{ block.shopify_attributes }}>
+            {%- if block.settings.show_on_mobile -%}
+              {%- assign mobile_idx = mobile_idx | plus: 1 -%}
+            {%- endif -%}
+            {%- assign mobile_class = '' -%}
+            {%- if block.settings.show_on_mobile -%}
+              {%- assign mobile_class = 'wcu-mobile--' | append: mobile_idx -%}
+            {%- endif -%}
+            <div class="wcu-photo-wrap wcu-photo-wrap--{{ safe_id }} {{ mobile_class }}{% unless block.settings.show_on_mobile %} wcu-photo-wrap--hide-mobile{% endunless %}" {{ block.shopify_attributes }}>
               <div class="wcu-photo">
                 {%- if block.settings.image != blank -%}
                   {{ block.settings.image | image_url: width: 646 | image_tag: loading: 'lazy', alt: '' }}

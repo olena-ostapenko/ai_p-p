@@ -211,43 +211,39 @@
   }
 
   /* Circle 1 — largest, top left */
-  .wcu-photo-wrap:not(.wcu-photo-wrap--hide-mobile):nth-of-type(1) .wcu-photo {
+  .wcu-mobile--1 .wcu-photo {
     width: min(42vw, 260px) !important;
     height: min(42vw, 260px) !important;
   }
-  .wcu-photo-wrap:not(.wcu-photo-wrap--hide-mobile):nth-of-type(1) {
+  .wcu-mobile--1 {
     left: 0;
     top: 0;
   }
 
-  /* Circle 2 — medium, top right, slightly lower */
-  .wcu-photo-wrap:not(.wcu-photo-wrap--hide-mobile):nth-of-type(2) .wcu-photo {
+  /* Circle 2 — medium, top right, offset down */
+  .wcu-mobile--2 .wcu-photo {
     width: min(38vw, 230px) !important;
     height: min(38vw, 230px) !important;
   }
-  .wcu-photo-wrap:not(.wcu-photo-wrap--hide-mobile):nth-of-type(2) {
+  .wcu-mobile--2 {
     right: 0;
-    top: min(4vw, 24px);
+    top: min(5vw, 30px);
   }
 
   /* Circle 3 — smallest, bottom center */
-  .wcu-photo-wrap:not(.wcu-photo-wrap--hide-mobile):nth-of-type(3) .wcu-photo {
-    width: min(32vw, 190px) !important;
-    height: min(32vw, 190px) !important;
+  .wcu-mobile--3 .wcu-photo {
+    width: min(30vw, 180px) !important;
+    height: min(30vw, 180px) !important;
   }
-  .wcu-photo-wrap:not(.wcu-photo-wrap--hide-mobile):nth-of-type(3) {
+  .wcu-mobile--3 {
     left: 50%;
     transform: translateX(-50%);
-    top: calc(min(42vw, 260px) * 0.85);
+    top: calc(min(42vw, 260px) * 0.82);
   }
 
   /* Badge — keep inside padded area */
-  .wcu-badge--right {
-    right: 0;
-  }
-  .wcu-badge--left {
-    left: 0;
-  }
+  .wcu-badge--right { right: 0; }
+  .wcu-badge--left  { left: 0;  }
 }
 
 @media screen and (max-width: 749px) {
