@@ -294,76 +294,34 @@
     "why_choose_us_Fn3EXt": {
       "type": "why-choose-us",
       "blocks": {
-        "feature_VnCL7A": {
-          "type": "feature",
+        "photo_6BLjxm": {
+          "type": "photo",
           "settings": {
-            "show_icon": true,
-            "icon_size": 56,
-            "title": "Handcrafted By Real Artists",
-            "description": "Every portrait is carefully created by professional artists to capture your pet's unique personality"
-          }
-        },
-        "feature_DnVjd8": {
-          "type": "feature",
-          "settings": {
-            "show_icon": true,
-            "icon_size": 56,
-            "title": "Unlimited Revisions",
-            "description": "We work with you until you absolutely love the final result — no limits on edits"
-          }
-        },
-        "feature_TUCzgB": {
-          "type": "feature",
-          "settings": {
-            "show_icon": true,
-            "icon_size": 56,
-            "title": "Fast & Easy Process",
-            "description": "Upload your photo, preview your artwork in 1–2 days, and approve it for production"
-          }
-        },
-        "feature_cht49e": {
-          "type": "feature",
-          "settings": {
-            "show_icon": true,
-            "icon_size": 56,
-            "title": "Premium Quality Products",
-            "description": "From canvas to apparel, every item is made with high-quality materials designed to last"
+            "image": "shopify://shop_images/chose_1.jpg",
+            "size": 324,
+            "anchor_x": "right",
+            "pos_x": 0,
+            "anchor_y": "top",
+            "pos_y": 22,
+            "badge_avatar": "shopify://shop_images/michael-dam-mEZ3PoFGs_k-unsplash.jpg",
+            "badge_name": "Julia",
+            "badge_review": "It`s amazing!!",
+            "badge_position": "right"
           }
         }
       },
       "block_order": [
-        "feature_VnCL7A",
-        "feature_DnVjd8",
-        "feature_TUCzgB",
-        "feature_cht49e"
+        "photo_6BLjxm"
       ],
       "name": "Why Choose Us",
       "settings": {
         "color_scheme": "scheme-5",
         "desktop_order": "photos_left",
         "mobile_order": "photos_first",
-        "blocks_gap": 24,
         "title": "WHY SHOULD CHOOSE US",
         "title_accent_word": "US",
-        "badge_bg": "#FFFFFF",
-        "badge_1_name": "",
-        "badge_1_review": "",
-        "badge_1_position": "left",
-        "badge_2_name": "",
-        "badge_2_review": "",
-        "badge_2_position": "right",
-        "badge_3_name": "",
-        "badge_3_review": "",
-        "badge_3_position": "right",
-        "badge_4_name": "",
-        "badge_4_review": "",
-        "badge_4_position": "left",
-        "badge_5_name": "",
-        "badge_5_review": "",
-        "badge_5_position": "left",
-        "badge_6_name": "",
-        "badge_6_review": "",
-        "badge_6_position": "left",
+        "blocks_gap": 24,
+        "badge_bg": "#ffffff",
         "padding_top": 60,
         "padding_bottom": 60
       }
