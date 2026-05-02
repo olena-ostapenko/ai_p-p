@@ -458,6 +458,70 @@
     },
     "hero_TrTNDG": {
       "type": "hero",
+      "blocks": {
+        "decor_cm8krH": {
+          "type": "decor",
+          "settings": {
+            "image": "shopify://shop_images/spike.png",
+            "size": 60,
+            "pos_x": 52,
+            "pos_y": 4,
+            "rotation": 0,
+            "opacity": 80
+          }
+        },
+        "decor_b4GFNK": {
+          "type": "decor",
+          "settings": {
+            "image": "shopify://shop_images/spike.png",
+            "size": 60,
+            "pos_x": 40,
+            "pos_y": 68,
+            "rotation": 0,
+            "opacity": 80
+          }
+        },
+        "decor_xQGgne": {
+          "type": "decor",
+          "settings": {
+            "image": "shopify://shop_images/spike.png",
+            "size": 60,
+            "pos_x": 45,
+            "pos_y": 35,
+            "rotation": 0,
+            "opacity": 80
+          }
+        },
+        "decor_xLJKmT": {
+          "type": "decor",
+          "settings": {
+            "image": "shopify://shop_images/spike.png",
+            "size": 60,
+            "pos_x": 55,
+            "pos_y": 83,
+            "rotation": 0,
+            "opacity": 80
+          }
+        },
+        "decor_k9pTkQ": {
+          "type": "decor",
+          "settings": {
+            "image": "shopify://shop_images/Vector-1.svg",
+            "size": 32,
+            "pos_x": 50,
+            "pos_y": 50,
+            "rotation": 0,
+            "opacity": 80
+          }
+        }
+      },
+      "block_order": [
+        "decor_cm8krH",
+        "decor_b4GFNK",
+        "decor_xQGgne",
+        "decor_xLJKmT",
+        "decor_k9pTkQ"
+      ],
       "custom_css": [
         ".hero-banner__subtitle p {font-weight: 600;}",
         ".hero-banner__description {max-width: 514px; width: 100%;}"
