@@ -536,8 +536,8 @@
           "settings": {
             "image": "shopify://shop_images/Group.png",
             "size": 804,
-            "pos_x": 20,
-            "pos_y": -10,
+            "pos_x": 60,
+            "pos_y": -30,
             "rotation": 0,
             "opacity": 80
           }
