@@ -299,6 +299,7 @@
           "settings": {
             "show_icon": true,
             "icon_size": 40,
+            "icon": "shopify://shop_images/material-symbols_palette.svg",
             "title": "Handcrafted by Real Artists",
             "description": "Every portrait is carefully created by professional artists to capture your pet’s unique personality"
           }
