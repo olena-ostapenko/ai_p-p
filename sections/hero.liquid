@@ -200,10 +200,52 @@
   color: {{ section.settings.decoration_color }};
 }
 
+  /* Decorative elements */
+  .hero-banner-{{ section.id }} {
+    position: relative;
+    overflow: hidden;
+  }
+
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'decor' -%}
+      {%- assign safe_id = block.id | replace: '-', '_' -%}
+      .hero-decor--{{ safe_id }} {
+        position: absolute;
+        left: {{ block.settings.pos_x }}%;
+        top: {{ block.settings.pos_y }}%;
+        width: {{ block.settings.size }}px;
+        height: {{ block.settings.size }}px;
+        transform: rotate({{ block.settings.rotation }}deg);
+        opacity: {{ block.settings.opacity | divided_by: 100.0 }};
+        pointer-events: none;
+        z-index: 0;
+      }
+      .hero-decor--{{ safe_id }} img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+    {%- endif -%}
+  {%- endfor -%}
+
 {%- endstyle -%}
 
 <div class="hero-banner-{{ section.id }}">
-  <div class="hero-banner__container">
+
+  {%- comment -%} Decorative elements {%- endcomment -%}
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'decor' -%}
+      {%- assign safe_id = block.id | replace: '-', '_' -%}
+      <div class="hero-decor--{{ safe_id }}" {{ block.shopify_attributes }} aria-hidden="true">
+        {%- if block.settings.image != blank -%}
+          {{ block.settings.image | image_url: width: 200 | image_tag: loading: 'lazy', alt: '' }}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+
+  <div class="hero-banner__container" style="position:relative;z-index:1;">
     <div class="hero-banner__grid page-width">
 
       {%- comment -%} Text Column {%- endcomment -%}
@@ -647,6 +689,71 @@
       "step": 2,
       "unit": "px",
       "default": 12
+    }
+  ],
+  "blocks": [
+    {
+      "type": "decor",
+      "name": "Decorative element",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image (SVG or PNG)"
+        },
+        {
+          "type": "range",
+          "id": "size",
+          "label": "Size",
+          "min": 20,
+          "max": 200,
+          "step": 4,
+          "unit": "px",
+          "default": 60
+        },
+        {
+          "type": "range",
+          "id": "pos_x",
+          "label": "Horizontal position",
+          "info": "0% = left edge, 100% = right edge",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "pos_y",
+          "label": "Vertical position",
+          "info": "0% = top, 100% = bottom",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "rotation",
+          "label": "Rotation",
+          "min": 0,
+          "max": 360,
+          "step": 5,
+          "unit": "°",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "opacity",
+          "label": "Opacity",
+          "min": 10,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 50
+        }
+      ]
     }
   ],
   "presets": [
