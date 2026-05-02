@@ -294,6 +294,20 @@
     "why_choose_us_Fn3EXt": {
       "type": "why-choose-us",
       "blocks": {
+        "photo_niB9VA": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/Custom_Portrait_for_Pets_2_500x_1_1.jpg",
+            "size": 92,
+            "anchor_x": "left",
+            "pos_x": 0,
+            "anchor_y": "top",
+            "pos_y": 54,
+            "badge_name": "",
+            "badge_review": "",
+            "badge_position": "left"
+          }
+        },
         "photo_4Maxkd": {
           "type": "photo",
           "settings": {
@@ -368,6 +382,7 @@
         }
       },
       "block_order": [
+        "photo_niB9VA",
         "photo_4Maxkd",
         "photo_PnCaHV",
         "photo_Vm7fFG",
