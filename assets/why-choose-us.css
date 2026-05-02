@@ -32,12 +32,12 @@
 }
 
 /* Positions matching the design */
-.wcu-photo-wrap--1 { right: 0;     top:    40%;    }
-.wcu-photo-wrap--2 { left: 52.31%; top:    0;      }
-.wcu-photo-wrap--3 { left: 53.85%; bottom: 0;      }
-.wcu-photo-wrap--4 { left: 0;      top:    53.33%; }
-.wcu-photo-wrap--5 { left: 0;      top:    25.00%; }
-.wcu-photo-wrap--6 { left: 9.23%;  bottom: 1.67%;  }
+.wcu-photo-wrap--1 { right: 0;      top:    25%;    }  /* 323px — right:0, top:150px */
+.wcu-photo-wrap--2 { left:  3.69%;  top:    0;      }  /* 282px — left:24px, top:0 */
+.wcu-photo-wrap--3 { left:  33.69%; bottom: 21%;    }  /* 194px — left:219px, bottom:126px */
+.wcu-photo-wrap--4 { left:  64%;    bottom: 0;      }  /* 153px — left:416px, bottom:0 */
+.wcu-photo-wrap--5 { left:  66.15%; top:    0;      }  /* 130px — left:430px, top:0 */
+.wcu-photo-wrap--6 { left:  0;      top:    52%;    }  /* 93px  — left:0, top:312px */
 
 /* ── Circle photo ───────────────────────────────────────── */
 .wcu-photo {
