@@ -31,14 +31,6 @@
   position: absolute;
 }
 
-/* Positions matching the design */
-.wcu-photo-wrap--1 { right: 0;      top:    22.94%; }  /* 323px — Figma 668×654 */
-.wcu-photo-wrap--2 { left:  3.59%;  top:    0;      }  /* 282px */
-.wcu-photo-wrap--3 { left:  32.78%; bottom: 19.27%; }  /* 194px */
-.wcu-photo-wrap--4 { left:  62.28%; bottom: 0;      }  /* 153px */
-.wcu-photo-wrap--5 { left:  64.37%; top:    0;      }  /* 130px */
-.wcu-photo-wrap--6 { left:  0;      top:    47.71%; }  /* 93px  */
-
 /* ── Circle photo ───────────────────────────────────────── */
 .wcu-photo {
   border-radius: 50%;
@@ -56,13 +48,6 @@
 
 /* Sizes */
 /* Sizes as % of container width — auto-scales with container */
-/* Sizes: max at design px, scale proportionally below */
-.wcu-photo--1 { width: min(323px, 48.35%); aspect-ratio: 1; height: auto; }
-.wcu-photo--2 { width: min(282px, 42.22%); aspect-ratio: 1; height: auto; }
-.wcu-photo--3 { width: min(194px, 29.04%); aspect-ratio: 1; height: auto; }
-.wcu-photo--4 { width: min(153px, 22.90%); aspect-ratio: 1; height: auto; }
-.wcu-photo--5 { width: min(130px, 19.46%); aspect-ratio: 1; height: auto; }
-.wcu-photo--6 { width: min(93px,  13.92%); aspect-ratio: 1; height: auto; }
 
 /* ── Badge — positioned relative to photo-wrap ─────────── */
 /* Sits at bottom center of the circle, overlapping it      */
