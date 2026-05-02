@@ -211,19 +211,21 @@
   }
 
   /* Sizes */
-  .wcu-mobile--1 .wcu-photo { width: min(55vw, 240px) !important; height: min(55vw, 240px) !important; }
-  .wcu-mobile--2 .wcu-photo { width: min(50vw, 210px) !important; height: min(50vw, 210px) !important; }
-  .wcu-mobile--3 .wcu-photo { width: min(40vw, 170px) !important; height: min(40vw, 170px) !important; }
+  .wcu-mobile--1 .wcu-photo { width: min(52vw, 220px) !important; height: min(52vw, 220px) !important; }
+  .wcu-mobile--2 .wcu-photo { width: min(46vw, 195px) !important; height: min(46vw, 195px) !important; }
+  .wcu-mobile--3 .wcu-photo { width: min(38vw, 160px) !important; height: min(38vw, 160px) !important; }
 
-  /* Chess positions — using left only, no right */
-  /* Container = 100% of col (padded 20px each side) */
-  .wcu-mobile--1 { left: 0;   top: 0; }
-  .wcu-mobile--2 { left: 42%; top: min(8vw, 40px); }
-  .wcu-mobile--3 { left: 18%; top: min(50vw, 210px); }
+  /* Chess positions — no overlap */
+  /* Circle 1: top-left */
+  .wcu-mobile--1 { left: 0; top: 0; }
+  /* Circle 2: top-right, starts after circle 1 ends horizontally */
+  .wcu-mobile--2 { left: min(54vw, 228px); top: min(8vw, 30px); }
+  /* Circle 3: bottom-left, starts after circle 1 ends vertically */
+  .wcu-mobile--3 { left: min(14vw, 60px); top: min(56vw, 238px); }
 
-  /* Container height — tallest stack */
+  /* Container height */
   .wcu-photos {
-    height: calc(min(50vw, 210px) + min(40vw, 170px) + 20px);
+    height: calc(min(56vw, 238px) + min(38vw, 160px) + 20px);
   }
 
   /* Badge */
