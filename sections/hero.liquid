@@ -269,9 +269,9 @@
           </div>
         {%- endif -%}
 
-        {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+        {%- if section.settings.button_label != blank -%}
           <a
-            href="{{ section.settings.button_link }}"
+            href="{{ section.settings.button_link | default: '#' }}"
             class="hero-banner__button"
             {% if section.settings.button_open_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
           >
