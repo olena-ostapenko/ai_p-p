@@ -461,6 +461,7 @@
       "blocks": {
         "decor_cm8krH": {
           "type": "decor",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/spike.png",
             "size": 60,
@@ -472,6 +473,7 @@
         },
         "decor_b4GFNK": {
           "type": "decor",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/spike.png",
             "size": 60,
@@ -483,6 +485,7 @@
         },
         "decor_xQGgne": {
           "type": "decor",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/spike.png",
             "size": 60,
@@ -494,6 +497,7 @@
         },
         "decor_xLJKmT": {
           "type": "decor",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/spike.png",
             "size": 60,
@@ -505,6 +509,7 @@
         },
         "decor_k9pTkQ": {
           "type": "decor",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Vector-1.svg",
             "size": 30,
@@ -516,6 +521,7 @@
         },
         "decor_7WHFcc": {
           "type": "decor",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/mdi_heart_1db04b03-b28f-4755-a509-8b4b82a7bce0.png",
             "size": 25,
@@ -525,8 +531,20 @@
             "opacity": 80
           }
         },
+        "decor_large_ijBhfg": {
+          "type": "decor_large",
+          "settings": {
+            "image": "shopify://shop_images/Group.png",
+            "size": 804,
+            "pos_x": 0,
+            "pos_y": 0,
+            "rotation": 0,
+            "opacity": 20
+          }
+        },
         "decor_UPbwCD": {
           "type": "decor",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/paw_4.svg",
             "size": 110,
@@ -538,6 +556,7 @@
         },
         "decor_pqc9P4": {
           "type": "decor",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/paw_3.png",
             "size": 105,
@@ -577,6 +596,7 @@
         "decor_xLJKmT",
         "decor_k9pTkQ",
         "decor_7WHFcc",
+        "decor_large_ijBhfg",
         "decor_UPbwCD",
         "decor_pqc9P4",
         "decor_large_Wn7T8F",
