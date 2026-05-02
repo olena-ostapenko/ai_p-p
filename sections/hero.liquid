@@ -47,6 +47,7 @@
     width: 100%;
   }
 
+  {%- if section.settings.enable_image_border -%}
   .hero-banner-{{ section.id }} .hero-banner__image-wrapper::after {
     content: '';
     position: absolute;
@@ -55,6 +56,7 @@
     border-radius: {{ section.settings.decoration_border_radius }}px;
     pointer-events: none;
   }
+  {%- endif -%}
 
   .hero-banner-{{ section.id }} .hero-banner__image img {
     width: {{ section.settings.image_width }}px;
@@ -62,6 +64,10 @@
     height: auto;
     display: block;
     border-radius: {% if section.settings.image_border_radius %}{{ section.settings.image_border_radius_px }}px{% else %}0{% endif %};
+  }
+  .hero-banner-{{ section.id }} .hero-banner__image {
+    border-radius: {% if section.settings.image_border_radius %}{{ section.settings.image_border_radius_px }}px{% else %}0{% endif %};
+    overflow: hidden;
   }
 
   .hero-banner-{{ section.id }} .hero-banner__button {
@@ -587,6 +593,12 @@
     {
       "type": "header",
       "content": "Border Decoration"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_image_border",
+      "label": "Show border frame around image",
+      "default": true
     },
     {
       "type": "color",
