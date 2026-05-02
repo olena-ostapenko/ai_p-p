@@ -303,6 +303,7 @@
             "pos_x": 0,
             "anchor_y": "top",
             "pos_y": 49,
+            "show_on_mobile": false,
             "badge_name": "",
             "badge_review": "",
             "badge_position": "left"
@@ -317,6 +318,7 @@
             "pos_x": 55,
             "anchor_y": "top",
             "pos_y": 0,
+            "show_on_mobile": false,
             "badge_name": "",
             "badge_review": "",
             "badge_position": "left"
@@ -331,6 +333,7 @@
             "pos_x": 42,
             "anchor_y": "top",
             "pos_y": 80,
+            "show_on_mobile": false,
             "badge_name": "",
             "badge_review": "",
             "badge_position": "left"
@@ -345,6 +348,7 @@
             "pos_x": 16,
             "anchor_y": "top",
             "pos_y": 51,
+            "show_on_mobile": true,
             "badge_name": "",
             "badge_review": "",
             "badge_position": "left"
@@ -359,6 +363,7 @@
             "pos_x": 6,
             "anchor_y": "top",
             "pos_y": 0,
+            "show_on_mobile": true,
             "badge_avatar": "shopify://shop_images/Rectangle_131.jpg",
             "badge_name": "David",
             "badge_review": "I am happy!",
@@ -374,6 +379,7 @@
             "pos_x": 0,
             "anchor_y": "top",
             "pos_y": 24,
+            "show_on_mobile": true,
             "badge_avatar": "shopify://shop_images/michael-dam-mEZ3PoFGs_k-unsplash.jpg",
             "badge_name": "Julia",
             "badge_review": "It`s amazing!!",
