@@ -294,6 +294,20 @@
     "why_choose_us_Fn3EXt": {
       "type": "why-choose-us",
       "blocks": {
+        "photo_PnCaHV": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/77d36f1c0a5501988ae1bd5acd3c327c.jpg",
+            "size": 152,
+            "anchor_x": "left",
+            "pos_x": 34,
+            "anchor_y": "top",
+            "pos_y": 100,
+            "badge_name": "",
+            "badge_review": "",
+            "badge_position": "left"
+          }
+        },
         "photo_Vm7fFG": {
           "type": "photo",
           "settings": {
@@ -340,6 +354,7 @@
         }
       },
       "block_order": [
+        "photo_PnCaHV",
         "photo_Vm7fFG",
         "photo_QFR7xc",
         "photo_6BLjxm"
