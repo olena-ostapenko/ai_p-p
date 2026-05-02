@@ -309,6 +309,7 @@
           "settings": {
             "show_icon": true,
             "icon_size": 40,
+            "icon": "shopify://shop_images/solar_star-shine-bold.svg",
             "title": "Unlimited Revisions",
             "description": "We work with you until you absolutely love the final result — no limits on edits"
           }
@@ -318,6 +319,7 @@
           "settings": {
             "show_icon": true,
             "icon_size": 40,
+            "icon": "shopify://shop_images/si_lightning-fill.png",
             "title": "Fast & Easy Process",
             "description": "Upload your photo, preview your artwork in 1–2 days, and approve it for production"
           }
@@ -327,6 +329,7 @@
           "settings": {
             "show_icon": true,
             "icon_size": 40,
+            "icon": "shopify://shop_images/mdi_heart.png",
             "title": "Premium Quality Products",
             "description": "From canvas to apparel, every item is made with high-quality materials designed to last"
           }
