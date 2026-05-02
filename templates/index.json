@@ -307,9 +307,18 @@
           "type": "feature",
           "settings": {
             "show_icon": true,
-            "icon_size": 56,
+            "icon_size": 40,
             "title": "Unlimited Revisions",
             "description": "We work with you until you absolutely love the final result — no limits on edits"
+          }
+        },
+        "feature_N7K7YG": {
+          "type": "feature",
+          "settings": {
+            "show_icon": true,
+            "icon_size": 56,
+            "title": "Fast & Easy Process",
+            "description": "Upload your photo, preview your artwork in 1–2 days, and approve it for production"
           }
         },
         "photo_niB9VA": {
@@ -408,6 +417,7 @@
       "block_order": [
         "feature_yQrnfT",
         "feature_Y9YEgt",
+        "feature_N7K7YG",
         "photo_niB9VA",
         "photo_4Maxkd",
         "photo_PnCaHV",
