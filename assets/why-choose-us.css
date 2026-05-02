@@ -192,45 +192,58 @@
     display: none !important;
   }
 
-  /* Mobile collage — chess-like layout for 3 visible circles */
+  /* Mobile — CSS Grid layout, no overlap */
   .wcu-col-photos {
     padding: 0 20px;
     box-sizing: border-box;
   }
 
   .wcu-photos {
-    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 16px;
     width: 100%;
-    height: calc(min(42vw, 260px) * 2.3);
+    height: auto;
     aspect-ratio: unset;
   }
 
-  /* Reset absolute positioning from desktop — mobile uses own coords */
+  /* All wraps — static in grid flow */
   .wcu-photo-wrap {
-    position: absolute;
+    position: relative;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
   }
 
-  /* Sizes */
-  .wcu-mobile--1 .wcu-photo { width: min(52vw, 220px) !important; height: min(52vw, 220px) !important; }
-  .wcu-mobile--2 .wcu-photo { width: min(46vw, 195px) !important; height: min(46vw, 195px) !important; }
-  .wcu-mobile--3 .wcu-photo { width: min(38vw, 160px) !important; height: min(38vw, 160px) !important; }
-
-  /* Chess positions — no overlap */
-  /* Circle 1: top-left */
-  .wcu-mobile--1 { left: 0; top: 0; }
-  /* Circle 2: top-right, aligned to right edge of container */
-  .wcu-mobile--2 { left: calc(100% - min(46vw, 195px)); top: min(8vw, 30px); }
-  /* Circle 3: bottom-left, starts after circle 1 ends vertically */
-  .wcu-mobile--3 { left: min(14vw, 60px); top: min(56vw, 238px); }
-
-  /* Container height */
-  .wcu-photos {
-    height: calc(min(56vw, 238px) + min(38vw, 160px) + 20px);
+  /* Circle sizes fill grid cell */
+  .wcu-mobile--1 .wcu-photo,
+  .wcu-mobile--2 .wcu-photo,
+  .wcu-mobile--3 .wcu-photo {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 !important;
   }
 
-  /* Badge */
-  .wcu-badge--right { right: -10px; left: auto; }
-  .wcu-badge--left  { left: -10px;  right: auto; }
+  /* Circle 1 — top left */
+  .wcu-mobile--1 { grid-column: 1; grid-row: 1; }
+
+  /* Circle 2 — top right */
+  .wcu-mobile--2 { grid-column: 2; grid-row: 1; }
+
+  /* Circle 3 — bottom center, spans hint via margin */
+  .wcu-mobile--3 {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 55%;
+    margin: 0 auto;
+  }
+
+  /* Badge position relative to wrap */
+  .wcu-badge { position: absolute; }
+  .wcu-badge--right { right: -8px; left: auto; }
+  .wcu-badge--left  { left: -8px;  right: auto; }
 }
 
 @media screen and (max-width: 749px) {
