@@ -294,6 +294,15 @@
     "why_choose_us_Fn3EXt": {
       "type": "why-choose-us",
       "blocks": {
+        "feature_yQrnfT": {
+          "type": "feature",
+          "settings": {
+            "show_icon": true,
+            "icon_size": 56,
+            "title": "Handcrafted by Real Artists",
+            "description": "Every portrait is carefully created by professional artists to capture your pet’s unique personality"
+          }
+        },
         "photo_niB9VA": {
           "type": "photo",
           "settings": {
@@ -388,6 +397,7 @@
         }
       },
       "block_order": [
+        "feature_yQrnfT",
         "photo_niB9VA",
         "photo_4Maxkd",
         "photo_PnCaHV",
