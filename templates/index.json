@@ -452,6 +452,46 @@
         "padding_bottom": 60
       }
     },
+    "hero_4AQVaY": {
+      "type": "hero",
+      "name": "Hero Banner",
+      "settings": {
+        "color_scheme": "scheme-3",
+        "image_position": "left",
+        "columns_gap": 48,
+        "columns_gap_mobile": 24,
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "section_padding_horizontal": 24,
+        "section_padding_top_mobile": 32,
+        "section_padding_bottom_mobile": 32,
+        "section_padding_horizontal_mobile": 16,
+        "title": "<p><strong>Turn Your Pet's Photo Into</strong></p><p><strong>A Work Of Art!</strong></p>",
+        "title_margin_bottom": 16,
+        "title_margin_bottom_mobile": 12,
+        "subtitle": "<p>One-Of-A-Kind Portraits, Apparel & Gifts</p>",
+        "subtitle_margin_bottom": 12,
+        "subtitle_margin_bottom_mobile": 8,
+        "description": "<p>Turn any pet photo into a <strong>One-Of-A-Kind</strong> Portrait, Apparel, Or Gift — Professionally Designed And Perfected With Unlimited Revisions</p>",
+        "description_margin_bottom": 28,
+        "description_margin_bottom_mobile": 20,
+        "button_label": "Shop Now",
+        "button_link": "",
+        "button_open_new_tab": false,
+        "button_bg_color": "#C89A2A",
+        "button_text_color": "#FFFFFF",
+        "button_padding_vertical": 14,
+        "button_padding_horizontal": 32,
+        "button_border_radius": 4,
+        "image_width": 500,
+        "image_width_mobile": 300,
+        "image_border_radius": true,
+        "image_border_radius_px": 12,
+        "decoration_color": "#C89A2A",
+        "border_thickness": 3,
+        "decoration_border_radius": 12
+      }
+    },
     "featured_collection": {
       "type": "featured-collection",
       "disabled": true,
@@ -489,6 +529,7 @@
     "our_best_sellers_RoJgkQ",
     "explore_collection_chWMTM",
     "why_choose_us_Fn3EXt",
+    "hero_4AQVaY",
     "featured_collection"
   ]
 }
