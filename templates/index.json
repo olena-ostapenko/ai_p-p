@@ -294,6 +294,20 @@
     "why_choose_us_Fn3EXt": {
       "type": "why-choose-us",
       "blocks": {
+        "photo_QFR7xc": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/Custom_Portrait_for_Pets_2_500x_2_291f1ea0-6de2-4c24-9c8a-c59052e5e278.jpg",
+            "size": 280,
+            "anchor_x": "left",
+            "pos_x": 6,
+            "anchor_y": "top",
+            "pos_y": 0,
+            "badge_name": "",
+            "badge_review": "",
+            "badge_position": "left"
+          }
+        },
         "photo_6BLjxm": {
           "type": "photo",
           "settings": {
@@ -302,7 +316,7 @@
             "anchor_x": "right",
             "pos_x": 0,
             "anchor_y": "top",
-            "pos_y": 22,
+            "pos_y": 33,
             "badge_avatar": "shopify://shop_images/michael-dam-mEZ3PoFGs_k-unsplash.jpg",
             "badge_name": "Julia",
             "badge_review": "It`s amazing!!",
@@ -311,6 +325,7 @@
         }
       },
       "block_order": [
+        "photo_QFR7xc",
         "photo_6BLjxm"
       ],
       "name": "Why Choose Us",
