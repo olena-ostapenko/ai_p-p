@@ -185,30 +185,49 @@
   .wcu-col-photos {
     flex: 0 0 100%;
     width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
-  .wcu-photos {
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-    /* Container shrinks → % sizes + aspect-ratio scale everything automatically */
-    aspect-ratio: 668 / 654;
   }
 
   /* Hide photos marked as mobile-hidden */
   .wcu-photo-wrap--hide-mobile {
-    display: none;
+    display: none !important;
   }
-}
 
-@media screen and (max-width: 479px) {
-  .wcu-col-photos {
-    max-width: 360px;
-  }
+  /* Mobile collage — chess-like layout for 3 visible circles */
   .wcu-photos {
-    max-width: 360px;
+    position: relative;
+    width: 100%;
+    /* Height = enough for 3 circles in chess layout */
+    height: calc(min(46vw, 300px) * 2.1);
+    aspect-ratio: unset;
+  }
+
+  /* Reset absolute positioning from desktop — mobile uses own coords */
+  .wcu-photo-wrap {
+    position: absolute;
+  }
+
+  /* Circle size: scale relative to viewport, max capped */
+  .wcu-photo {
+    width: min(46vw, 300px) !important;
+    height: min(46vw, 300px) !important;
+  }
+
+  /* Chess layout for first 3 visible circles */
+  /* Circle 1 — top left */
+  .wcu-photo-wrap:not(.wcu-photo-wrap--hide-mobile):nth-of-type(1) {
+    left: 0;
+    top: 0;
+  }
+  /* Circle 2 — top right, slightly lower */
+  .wcu-photo-wrap:not(.wcu-photo-wrap--hide-mobile):nth-of-type(2) {
+    right: 0;
+    top: min(5vw, 30px);
+  }
+  /* Circle 3 — bottom center */
+  .wcu-photo-wrap:not(.wcu-photo-wrap--hide-mobile):nth-of-type(3) {
+    left: 50%;
+    transform: translateX(-50%);
+    top: calc(min(46vw, 300px) * 0.9);
   }
 }
 
