@@ -608,7 +608,7 @@
       ],
       "name": "Hero Banner",
       "settings": {
-        "color_scheme": "scheme-3",
+        "color_scheme": "scheme-4",
         "image_position": "left",
         "columns_gap": 48,
         "columns_gap_mobile": 24,
