@@ -465,7 +465,7 @@
             "image": "shopify://shop_images/spike.png",
             "size": 60,
             "pos_x": 52,
-            "pos_y": 1,
+            "pos_y": 7,
             "rotation": 0,
             "opacity": 80
           }
