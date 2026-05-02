@@ -459,11 +459,12 @@
     "hero_TrTNDG": {
       "type": "hero",
       "custom_css": [
-        ".hero-banner__subtitle p {font-weight: 600;}"
+        ".hero-banner__subtitle p {font-weight: 600;}",
+        ".hero-banner__description {max-width: 514px; width: 100%;}"
       ],
       "name": "Hero Banner",
       "settings": {
-        "color_scheme": "scheme-5",
+        "color_scheme": "scheme-3",
         "image_position": "left",
         "columns_gap": 48,
         "columns_gap_mobile": 24,
