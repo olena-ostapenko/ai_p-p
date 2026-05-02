@@ -230,6 +230,29 @@
     {%- endif -%}
   {%- endfor -%}
 
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'decor_large' -%}
+      {%- assign safe_id = block.id | replace: '-', '_' -%}
+      .hero-decor-lg--{{ safe_id }} {
+        position: absolute;
+        left: {{ block.settings.pos_x }}%;
+        top: {{ block.settings.pos_y }}%;
+        width: {{ block.settings.size }}px;
+        height: {{ block.settings.size }}px;
+        transform: rotate({{ block.settings.rotation }}deg);
+        opacity: {{ block.settings.opacity | divided_by: 100.0 }};
+        pointer-events: none;
+        z-index: 0;
+      }
+      .hero-decor-lg--{{ safe_id }} img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+    {%- endif -%}
+  {%- endfor -%}
+
 {%- endstyle -%}
 
 <div class="hero-banner-{{ section.id }}">
@@ -241,6 +264,13 @@
       <div class="hero-decor--{{ safe_id }}" {{ block.shopify_attributes }} aria-hidden="true">
         {%- if block.settings.image != blank -%}
           {{ block.settings.image | image_url: width: 200 | image_tag: loading: 'lazy', alt: '' }}
+        {%- endif -%}
+      </div>
+    {%- elsif block.type == 'decor_large' -%}
+      {%- assign safe_id = block.id | replace: '-', '_' -%}
+      <div class="hero-decor-lg--{{ safe_id }}" {{ block.shopify_attributes }} aria-hidden="true">
+        {%- if block.settings.image != blank -%}
+          {{ block.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', alt: '' }}
         {%- endif -%}
       </div>
     {%- endif -%}
@@ -753,6 +783,70 @@
           "step": 5,
           "unit": "%",
           "default": 50
+        }
+      ]
+    }
+    ,
+    {
+      "type": "decor_large",
+      "name": "Decorative element (large)",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image (SVG or PNG)"
+        },
+        {
+          "type": "range",
+          "id": "size",
+          "label": "Size",
+          "min": 200,
+          "max": 1500,
+          "step": 13,
+          "unit": "px",
+          "default": 600
+        },
+        {
+          "type": "range",
+          "id": "pos_x",
+          "label": "Horizontal position",
+          "info": "0% = left, 100% = right. Can be negative to go off-screen.",
+          "min": -50,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "pos_y",
+          "label": "Vertical position",
+          "info": "0% = top, 100% = bottom.",
+          "min": -50,
+          "max": 100,
+          "step": 2,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "rotation",
+          "label": "Rotation",
+          "min": 0,
+          "max": 360,
+          "step": 5,
+          "unit": "°",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "opacity",
+          "label": "Opacity",
+          "min": 10,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 20
         }
       ]
     }
