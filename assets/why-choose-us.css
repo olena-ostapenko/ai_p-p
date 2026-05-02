@@ -218,8 +218,8 @@
   /* Chess positions — no overlap */
   /* Circle 1: top-left */
   .wcu-mobile--1 { left: 0; top: 0; }
-  /* Circle 2: top-right, starts after circle 1 ends horizontally */
-  .wcu-mobile--2 { left: min(54vw, 228px); top: min(8vw, 30px); }
+  /* Circle 2: top-right, aligned to right edge of container */
+  .wcu-mobile--2 { left: calc(100% - min(46vw, 195px)); top: min(8vw, 30px); }
   /* Circle 3: bottom-left, starts after circle 1 ends vertically */
   .wcu-mobile--3 { left: min(14vw, 60px); top: min(56vw, 238px); }
 
