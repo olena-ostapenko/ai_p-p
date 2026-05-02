@@ -193,11 +193,15 @@
   }
 
   /* Mobile collage — chess-like layout for 3 visible circles */
+  .wcu-col-photos {
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
   .wcu-photos {
     position: relative;
     width: 100%;
-    /* Height = enough for 3 circles in chess layout */
-    height: calc(min(46vw, 300px) * 2.1);
+    height: calc(min(42vw, 260px) * 2.3);
     aspect-ratio: unset;
   }
 
@@ -206,28 +210,43 @@
     position: absolute;
   }
 
-  /* Circle size: scale relative to viewport, max capped */
-  .wcu-photo {
-    width: min(46vw, 300px) !important;
-    height: min(46vw, 300px) !important;
+  /* Circle 1 — largest, top left */
+  .wcu-photo-wrap:not(.wcu-photo-wrap--hide-mobile):nth-of-type(1) .wcu-photo {
+    width: min(42vw, 260px) !important;
+    height: min(42vw, 260px) !important;
   }
-
-  /* Chess layout for first 3 visible circles */
-  /* Circle 1 — top left */
   .wcu-photo-wrap:not(.wcu-photo-wrap--hide-mobile):nth-of-type(1) {
     left: 0;
     top: 0;
   }
-  /* Circle 2 — top right, slightly lower */
+
+  /* Circle 2 — medium, top right, slightly lower */
+  .wcu-photo-wrap:not(.wcu-photo-wrap--hide-mobile):nth-of-type(2) .wcu-photo {
+    width: min(38vw, 230px) !important;
+    height: min(38vw, 230px) !important;
+  }
   .wcu-photo-wrap:not(.wcu-photo-wrap--hide-mobile):nth-of-type(2) {
     right: 0;
-    top: min(5vw, 30px);
+    top: min(4vw, 24px);
   }
-  /* Circle 3 — bottom center */
+
+  /* Circle 3 — smallest, bottom center */
+  .wcu-photo-wrap:not(.wcu-photo-wrap--hide-mobile):nth-of-type(3) .wcu-photo {
+    width: min(32vw, 190px) !important;
+    height: min(32vw, 190px) !important;
+  }
   .wcu-photo-wrap:not(.wcu-photo-wrap--hide-mobile):nth-of-type(3) {
     left: 50%;
     transform: translateX(-50%);
-    top: calc(min(46vw, 300px) * 0.9);
+    top: calc(min(42vw, 260px) * 0.85);
+  }
+
+  /* Badge — keep inside padded area */
+  .wcu-badge--right {
+    right: 0;
+  }
+  .wcu-badge--left {
+    left: 0;
   }
 }
 
