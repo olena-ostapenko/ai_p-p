@@ -525,6 +525,28 @@
             "opacity": 80
           }
         },
+        "decor_UPbwCD": {
+          "type": "decor",
+          "settings": {
+            "image": "shopify://shop_images/paw_4.svg",
+            "size": 110,
+            "pos_x": 26,
+            "pos_y": 73,
+            "rotation": 0,
+            "opacity": 50
+          }
+        },
+        "decor_pqc9P4": {
+          "type": "decor",
+          "settings": {
+            "image": "shopify://shop_images/paw_3.png",
+            "size": 105,
+            "pos_x": 5,
+            "pos_y": 77,
+            "rotation": 0,
+            "opacity": 80
+          }
+        },
         "decor_large_Wn7T8F": {
           "type": "decor_large",
           "settings": {
@@ -555,6 +577,8 @@
         "decor_xLJKmT",
         "decor_k9pTkQ",
         "decor_7WHFcc",
+        "decor_UPbwCD",
+        "decor_pqc9P4",
         "decor_large_Wn7T8F",
         "decor_large_dQBgjT"
       ],
