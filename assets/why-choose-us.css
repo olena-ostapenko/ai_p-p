@@ -157,6 +157,10 @@
   margin: 0 0 6px;
 }
 
+.wcu-feature__desc {
+  margin: 0;
+
+}
 
 /* ── Responsive ─────────────────────────────────────────── */
 @media screen and (max-width: 989px) {
