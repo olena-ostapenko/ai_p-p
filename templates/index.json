@@ -106,6 +106,7 @@
         "title": "<h1><strong>Turn Your Pet's</strong></h1><h1><strong>Photo Into</strong></h1>",
         "title_margin_bottom": 0,
         "title_margin_bottom_mobile": 0,
+        "enable_subtitle_decor": true,
         "subtitle": "<h1><strong>A Work Of Art!</strong></h1>",
         "subtitle_margin_bottom": 12,
         "subtitle_margin_bottom_mobile": 8,
@@ -452,12 +453,12 @@
         "padding_bottom": 60
       }
     },
-    "hero_4AQVaY": {
+    "hero_TrTNDG": {
       "type": "hero",
       "name": "Hero Banner",
       "settings": {
-        "color_scheme": "scheme-3",
-        "image_position": "left",
+        "color_scheme": "",
+        "image_position": "right",
         "columns_gap": 48,
         "columns_gap_mobile": 24,
         "section_padding_top": 60,
@@ -469,6 +470,7 @@
         "title": "<p><strong>Turn Your Pet's Photo Into</strong></p><p><strong>A Work Of Art!</strong></p>",
         "title_margin_bottom": 16,
         "title_margin_bottom_mobile": 12,
+        "enable_subtitle_decor": false,
         "subtitle": "<p>One-Of-A-Kind Portraits, Apparel & Gifts</p>",
         "subtitle_margin_bottom": 12,
         "subtitle_margin_bottom_mobile": 8,
@@ -529,7 +531,7 @@
     "our_best_sellers_RoJgkQ",
     "explore_collection_chWMTM",
     "why_choose_us_Fn3EXt",
-    "hero_4AQVaY",
+    "hero_TrTNDG",
     "featured_collection"
   ]
 }
