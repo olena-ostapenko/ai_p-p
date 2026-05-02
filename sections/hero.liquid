@@ -204,6 +204,7 @@
   .hero-banner-{{ section.id }} {
     position: relative;
     overflow: hidden;
+    isolation: isolate;
   }
 
   {%- for block in section.blocks -%}
@@ -245,7 +246,7 @@
     {%- endif -%}
   {%- endfor -%}
 
-  <div class="hero-banner__container" style="position:relative;z-index:1;">
+  <div class="hero-banner__container" style="position:relative;z-index:2;">
     <div class="hero-banner__grid page-width">
 
       {%- comment -%} Text Column {%- endcomment -%}
