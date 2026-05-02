@@ -486,7 +486,7 @@
           "settings": {
             "image": "shopify://shop_images/spike.png",
             "size": 60,
-            "pos_x": 47,
+            "pos_x": 45,
             "pos_y": 46,
             "rotation": 0,
             "opacity": 80
