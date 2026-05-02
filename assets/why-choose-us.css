@@ -73,6 +73,8 @@
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
+  border: 2px solid #ffffff;
+  box-sizing: border-box;
 }
 
 .wcu-badge__avatar img {
@@ -104,6 +106,10 @@
   font-family: var(--font-body-family);
   color: rgb(var(--color-foreground));
   margin: 0;
+  text-transform: lowercase;
+}
+.wcu-badge__review::first-letter {
+  text-transform: uppercase;
 }
 
 /* ── Text column ────────────────────────────────────────── */
