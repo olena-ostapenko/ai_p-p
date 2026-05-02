@@ -507,7 +507,7 @@
           "type": "decor",
           "settings": {
             "image": "shopify://shop_images/Vector-1.svg",
-            "size": 32,
+            "size": 30,
             "pos_x": 52,
             "pos_y": 59,
             "rotation": 0,
@@ -518,7 +518,7 @@
           "type": "decor",
           "settings": {
             "image": "shopify://shop_images/mdi_heart_1db04b03-b28f-4755-a509-8b4b82a7bce0.png",
-            "size": 24,
+            "size": 25,
             "pos_x": 48,
             "pos_y": 62,
             "rotation": 0,
