@@ -535,6 +535,17 @@
             "rotation": 0,
             "opacity": 80
           }
+        },
+        "decor_large_dQBgjT": {
+          "type": "decor_large",
+          "settings": {
+            "image": "shopify://shop_images/circle_1.svg",
+            "size": 595,
+            "pos_x": 0,
+            "pos_y": -80,
+            "rotation": 0,
+            "opacity": 80
+          }
         }
       },
       "block_order": [
@@ -544,7 +555,8 @@
         "decor_xLJKmT",
         "decor_k9pTkQ",
         "decor_7WHFcc",
-        "decor_large_Wn7T8F"
+        "decor_large_Wn7T8F",
+        "decor_large_dQBgjT"
       ],
       "custom_css": [
         ".hero-banner__subtitle p {font-weight: 600;}",
