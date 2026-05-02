@@ -459,7 +459,7 @@
     "hero_TrTNDG": {
       "type": "hero",
       "custom_css": [
-        ".hero-banner__subtitle p{font-weight:700;}"
+        ".hero-banner__subtitle p {font-weight: 600;}"
       ],
       "name": "Hero Banner",
       "settings": {
