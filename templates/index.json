@@ -115,7 +115,7 @@
         "description": "<p>Turn any pet photo into a <strong>one-of-a-kind </strong>portrait, apparel, or gift — professionally designed and perfected with unlimited revisions</p>",
         "description_margin_bottom": 28,
         "description_margin_bottom_mobile": 20,
-        "button_label": "Shop Now",
+        "button_label": "",
         "button_link": "",
         "button_open_new_tab": false,
         "button_bg_color": "#e9a753",
