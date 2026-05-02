@@ -65,7 +65,7 @@
         {%- for block in section.blocks -%}
           {%- if block.type == 'photo' -%}
             {%- assign safe_id = block.id | replace: '-', '_' -%}
-            <div class="wcu-photo-wrap wcu-photo-wrap--{{ safe_id }}" {{ block.shopify_attributes }}>
+            <div class="wcu-photo-wrap wcu-photo-wrap--{{ safe_id }}{% unless block.settings.show_on_mobile %} wcu-photo-wrap--hide-mobile{% endunless %}" {{ block.shopify_attributes }}>
               <div class="wcu-photo">
                 {%- if block.settings.image != blank -%}
                   {{ block.settings.image | image_url: width: 646 | image_tag: loading: 'lazy', alt: '' }}
@@ -313,6 +313,16 @@
           "unit": "%",
           "label": "Vertical position",
           "default": 0
+        },
+        {
+          "type": "header",
+          "content": "Mobile"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_on_mobile",
+          "label": "Show on mobile",
+          "default": true
         },
         {
           "type": "header",

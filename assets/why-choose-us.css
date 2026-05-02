@@ -185,14 +185,30 @@
   .wcu-col-photos {
     flex: 0 0 100%;
     width: 100%;
-    max-width: 650px;
+    max-width: 500px;
     margin: 0 auto;
   }
+
   .wcu-photos {
     width: 100%;
-    max-width: 650px;
+    max-width: 500px;
     margin: 0 auto;
-    /* % sizes + aspect-ratio handle scaling automatically */
+    /* Container shrinks → % sizes + aspect-ratio scale everything automatically */
+    aspect-ratio: 668 / 654;
+  }
+
+  /* Hide photos marked as mobile-hidden */
+  .wcu-photo-wrap--hide-mobile {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .wcu-col-photos {
+    max-width: 360px;
+  }
+  .wcu-photos {
+    max-width: 360px;
   }
 }
 
