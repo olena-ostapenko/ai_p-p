@@ -32,7 +32,7 @@
 }
 
 /* Positions matching the design */
-.wcu-photo-wrap--1 { left: 12.31%; top:    8.33%;  }
+.wcu-photo-wrap--1 { right: 0;     top:    40%;    }
 .wcu-photo-wrap--2 { left: 52.31%; top:    0;      }
 .wcu-photo-wrap--3 { left: 53.85%; bottom: 0;      }
 .wcu-photo-wrap--4 { left: 0;      top:    53.33%; }
@@ -56,12 +56,13 @@
 
 /* Sizes */
 /* Sizes as % of container width — auto-scales with container */
-.wcu-photo--323 { width: 49.69%; aspect-ratio: 1; height: auto; }
-.wcu-photo--282 { width: 43.38%; aspect-ratio: 1; height: auto; }
-.wcu-photo--194 { width: 29.85%; aspect-ratio: 1; height: auto; }
-.wcu-photo--153 { width: 23.54%; aspect-ratio: 1; height: auto; }
-.wcu-photo--130 { width: 20.00%; aspect-ratio: 1; height: auto; }
-.wcu-photo--93  { width: 14.31%; aspect-ratio: 1; height: auto; }
+/* Sizes: max at design px, scale proportionally below */
+.wcu-photo--1 { width: min(323px, 49.69%); aspect-ratio: 1; height: auto; }
+.wcu-photo--2 { width: min(282px, 43.38%); aspect-ratio: 1; height: auto; }
+.wcu-photo--3 { width: min(194px, 29.85%); aspect-ratio: 1; height: auto; }
+.wcu-photo--4 { width: min(153px, 23.54%); aspect-ratio: 1; height: auto; }
+.wcu-photo--5 { width: min(130px, 20.00%); aspect-ratio: 1; height: auto; }
+.wcu-photo--6 { width: min(93px,  14.31%); aspect-ratio: 1; height: auto; }
 
 /* ── Badge — positioned relative to photo-wrap ─────────── */
 /* Sits at bottom center of the circle, overlapping it      */
