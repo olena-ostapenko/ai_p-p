@@ -23,7 +23,8 @@
   /* Photo positions and sizes from block settings */
   {%- for block in section.blocks -%}
     {%- if block.type == 'photo' -%}
-      .wcu-photo-wrap--b{{ block.id }} {
+      {%- assign safe_id = block.id | replace: '-', '_' -%}
+      .wcu-photo-wrap--{{ safe_id }} {
         {%- if block.settings.anchor_x == 'left' -%}
           left: {{ block.settings.pos_x }}%;
         {%- else -%}
@@ -35,7 +36,7 @@
           bottom: {{ block.settings.pos_y }}%;
         {%- endif -%}
       }
-      .wcu-photo-wrap--b{{ block.id }} .wcu-photo {
+      .wcu-photo-wrap--{{ safe_id }} .wcu-photo {
         width: {{ block.settings.size }}px;
         height: {{ block.settings.size }}px;
       }
@@ -63,7 +64,8 @@
 
         {%- for block in section.blocks -%}
           {%- if block.type == 'photo' -%}
-            <div class="wcu-photo-wrap wcu-photo-wrap--b{{ block.id }}" {{ block.shopify_attributes }}>
+            {%- assign safe_id = block.id | replace: '-', '_' -%}
+            <div class="wcu-photo-wrap wcu-photo-wrap--{{ safe_id }}" {{ block.shopify_attributes }}>
               <div class="wcu-photo">
                 {%- if block.settings.image != blank -%}
                   {{ block.settings.image | image_url: width: 646 | image_tag: loading: 'lazy', alt: '' }}
