@@ -35,7 +35,7 @@
   box-shadow: none;
   transition: none;
   width: 100%;
-  /* Fixed total height = fixed image + fixed body — all cards identical */
+  background-color:#ffffff;
   height: 100%;
 }
 
