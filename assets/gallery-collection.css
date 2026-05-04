@@ -74,7 +74,7 @@
   padding: 12px 14px 16px;
   flex: 1;
   border-radius: var(--product-card-corner-radius, 0.8rem);
-  margin-top: -167px;  /* slides under image */
+  margin-top: -20px;  /* slides under image */
   padding-top: 28px;
   position: relative;
   z-index: 0;
