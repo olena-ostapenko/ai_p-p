@@ -48,6 +48,7 @@
 
   .gc-{{ section.id }} .gc-card__body {
     background-color: {{ section.settings.card_bg }};
+    text-align: {{ section.settings.card_text_align }};
   }
 {%- endstyle -%}
 
@@ -238,6 +239,16 @@
     {
       "type": "header",
       "content": "Card style"
+    },
+    {
+      "type": "select",
+      "id": "card_text_align",
+      "label": "Card text alignment",
+      "options": [
+        { "value": "left",   "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "left"
     },
     {
       "type": "color",
