@@ -665,6 +665,7 @@
         "column_BmAgwQ": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/block_2.jpg",
             "title": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
@@ -687,7 +688,7 @@
         "column_PrPQ4c"
       ],
       "custom_css": [
-        ".multicolumn.background-primary .multicolumn-card{background-color: transparent;}"
+        ".multicolumn.background-primary .multicolumn-card {background-color: transparent;}"
       ],
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
@@ -700,7 +701,7 @@
         "columns_desktop": 3,
         "column_alignment": "left",
         "background_style": "primary",
-        "color_scheme": "scheme-5",
+        "color_scheme": "scheme-1",
         "columns_mobile": "1",
         "swipe_on_mobile": false,
         "padding_top": 36,
