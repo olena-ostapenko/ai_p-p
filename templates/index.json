@@ -656,8 +656,8 @@
           "type": "column",
           "settings": {
             "image": "shopify://shop_images/b_1.png",
-            "title": "Column",
-            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "title": "Upload a photo of your pet",
+            "text": "<p><strong>Soft, cozy, and completely personalized</strong> — our custom-shaped pillows are designed to capture your pet’s unique look and personality.</p>",
             "link_label": "",
             "link": ""
           }
