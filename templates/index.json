@@ -762,36 +762,31 @@
             "description": "Clean & minimal portraits"
           }
         },
-        "card_Un6wdy": {
+        "card_AyfdK8": {
           "type": "card",
           "settings": {
-            "collection": "",
+            "collection": "watercolor",
             "custom_title": "",
-            "description": ""
+            "image": "shopify://shop_images/rufus.jpg",
+            "description": "Soft and artistic look"
           }
         },
-        "card_drbTXf": {
+        "card_TUXDeq": {
           "type": "card",
           "settings": {
-            "collection": "",
-            "custom_title": "",
-            "description": ""
+            "collection": "modern",
+            "custom_title": "Renaissance",
+            "image": "shopify://shop_images/renaissance.jpg",
+            "description": "Royal & classic paintings"
           }
         },
-        "card_eVaggg": {
+        "card_qrRAGJ": {
           "type": "card",
           "settings": {
-            "collection": "",
-            "custom_title": "",
-            "description": ""
-          }
-        },
-        "card_F6wH4Q": {
-          "type": "card",
-          "settings": {
-            "collection": "",
-            "custom_title": "",
-            "description": ""
+            "collection": "modern",
+            "custom_title": "Renaissance",
+            "image": "shopify://shop_images/renaissance.jpg",
+            "description": "Royal & classic paintings"
           }
         }
       },
@@ -801,10 +796,9 @@
         "card_nAFAci",
         "card_emePJb",
         "card_7wLBxk",
-        "card_Un6wdy",
-        "card_drbTXf",
-        "card_eVaggg",
-        "card_F6wH4Q"
+        "card_AyfdK8",
+        "card_TUXDeq",
+        "card_qrRAGJ"
       ],
       "name": "Gallery Collection",
       "settings": {
