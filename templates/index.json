@@ -686,6 +686,9 @@
         "column_BmAgwQ",
         "column_PrPQ4c"
       ],
+      "custom_css": [
+        ".multicolumn.background-primary .multicolumn-card{background-color: transparent;}"
+      ],
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
         "title": "Multicolumn",
