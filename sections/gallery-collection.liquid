@@ -107,12 +107,13 @@
                   >
                     <div class="gc-card__image-wrap">
                       {%- if card_image != blank -%}
+                        {%- assign card_alt = card_title | escape -%}
                         {{ card_image
                           | image_url: width: 600
                           | image_tag:
                             loading: 'lazy',
                             widths: '300,400,500,600',
-                            alt: card_title | escape,
+                            alt: card_alt,
                             class: 'gc-card__image'
                         }}
                       {%- else -%}
