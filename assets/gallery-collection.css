@@ -71,7 +71,7 @@
 
 /* Body */
 .gc-card__body {
-  padding: 17px 14px 38px;
+  padding: 12px 14px 16px;
   flex: 1;
   border-radius: var(--product-card-corner-radius, 0.8rem);
   margin-top: -167px;  /* slides under image */
