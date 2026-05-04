@@ -70,6 +70,17 @@
     pointer-events: none;
   }
 
+  @media screen and (max-width: 749px) {
+    .multicolumn-{{ section.id }} .mc-step-badge {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .multicolumn-{{ section.id }} .mc-step-badge__paw {
+      width: 36px;
+      height: 36px;
+    }
+  }
+
   .multicolumn-{{ section.id }} .mc-step-badge__paw img {
     width: 100%;
     height: 100%;
