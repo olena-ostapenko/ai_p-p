@@ -617,7 +617,7 @@
         "section_padding_horizontal": 24,
         "section_padding_top_mobile": 32,
         "section_padding_bottom_mobile": 32,
-        "section_padding_horizontal_mobile": 16,
+        "section_padding_horizontal_mobile": 0,
         "title": "<h1>Custom Shaped Pillows</h1>",
         "title_margin_bottom": 16,
         "title_margin_bottom_mobile": 12,
