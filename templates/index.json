@@ -665,7 +665,7 @@
         "column_BmAgwQ": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/block_2.jpg",
+            "image": "shopify://shop_images/b_2.png",
             "title": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
@@ -675,6 +675,7 @@
         "column_PrPQ4c": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/b_3.png",
             "title": "Column",
             "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
             "link_label": "",
