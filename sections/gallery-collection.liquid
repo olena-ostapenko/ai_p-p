@@ -1,0 +1,318 @@
+{{ 'gallery-collection.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    background-color: {{ section.settings.color_scheme.settings.background }};
+    color: {{ section.settings.color_scheme.settings.text }};
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .gc-{{ section.id }} .section-figma__heading {
+    text-align: {{ section.settings.title_align }};
+  }
+
+  @media screen and (min-width: 750px) {
+    .gc-{{ section.id }} .section-figma__heading {
+      text-align: {{ section.settings.title_align_desktop }};
+    }
+  }
+
+  .gc-{{ section.id }} .gc-grid {
+    --gc-cols: {{ section.settings.cards_per_row }};
+    --gc-rows: {{ section.settings.rows_count }};
+  }
+
+  .gc-{{ section.id }} .gc-card__title {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: rgb(var(--color-foreground));
+    margin: 0 0 4px;
+  }
+
+  .gc-{{ section.id }} .gc-card__desc {
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: {{ section.settings.desc_color }};
+    margin: 0;
+  }
+
+  .gc-{{ section.id }} .gc-card__body {
+    background-color: {{ section.settings.card_bg }};
+  }
+{%- endstyle -%}
+
+<div class="gc-section gc-{{ section.id }}">
+  <div class="page-width">
+
+    {%- if section.settings.title != blank -%}
+      <div class="gc-section__header">
+        <h2 class="section-figma__heading">{{ section.settings.title }}</h2>
+      </div>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+
+      {%- comment -%} Split blocks into rows {%- endcomment -%}
+      {%- assign cols = section.settings.cards_per_row | plus: 0 -%}
+      {%- assign rows = section.settings.rows_count | plus: 0 -%}
+      {%- assign total_cards = cols | times: rows -%}
+      {%- assign row_index = 0 -%}
+
+      {%- for i in (1..rows) -%}
+        {%- assign row_start = row_index -%}
+        {%- assign row_end   = row_start | plus: cols | minus: 1 -%}
+
+        <div class="gc-row-wrap">
+          <ul class="gc-grid list-unstyled" role="list" id="gc-row-{{ section.id }}-{{ i }}">
+            {%- for block in section.blocks -%}
+              {%- if forloop.index0 >= row_start and forloop.index0 <= row_end -%}
+                {%- assign collection = block.settings.collection -%}
+                {%- assign custom_title = block.settings.custom_title -%}
+                {%- assign custom_desc  = block.settings.description -%}
+                {%- assign custom_image = block.settings.image -%}
+
+                {%- comment -%} Resolve image {%- endcomment -%}
+                {%- assign card_image = nil -%}
+                {%- if custom_image != blank -%}
+                  {%- assign card_image = custom_image -%}
+                {%- elsif collection != blank and collection.image -%}
+                  {%- assign card_image = collection.image -%}
+                {%- elsif collection != blank and collection.products.first.featured_image -%}
+                  {%- assign card_image = collection.products.first.featured_image -%}
+                {%- endif -%}
+
+                {%- comment -%} Resolve title {%- endcomment -%}
+                {%- if custom_title != blank -%}
+                  {%- assign card_title = custom_title -%}
+                {%- elsif collection != blank -%}
+                  {%- assign card_title = collection.title -%}
+                {%- else -%}
+                  {%- assign card_title = 'Collection' -%}
+                {%- endif -%}
+
+                <li class="gc-grid__item" {{ block.shopify_attributes }}>
+                  <a
+                    class="gc-card"
+                    href="{% if collection != blank %}{{ collection.url }}{% else %}#{% endif %}"
+                  >
+                    <div class="gc-card__image-wrap">
+                      {%- if card_image != blank -%}
+                        {{ card_image
+                          | image_url: width: 600
+                          | image_tag:
+                            loading: 'lazy',
+                            widths: '300,400,500,600',
+                            alt: card_title | escape,
+                            class: 'gc-card__image'
+                        }}
+                      {%- else -%}
+                        {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                      {%- endif -%}
+                    </div>
+                    <div class="gc-card__body">
+                      <p class="gc-card__title">{{ card_title }}</p>
+                      {%- if custom_desc != blank -%}
+                        <p class="gc-card__desc">{{ custom_desc }}</p>
+                      {%- endif -%}
+                    </div>
+                  </a>
+                </li>
+
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+
+          {%- comment -%} Mobile slider nav {%- endcomment -%}
+          <div class="gc-slider-nav small-hide medium-hide" aria-hidden="true">
+            <button class="gc-slider-nav__btn gc-slider-nav__btn--prev" data-row="gc-row-{{ section.id }}-{{ i }}" aria-label="Previous">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <button class="gc-slider-nav__btn gc-slider-nav__btn--next" data-row="gc-row-{{ section.id }}-{{ i }}" aria-label="Next">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+        </div>
+
+        {%- assign row_index = row_index | plus: cols -%}
+      {%- endfor -%}
+
+    {%- endif -%}
+
+  </div>
+</div>
+
+<script>
+  (() => {
+    const btns = document.querySelectorAll('.gc-slider-nav__btn');
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const rowId = btn.dataset.row;
+        const rail = document.getElementById(rowId);
+        if (!rail) return;
+        const item = rail.querySelector('.gc-grid__item');
+        if (!item) return;
+        const itemW = item.offsetWidth + parseInt(getComputedStyle(rail).gap || 16);
+        const dir = btn.classList.contains('gc-slider-nav__btn--next') ? 1 : -1;
+        rail.scrollBy({ left: dir * itemW, behavior: 'smooth' });
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Gallery Collection",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>SHOP BY DESIGN</p>"
+    },
+    {
+      "type": "select",
+      "id": "title_align",
+      "label": "Title alignment (mobile)",
+      "options": [
+        { "value": "left",   "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "title_align_desktop",
+      "label": "Title alignment (desktop)",
+      "options": [
+        { "value": "left",   "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Grid"
+    },
+    {
+      "type": "range",
+      "id": "cards_per_row",
+      "label": "Cards per row",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "rows_count",
+      "label": "Number of rows",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "header",
+      "content": "Card style"
+    },
+    {
+      "type": "color",
+      "id": "card_bg",
+      "label": "Card background color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "desc_color",
+      "label": "Description color",
+      "default": "#E9A753"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0, "max": 100, "step": 4, "unit": "px",
+      "label": "Padding top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0, "max": 100, "step": 4, "unit": "px",
+      "label": "Padding bottom",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Collection card",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "custom_title",
+          "label": "Custom title",
+          "info": "Overrides collection title if filled"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom image",
+          "info": "Overrides collection image if uploaded"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gallery Collection",
+      "blocks": [
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" }
+      ]
+    }
+  ]
+}
+{% endschema %}
