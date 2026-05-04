@@ -76,7 +76,7 @@
   width: calc(85% + 44px);
   align-self: center;
   box-sizing: border-box;
-  padding: 12px 14px 20px;
+  padding: 12px 14px 40px;
   flex: 1;
   border-radius: var(--product-card-corner-radius, 0.8rem);
   margin-top: -73px;
