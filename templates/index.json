@@ -739,8 +739,9 @@
           "type": "card",
           "settings": {
             "collection": "",
-            "custom_title": "",
-            "description": ""
+            "custom_title": "Renaissance",
+            "image": "shopify://shop_images/renaissance.jpg",
+            "description": "Royal & classic paintings"
           }
         },
         "card_7wLBxk": {
