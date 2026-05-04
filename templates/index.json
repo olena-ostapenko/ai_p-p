@@ -693,8 +693,12 @@
       ],
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
-        "title": "How to order your custom pet portrait",
+        "title": "<p>How to order your custom </p><p><strong>pet portrait</strong></p>",
+        "title_accent_words": "pet portrait",
+        "title_accent_color": "#e9a753",
         "heading_size": "h1",
+        "show_step_badges": false,
+        "badge_color": "#e9a753",
         "image_width": "full",
         "image_ratio": "adapt",
         "button_label": "",
