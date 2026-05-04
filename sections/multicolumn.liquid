@@ -19,6 +19,12 @@
     color: {{ section.settings.title_accent_color }};
   }
 
+  /* Remove paragraph margins inside heading */
+  .multicolumn-{{ section.id }} .title p {
+    margin: 0;
+    display: inline;
+  }
+
   /* Column card title & text */
   .multicolumn-{{ section.id }} .multicolumn-card__info h3 {
     font-size: 25px;
