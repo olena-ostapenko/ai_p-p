@@ -689,7 +689,8 @@
         "column_PrPQ4c"
       ],
       "custom_css": [
-        ".multicolumn.background-primary .multicolumn-card {background-color: transparent;}"
+        ".multicolumn.background-primary .multicolumn-card {background-color: transparent;}",
+        ".multicolumn-card__info{text-align: center;}"
       ],
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
