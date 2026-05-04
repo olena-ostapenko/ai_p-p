@@ -747,7 +747,7 @@
         "card_emePJb": {
           "type": "card",
           "settings": {
-            "collection": "",
+            "collection": "modern",
             "custom_title": "Renaissance",
             "image": "shopify://shop_images/renaissance.jpg",
             "description": "Royal & classic paintings"
@@ -756,9 +756,10 @@
         "card_7wLBxk": {
           "type": "card",
           "settings": {
-            "collection": "",
+            "collection": "modern",
             "custom_title": "",
-            "description": ""
+            "image": "shopify://shop_images/Rufus_menu.jpg",
+            "description": "Clean & minimal portraits"
           }
         },
         "card_Un6wdy": {
