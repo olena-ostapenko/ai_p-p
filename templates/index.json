@@ -729,9 +729,10 @@
         "card_Tcn6UR": {
           "type": "card",
           "settings": {
-            "collection": "",
+            "collection": "watercolor",
             "custom_title": "",
-            "description": ""
+            "image": "shopify://shop_images/rufus.jpg",
+            "description": "Soft and artistic look"
           }
         },
         "card_nAFAci": {
