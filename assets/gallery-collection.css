@@ -57,20 +57,16 @@
   object-fit: cover;
   display: block;
   box-shadow:
-    calc(var(--product-card-shadow-horizontal-offset, 0) * 1rem)
-    calc(var(--product-card-shadow-vertical-offset, 0.2) * 1rem)
-    calc(var(--product-card-shadow-blur-radius, 1.5) * 1rem)
-    rgba(var(--color-shadow, 0,0,0), var(--product-card-shadow-opacity, 0.12));
+    0 4px 8px rgba(0, 0, 0, 0.08),
+    0 12px 24px rgba(0, 0, 0, 0.12);
   transition: transform 0.4s ease, box-shadow 0.3s ease;
 }
 
 .gc-card:hover .gc-card__image-wrap img {
   transform: translateY(-4px);
   box-shadow:
-    calc(var(--product-card-shadow-horizontal-offset, 0) * 1rem)
-    calc((var(--product-card-shadow-vertical-offset, 0.2) + 0.6) * 1rem)
-    calc((var(--product-card-shadow-blur-radius, 1.5) + 1) * 1rem)
-    rgba(var(--color-shadow, 0,0,0), calc(var(--product-card-shadow-opacity, 0.12) + 0.08));
+    0 8px 16px rgba(0, 0, 0, 0.10),
+    0 20px 40px rgba(0, 0, 0, 0.16);
 }
 
 /* Body */
