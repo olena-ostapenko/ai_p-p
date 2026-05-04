@@ -693,7 +693,7 @@
       ],
       "name": "t:sections.multicolumn.presets.name",
       "settings": {
-        "title": "<p>How to order your custom </p><p><strong>pet portrait</strong></p>",
+        "title": "",
         "title_accent_words": "pet portrait",
         "title_accent_color": "#e9a753",
         "heading_size": "h1",
