@@ -56,7 +56,6 @@
   aspect-ratio: 236 / 350;
   object-fit: cover;
   display: block;
-  border-radius: var(--product-card-corner-radius, 0.8rem);
   box-shadow:
     calc(var(--product-card-shadow-horizontal-offset, 0) * 1rem)
     calc(var(--product-card-shadow-vertical-offset, 0.2) * 1rem)
