@@ -190,7 +190,7 @@
   {%- if section.settings.enable_image_border -%}
   .hero-banner-{{ section.id }} .hero-gallery__item img {
     outline: {{ section.settings.border_thickness }}px solid {{ section.settings.decoration_color }};
-    outline-offset: -{{ section.settings.border_thickness }}px;
+    outline-offset: -1px;
   }
   {%- endif -%}
 
