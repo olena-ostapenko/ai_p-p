@@ -116,9 +116,9 @@
 
   .hero-banner-{{ section.id }} .hero-gallery__item {
     overflow: hidden;
-    border-radius: {% if section.settings.image_border_radius %}{{ section.settings.image_border_radius_px }}px{% else %}0{% endif %};
+    border-radius: {% if section.settings.gallery_border_radius %}{{ section.settings.gallery_border_radius_px }}px{% else %}0{% endif %};
     position: relative;
-    min-height: 0; /* important for grid */
+    min-height: 0;
   }
 
   .hero-banner-{{ section.id }} .hero-gallery__item img,
@@ -135,7 +135,7 @@
     position: absolute;
     inset: 0;
     border: {{ section.settings.border_thickness }}px solid {{ section.settings.decoration_color }};
-    border-radius: {% if section.settings.image_border_radius %}{{ section.settings.image_border_radius_px }}px{% else %}0{% endif %};
+    border-radius: {% if section.settings.gallery_border_radius %}{{ section.settings.gallery_border_radius_px }}px{% else %}0{% endif %};
     pointer-events: none;
   }
   {%- endif -%}
@@ -785,6 +785,22 @@
       "step": 10,
       "unit": "px",
       "default": 220
+    },
+    {
+      "type": "checkbox",
+      "id": "gallery_border_radius",
+      "label": "Enable border radius on gallery images",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "gallery_border_radius_px",
+      "label": "Gallery images border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 12
     },
     {
       "type": "header",
