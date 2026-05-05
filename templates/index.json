@@ -857,7 +857,7 @@
         "image_width": 500,
         "image_width_mobile": 300,
         "image_border_radius": true,
-        "image_border_radius_px": 12,
+        "image_border_radius_px": 10,
         "enable_image_border": true,
         "decoration_color": "#ffffff",
         "border_thickness": 10,
