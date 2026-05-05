@@ -44,6 +44,13 @@
   min-height: 90px;
 }
 
+.ec-card__wrap .sh-card__desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 /* ── Image wrap — position relative for paw overlay ──────── */
 .sh-grid__item  {
   position: relative;
