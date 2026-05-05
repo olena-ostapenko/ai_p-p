@@ -152,7 +152,12 @@
     {%- unless section.settings.title == blank -%}
       <div class="title-wrapper-with-link title-wrapper--self-padded-mobile title-wrapper--no-top-margin multicolumn__title">
         {%- if section.settings.title_accent_words != blank -%}
-          {%- assign rendered_title = section.settings.title -%}
+          {%- comment -%}
+            Strip <p> tags, replace </p> with space, keep inline content.
+            Then wrap accent words in span.
+          {%- endcomment -%}
+          {%- assign plain_title = section.settings.title | replace: '</p>', ' ' | replace: '<p>', '' | strip -%}
+          {%- assign rendered_title = plain_title -%}
           {%- for aw in accent_words -%}
             {%- assign aw_trim = aw | strip -%}
             {%- if aw_trim != blank -%}
@@ -169,7 +174,8 @@
           {%- endfor -%}
           <h2 class="section-figma__heading">{{ rendered_title }}</h2>
         {%- else -%}
-          <h2 class="section-figma__heading">{{ section.settings.title }}</h2>
+          {%- assign plain_title = section.settings.title | replace: '</p>', ' ' | replace: '<p>', '' | strip -%}
+          <h2 class="section-figma__heading">{{ plain_title }}</h2>
         {%- endif -%}
 
         {%- if section.settings.button_label != blank and show_mobile_slider -%}
