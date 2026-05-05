@@ -890,7 +890,7 @@
         "gallery_chess": "default",
         "gallery_chess_offset": 40,
         "gallery_col_ratio": "1fr 1fr",
-        "img1_width": 400,
+        "img1_width": 250,
         "image": "shopify://shop_images/order_1.jpg",
         "image_width": 250,
         "image_width_mobile": 300,
