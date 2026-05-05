@@ -168,14 +168,19 @@
 
   .hero-banner-{{ section.id }} .hero-gallery__item img,
   .hero-banner-{{ section.id }} .hero-gallery__item .placeholder-svg {
-    width: auto;
+    width: 100%;
     height: auto;
-    max-width: 100%;
     display: block;
     border-radius: {% if section.settings.gallery_border_radius %}{{ section.settings.gallery_border_radius_px }}px{% else %}0{% endif %};
     position: relative;
     z-index: 1;
   }
+
+  /* Individual image widths */
+  .hero-banner-{{ section.id }} .hero-gallery__item--1 { width: {{ section.settings.img1_width }}px; }
+  .hero-banner-{{ section.id }} .hero-gallery__item--2 { width: {{ section.settings.img2_width }}px; }
+  .hero-banner-{{ section.id }} .hero-gallery__item--3 { width: {{ section.settings.img3_width }}px; }
+  .hero-banner-{{ section.id }} .hero-gallery__item--4 { width: {{ section.settings.img4_width }}px; }
 
   {%- if section.settings.enable_image_border -%}
   .hero-banner-{{ section.id }} .hero-gallery__item::before {
@@ -949,6 +954,16 @@
       "content": "Image 1"
     },
     {
+      "type": "range",
+      "id": "img1_width",
+      "label": "Image 1 width",
+      "min": 100,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "default": 400
+    },
+    {
       "type": "header",
       "content": "Image"
     },
@@ -1040,6 +1055,16 @@
       "label": "Image 2"
     },
     {
+      "type": "range",
+      "id": "img2_width",
+      "label": "Image 2 width",
+      "min": 100,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "default": 400
+    },
+    {
       "type": "header",
       "content": "Image 3"
     },
@@ -1049,6 +1074,16 @@
       "label": "Image 3"
     },
     {
+      "type": "range",
+      "id": "img3_width",
+      "label": "Image 3 width",
+      "min": 100,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "default": 400
+    },
+    {
       "type": "header",
       "content": "Image 4"
     },
@@ -1056,6 +1091,16 @@
       "type": "image_picker",
       "id": "image_4",
       "label": "Image 4"
+    },
+    {
+      "type": "range",
+      "id": "img4_width",
+      "label": "Image 4 width",
+      "min": 100,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "default": 400
     }
   ],
   "blocks": [
