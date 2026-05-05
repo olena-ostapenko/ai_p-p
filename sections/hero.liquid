@@ -326,8 +326,13 @@
   /* Decorative elements */
   .hero-banner-{{ section.id }} {
     position: relative;
-    overflow: hidden;
     isolation: isolate;
+    /* overflow:hidden removed — was clipping image outlines/borders */
+  }
+
+  /* Clip decorative elements without affecting image borders */
+  .hero-banner-{{ section.id }} .hero-banner__container {
+    overflow: visible;
   }
 
   {%- for block in section.blocks -%}
