@@ -288,35 +288,12 @@
       display: block;
     }
 
-    /* Gallery — full width, items scale proportionally */
+    /* Gallery — scale down to fit screen width */
+    .hero-banner-{{ section.id }} .hero-banner__image-col {
+      overflow: hidden;
+    }
     .hero-banner-{{ section.id }} .hero-banner__gallery {
-      width: 100%;
-      flex-direction: column;
-      padding: 0;
-    }
-
-    .hero-banner-{{ section.id }} .hero-gallery__row {
-      width: 100%;
-      display: flex;
-      gap: {{ section.settings.gallery_gap }}px;
-    }
-
-    .hero-banner-{{ section.id }} .hero-gallery__item {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .hero-banner-{{ section.id }} .hero-gallery__item img {
-      width: 100%;
-      height: auto;
-    }
-
-    /* Override individual widths on mobile */
-    .hero-banner-{{ section.id }} .hero-gallery__item--1,
-    .hero-banner-{{ section.id }} .hero-gallery__item--2,
-    .hero-banner-{{ section.id }} .hero-gallery__item--3,
-    .hero-banner-{{ section.id }} .hero-gallery__item--4 {
-      width: auto;
+      transform-origin: top left;
     }
 
     /* Маргінали для тексту */
@@ -572,6 +549,39 @@
     </div>
   </div>
 </div>
+
+<script>
+  (() => {
+    function scaleHeroGallery() {
+      const section = document.getElementById('shopify-section-{{ section.id }}');
+      if (!section) return;
+      const col = section.querySelector('.hero-banner__image-col');
+      const gallery = section.querySelector('.hero-banner__gallery');
+      if (!col || !gallery) return;
+
+      if (window.innerWidth > 749) {
+        gallery.style.transform = '';
+        gallery.style.transformOrigin = '';
+        col.style.height = '';
+        return;
+      }
+
+      gallery.style.transform = '';
+      const galleryW = gallery.scrollWidth;
+      const colW = col.clientWidth;
+
+      if (galleryW > colW && galleryW > 0) {
+        const scale = colW / galleryW;
+        gallery.style.transformOrigin = 'top left';
+        gallery.style.transform = 'scale(' + scale + ')';
+        col.style.height = Math.round(gallery.scrollHeight * scale) + 'px';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', scaleHeroGallery);
+    window.addEventListener('resize', scaleHeroGallery);
+  })();
+</script>
 
 {% schema %}
 {
