@@ -274,11 +274,10 @@
 
     /* Image col — full width on mobile */
     .hero-banner-{{ section.id }} .hero-banner__image-col {
-      width: 100%;
-      max-width: 100%;
-      margin: 0 auto;
-      flex: 0 0 100%;
-      overflow: visible;
+      width: 100% !important;
+      max-width: 100% !important;
+      flex: 0 0 100% !important;
+      overflow: hidden;
     }
 
     /* Single image */
@@ -288,12 +287,31 @@
       display: block;
     }
 
-    /* Gallery — scale down to fit screen width */
-    .hero-banner-{{ section.id }} .hero-banner__image-col {
-      overflow: hidden;
-    }
+    /* Gallery — full width, rows scale proportionally */
     .hero-banner-{{ section.id }} .hero-banner__gallery {
-      transform-origin: top left;
+      width: 100% !important;
+      flex-direction: column;
+      transform: none !important;
+    }
+
+    .hero-banner-{{ section.id }} .hero-gallery__row {
+      width: 100%;
+      display: flex;
+      gap: {{ section.settings.gallery_gap }}px;
+    }
+
+    .hero-banner-{{ section.id }} .hero-gallery__item--1,
+    .hero-banner-{{ section.id }} .hero-gallery__item--2,
+    .hero-banner-{{ section.id }} .hero-gallery__item--3,
+    .hero-banner-{{ section.id }} .hero-gallery__item--4 {
+      flex: 1;
+      width: auto !important;
+      min-width: 0;
+    }
+
+    .hero-banner-{{ section.id }} .hero-gallery__item img {
+      width: 100% !important;
+      height: auto !important;
     }
 
     /* Маргінали для тексту */
