@@ -19,14 +19,10 @@
     color: {{ section.settings.title_accent_color }};
   }
 
-  /* Remove paragraph margins inside heading */
-  .multicolumn-{{ section.id }} .title p {
+  /* Remove paragraph margins inside section heading */
+  .multicolumn-{{ section.id }} .section-figma__heading p {
     margin: 0;
     display: inline;
-  }
-
-  .multicolumn-{{ section.id }} .title {
-    text-transform: uppercase;
   }
 
   /* Column card title & text */
@@ -81,12 +77,6 @@
   }
 
   @media screen and (max-width: 749px) {
-    /* Remove h2 margins */
-    .multicolumn-{{ section.id }} .title {
-      margin-top: 0;
-      margin-bottom: 16px;
-    }
-
     /* More gap between columns */
     .multicolumn-{{ section.id }} .multicolumn-list {
       row-gap: {{ section.settings.mobile_row_gap }}px;
@@ -157,9 +147,9 @@
               {%- assign rendered_title = rendered_title | replace: lower_word, wrap_lower -%}
             {%- endif -%}
           {%- endfor -%}
-          <h2 class="title {{ section.settings.heading_size }}">{{ rendered_title }}</h2>
+          <h2 class="section-figma__heading">{{ rendered_title }}</h2>
         {%- else -%}
-          <h2 class="title {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
+          <h2 class="section-figma__heading">{{ section.settings.title }}</h2>
         {%- endif -%}
 
         {%- if section.settings.button_label != blank and show_mobile_slider -%}
