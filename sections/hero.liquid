@@ -71,8 +71,10 @@
     font-size: {{ section.settings.subtitle_size }}px;
   }
 
-  .hero-banner-{{ section.id }} .hero-banner__description {
+  .hero-banner-{{ section.id }} .hero-banner__description,
+  .hero-banner-{{ section.id }} .hero-banner__description p {
     margin-bottom: {{ section.settings.description_margin_bottom }}px;
+    text-transform: {{ section.settings.description_text_transform }};
   }
 
   /* Image wrapper — border overlay */
@@ -793,6 +795,18 @@
       "step": 2,
       "unit": "px",
       "default": 20
+    },
+    {
+      "type": "select",
+      "id": "description_text_transform",
+      "label": "Description text case",
+      "options": [
+        { "value": "none",       "label": "Default" },
+        { "value": "uppercase",  "label": "UPPERCASE" },
+        { "value": "lowercase",  "label": "lowercase" },
+        { "value": "capitalize", "label": "Capitalize Each Word" }
+      ],
+      "default": "none"
     },
     {
       "type": "header",
