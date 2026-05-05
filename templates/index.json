@@ -853,14 +853,18 @@
         "gallery_gap": 8,
         "gallery_row1_height": 280,
         "gallery_row2_height": 220,
+        "image": "shopify://shop_images/order_1.jpg",
         "image_width": 500,
         "image_width_mobile": 300,
         "image_border_radius": true,
         "image_border_radius_px": 12,
         "enable_image_border": true,
-        "decoration_color": "#C89A2A",
-        "border_thickness": 3,
-        "decoration_border_radius": 12
+        "decoration_color": "#ffffff",
+        "border_thickness": 10,
+        "decoration_border_radius": 12,
+        "image_2": "shopify://shop_images/order_2.jpg",
+        "image_3": "shopify://shop_images/order_3.jpg",
+        "image_4": "shopify://shop_images/order_4.png"
       }
     },
     "featured_collection": {
