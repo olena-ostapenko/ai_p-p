@@ -81,6 +81,18 @@
   }
 
   @media screen and (max-width: 749px) {
+    /* Remove h2 margins */
+    .multicolumn-{{ section.id }} .title {
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+
+    /* More gap between columns */
+    .multicolumn-{{ section.id }} .multicolumn-list {
+      row-gap: {{ section.settings.mobile_row_gap }}px;
+      column-gap: {{ section.settings.mobile_col_gap }}px;
+    }
+
     .multicolumn-{{ section.id }} .mc-step-badge {
       margin-left: auto;
       margin-right: auto;
@@ -454,6 +466,26 @@
     {
       "type": "header",
       "content": "t:sections.multicolumn.settings.header_mobile.content"
+    },
+    {
+      "type": "range",
+      "id": "mobile_row_gap",
+      "label": "Mobile row gap",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "mobile_col_gap",
+      "label": "Mobile column gap",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 16
     },
     {
       "type": "select",
