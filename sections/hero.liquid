@@ -272,19 +272,51 @@
       text-align: center;
     }
 
-    /* Колонка з картинкою — тепер працює через повзунок */
+    /* Image col — full width on mobile */
     .hero-banner-{{ section.id }} .hero-banner__image-col {
-      width: {{ section.settings.image_width_mobile }}px; 
+      width: 100%;
       max-width: 100%;
-      margin: 0 auto; 
-      flex: 0 0 auto; 
-      padding: 0; /* Прибрано жорсткий padding, щоб не заважав розміру */
+      margin: 0 auto;
+      flex: 0 0 100%;
+      overflow: visible;
     }
 
+    /* Single image */
     .hero-banner-{{ section.id }} .hero-banner__image img {
-      width: 100%; 
+      width: 100%;
       height: auto;
       display: block;
+    }
+
+    /* Gallery — full width, items scale proportionally */
+    .hero-banner-{{ section.id }} .hero-banner__gallery {
+      width: 100%;
+      flex-direction: column;
+      padding: 0;
+    }
+
+    .hero-banner-{{ section.id }} .hero-gallery__row {
+      width: 100%;
+      display: flex;
+      gap: {{ section.settings.gallery_gap }}px;
+    }
+
+    .hero-banner-{{ section.id }} .hero-gallery__item {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .hero-banner-{{ section.id }} .hero-gallery__item img {
+      width: 100%;
+      height: auto;
+    }
+
+    /* Override individual widths on mobile */
+    .hero-banner-{{ section.id }} .hero-gallery__item--1,
+    .hero-banner-{{ section.id }} .hero-gallery__item--2,
+    .hero-banner-{{ section.id }} .hero-gallery__item--3,
+    .hero-banner-{{ section.id }} .hero-gallery__item--4 {
+      width: auto;
     }
 
     /* Маргінали для тексту */
