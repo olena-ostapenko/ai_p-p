@@ -91,9 +91,10 @@
       grid-template-columns: 1fr;
       grid-template-rows: {{ row1_h }}px {{ row2_h }}px;
     }
+    /* 2-vertical is single column — ratio not applicable */
   {%- elsif layout == '3-top1' -%}
     .hero-banner-{{ section.id }} .hero-banner__gallery {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: {{ section.settings.gallery_col_ratio }};
       grid-template-rows: {{ row1_h }}px {{ row2_h }}px;
     }
     .hero-banner-{{ section.id }} .hero-gallery__item--1 {
@@ -101,7 +102,7 @@
     }
   {%- elsif layout == '3-top2' -%}
     .hero-banner-{{ section.id }} .hero-banner__gallery {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: {{ section.settings.gallery_col_ratio }};
       grid-template-rows: {{ row1_h }}px {{ row2_h }}px;
     }
     .hero-banner-{{ section.id }} .hero-gallery__item--3 {
@@ -109,7 +110,7 @@
     }
   {%- elsif layout == '4-grid' -%}
     .hero-banner-{{ section.id }} .hero-banner__gallery {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: {{ section.settings.gallery_col_ratio }};
       grid-template-rows: {{ row1_h }}px {{ row2_h }}px;
     }
   {%- endif -%}
@@ -805,6 +806,20 @@
       "step": 2,
       "unit": "px",
       "default": 12
+    },
+    {
+      "type": "select",
+      "id": "gallery_col_ratio",
+      "label": "Column proportions (2-col layouts)",
+      "info": "Controls width ratio between left and right columns",
+      "options": [
+        { "value": "1fr 1fr",   "label": "1:1 — Equal" },
+        { "value": "3fr 2fr",   "label": "3:2 — Left wider" },
+        { "value": "2fr 3fr",   "label": "2:3 — Right wider" },
+        { "value": "2fr 1fr",   "label": "2:1 — Left much wider" },
+        { "value": "1fr 2fr",   "label": "1:2 — Right much wider" }
+      ],
+      "default": "1fr 1fr"
     },
     {
       "type": "header",
