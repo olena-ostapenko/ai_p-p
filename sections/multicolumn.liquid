@@ -156,7 +156,7 @@
             Strip <p> tags, replace </p> with space, keep inline content.
             Then wrap accent words in span.
           {%- endcomment -%}
-          {%- assign plain_title = section.settings.title | replace: '</p>', ' ' | replace: '<p>', '' | replace: '</h2>', ' ' | replace: '<h2>', '' | replace: '</h1>', ' ' | replace: '<h1>', '' | replace: '</h3>', ' ' | replace: '<h3>', '' | strip -%}
+          {%- assign plain_title = section.settings.title | replace: '</p>', '<br>' | replace: '<p>', '' | replace: '</h2>', '<br>' | replace: '<h2>', '' | replace: '</h1>', '<br>' | replace: '<h1>', '' | replace: '</h3>', '<br>' | replace: '<h3>', '' | strip -%}
           {%- assign rendered_title = plain_title -%}
           {%- for aw in accent_words -%}
             {%- assign aw_trim = aw | strip -%}
@@ -174,7 +174,7 @@
           {%- endfor -%}
           <h2 class="section-figma__heading">{{ rendered_title }}</h2>
         {%- else -%}
-          {%- assign plain_title = section.settings.title | replace: '</p>', ' ' | replace: '<p>', '' | replace: '</h2>', ' ' | replace: '<h2>', '' | replace: '</h1>', ' ' | replace: '<h1>', '' | replace: '</h3>', ' ' | replace: '<h3>', '' | strip -%}
+          {%- assign plain_title = section.settings.title | replace: '</p>', '<br>' | replace: '<p>', '' | replace: '</h2>', '<br>' | replace: '<h2>', '' | replace: '</h1>', '<br>' | replace: '<h1>', '' | replace: '</h3>', '<br>' | replace: '<h3>', '' | strip -%}
           <h2 class="section-figma__heading">{{ plain_title }}</h2>
         {%- endif -%}
 
