@@ -853,7 +853,7 @@
         "section_padding_top_mobile": 32,
         "section_padding_bottom_mobile": 32,
         "section_padding_horizontal_mobile": 16,
-        "title": "<h1>Custom embroidered clothing made for you</h1>",
+        "title": "<h2>Custom embroidered clothing made for you</h2>",
         "title_margin_bottom": 16,
         "title_margin_bottom_mobile": 12,
         "enable_subtitle_decor": false,
