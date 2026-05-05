@@ -23,9 +23,15 @@
   }
 
   .hero-banner-{{ section.id }} .hero-banner__image-col {
-    flex: 0 0 auto;
-    width: {{ section.settings.image_width }}px;
-    max-width: 100%;
+    {%- if section.settings.gallery_layout == '1' -%}
+      flex: 0 0 auto;
+      width: {{ section.settings.image_width }}px;
+      max-width: 100%;
+    {%- else -%}
+      flex: 1;
+      min-width: 0;
+      max-width: {{ section.settings.image_width }}px;
+    {%- endif -%}
   }
 
   .hero-banner-{{ section.id }} .hero-banner__title {
