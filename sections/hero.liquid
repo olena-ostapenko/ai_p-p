@@ -22,16 +22,16 @@
     min-width: 0;
   }
 
+  .hero-banner-{{ section.id }} .hero-banner__text-col {
+    flex: 0 0 {{ section.settings.col_width_text }}%;
+    width: {{ section.settings.col_width_text }}%;
+    min-width: 0;
+  }
+
   .hero-banner-{{ section.id }} .hero-banner__image-col {
-    {%- if section.settings.gallery_layout == '1' -%}
-      flex: 0 0 auto;
-      width: {{ section.settings.image_width }}px;
-      max-width: 100%;
-    {%- else -%}
-      flex: 1;
-      min-width: 0;
-      max-width: {{ section.settings.image_width }}px;
-    {%- endif -%}
+    flex: 0 0 {{ section.settings.col_width_image }}%;
+    width: {{ section.settings.col_width_image }}%;
+    min-width: 0;
   }
 
   .hero-banner-{{ section.id }} .hero-banner__title {
@@ -494,6 +494,26 @@
         { "value": "left",  "label": "Image left, Text right" }
       ],
       "default": "right"
+    },
+    {
+      "type": "range",
+      "id": "col_width_text",
+      "label": "Text column width (%)",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "col_width_image",
+      "label": "Image column width (%)",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "default": 50
     },
     {
       "type": "range",
