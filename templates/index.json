@@ -843,7 +843,7 @@
         "columns_gap_mobile": 24,
         "section_padding_top": 60,
         "section_padding_bottom": 60,
-        "section_padding_horizontal": 24,
+        "section_padding_horizontal": 0,
         "section_padding_top_mobile": 32,
         "section_padding_bottom_mobile": 32,
         "section_padding_horizontal_mobile": 16,
