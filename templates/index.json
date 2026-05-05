@@ -903,9 +903,9 @@
         "image_2": "shopify://shop_images/order_2.jpg",
         "img2_width": 310,
         "image_3": "shopify://shop_images/order_3.jpg",
-        "img3_width": 400,
+        "img3_width": 330,
         "image_4": "shopify://shop_images/order_4.png",
-        "img4_width": 400
+        "img4_width": 230
       }
     },
     "featured_collection": {
