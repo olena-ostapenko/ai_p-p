@@ -95,6 +95,8 @@
       "settings": {
         "color_scheme": "scheme-4",
         "image_position": "left",
+        "col_width_text": 60,
+        "col_width_image": 40,
         "columns_gap": 0,
         "columns_gap_mobile": 0,
         "section_padding_top": 40,
@@ -619,6 +621,8 @@
       "settings": {
         "color_scheme": "scheme-4",
         "image_position": "left",
+        "col_width_text": 50,
+        "col_width_image": 50,
         "columns_gap": 48,
         "columns_gap_mobile": 24,
         "section_padding_top": 44,
@@ -839,6 +843,8 @@
       "settings": {
         "color_scheme": "scheme-4",
         "image_position": "left",
+        "col_width_text": 50,
+        "col_width_image": 50,
         "columns_gap": 84,
         "columns_gap_mobile": 24,
         "section_padding_top": 60,
