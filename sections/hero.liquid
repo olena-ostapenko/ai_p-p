@@ -298,6 +298,11 @@
       width: 100%;
       display: flex;
       gap: {{ section.settings.gallery_gap }}px;
+      align-items: flex-end;
+    }
+
+    .hero-banner-{{ section.id }} .hero-gallery__row:nth-child(2) {
+      align-items: flex-start;
     }
 
     .hero-banner-{{ section.id }} .hero-gallery__item--1,
