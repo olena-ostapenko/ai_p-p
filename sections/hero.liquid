@@ -185,14 +185,9 @@
   .hero-banner-{{ section.id }} .hero-gallery__item--4 { width: {{ section.settings.img4_width }}px; }
 
   {%- if section.settings.enable_image_border -%}
-  .hero-banner-{{ section.id }} .hero-gallery__item::before {
-    content: '';
-    position: absolute;
-    inset: -{{ section.settings.border_thickness }}px;
-    border: {{ section.settings.border_thickness }}px solid {{ section.settings.decoration_color }};
-    border-radius: {% if section.settings.gallery_border_radius %}{{ section.settings.gallery_border_radius_px | plus: section.settings.border_thickness }}px{% else %}{{ section.settings.border_thickness }}px{% endif %};
-    pointer-events: none;
-    z-index: 0;
+  .hero-banner-{{ section.id }} .hero-gallery__item img {
+    outline: {{ section.settings.border_thickness }}px solid {{ section.settings.decoration_color }};
+    outline-offset: -{{ section.settings.border_thickness }}px;
   }
   {%- endif -%}
 
