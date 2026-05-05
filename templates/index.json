@@ -134,6 +134,7 @@
         "gallery_chess": "default",
         "gallery_chess_offset": 40,
         "gallery_col_ratio": "1fr 1fr",
+        "img1_width": 400,
         "image": "shopify://shop_images/Custom_Portrait_for_Pets_3_500x_1.jpg",
         "image_width": 410,
         "image_width_mobile": 300,
@@ -142,7 +143,10 @@
         "enable_image_border": true,
         "decoration_color": "#e9a753",
         "border_thickness": 10,
-        "decoration_border_radius": 16
+        "decoration_border_radius": 16,
+        "img2_width": 400,
+        "img3_width": 400,
+        "img4_width": 400
       }
     },
     "brands_eP4pY4": {
@@ -660,6 +664,7 @@
         "gallery_chess": "default",
         "gallery_chess_offset": 40,
         "gallery_col_ratio": "1fr 1fr",
+        "img1_width": 400,
         "image": "shopify://shop_images/Custom_Portrait_for_Pets_2_500x_7.jpg",
         "image_width": 400,
         "image_width_mobile": 300,
@@ -668,7 +673,10 @@
         "enable_image_border": false,
         "decoration_color": "#f4844e",
         "border_thickness": 1,
-        "decoration_border_radius": 0
+        "decoration_border_radius": 0,
+        "img2_width": 400,
+        "img3_width": 400,
+        "img4_width": 400
       }
     },
     "multicolumn_yQrrpf": {
@@ -882,8 +890,9 @@
         "gallery_chess": "default",
         "gallery_chess_offset": 40,
         "gallery_col_ratio": "1fr 1fr",
+        "img1_width": 400,
         "image": "shopify://shop_images/order_1.jpg",
-        "image_width": 500,
+        "image_width": 250,
         "image_width_mobile": 300,
         "image_border_radius": true,
         "image_border_radius_px": 10,
@@ -892,8 +901,11 @@
         "border_thickness": 10,
         "decoration_border_radius": 12,
         "image_2": "shopify://shop_images/order_2.jpg",
+        "img2_width": 310,
         "image_3": "shopify://shop_images/order_3.jpg",
-        "image_4": "shopify://shop_images/order_4.png"
+        "img3_width": 400,
+        "image_4": "shopify://shop_images/order_4.png",
+        "img4_width": 400
       }
     },
     "featured_collection": {
