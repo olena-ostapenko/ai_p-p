@@ -373,9 +373,11 @@
       {%- comment -%} Text Column {%- endcomment -%}
       <div class="hero-banner__text-col">
         {%- if section.settings.title != blank -%}
-          <div class="hero-banner__title">
-            {{ section.settings.title }}
-          </div>
+          {%- if section.settings.use_section_heading -%}
+            <h2 class="hero-banner__title section-figma__heading">{{ section.settings.title }}</h2>
+          {%- else -%}
+            <div class="hero-banner__title">{{ section.settings.title }}</div>
+          {%- endif -%}
         {%- endif -%}
 
         {%- if section.settings.subtitle != blank -%}
@@ -606,6 +608,13 @@
     {
       "type": "header",
       "content": "Title"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_section_heading",
+      "label": "Use H2 section heading style",
+      "info": "Applies section-figma__heading — size and alignment from Typography settings",
+      "default": false
     },
     {
       "type": "richtext",
