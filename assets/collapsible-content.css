@@ -47,13 +47,15 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  width: 39px;
+  height: 39px;
 }
 
 /* Closed state — show plus (39px) */
 .accordion__icon--closed { display: flex; }
 .accordion__icon--open   { display: none; }
 
-/* Open state — show minus rotated (22px) */
+/* Open state — show minus (22px) centered in 39px container */
 details[open] .accordion__icon--closed { display: none; }
 details[open] .accordion__icon--open   { display: flex; }
 
