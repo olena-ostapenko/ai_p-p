@@ -916,48 +916,18 @@
     "collapsible_content_yea6LW": {
       "type": "collapsible-content",
       "blocks": {
-        "collapsible_row_GFgd48": {
+        "collapsible_row_rxTjzx": {
           "type": "collapsible_row",
           "settings": {
-            "heading": "Collapsible row",
-            "icon": "check_mark",
-            "row_content": "",
-            "page": ""
-          }
-        },
-        "collapsible_row_defG6D": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "Collapsible row",
-            "icon": "check_mark",
-            "row_content": "",
-            "page": ""
-          }
-        },
-        "collapsible_row_f87tY8": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "Collapsible row",
-            "icon": "check_mark",
-            "row_content": "",
-            "page": ""
-          }
-        },
-        "collapsible_row_dBdVQd": {
-          "type": "collapsible_row",
-          "settings": {
-            "heading": "Collapsible row",
-            "icon": "check_mark",
+            "heading": "What if I don’t like the result?",
+            "icon": "none",
             "row_content": "",
             "page": ""
           }
         }
       },
       "block_order": [
-        "collapsible_row_GFgd48",
-        "collapsible_row_defG6D",
-        "collapsible_row_f87tY8",
-        "collapsible_row_dBdVQd"
+        "collapsible_row_rxTjzx"
       ],
       "name": "t:sections.collapsible_content.presets.name",
       "settings": {
