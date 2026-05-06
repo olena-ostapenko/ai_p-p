@@ -1,0 +1,193 @@
+/* ============================================================
+   benefit-sliders.css
+   ============================================================ */
+
+/* ── Section wrapper ────────────────────────────────────── */
+.bs-section { width: 100%; }
+
+/* ── Header ─────────────────────────────────────────────── */
+.bs-header { margin-bottom: var(--section-heading-margin-bottom, 24px); }
+.bs-header--center { text-align: center; }
+.bs-header--left   { text-align: left; }
+.bs-section .section-figma__heading p { margin: 0; }
+
+/* ── Two-column grid ─────────────────────────────────────── */
+.bs-grid {
+  display: flex;
+  align-items: flex-start;
+  gap: 48px;
+}
+
+/* Sliders first — reverse order */
+.bs--sliders-first .bs-grid {
+  flex-direction: row-reverse;
+}
+
+.bs-col--benefit  { flex: 0 0 auto; width: 380px; max-width: 100%; }
+.bs-col--sliders  { flex: 1; min-width: 0; position: relative; }
+
+/* ── Benefit items ───────────────────────────────────────── */
+.bs-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.bs-feature:last-child { margin-bottom: 0; }
+
+.bs-feature__icon-wrap {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.bs-feature__icon-wrap img,
+.bs-feature__icon-wrap svg { width: 55%; height: 55%; object-fit: contain; }
+
+.bs-feature__title {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0 0 4px;
+  color: rgb(var(--color-foreground));
+}
+.bs-feature__desc {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+  color: rgb(var(--color-foreground));
+  opacity: 0.75;
+}
+
+/* ── Slider ─────────────────────────────────────────────── */
+.bs-slider { position: relative; margin-bottom: 20px; }
+.bs-slider:last-child { margin-bottom: 0; }
+
+/* Overflow right (benefit first layout) */
+.bs-slider--overflow-right .bs-slider__track {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  /* Allow overflow to the right beyond page-width */
+  margin-right: calc(-1 * (50vw - var(--page-width, 1200px) / 2 + 0px));
+  padding-right: calc(50vw - var(--page-width, 1200px) / 2);
+}
+
+/* Overflow left (sliders first layout) */
+.bs-slider--overflow-left .bs-slider__track {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  margin-left: calc(-1 * (50vw - var(--page-width, 1200px) / 2));
+  padding-left: calc(50vw - var(--page-width, 1200px) / 2);
+}
+
+.bs-slider__track::-webkit-scrollbar { display: none; }
+
+.bs-slider__track {
+  display: flex;
+  gap: 12px;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+/* Blur on inner edge slides */
+.bs-slide {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  position: relative;
+  border-radius: var(--product-card-corner-radius, 0.8rem);
+  overflow: hidden;
+  transition: filter 0.3s ease;
+}
+
+.bs-slide__img {
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Inner edge blur — applied via JS */
+.bs-slide--edge {
+  filter: blur(0px);
+}
+
+/* Gradient mask on inner side for blur effect */
+.bs-slider--overflow-right .bs-slider__track::before,
+.bs-slider--overflow-left .bs-slider__track::after {
+  content: '';
+  position: sticky;
+  top: 0;
+  flex-shrink: 0;
+  width: 80px;
+  pointer-events: none;
+  z-index: 2;
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
+  border-radius: 0;
+}
+
+.bs-slider--overflow-right .bs-slider__track::before {
+  left: 0;
+  order: -1;
+  background: linear-gradient(to right, rgba(var(--color-background), 0.6), transparent);
+}
+
+.bs-slider--overflow-left .bs-slider__track::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(var(--color-background), 0.6), transparent);
+}
+
+/* ── Nav buttons ─────────────────────────────────────────── */
+.bs-slider__nav {
+  position: absolute;
+  left: 8px;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgb(var(--color-background));
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: rgb(var(--color-foreground));
+  transform: translateY(-50%);
+}
+.bs-slider__nav--next { left: auto; right: 8px; }
+
+/* ── Footer button ───────────────────────────────────────── */
+.bs-footer { margin-top: 40px; }
+.bs-btn {
+  display: inline-block;
+  padding: 14px 40px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+.bs-btn:hover { opacity: 0.85; }
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media screen and (max-width: 989px) {
+  .bs-grid {
+    flex-direction: column;
+    gap: 32px;
+  }
+  .bs--sliders-first .bs-grid { flex-direction: column; }
+  .bs-col--benefit { width: 100%; }
+
+  .bs-slider--overflow-right .bs-slider__track,
+  .bs-slider--overflow-left .bs-slider__track {
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
