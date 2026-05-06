@@ -29,7 +29,7 @@
             </p>
           {% endif %}
           {%- if section.settings.heading != blank -%}
-            <h2 class="collapsible-content__heading inline-richtext {{ section.settings.heading_size }}">
+            <h2 class="collapsible-content__heading section-figma__heading inline-richtext">
               {{ section.settings.heading }}
             </h2>
           {%- else -%}
@@ -85,7 +85,12 @@
                     <h3 class="accordion__title inline-richtext h4">
                       {{ block.settings.heading | default: block.settings.page.title | escape }}
                     </h3>
-                    {{- 'icon-caret.svg' | inline_asset_content -}}
+                    <span class="accordion__icon accordion__icon--closed" aria-hidden="true">
+                      <img src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/tabler_minus.svg?v=1778068958" width="39" height="39" alt="" loading="lazy">
+                    </span>
+                    <span class="accordion__icon accordion__icon--open" aria-hidden="true">
+                      <img src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/tabler_minus.svg?v=1778068958" width="22" height="22" alt="" loading="lazy" style="transform: rotate(90deg);">
+                    </span>
                   </summary>
                   <div
                     class="accordion__content rte"
