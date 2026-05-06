@@ -924,10 +924,40 @@
             "row_content": "",
             "page": ""
           }
+        },
+        "collapsible_row_j46HdJ": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What if I don’t like the result?",
+            "icon": "none",
+            "row_content": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_zhp7im": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What if I don’t like the result?",
+            "icon": "none",
+            "row_content": "",
+            "page": ""
+          }
+        },
+        "collapsible_row_GkrYeR": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What if I don’t like the result?",
+            "icon": "none",
+            "row_content": "",
+            "page": ""
+          }
         }
       },
       "block_order": [
-        "collapsible_row_rxTjzx"
+        "collapsible_row_rxTjzx",
+        "collapsible_row_j46HdJ",
+        "collapsible_row_zhp7im",
+        "collapsible_row_GkrYeR"
       ],
       "name": "t:sections.collapsible_content.presets.name",
       "settings": {
@@ -937,7 +967,7 @@
         "heading_alignment": "center",
         "layout": "none",
         "container_color_scheme": "scheme-1",
-        "color_scheme": "scheme-5",
+        "color_scheme": "scheme-1",
         "open_first_collapsible_row": false,
         "image_ratio": "adapt",
         "desktop_layout": "image_second",
