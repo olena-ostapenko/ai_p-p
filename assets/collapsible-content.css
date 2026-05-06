@@ -5,6 +5,8 @@
 /* ── Heading — inherits from section-figma__heading in base.css ── */
 .collapsible-content__heading {
   margin-bottom: var(--section-heading-margin-bottom, 24px);
+  /* text-align controlled by inline style from section settings */
+  text-align: inherit !important;
 }
 
 /* ── Accordion overrides ──────────────────────────────────── */
