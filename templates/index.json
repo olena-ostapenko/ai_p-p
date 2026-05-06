@@ -939,7 +939,7 @@
           "settings": {
             "heading": "What if I don’t like the result?",
             "icon": "none",
-            "row_content": "",
+            "row_content": "<p>Custom embroidered clothing</p>",
             "page": ""
           }
         },
@@ -948,7 +948,7 @@
           "settings": {
             "heading": "What if I don’t like the result?",
             "icon": "none",
-            "row_content": "",
+            "row_content": "<p>Custom embroidered clothing</p>",
             "page": ""
           }
         }
