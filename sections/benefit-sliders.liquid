@@ -117,7 +117,7 @@
       {%- for block in section.blocks -%}
         {%- if block.type == 'slider' -%}
           {%- assign safe = block.id | replace: '-', '_' -%}
-          {%- assign slides_side = layout == 'sliders_first' ? 'left' : 'right' -%}
+          {%- if layout == 'sliders_first' -%}{%- assign slides_side = 'left' -%}{%- else -%}{%- assign slides_side = 'right' -%}{%- endif -%}
           <div class="bs-slider bs-slider--{{ safe }} bs-slider--overflow-{{ slides_side }}" {{ block.shopify_attributes }}>
             <button class="bs-slider__nav bs-slider__nav--prev" data-bs-prev="{{ safe }}" aria-label="Previous">
               <svg width="10" height="18" viewBox="0 0 10 18" fill="none"><path d="M9 1L1 9L9 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
