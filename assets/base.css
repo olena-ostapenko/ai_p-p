@@ -3761,3 +3761,12 @@ details-disclosure > details {
   color: rgb(var(--color-foreground));
   padding: 8px 12px;
 }
+
+/* ── AirReviews review content text ── */
+.Avada-AirReviews-Content,
+.Avada-AirReviews-Content div,
+.Avada-ReviewContent__LimitLength {
+  font-size: 16px !important;
+  line-height: 20px !important;
+  font-weight: 500 !important;
+}
