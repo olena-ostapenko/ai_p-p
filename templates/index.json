@@ -1004,6 +1004,15 @@
     "benefit_sliders_zbqEkT": {
       "type": "benefit-sliders",
       "blocks": {
+        "benefit_KYCC7E": {
+          "type": "benefit",
+          "settings": {
+            "show_icon": false,
+            "icon_size": 56,
+            "title": "Our Promise:",
+            "description": ""
+          }
+        },
         "benefit_GWJrcJ": {
           "type": "benefit",
           "settings": {
@@ -1060,6 +1069,7 @@
         }
       },
       "block_order": [
+        "benefit_KYCC7E",
         "benefit_GWJrcJ",
         "benefit_DrejFA",
         "benefit_TiCzYj",
