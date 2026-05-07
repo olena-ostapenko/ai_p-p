@@ -48,6 +48,9 @@
       .bs-slider--{{ safe }} .bs-slider__nav {
         top: {{ block.settings.nav_offset }}%;
       }
+      .bs-slider--{{ safe }} .bs-slide {
+        aspect-ratio: {{ block.settings.slide_ratio }};
+      }
     {%- endif -%}
   {%- endfor -%}
 {%- endstyle -%}
@@ -363,6 +366,19 @@
       "type": "slider",
       "name": "Slider",
       "settings": [
+        {
+          "type": "select",
+          "id": "slide_ratio",
+          "label": "Slide aspect ratio",
+          "options": [
+            { "value": "1 / 1",  "label": "1:1 Square" },
+            { "value": "4 / 3",  "label": "4:3 Landscape" },
+            { "value": "3 / 2",  "label": "3:2 Landscape" },
+            { "value": "16 / 9", "label": "16:9 Wide" },
+            { "value": "3 / 4",  "label": "3:4 Portrait" }
+          ],
+          "default": "4 / 3"
+        },
         {
           "type": "range",
           "id": "slider_height",

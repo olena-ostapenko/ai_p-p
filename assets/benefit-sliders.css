@@ -102,10 +102,12 @@
   border-radius: var(--product-card-corner-radius, 0.8rem);
   overflow: hidden;
   transition: filter 0.3s ease;
+  aspect-ratio: 4 / 3;
+  height: 100%;
 }
 
 .bs-slide__img {
-  width: auto;
+  width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
@@ -172,8 +174,8 @@
   justify-content: center;
   z-index: 10;
 }
-.bs-slider__nav--prev { left: -73px; }
-.bs-slider__nav--next { right: -73px; }
+.bs-slider__nav--prev { left: 8px; }
+.bs-slider__nav--next { right: 8px; }
 
 .bs-slider__nav .icon {
   width: 24px;
