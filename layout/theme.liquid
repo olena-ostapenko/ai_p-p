@@ -409,6 +409,9 @@
   </script>
   <script>
     // Replace AirReviews product block with collection name
+    // Cache: productTitle -> collectionTitle
+    const colCache = {};
+
     async function replaceProductWithCollection() {
       const blocks = document.querySelectorAll('.AirReviews-Blocks__ProductsInner');
       for (const block of blocks) {
@@ -419,26 +422,32 @@
         block.dataset.colDone = '1';
 
         try {
-          const res = await fetch('/search/suggest.json?q=' + encodeURIComponent(productTitle) + '&resources[type]=product&resources[limit]=1');
-          const data = await res.json();
-          const product = data.resources?.results?.products?.[0];
-          if (!product) continue;
+          // Use cache if already fetched for this product
+          let collectionTitle = colCache[productTitle];
 
-          // Fetch product details to get collections
-          const pRes = await fetch('/products/' + product.handle + '.js');
-          const pData = await pRes.json();
+          if (!collectionTitle) {
+            const res = await fetch('/search/suggest.json?q=' + encodeURIComponent(productTitle) + '&resources[type]=product&resources[limit]=1');
+            const data = await res.json();
+            const product = data.resources?.results?.products?.[0];
+            if (!product) continue;
 
-          // Fetch collections for this product (get more to filter)
-          const cRes = await fetch('/collections.json?product_id=' + pData.id + '&limit=10');
-          const cData = await cRes.json();
-          // Exclude generic collections
-          const excluded = ['all products', 'all', 'frontpage', 'home page', 'best sellar', 'best seller'];
-          const filtered = (cData.collections || []).filter(c =>
-            !excluded.includes(c.title.toLowerCase()) &&
-            !c.handle.includes('all') &&
-            !c.handle.includes('frontpage')
-          );
-          const collectionTitle = filtered[0]?.title || cData.collections?.[0]?.title;
+            // Fetch product details to get collections
+            const pRes = await fetch('/products/' + product.handle + '.js');
+            const pData = await pRes.json();
+
+            // Fetch collections for this product (get more to filter)
+            const cRes = await fetch('/collections.json?product_id=' + pData.id + '&limit=10');
+            const cData = await cRes.json();
+            // Exclude generic collections
+            const excluded = ['all products', 'all', 'frontpage', 'home page', 'best sellar', 'best seller'];
+            const filtered = (cData.collections || []).filter(c =>
+              !excluded.includes(c.title.toLowerCase()) &&
+              !c.handle.includes('all') &&
+              !c.handle.includes('frontpage')
+            );
+            collectionTitle = filtered[0]?.title || cData.collections?.[0]?.title;
+            if (collectionTitle) colCache[productTitle] = collectionTitle;
+          }
 
           if (collectionTitle) {
             // Hide product block and show collection name
