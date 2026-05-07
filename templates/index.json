@@ -1047,8 +1047,12 @@
         "slider_3myhej": {
           "type": "slider",
           "settings": {
-            "slider_height": 280,
-            "nav_offset": 50
+            "slider_height": 150,
+            "nav_offset": 50,
+            "image_1": "shopify://shop_images/order_2.jpg",
+            "image_2": "shopify://shop_images/Custom_Portrait_for_Pets_3_500x_1.jpg",
+            "image_3": "shopify://shop_images/Custom_Portrait_for_Pets_2_500x_2_291f1ea0-6de2-4c24-9c8a-c59052e5e278.jpg",
+            "image_4": "shopify://shop_images/Custom_Portrait_for_Pets_2_500x_1_2.jpg"
           }
         }
       },
@@ -1066,10 +1070,11 @@
         "title_align": "center",
         "title_accent_words": "",
         "layout": "benefit_first",
+        "nav_color": "#f4844e",
         "btn_label": "",
         "btn_link": "",
-        "btn_color": "#E9A753",
-        "btn_text_color": "#FFFFFF",
+        "btn_color": "#e9a753",
+        "btn_text_color": "#ffffff",
         "btn_radius": 30,
         "btn_align": "center",
         "padding_top": 60,
