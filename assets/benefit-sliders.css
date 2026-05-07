@@ -24,7 +24,16 @@
 }
 
 .bs-col--benefit  { flex: 0 0 auto; width: 380px; max-width: 100%; padding: 0 30px 0 0; }
-.bs-col--sliders  { flex: 1; min-width: 0; position: relative; }
+.bs-col--sliders {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
+/* This wrapper clips nav buttons to col width */
+.bs-col--sliders .bs-slider-wrap {
+  position: relative;
+}
 
 /* ── Benefit items ───────────────────────────────────────── */
 .bs-feature {
@@ -67,13 +76,15 @@
   position: relative;
   margin-bottom: 20px;
   width: 100%;
-  /* No overflow — slides must extend beyond page-width */
 }
 .bs-slider-wrap:last-child { margin-bottom: 0; }
 
 .bs-slider {
   position: relative;
   width: 100%;
+  /* overflow:clip lets absolute nav buttons clip to col width
+     but does NOT create scroll container — track can still overflow */
+  overflow: clip;
 }
 
 /* Overflow right (benefit first layout) */
@@ -187,6 +198,7 @@
 }
 .bs-slider__nav--prev { left: 8px; }
 .bs-slider__nav--next { right: 8px; left: auto; }
+/* Top set by JS */
 
 .bs-slider__nav .icon {
   width: 24px;

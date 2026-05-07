@@ -130,6 +130,12 @@
           {%- if layout == 'sliders_first' -%}{%- assign slides_side = 'left' -%}{%- else -%}{%- assign slides_side = 'right' -%}{%- endif -%}
           <div class="bs-slider-wrap">
             <div class="bs-slider bs-slider--{{ safe }} bs-slider--overflow-{{ slides_side }}" {{ block.shopify_attributes }}>
+              <button class="bs-slider__nav bs-slider__nav--prev" data-bs-prev="{{ safe }}" aria-label="Previous">
+                <span class="icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+              </button>
+              <button class="bs-slider__nav bs-slider__nav--next" data-bs-next="{{ safe }}" aria-label="Next">
+                <span class="icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+              </button>
               <div class="bs-slider__track" id="bs-track-{{ safe }}">
                 {%- for i in (1..12) -%}
                   {%- assign img_key = 'image_' | append: i -%}
@@ -143,14 +149,7 @@
               </div>
             </div>
             {%- comment -%} Nav buttons outside overflow element but inside wrap {%- endcomment -%}
-            <div class="bs-nav-wrap" id="bs-nav-{{ safe }}" style="position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:10;">
-              <button class="bs-slider__nav bs-slider__nav--prev" data-bs-prev="{{ safe }}" aria-label="Previous" style="pointer-events:all;">
-                <span class="icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
-              </button>
-              <button class="bs-slider__nav bs-slider__nav--next" data-bs-next="{{ safe }}" aria-label="Next" style="pointer-events:all;">
-                <span class="icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
-              </button>
-            </div>
+
           </div>
         {%- endif -%}
       {%- endfor -%}
@@ -174,39 +173,25 @@
 <script>
   (() => {
     document.querySelectorAll('.bs-slider-wrap').forEach(wrap => {
-      const track = wrap.querySelector('.bs-slider__track');
-      if (!track) return;
+      const slider = wrap.querySelector('.bs-slider');
+      const track  = wrap.querySelector('.bs-slider__track');
+      if (!track || !slider) return;
 
-      const prev = wrap.querySelector('.bs-slider__nav--prev');
-      const next = wrap.querySelector('.bs-slider__nav--next');
+      const prev = slider.querySelector('.bs-slider__nav--prev');
+      const next = slider.querySelector('.bs-slider__nav--next');
 
       function getSlideW() {
         const slide = track.querySelector('.bs-slide');
         if (!slide) return 0;
-        return slide.offsetWidth + parseInt(getComputedStyle(track).gap || 16);
+        return slide.offsetWidth + parseInt(getComputedStyle(track).gap || 12);
       }
 
+      // Center nav vertically on track height
       function positionNav() {
         const trackH = track.offsetHeight;
         const navH = prev ? prev.offsetHeight : 54;
-        const topOffset = (trackH - navH) / 2;
-
-        const col = wrap.closest('.bs-col--sliders');
-        const colW = col ? col.offsetWidth : wrap.offsetWidth;
-
-        if (prev) {
-          prev.style.position = 'absolute';
-          prev.style.left = '8px';
-          prev.style.right = 'auto';
-          prev.style.top = topOffset + 'px';
-        }
-        if (next) {
-          next.style.position = 'absolute';
-          next.style.left = 'auto';
-          // Place at right edge of col (visible zone)
-          next.style.right = (wrap.scrollWidth - colW + 8) + 'px';
-          next.style.top = topOffset + 'px';
-        }
+        const top = Math.max(0, (trackH - navH) / 2);
+        [prev, next].forEach(btn => { if (btn) btn.style.top = top + 'px'; });
       }
       positionNav();
       window.addEventListener('resize', positionNav);
