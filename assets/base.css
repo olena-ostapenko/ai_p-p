@@ -3770,3 +3770,9 @@ details-disclosure > details {
   line-height: 20px !important;
   font-weight: 500 !important;
 }
+
+/* ── AirReviews See More link ── */
+.AirReviews-Link {
+  display: block;
+  margin-top: 8px;
+}
