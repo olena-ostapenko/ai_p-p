@@ -63,7 +63,11 @@
 }
 
 /* ── Slider ─────────────────────────────────────────────── */
-.bs-slider { position: relative; margin-bottom: 20px; }
+.bs-slider {
+  position: relative;
+  margin-bottom: 20px;
+  overflow: clip; /* clips nav positioning without blocking scroll */
+}
 .bs-slider:last-child { margin-bottom: 0; }
 
 /* Overflow right (benefit first layout) */
@@ -175,7 +179,7 @@
   z-index: 10;
 }
 .bs-slider__nav--prev { left: 8px; }
-.bs-slider__nav--next { right: 8px; }
+.bs-slider__nav--next { left: auto; right: 8px; }
 
 .bs-slider__nav .icon {
   width: 24px;
