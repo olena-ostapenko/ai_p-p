@@ -170,8 +170,8 @@
 .bs-slider__nav {
   position: absolute;
   top: 0;
-  width: 63px;
-  height: 54px;
+  width: 58px;
+  height: 50px;
   border-radius: var(--buttons-radius, 10px);
   border: 0;
   background: #ffffff;
