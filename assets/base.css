@@ -3725,3 +3725,8 @@ details-disclosure > details {
 }
 
 
+
+/* ── AirReviews heading gap fix ── */
+#AirReviews-BlockAllWrapper .AirReviews-BlocksAll.AirReviews-Widget__V2.AirReviews-Blocks__LayoutGrid .AirReviews-Blocks__ReviewDetails--Heading {
+  gap: 0 !important;
+}
