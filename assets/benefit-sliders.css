@@ -23,7 +23,7 @@
   flex-direction: row-reverse;
 }
 
-.bs-col--benefit  { flex: 0 0 auto; width: 380px; max-width: 100%; padding: 0 30px 0 0; }
+.bs-col--benefit  { flex: 0 0 auto; width: 380px; max-width: 100%; }
 .bs-col--sliders {
   flex: 1;
   min-width: 0;
