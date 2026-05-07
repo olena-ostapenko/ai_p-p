@@ -1017,7 +1017,8 @@
           "type": "benefit",
           "settings": {
             "show_icon": true,
-            "icon_size": 56,
+            "icon_size": 40,
+            "icon": "shopify://shop_images/si_lightning-fill.png",
             "title": "Quick artwork delivery",
             "description": "Get your custom artwork preview within 1–2 days"
           }
@@ -1026,7 +1027,8 @@
           "type": "benefit",
           "settings": {
             "show_icon": true,
-            "icon_size": 56,
+            "icon_size": 40,
+            "icon": "shopify://shop_images/mdi_heart.png",
             "title": "Edit as much as you like",
             "description": "We'll refine your design until it's exactly right"
           }
@@ -1035,7 +1037,8 @@
           "type": "benefit",
           "settings": {
             "show_icon": true,
-            "icon_size": 56,
+            "icon_size": 40,
+            "icon": "shopify://shop_images/boxicons_smile.svg",
             "title": "Made to make you smile",
             "description": "We're not satisfied until you love it"
           }
