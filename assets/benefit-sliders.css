@@ -239,3 +239,9 @@
     scrollbar-width: none;
   }
 }
+
+@media screen and (max-width: 989px) {
+  .bs-slider__nav {
+    display: none;
+  }
+}
