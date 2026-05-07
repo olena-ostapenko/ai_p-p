@@ -434,12 +434,16 @@
             const cRes = await fetch('/collections.json?product_id=' + pData.id + '&limit=10');
             const cData = await cRes.json();
 
-            const excluded = ['all products', 'all', 'frontpage', 'home page', 'best sellar', 'best seller'];
-            const filtered = (cData.collections || []).filter(c =>
-              !excluded.includes(c.title.toLowerCase()) &&
-              !c.handle.includes('all') &&
-              !c.handle.includes('frontpage')
-            );
+            const excludedTitles = ['all products', 'all', 'frontpage', 'home page', 'best sellar', 'best seller', 'best sellers'];
+            const excludedHandles = ['all', 'frontpage', 'best-sell', 'home'];
+            const filtered = (cData.collections || []).filter(c => {
+              const t = c.title.toLowerCase();
+              const h = c.handle.toLowerCase();
+              return !excludedTitles.includes(t) &&
+                     !excludedHandles.some(ex => h.includes(ex));
+            });
+            // Sort: prefer shorter/more specific collection names
+            filtered.sort((a, b) => a.title.length - b.title.length);
             collectionTitle = filtered[0]?.title || cData.collections?.[0]?.title;
             if (collectionTitle) colCache[productTitle] = collectionTitle;
           }
