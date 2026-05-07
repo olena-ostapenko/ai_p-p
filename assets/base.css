@@ -3644,3 +3644,20 @@ details-disclosure > details {
     }
   }
 
+
+/* ── Avada AirReviews heading — match section-figma__heading styles ── */
+.AirReviews-BlocksAll__Heading {
+  font-size: var(--section-heading-size-mobile, 26px) !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+  text-transform: uppercase !important;
+  margin: 0 0 var(--section-heading-margin-bottom, 24px) !important;
+  color: rgb(var(--color-foreground)) !important;
+}
+
+@media screen and (min-width: 750px) {
+  .AirReviews-BlocksAll__Heading {
+    font-size: var(--section-heading-size-desktop, 36px) !important;
+  }
+}
