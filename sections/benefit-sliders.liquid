@@ -190,17 +190,21 @@
         const trackH = track.offsetHeight;
         const navH = prev ? prev.offsetHeight : 54;
         const topOffset = (trackH - navH) / 2;
-        // Position relative to wrap (not overflowed track)
-        const wrapW = wrap.offsetWidth;
+
+        const col = wrap.closest('.bs-col--sliders');
+        const colW = col ? col.offsetWidth : wrap.offsetWidth;
+
         if (prev) {
           prev.style.position = 'absolute';
           prev.style.left = '8px';
+          prev.style.right = 'auto';
           prev.style.top = topOffset + 'px';
         }
         if (next) {
           next.style.position = 'absolute';
-          next.style.right = '8px';
           next.style.left = 'auto';
+          // Place at right edge of col (visible zone)
+          next.style.right = (wrap.scrollWidth - colW + 8) + 'px';
           next.style.top = topOffset + 'px';
         }
       }
