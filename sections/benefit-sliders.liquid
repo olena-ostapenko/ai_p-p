@@ -120,7 +120,7 @@
           {%- if layout == 'sliders_first' -%}{%- assign slides_side = 'left' -%}{%- else -%}{%- assign slides_side = 'right' -%}{%- endif -%}
           <div class="bs-slider bs-slider--{{ safe }} bs-slider--overflow-{{ slides_side }}" {{ block.shopify_attributes }}>
             <button class="bs-slider__nav bs-slider__nav--prev" data-bs-prev="{{ safe }}" aria-label="Previous">
-              <svg width="10" height="18" viewBox="0 0 10 18" fill="none"><path d="M9 1L1 9L9 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
             </button>
             <div class="bs-slider__track" id="bs-track-{{ safe }}">
               {%- for i in (1..12) -%}
@@ -134,7 +134,7 @@
               {%- endfor -%}
             </div>
             <button class="bs-slider__nav bs-slider__nav--next" data-bs-next="{{ safe }}" aria-label="Next">
-              <svg width="10" height="18" viewBox="0 0 10 18" fill="none"><path d="M1 1L9 9L1 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <span class="icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
             </button>
           </div>
         {%- endif -%}

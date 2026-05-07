@@ -142,25 +142,39 @@
   background: linear-gradient(to left, rgba(var(--color-background), 0.6), transparent);
 }
 
-/* ── Nav buttons ─────────────────────────────────────────── */
+/* ── Nav buttons — same style as Our Best Sellers ─────── */
 .bs-slider__nav {
   position: absolute;
-  left: 8px;
-  z-index: 10;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: none;
-  background: rgb(var(--color-background));
-  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 63px;
+  height: 54px;
+  border-radius: var(--buttons-radius, 10px);
+  border: 0;
+  background: #ffffff;
+  box-shadow:
+    0 1px 2px rgba(0,0,0,0.10),
+    0 3px 3px rgba(0,0,0,0.09),
+    0 7px 4px rgba(0,0,0,0.05),
+    0 12px 5px rgba(0,0,0,0.01);
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  color: rgb(var(--color-foreground));
-  transform: translateY(-50%);
+  z-index: 10;
 }
-.bs-slider__nav--next { left: auto; right: 8px; }
+.bs-slider__nav--prev { left: -73px; }
+.bs-slider__nav--next { right: -73px; }
+
+.bs-slider__nav .icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bs-slider__nav--next .icon { transform: rotate(-45deg); }
+.bs-slider__nav--prev .icon { transform: rotate(45deg); }
 
 /* ── Footer button ───────────────────────────────────────── */
 .bs-footer { margin-top: 40px; }
