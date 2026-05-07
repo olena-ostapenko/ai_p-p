@@ -989,7 +989,7 @@
             "air_allReviewsBlock_onlyMedia": true,
             "air_allReviewsBlock_mediaFirst": true,
             "air_allReviewsBlock_onlyPositive": true,
-            "air_allReviewsBlock_hideProductThumbnails": true,
+            "air_allReviewsBlock_hideProductThumbnails": false,
             "air_allReviewsBlock_selectedProduct": []
           }
         }
