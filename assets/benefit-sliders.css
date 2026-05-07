@@ -221,11 +221,16 @@
   .bs--sliders-first .bs-grid { flex-direction: column; }
   .bs-col--benefit { width: 100%; }
 
+  /* Reset desktop overflow extension on mobile */
+  .bs-col--sliders {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    width: 100%;
+  }
+
   .bs-slider--overflow-right .bs-slider__track,
   .bs-slider--overflow-left .bs-slider__track {
-    margin-left: -16px;
-    margin-right: -16px;
-    padding-left: 16px;
-    padding-right: 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
   }
 }
