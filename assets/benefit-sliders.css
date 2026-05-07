@@ -226,6 +226,11 @@
     margin-right: 0 !important;
     margin-left: 0 !important;
     width: 100%;
+    overflow: hidden;
+  }
+
+  .bs-section {
+    overflow: hidden;
   }
 
   .bs-slider--overflow-right .bs-slider__track,
