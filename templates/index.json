@@ -1001,6 +1001,81 @@
         "include_margins": true
       }
     },
+    "benefit_sliders_zbqEkT": {
+      "type": "benefit-sliders",
+      "blocks": {
+        "benefit_GWJrcJ": {
+          "type": "benefit",
+          "settings": {
+            "show_icon": true,
+            "icon_size": 56,
+            "title": "Quick artwork delivery",
+            "description": "Get your custom artwork preview within 1–2 days"
+          }
+        },
+        "benefit_DrejFA": {
+          "type": "benefit",
+          "settings": {
+            "show_icon": true,
+            "icon_size": 56,
+            "title": "Edit as much as you like",
+            "description": "We'll refine your design until it's exactly right"
+          }
+        },
+        "benefit_TiCzYj": {
+          "type": "benefit",
+          "settings": {
+            "show_icon": true,
+            "icon_size": 56,
+            "title": "Made to make you smile",
+            "description": "We're not satisfied until you love it"
+          }
+        },
+        "slider_BFdgUc": {
+          "type": "slider",
+          "settings": {
+            "slider_height": 190,
+            "nav_offset": 30,
+            "image_1": "shopify://shop_images/chose_1.jpg",
+            "image_2": "shopify://shop_images/hedgehog_q.jpg",
+            "image_3": "shopify://shop_images/order_2.jpg",
+            "image_4": "shopify://shop_images/77d36f1c0a5501988ae1bd5acd3c327c.jpg",
+            "image_5": "shopify://shop_images/order_4.png",
+            "image_6": "shopify://shop_images/Custom_Portrait_for_Pets_2_500x_2.jpg"
+          }
+        },
+        "slider_3myhej": {
+          "type": "slider",
+          "settings": {
+            "slider_height": 280,
+            "nav_offset": 50
+          }
+        }
+      },
+      "block_order": [
+        "benefit_GWJrcJ",
+        "benefit_DrejFA",
+        "benefit_TiCzYj",
+        "slider_BFdgUc",
+        "slider_3myhej"
+      ],
+      "name": "Benefit & Sliders",
+      "settings": {
+        "color_scheme": "",
+        "title": "<p>OVER 333,333 HAPPY PET PARENTS</p>",
+        "title_align": "center",
+        "title_accent_words": "",
+        "layout": "benefit_first",
+        "btn_label": "",
+        "btn_link": "",
+        "btn_color": "#E9A753",
+        "btn_text_color": "#FFFFFF",
+        "btn_radius": 30,
+        "btn_align": "center",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
     "featured_collection": {
       "type": "featured-collection",
       "disabled": true,
@@ -1044,6 +1119,7 @@
     "hero_wh8xKr",
     "collapsible_content_yea6LW",
     "177807321658d0df96",
+    "benefit_sliders_zbqEkT",
     "featured_collection"
   ]
 }
