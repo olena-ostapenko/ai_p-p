@@ -383,13 +383,16 @@
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
   <script>
-    // Remove invisible/replacement characters from AirReviews review text
+    // Remove rectangle/unknown characters from AirReviews review text
     function fixAirReviewsText() {
       document.querySelectorAll('.Avada-ReviewContent__LimitLength').forEach(el => {
+        // Replace all non-printable and special chars except common punctuation
         el.innerHTML = el.innerHTML
-          .replace(/�/g, '')   /* replacement character □ */
-          .replace(/ /g, '')   /* null */
-          .replace(/[ --]/g, ''); /* control chars */
+          .replace(/[^	
+ -~ -퟿豈-﷏ﷰ-￯]/g, ' ')
+          .replace(/
+/g, ' ')
+          .replace(//g, ' ');
       });
     }
     if (document.readyState === 'loading') {
@@ -397,8 +400,18 @@
     } else {
       fixAirReviewsText();
     }
-    // Also run after dynamic content loads
-    const observer = new MutationObserver(fixAirReviewsText);
+    const observer = new MutationObserver(() => {
+      document.querySelectorAll('.Avada-ReviewContent__LimitLength').forEach(el => {
+        if (el.dataset.fixed) return;
+        el.dataset.fixed = '1';
+        el.innerHTML = el.innerHTML
+          .replace(/[^	
+ -~ -퟿豈-﷏ﷰ-￯]/g, ' ')
+          .replace(/
+/g, ' ')
+          .replace(//g, ' ');
+      });
+    });
     observer.observe(document.body, { childList: true, subtree: true });
   </script>
   </body>
