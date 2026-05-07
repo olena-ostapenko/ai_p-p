@@ -981,9 +981,9 @@
         "ag_product_reviews_app_block_all_review_BCVqg8": {
           "type": "shopify://apps/ag-product-reviews/blocks/app-block-all-review/c4e1e9ca-4d46-4e76-bc39-7e42417cb327",
           "settings": {
-            "air_allReviewsBlock_heading": "All reviews page",
+            "air_allReviewsBlock_heading": "ReviewS",
             "air_allReviewsBlock_useSimpleSummary": false,
-            "air_allReviewsBlock_maxReview": 20,
+            "air_allReviewsBlock_maxReview": 10,
             "air_allReviewsBlock_summaryBgColor": "#f8f8f8",
             "air_allReviewsBlock_bgColor": "#ffffff",
             "air_allReviewsBlock_onlyMedia": true,
