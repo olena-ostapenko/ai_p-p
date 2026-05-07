@@ -116,30 +116,39 @@
   filter: blur(0px);
 }
 
-/* Gradient mask on inner side for blur effect */
-.bs-slider--overflow-right .bs-slider__track::before,
-.bs-slider--overflow-left .bs-slider__track::after {
+/* Gradient fade on inner edge */
+.bs-slider--overflow-right,
+.bs-slider--overflow-left {
+  position: relative;
+}
+
+.bs-slider--overflow-right::before,
+.bs-slider--overflow-left::after {
   content: '';
-  position: sticky;
+  position: absolute;
   top: 0;
-  flex-shrink: 0;
-  width: 80px;
+  bottom: 0;
+  width: 100px;
   pointer-events: none;
-  z-index: 2;
-  backdrop-filter: blur(60px);
-  -webkit-backdrop-filter: blur(60px);
-  border-radius: 0;
+  z-index: 3;
 }
 
-.bs-slider--overflow-right .bs-slider__track::before {
+/* Benefit-first: sliders on right → fade on left inner edge */
+.bs-slider--overflow-right::before {
   left: 0;
-  order: -1;
-  background: linear-gradient(to right, rgba(var(--color-background), 0.6), transparent);
+  background: linear-gradient(to right,
+    rgb(var(--color-background)) 0%,
+    transparent 100%
+  );
 }
 
-.bs-slider--overflow-left .bs-slider__track::after {
+/* Sliders-first: sliders on left → fade on right inner edge */
+.bs-slider--overflow-left::after {
   right: 0;
-  background: linear-gradient(to left, rgba(var(--color-background), 0.6), transparent);
+  background: linear-gradient(to left,
+    rgb(var(--color-background)) 0%,
+    transparent 100%
+  );
 }
 
 /* ── Nav buttons — same style as Our Best Sellers ─────── */
@@ -172,6 +181,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  color: initial;
+}
+.bs-slider__nav .icon svg,
+.bs-slider__nav .icon svg path {
+  stroke: currentColor !important;
+  color: inherit;
 }
 .bs-slider__nav--next .icon { transform: rotate(-45deg); }
 .bs-slider__nav--prev .icon { transform: rotate(45deg); }
