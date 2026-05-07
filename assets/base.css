@@ -3679,6 +3679,26 @@ details-disclosure > details {
 
 /* ── AirReviews author block ── */
 
+/* AuthorBlock — name + date stacked vertically */
+.AirReviews-Blocks__ReviewDetails--AuthorBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* AuthorNameContainer — name inline with checkmark */
+.AirReviews-Blocks__AuthorNameContainer {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px;
+}
+
+.AirReviews-Blocks__AuthorRight {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 /* Checkmark after author name */
 .AirReviews-Blocks__AuthorName::after {
   content: '';
@@ -3691,6 +3711,12 @@ details-disclosure > details {
   background-position: center;
   vertical-align: middle;
   margin-left: 6px;
+}
+
+/* Date below name */
+.AirReviews-Blocks__Date {
+  display: block;
+  color: rgba(var(--color-foreground), 0.6);
 }
 
 
