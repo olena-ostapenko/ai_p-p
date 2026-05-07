@@ -1048,7 +1048,7 @@
           "type": "slider",
           "settings": {
             "slider_height": 150,
-            "nav_offset": 50,
+            "nav_offset": 70,
             "image_1": "shopify://shop_images/order_2.jpg",
             "image_2": "shopify://shop_images/Custom_Portrait_for_Pets_3_500x_1.jpg",
             "image_3": "shopify://shop_images/Custom_Portrait_for_Pets_2_500x_2_291f1ea0-6de2-4c24-9c8a-c59052e5e278.jpg",
