@@ -446,10 +446,16 @@
 
           if (collectionTitle) {
             block.style.display = 'none';
-            const colEl = document.createElement('div');
-            colEl.className = 'air-reviews-collection-name';
-            colEl.textContent = collectionTitle;
-            block.parentNode.insertBefore(colEl, block.nextSibling);
+            // Check if collection name already inserted
+            const next = block.nextSibling;
+            if (!next || !next.classList?.contains('air-reviews-collection-name')) {
+              colObserver.disconnect();
+              const colEl = document.createElement('div');
+              colEl.className = 'air-reviews-collection-name';
+              colEl.textContent = collectionTitle;
+              block.parentNode.insertBefore(colEl, block.nextSibling);
+              colObserver.observe(document.body, { childList: true, subtree: true });
+            }
           }
         } catch(e) {}
       }
