@@ -3676,3 +3676,33 @@ details-disclosure > details {
   background-repeat: no-repeat;
   background-position: center;
 }
+
+/* ── AirReviews author block ── */
+
+/* Checkmark after author name */
+.AirReviews-Blocks__AuthorName::after {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-image: url('https://cdn.shopify.com/s/files/1/0690/5433/3063/files/carbon_checkmark-filled.svg?v=1778139814');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  margin-left: 6px;
+}
+
+/* Date below AuthorNameContainer */
+.AirReviews-Blocks__AuthorNameContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.AirReviews-Blocks__Date {
+  order: 2;
+}
+
+.AirReviews-Blocks__AuthorRight {
+  order: 1;
+}
