@@ -3753,9 +3753,7 @@ details-disclosure > details {
 }
 
 /* ── AirReviews — hide product block, show collection name ── */
-.AirReviews-Blocks__ProductsInner {
-  display: none !important;
-}
+/* .AirReviews-Blocks__ProductsInner — visible */
 
 .air-reviews-collection-name {
   font-size: 14px;
