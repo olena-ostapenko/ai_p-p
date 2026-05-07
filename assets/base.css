@@ -3661,3 +3661,18 @@ details-disclosure > details {
     font-size: var(--section-heading-size-desktop, 36px) !important;
   }
 }
+
+/* ── AirReviews custom star icon ── */
+.AirReviews-Star__Classic {
+  display: none !important;
+}
+
+.Avada_Star-Icon {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  background-image: url('https://cdn.shopify.com/s/files/1/0690/5433/3063/files/star_6f70947c-dc83-43ad-a444-913b32ad7465.svg?v=1777530521');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
