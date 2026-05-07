@@ -28,11 +28,13 @@
   flex: 1;
   min-width: 0;
   position: relative;
+  /* Extend to right edge of viewport */
+  margin-right: calc(-1 * (100vw - var(--page-width, 1200px)) / 2 - var(--page-width-padding, 24px));
 }
 
-/* This wrapper clips nav buttons to col width */
-.bs-col--sliders .bs-slider-wrap {
-  position: relative;
+.bs--sliders-first .bs-col--sliders {
+  margin-right: 0;
+  margin-left: calc(-1 * (100vw - var(--page-width, 1200px)) / 2 - var(--page-width-padding, 24px));
 }
 
 /* ── Benefit items ───────────────────────────────────────── */
@@ -87,23 +89,12 @@
   overflow: clip;
 }
 
-/* Overflow right (benefit first layout) */
-.bs-slider--overflow-right .bs-slider__track {
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  /* Allow overflow to the right beyond page-width */
-  margin-right: calc(-1 * (50vw - var(--page-width, 1200px) / 2 + 0px));
-  padding-right: calc(50vw - var(--page-width, 1200px) / 2);
-}
-
-/* Overflow left (sliders first layout) */
+/* Track — scroll within expanded col */
+.bs-slider--overflow-right .bs-slider__track,
 .bs-slider--overflow-left .bs-slider__track {
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  margin-left: calc(-1 * (50vw - var(--page-width, 1200px) / 2));
-  padding-left: calc(50vw - var(--page-width, 1200px) / 2);
 }
 
 .bs-slider__track::-webkit-scrollbar { display: none; }
