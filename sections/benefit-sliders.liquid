@@ -20,12 +20,15 @@
 
   .bs-{{ section.id }} .section-figma__heading {
     text-align: {{ section.settings.title_align }} !important;
-    margin-bottom: {{ section.settings.title_margin_bottom }}px !important;
+  }
+
+  .bs-{{ section.id }} .bs-header {
+    margin-bottom: {{ section.settings.title_margin_bottom }}px;
   }
 
   @media screen and (max-width: 749px) {
-    .bs-{{ section.id }} .section-figma__heading {
-      margin-bottom: {{ section.settings.title_margin_bottom_mobile }}px !important;
+    .bs-{{ section.id }} .bs-header {
+      margin-bottom: {{ section.settings.title_margin_bottom_mobile }}px;
     }
   }
 
@@ -239,14 +242,14 @@
     {
       "type": "range",
       "id": "title_margin_bottom",
-      "label": "Title margin bottom (desktop)",
+      "label": "Gap: title to columns (desktop)",
       "min": 0, "max": 80, "step": 4, "unit": "px",
       "default": 24
     },
     {
       "type": "range",
       "id": "title_margin_bottom_mobile",
-      "label": "Title margin bottom (mobile)",
+      "label": "Gap: title to columns (mobile)",
       "min": 0, "max": 60, "step": 4, "unit": "px",
       "default": 16
     },
