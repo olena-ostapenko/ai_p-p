@@ -1043,6 +1043,7 @@
         "slider_BFdgUc": {
           "type": "slider",
           "settings": {
+            "slide_ratio": "4 / 3",
             "slider_height": 190,
             "nav_offset": 30,
             "image_1": "shopify://shop_images/chose_1.jpg",
@@ -1056,6 +1057,7 @@
         "slider_3myhej": {
           "type": "slider",
           "settings": {
+            "slide_ratio": "4 / 3",
             "slider_height": 150,
             "nav_offset": 70,
             "image_1": "shopify://shop_images/order_2.jpg",
@@ -1080,6 +1082,8 @@
       "settings": {
         "color_scheme": "scheme-5",
         "title": "<p>OVER 333,333 HAPPY PET PARENTS</p>",
+        "title_margin_bottom": 56,
+        "title_margin_bottom_mobile": 20,
         "title_align": "center",
         "title_accent_words": "HAPPY",
         "layout": "benefit_first",
