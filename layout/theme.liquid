@@ -408,8 +408,6 @@
     observer.observe(document.body, { childList: true, subtree: true });
   </script>
   <script>
-    const colCache = {};
-
     async function replaceProductWithCollection() {
       const blocks = document.querySelectorAll('.AirReviews-Blocks__ProductsInner:not([data-col-done])');
       for (const block of blocks) {
@@ -420,9 +418,9 @@
         block.dataset.colDone = '1';
 
         try {
-          let collectionTitle = colCache[productTitle];
+          let collectionTitle = null;
 
-          if (!collectionTitle) {
+          {
             const res = await fetch('/search/suggest.json?q=' + encodeURIComponent(productTitle) + '&resources[type]=product&resources[limit]=1');
             const data = await res.json();
             const product = data.resources?.results?.products?.[0];
@@ -445,7 +443,7 @@
             // Sort: prefer shorter/more specific collection names
             filtered.sort((a, b) => a.title.length - b.title.length);
             collectionTitle = filtered[0]?.title || cData.collections?.[0]?.title;
-            if (collectionTitle) colCache[productTitle] = collectionTitle;
+
           }
 
           if (collectionTitle) {
