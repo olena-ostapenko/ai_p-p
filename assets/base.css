@@ -3735,3 +3735,9 @@ details-disclosure > details {
 .Avada-ReviewContent__LimitLength {
   white-space: normal !important;
 }
+
+/* ── Fix ellipsis character rendering in review text ── */
+.Avada-ReviewContent__LimitLength {
+  font-variant-numeric: normal;
+  -webkit-font-smoothing: antialiased;
+}

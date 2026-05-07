@@ -383,16 +383,20 @@
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
   <script>
-    // Remove rectangle/unknown characters from AirReviews review text
+    // Fix special characters in AirReviews review text
     function fixAirReviewsText() {
       document.querySelectorAll('.Avada-ReviewContent__LimitLength').forEach(el => {
-        // Replace all non-printable and special chars except common punctuation
-        el.innerHTML = el.innerHTML
-          .replace(/[^	
- -~ -퟿豈-﷏ﷰ-￯]/g, ' ')
-          .replace(/
-/g, ' ')
-          .replace(//g, ' ');
+        if (el.dataset.fixed) return;
+        el.dataset.fixed = '1';
+        // Walk text nodes and fix special chars
+        const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+        let node;
+        while (node = walker.nextNode()) {
+          node.textContent = node.textContent
+            .replace(/\u2026/g, '...')
+            .replace(/[\u0080-\u009F]/g, '')
+            .replace(/[\uFFFD\uFFFE\uFFFF]/g, '');
+        }
       });
     }
     if (document.readyState === 'loading') {
@@ -400,18 +404,7 @@
     } else {
       fixAirReviewsText();
     }
-    const observer = new MutationObserver(() => {
-      document.querySelectorAll('.Avada-ReviewContent__LimitLength').forEach(el => {
-        if (el.dataset.fixed) return;
-        el.dataset.fixed = '1';
-        el.innerHTML = el.innerHTML
-          .replace(/[^	
- -~ -퟿豈-﷏ﷰ-￯]/g, ' ')
-          .replace(/
-/g, ' ')
-          .replace(//g, ' ');
-      });
-    });
+    const observer = new MutationObserver(fixAirReviewsText);
     observer.observe(document.body, { childList: true, subtree: true });
   </script>
   </body>
