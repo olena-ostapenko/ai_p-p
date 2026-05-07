@@ -382,5 +382,24 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+  <script>
+    // Remove invisible/replacement characters from AirReviews review text
+    function fixAirReviewsText() {
+      document.querySelectorAll('.Avada-ReviewContent__LimitLength').forEach(el => {
+        el.innerHTML = el.innerHTML
+          .replace(/�/g, '')   /* replacement character □ */
+          .replace(/ /g, '')   /* null */
+          .replace(/[ --]/g, ''); /* control chars */
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fixAirReviewsText);
+    } else {
+      fixAirReviewsText();
+    }
+    // Also run after dynamic content loads
+    const observer = new MutationObserver(fixAirReviewsText);
+    observer.observe(document.body, { childList: true, subtree: true });
+  </script>
   </body>
 </html>
