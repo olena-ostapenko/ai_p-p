@@ -428,10 +428,17 @@
           const pRes = await fetch('/products/' + product.handle + '.js');
           const pData = await pRes.json();
 
-          // Fetch collections for this product
-          const cRes = await fetch('/collections.json?product_id=' + pData.id + '&limit=1');
+          // Fetch collections for this product (get more to filter)
+          const cRes = await fetch('/collections.json?product_id=' + pData.id + '&limit=10');
           const cData = await cRes.json();
-          const collectionTitle = cData.collections?.[0]?.title;
+          // Exclude generic collections
+          const excluded = ['all products', 'all', 'frontpage', 'home page', 'best sellar', 'best seller'];
+          const filtered = (cData.collections || []).filter(c =>
+            !excluded.includes(c.title.toLowerCase()) &&
+            !c.handle.includes('all') &&
+            !c.handle.includes('frontpage')
+          );
+          const collectionTitle = filtered[0]?.title || cData.collections?.[0]?.title;
 
           if (collectionTitle) {
             // Hide product block and show collection name
