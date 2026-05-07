@@ -3730,3 +3730,8 @@ details-disclosure > details {
 #AirReviews-BlockAllWrapper .AirReviews-BlocksAll.AirReviews-Widget__V2.AirReviews-Blocks__LayoutGrid .AirReviews-Blocks__ReviewDetails--Heading {
   gap: 0 !important;
 }
+
+/* ── AirReviews review text — hide newline/special characters ── */
+.Avada-ReviewContent__LimitLength {
+  white-space: normal !important;
+}
