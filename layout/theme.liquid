@@ -407,6 +407,24 @@
     const observer = new MutationObserver(fixAirReviewsText);
     observer.observe(document.body, { childList: true, subtree: true });
   </script>
+  {%- comment -%} Build product title → collection map for AirReviews {%- endcomment -%}
+  <script>
+    const productCollectionMap = {
+      {%- for product in collections.all.products limit: 200 -%}
+        {%- assign col_title = '' -%}
+        {%- for col in product.collections -%}
+          {%- assign col_lower = col.title | downcase -%}
+          {%- unless col_lower contains 'all' or col_lower contains 'frontpage' or col_lower contains 'best sell' -%}
+            {%- assign col_title = col.title -%}
+            {%- break -%}
+          {%- endunless -%}
+        {%- endfor -%}
+        {%- if col_title != '' -%}
+          {{ product.title | json }}: {{ col_title | json }},
+        {%- endif -%}
+      {%- endfor -%}
+    };
+  </script>
   <script>
     async function replaceProductWithCollection() {
       const blocks = document.querySelectorAll('.AirReviews-Blocks__ProductsInner:not([data-col-done])');
@@ -418,9 +436,10 @@
         block.dataset.colDone = '1';
 
         try {
-          let collectionTitle = null;
+          // First check Liquid-generated map (fast, no API call)
+          let collectionTitle = productCollectionMap[productTitle] || null;
 
-          {
+          if (!collectionTitle) {
             const res = await fetch('/search/suggest.json?q=' + encodeURIComponent(productTitle) + '&resources[type]=product&resources[limit]=1');
             const data = await res.json();
             const product = data.resources?.results?.products?.[0];
