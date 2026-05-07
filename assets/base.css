@@ -3679,18 +3679,20 @@ details-disclosure > details {
 
 /* ── AirReviews author block ── */
 
-/* AuthorBlock — name + date stacked vertically */
+/* AuthorBlock — left aligned */
 .AirReviews-Blocks__ReviewDetails--AuthorBlock {
   display: flex;
   flex-direction: column;
+  align-items: flex-start !important;
   gap: 4px;
 }
 
-/* AuthorNameContainer — name inline with checkmark */
+/* AuthorNameContainer — name + date stacked */
 .AirReviews-Blocks__AuthorNameContainer {
   display: flex !important;
   flex-direction: column !important;
-  gap: 4px;
+  align-items: flex-start !important;
+  gap: 2px;
 }
 
 .AirReviews-Blocks__AuthorRight {
@@ -3699,24 +3701,27 @@ details-disclosure > details {
   gap: 6px;
 }
 
-/* Checkmark after author name */
+/* Checkmark inline with name, vertically centered */
 .AirReviews-Blocks__AuthorName::after {
   content: '';
   display: inline-block;
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   background-image: url('https://cdn.shopify.com/s/files/1/0690/5433/3063/files/carbon_checkmark-filled.svg?v=1778139814');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   vertical-align: middle;
-  margin-left: 6px;
+  margin-left: 5px;
+  position: relative;
+  top: -1px;
 }
 
-/* Date below name */
+/* Date — 12px grey below name */
 .AirReviews-Blocks__Date {
   display: block;
-  color: rgba(var(--color-foreground), 0.6);
+  font-size: 12px !important;
+  color: #777777 !important;
 }
 
 
