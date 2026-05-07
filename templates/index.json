@@ -959,6 +959,7 @@
         "collapsible_row_zhp7im",
         "collapsible_row_GkrYeR"
       ],
+      "disabled": true,
       "name": "t:sections.collapsible_content.presets.name",
       "settings": {
         "caption": "",
@@ -983,7 +984,7 @@
           "settings": {
             "air_allReviewsBlock_heading": "ReviewS",
             "air_allReviewsBlock_useSimpleSummary": true,
-            "air_allReviewsBlock_maxReview": 8,
+            "air_allReviewsBlock_maxReview": 4,
             "air_allReviewsBlock_summaryBgColor": "#f8f8f8",
             "air_allReviewsBlock_bgColor": "#ffffff",
             "air_allReviewsBlock_onlyMedia": false,
@@ -997,6 +998,7 @@
       "block_order": [
         "ag_product_reviews_app_block_all_review_BCVqg8"
       ],
+      "disabled": true,
       "settings": {
         "include_margins": true
       }
@@ -1081,6 +1083,7 @@
         "slider_BFdgUc",
         "slider_3myhej"
       ],
+      "disabled": true,
       "name": "Benefit & Sliders",
       "settings": {
         "color_scheme": "scheme-5",
