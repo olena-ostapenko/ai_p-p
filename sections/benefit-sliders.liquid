@@ -129,25 +129,28 @@
           {%- assign safe = block.id | replace: '-', '_' -%}
           {%- if layout == 'sliders_first' -%}{%- assign slides_side = 'left' -%}{%- else -%}{%- assign slides_side = 'right' -%}{%- endif -%}
           <div class="bs-slider-wrap">
-          <div class="bs-slider bs-slider--{{ safe }} bs-slider--overflow-{{ slides_side }}" {{ block.shopify_attributes }}>
-            <div class="bs-slider__track" id="bs-track-{{ safe }}">
-              {%- for i in (1..12) -%}
-                {%- assign img_key = 'image_' | append: i -%}
-                {%- assign cur_img = block.settings[img_key] -%}
-                {%- if cur_img != blank -%}
-                  <div class="bs-slide">
-                    {{ cur_img | image_url: width: 800 | image_tag: loading: 'lazy', alt: '', class: 'bs-slide__img' }}
-                  </div>
-                {%- endif -%}
-              {%- endfor -%}
+            <div class="bs-slider bs-slider--{{ safe }} bs-slider--overflow-{{ slides_side }}" {{ block.shopify_attributes }}>
+              <div class="bs-slider__track" id="bs-track-{{ safe }}">
+                {%- for i in (1..12) -%}
+                  {%- assign img_key = 'image_' | append: i -%}
+                  {%- assign cur_img = block.settings[img_key] -%}
+                  {%- if cur_img != blank -%}
+                    <div class="bs-slide">
+                      {{ cur_img | image_url: width: 800 | image_tag: loading: 'lazy', alt: '', class: 'bs-slide__img' }}
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
             </div>
-          </div>
-          <button class="bs-slider__nav bs-slider__nav--prev" data-bs-prev="{{ safe }}" data-bs-slider="{{ safe }}" aria-label="Previous">
-            <span class="icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
-          </button>
-          <button class="bs-slider__nav bs-slider__nav--next" data-bs-next="{{ safe }}" data-bs-slider="{{ safe }}" aria-label="Next">
-            <span class="icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
-          </button>
+            {%- comment -%} Nav buttons outside overflow element but inside wrap {%- endcomment -%}
+            <div class="bs-nav-wrap" id="bs-nav-{{ safe }}" style="position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:10;">
+              <button class="bs-slider__nav bs-slider__nav--prev" data-bs-prev="{{ safe }}" aria-label="Previous" style="pointer-events:all;">
+                <span class="icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+              </button>
+              <button class="bs-slider__nav bs-slider__nav--next" data-bs-next="{{ safe }}" aria-label="Next" style="pointer-events:all;">
+                <span class="icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+              </button>
+            </div>
           </div>
         {%- endif -%}
       {%- endfor -%}
@@ -183,14 +186,23 @@
         return slide.offsetWidth + parseInt(getComputedStyle(track).gap || 16);
       }
 
-      // Center nav buttons vertically based on track height
       function positionNav() {
         const trackH = track.offsetHeight;
         const navH = prev ? prev.offsetHeight : 54;
         const topOffset = (trackH - navH) / 2;
-        [prev, next].forEach(btn => {
-          if (btn) btn.style.top = topOffset + 'px';
-        });
+        // Position relative to wrap (not overflowed track)
+        const wrapW = wrap.offsetWidth;
+        if (prev) {
+          prev.style.position = 'absolute';
+          prev.style.left = '8px';
+          prev.style.top = topOffset + 'px';
+        }
+        if (next) {
+          next.style.position = 'absolute';
+          next.style.right = '8px';
+          next.style.left = 'auto';
+          next.style.top = topOffset + 'px';
+        }
       }
       positionNav();
       window.addEventListener('resize', positionNav);

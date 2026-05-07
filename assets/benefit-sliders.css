@@ -67,6 +67,9 @@
   position: relative;
   margin-bottom: 20px;
   width: 100%;
+  /* overflow:hidden clips nav-wrap to col width without clipping the track scroll */
+  overflow: clip;
+  overflow-clip-margin: 0;
 }
 .bs-slider-wrap:last-child { margin-bottom: 0; }
 
