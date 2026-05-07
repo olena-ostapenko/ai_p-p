@@ -129,9 +129,6 @@
           {%- assign safe = block.id | replace: '-', '_' -%}
           {%- if layout == 'sliders_first' -%}{%- assign slides_side = 'left' -%}{%- else -%}{%- assign slides_side = 'right' -%}{%- endif -%}
           <div class="bs-slider bs-slider--{{ safe }} bs-slider--overflow-{{ slides_side }}" {{ block.shopify_attributes }}>
-            <button class="bs-slider__nav bs-slider__nav--prev" data-bs-prev="{{ safe }}" aria-label="Previous">
-              <span class="icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
-            </button>
             <div class="bs-slider__track" id="bs-track-{{ safe }}">
               {%- for i in (1..12) -%}
                 {%- assign img_key = 'image_' | append: i -%}
@@ -143,6 +140,9 @@
                 {%- endif -%}
               {%- endfor -%}
             </div>
+            <button class="bs-slider__nav bs-slider__nav--prev" data-bs-prev="{{ safe }}" aria-label="Previous">
+              <span class="icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+            </button>
             <button class="bs-slider__nav bs-slider__nav--next" data-bs-next="{{ safe }}" aria-label="Next">
               <span class="icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
             </button>
@@ -172,7 +172,6 @@
       const track = slider.querySelector('.bs-slider__track');
       if (!track) return;
 
-      const id = track.id.replace('bs-track-', '');
       const prev = slider.querySelector('[data-bs-prev]');
       const next = slider.querySelector('[data-bs-next]');
 
@@ -182,19 +181,20 @@
         return slide.offsetWidth + parseInt(getComputedStyle(track).gap || 16);
       }
 
+      // Position nav buttons vertically centered on track
+      function positionNav() {
+        const trackH = track.offsetHeight;
+        const navH = prev ? prev.offsetHeight : 54;
+        const offset = (trackH - navH) / 2;
+        [prev, next].forEach(btn => {
+          if (btn) btn.style.transform = 'translateY(' + offset + 'px)';
+        });
+      }
+      positionNav();
+      window.addEventListener('resize', positionNav);
+
       if (prev) prev.addEventListener('click', () => track.scrollBy({ left: -getSlideW(), behavior: 'smooth' }));
       if (next) next.addEventListener('click', () => track.scrollBy({ left:  getSlideW(), behavior: 'smooth' }));
-
-      // Apply edge blur via intersection observer
-      const slides = track.querySelectorAll('.bs-slide');
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          const isEdge = entry.intersectionRatio < 0.5;
-          entry.target.classList.toggle('bs-slide--edge', isEdge);
-        });
-      }, { root: track, threshold: [0, 0.5, 1] });
-
-      slides.forEach(s => observer.observe(s));
     });
   })();
 </script>
