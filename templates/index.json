@@ -983,7 +983,7 @@
           "settings": {
             "air_allReviewsBlock_heading": "ReviewS",
             "air_allReviewsBlock_useSimpleSummary": false,
-            "air_allReviewsBlock_maxReview": 10,
+            "air_allReviewsBlock_maxReview": 8,
             "air_allReviewsBlock_summaryBgColor": "#f8f8f8",
             "air_allReviewsBlock_bgColor": "#ffffff",
             "air_allReviewsBlock_onlyMedia": true,
