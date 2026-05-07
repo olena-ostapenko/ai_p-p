@@ -128,6 +128,7 @@
         {%- if block.type == 'slider' -%}
           {%- assign safe = block.id | replace: '-', '_' -%}
           {%- if layout == 'sliders_first' -%}{%- assign slides_side = 'left' -%}{%- else -%}{%- assign slides_side = 'right' -%}{%- endif -%}
+          <div class="bs-slider-wrap">
           <div class="bs-slider bs-slider--{{ safe }} bs-slider--overflow-{{ slides_side }}" {{ block.shopify_attributes }}>
             <div class="bs-slider__track" id="bs-track-{{ safe }}">
               {%- for i in (1..12) -%}
@@ -140,12 +141,13 @@
                 {%- endif -%}
               {%- endfor -%}
             </div>
-            <button class="bs-slider__nav bs-slider__nav--prev" data-bs-prev="{{ safe }}" aria-label="Previous">
-              <span class="icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
-            </button>
-            <button class="bs-slider__nav bs-slider__nav--next" data-bs-next="{{ safe }}" aria-label="Next">
-              <span class="icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
-            </button>
+          </div>
+          <button class="bs-slider__nav bs-slider__nav--prev" data-bs-prev="{{ safe }}" data-bs-slider="{{ safe }}" aria-label="Previous">
+            <span class="icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+          </button>
+          <button class="bs-slider__nav bs-slider__nav--next" data-bs-next="{{ safe }}" data-bs-slider="{{ safe }}" aria-label="Next">
+            <span class="icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+          </button>
           </div>
         {%- endif -%}
       {%- endfor -%}
@@ -168,12 +170,12 @@
 
 <script>
   (() => {
-    document.querySelectorAll('.bs-slider').forEach(slider => {
-      const track = slider.querySelector('.bs-slider__track');
+    document.querySelectorAll('.bs-slider-wrap').forEach(wrap => {
+      const track = wrap.querySelector('.bs-slider__track');
       if (!track) return;
 
-      const prev = slider.querySelector('[data-bs-prev]');
-      const next = slider.querySelector('[data-bs-next]');
+      const prev = wrap.querySelector('.bs-slider__nav--prev');
+      const next = wrap.querySelector('.bs-slider__nav--next');
 
       function getSlideW() {
         const slide = track.querySelector('.bs-slide');
@@ -181,7 +183,7 @@
         return slide.offsetWidth + parseInt(getComputedStyle(track).gap || 16);
       }
 
-      // Center nav buttons vertically on track
+      // Center nav buttons vertically based on track height
       function positionNav() {
         const trackH = track.offsetHeight;
         const navH = prev ? prev.offsetHeight : 54;

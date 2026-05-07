@@ -63,12 +63,17 @@
 }
 
 /* ── Slider ─────────────────────────────────────────────── */
-.bs-slider {
+.bs-slider-wrap {
   position: relative;
   margin-bottom: 20px;
   width: 100%;
 }
-.bs-slider:last-child { margin-bottom: 0; }
+.bs-slider-wrap:last-child { margin-bottom: 0; }
+
+.bs-slider {
+  position: relative;
+  width: 100%;
+}
 
 /* Overflow right (benefit first layout) */
 .bs-slider--overflow-right .bs-slider__track {
@@ -158,6 +163,7 @@
 }
 
 /* ── Nav buttons — same style as Our Best Sellers ─────── */
+/* Positioned relative to .bs-slider-wrap (col width, not overflow track) */
 .bs-slider__nav {
   position: absolute;
   top: 0;
