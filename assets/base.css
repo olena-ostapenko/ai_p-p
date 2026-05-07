@@ -3751,3 +3751,17 @@ details-disclosure > details {
   border: 1px solid rgba(0, 0, 0, 0.1) !important;
   border-radius: 8px !important;
 }
+
+/* ── AirReviews — hide product block, show collection name ── */
+.AirReviews-Blocks__ProductsInner {
+  display: none !important;
+}
+
+.air-reviews-collection-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgb(var(--color-foreground));
+  padding: 8px 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  margin-top: 8px;
+}

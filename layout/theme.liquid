@@ -407,5 +407,51 @@
     const observer = new MutationObserver(fixAirReviewsText);
     observer.observe(document.body, { childList: true, subtree: true });
   </script>
+  <script>
+    // Replace AirReviews product block with collection name
+    async function replaceProductWithCollection() {
+      const blocks = document.querySelectorAll('.AirReviews-Blocks__ProductsInner');
+      for (const block of blocks) {
+        const nameEl = block.querySelector('.AirReviews-Blocks__ProductName div');
+        if (!nameEl) continue;
+        const productTitle = nameEl.textContent.trim();
+        if (!productTitle || block.dataset.colDone) continue;
+        block.dataset.colDone = '1';
+
+        try {
+          const res = await fetch('/search/suggest.json?q=' + encodeURIComponent(productTitle) + '&resources[type]=product&resources[limit]=1');
+          const data = await res.json();
+          const product = data.resources?.results?.products?.[0];
+          if (!product) continue;
+
+          // Fetch product details to get collections
+          const pRes = await fetch('/products/' + product.handle + '.js');
+          const pData = await pRes.json();
+
+          // Fetch collections for this product
+          const cRes = await fetch('/collections.json?product_id=' + pData.id + '&limit=1');
+          const cData = await cRes.json();
+          const collectionTitle = cData.collections?.[0]?.title;
+
+          if (collectionTitle) {
+            // Hide product block and show collection name
+            block.style.display = 'none';
+            const colEl = document.createElement('div');
+            colEl.className = 'air-reviews-collection-name';
+            colEl.textContent = collectionTitle;
+            block.parentNode.insertBefore(colEl, block.nextSibling);
+          }
+        } catch(e) {}
+      }
+    }
+
+    // Run after Avada loads reviews
+    const colObserver = new MutationObserver(() => {
+      if (document.querySelector('.AirReviews-Blocks__ProductsInner')) {
+        replaceProductWithCollection();
+      }
+    });
+    colObserver.observe(document.body, { childList: true, subtree: true });
+  </script>
   </body>
 </html>
