@@ -22,6 +22,10 @@
     background-color: {{ section.settings.color_scheme.settings.button }};
   }
 
+  .bs-{{ section.id }} .bs-slider__nav {
+    color: {{ section.settings.nav_color }};
+  }
+
   .bs-{{ section.id }} .bs-btn {
     background-color: {{ section.settings.btn_color }};
     color: {{ section.settings.btn_text_color }};
@@ -241,6 +245,16 @@
         { "value": "sliders_first", "label": "Sliders left, Benefit right" }
       ],
       "default": "benefit_first"
+    },
+    {
+      "type": "header",
+      "content": "Navigation"
+    },
+    {
+      "type": "color",
+      "id": "nav_color",
+      "label": "Nav button icon color",
+      "default": "#E9A753"
     },
     {
       "type": "header",
