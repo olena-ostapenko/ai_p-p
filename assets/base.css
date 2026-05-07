@@ -3693,16 +3693,4 @@ details-disclosure > details {
   margin-left: 6px;
 }
 
-/* Date below AuthorNameContainer */
-.AirReviews-Blocks__AuthorNameContainer {
-  display: flex;
-  flex-direction: column;
-}
 
-.AirReviews-Blocks__Date {
-  order: 2;
-}
-
-.AirReviews-Blocks__AuthorRight {
-  order: 1;
-}
