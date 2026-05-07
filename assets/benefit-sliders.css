@@ -178,7 +178,8 @@
   transform: translateY(var(--bs-nav-top, 0px));
 }
 .bs-slider__nav--prev { left: 8px; }
-.bs-slider__nav--next { left: auto; right: 8px; }
+.bs-slider__nav--next { left: auto; }
+/* right position set by JS based on col width */
 
 .bs-slider__nav .icon {
   width: 24px;
