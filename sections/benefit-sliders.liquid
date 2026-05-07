@@ -22,8 +22,11 @@
     background-color: {{ section.settings.color_scheme.settings.button }};
   }
 
-  .bs-{{ section.id }} .bs-slider__nav {
-    color: {{ section.settings.nav_color }};
+  .bs-{{ section.id }} .bs-slider__nav,
+  .bs-{{ section.id }} .bs-slider__nav .icon,
+  .bs-{{ section.id }} .bs-slider__nav .icon svg {
+    color: {{ section.settings.nav_color }} !important;
+    fill: {{ section.settings.nav_color }} !important;
   }
 
   .bs-{{ section.id }} .bs-btn {
