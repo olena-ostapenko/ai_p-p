@@ -213,6 +213,25 @@
       if (prev) prev.addEventListener('click', () => track.scrollBy({ left: -getSlideW(), behavior: 'smooth' }));
       if (next) next.addEventListener('click', () => track.scrollBy({ left:  getSlideW(), behavior: 'smooth' }));
     });
+
+    // On mobile: remove negative margin from slider col
+    function fixMobileSlider() {
+      if (window.innerWidth < 990) {
+        document.querySelectorAll('.bs-col--sliders').forEach(col => {
+          col.style.marginRight = '0';
+          col.style.marginLeft = '0';
+          col.style.overflow = 'hidden';
+        });
+      } else {
+        document.querySelectorAll('.bs-col--sliders').forEach(col => {
+          col.style.marginRight = '';
+          col.style.marginLeft = '';
+          col.style.overflow = '';
+        });
+      }
+    }
+    fixMobileSlider();
+    window.addEventListener('resize', fixMobileSlider);
   })();
 </script>
 
