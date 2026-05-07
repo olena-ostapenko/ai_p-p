@@ -181,24 +181,14 @@
         return slide.offsetWidth + parseInt(getComputedStyle(track).gap || 16);
       }
 
-      // Position nav buttons: vertically centered, right btn at col right edge
+      // Center nav buttons vertically on track
       function positionNav() {
         const trackH = track.offsetHeight;
         const navH = prev ? prev.offsetHeight : 54;
         const topOffset = (trackH - navH) / 2;
-        if (prev) prev.style.transform = 'translateY(' + topOffset + 'px)';
-
-        if (next) {
-          const col = slider.closest('.bs-col--sliders');
-          if (col) {
-            const colRect = col.getBoundingClientRect();
-            const sliderRect = slider.getBoundingClientRect();
-            // Position right button at right edge of col
-            const rightFromSlider = sliderRect.right - colRect.right + 8;
-            next.style.right = rightFromSlider + 'px';
-          }
-          next.style.transform = 'translateY(' + topOffset + 'px)';
-        }
+        [prev, next].forEach(btn => {
+          if (btn) btn.style.top = topOffset + 'px';
+        });
       }
       positionNav();
       window.addEventListener('resize', positionNav);

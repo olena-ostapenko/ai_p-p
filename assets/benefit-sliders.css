@@ -66,6 +66,7 @@
 .bs-slider {
   position: relative;
   margin-bottom: 20px;
+  width: 100%;
 }
 .bs-slider:last-child { margin-bottom: 0; }
 
@@ -178,8 +179,7 @@
   transform: translateY(var(--bs-nav-top, 0px));
 }
 .bs-slider__nav--prev { left: 8px; }
-.bs-slider__nav--next { left: auto; }
-/* right position set by JS based on col width */
+.bs-slider__nav--next { right: 8px; left: auto; }
 
 .bs-slider__nav .icon {
   width: 24px;
