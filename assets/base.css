@@ -3741,3 +3741,14 @@ details-disclosure > details {
   font-variant-numeric: normal;
   -webkit-font-smoothing: antialiased;
 }
+
+/* ── AirReviews review card border ── */
+.AirReviews-Blocks__ListReview {
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border-radius: 8px !important;
+}
+
+/* Remove top border from first element inside card if Avada adds one */
+.AirReviews-Blocks__ReviewDetails--Wrapper:first-child {
+  border-top: none !important;
+}
