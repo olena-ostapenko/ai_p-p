@@ -14,6 +14,12 @@
     "footer": {
       "type": "footer",
       "blocks": {
+        "spacer_qkfHin": {
+          "type": "spacer",
+          "settings": {
+            "height": 128
+          }
+        },
         "link_list_YaGCkU": {
           "type": "link_list",
           "settings": {
@@ -37,6 +43,7 @@
         }
       },
       "block_order": [
+        "spacer_qkfHin",
         "link_list_YaGCkU",
         "link_list_awPFaP",
         "link_list_jALy6p"
@@ -45,6 +52,9 @@
         "brand_desc": "Turn any pet photo into a one-of-a-kind portrait, apparel, or gift — professionally designed and perfected with unlimited revisions",
         "payment_enable": true,
         "show_policy": true,
+        "tag_1": "Unique",
+        "tag_2": "Personalized",
+        "tag_3": "Emotional",
         "show_decorative_line": true,
         "decorative_line_thickness": 2,
         "decorative_line_color": "#ffffff",
