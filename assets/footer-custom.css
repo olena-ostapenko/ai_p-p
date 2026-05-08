@@ -68,7 +68,7 @@
 /* ── Main grid ────────────────────────────────────────────── */
 .pf-main {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr repeat(3, max-content);
   gap: 32px;
   margin-bottom: 40px;
 }
