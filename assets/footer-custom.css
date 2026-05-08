@@ -21,6 +21,12 @@
   position: relative;
 }
 
+/* Tags aligned to center of logo vertically */
+.pf-top .pf-tags {
+  align-self: center;
+  margin-top: 0;
+}
+
 .pf-logo {
   position: relative;
   z-index: 2;
