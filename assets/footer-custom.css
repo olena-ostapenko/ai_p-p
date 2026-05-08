@@ -19,6 +19,11 @@
   gap: 16px;
 }
 
+.pf-logo {
+  position: relative;
+  z-index: 2;
+}
+
 .pf-logo img {
   width: 280px;
   height: auto;
