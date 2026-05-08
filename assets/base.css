@@ -489,7 +489,7 @@ table:not([class]) th {
 a:empty,
 ul:empty,
 dl:empty,
-div:empty:not(.header__decorative-line),
+div:empty:not(.header__decorative-line):not(.pf-top__decorative-line),
 section:empty,
 article:empty,
 p:empty,
@@ -3776,3 +3776,5 @@ details-disclosure > details {
   display: block;
   margin-top: 8px;
 }
+
+
