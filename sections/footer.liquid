@@ -43,10 +43,18 @@
                alt="{{ shop.name }}" width="280" height="auto" loading="lazy">
         </a>
       </div>
-
-    {%- if section.settings.show_decorative_line -%}
-      <div class="pf-top__decorative-line" aria-hidden="true"></div>
-    {%- endif -%}
+      <div class="pf-tags">
+        {%- assign tags = 'Unique,Personalized,Emotional' | split: ',' -%}
+        {%- for tag in tags -%}
+          <span class="pf-tag">
+            <img src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/paw.svg?v=1776943183" alt="" width="13" height="13">
+            {{ tag }}
+          </span>
+        {%- endfor -%}
+      </div>
+      {%- if section.settings.show_decorative_line -%}
+        <div class="pf-top__decorative-line" aria-hidden="true"></div>
+      {%- endif -%}
     </div>
 
     {%- comment -%} ── Main columns ── {%- endcomment -%}
@@ -87,17 +95,9 @@
       </div>
 
       {%- comment -%} Nav blocks {%- endcomment -%}
-      {%- assign tag_list = 'Unique,Personalized,Emotional' | split: ',' -%}
       {%- for block in section.blocks -%}
         {%- if block.type == 'link_list' -%}
-          {%- assign tag_index = forloop.index0 -%}
           <div class="pf-nav" {{ block.shopify_attributes }}>
-            {%- if tag_list[tag_index] != blank -%}
-              <div class="pf-tag pf-nav__tag">
-                <img src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/paw.svg?v=1776943183" alt="" width="13" height="13">
-                {{ tag_list[tag_index] }}
-              </div>
-            {%- endif -%}
             {%- if block.settings.heading != blank -%}
               <h3 class="pf-nav__heading">{{ block.settings.heading }}</h3>
             {%- endif -%}
