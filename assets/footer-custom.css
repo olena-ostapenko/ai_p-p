@@ -49,8 +49,9 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 32px;
   color: #ffffff;
   letter-spacing: 0.02em;
 }
@@ -75,8 +76,9 @@
 /* ── Brand column ─────────────────────────────────────────── */
 .pf-brand { margin-right: 60px; }
 .pf-brand__desc {
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
   color: rgba(255,255,255,0.8);
   margin-bottom: 24px;
 }
@@ -114,7 +116,7 @@
   align-items: flex-start;
 }
 .pf-nav__heading {
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 700;
   color: #ffffff;
   margin: 0 0 16px;
@@ -128,13 +130,16 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 0;
 }
 
 .pf-nav__list a {
   color: rgba(255,255,255,0.8);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 40px;
+  display: block;
   transition: color 0.2s;
 }
 
@@ -174,9 +179,10 @@
   .pf-main {
     grid-template-columns: 1fr 1fr;
   }
-  .pf-tags {
-    gap: 16px;
-  }
+  .pf-tag { font-size: 15px; line-height: 24px; }
+  .pf-brand__desc { font-size: 16px; }
+  .pf-nav__heading { font-size: 18px; }
+  .pf-nav__list a { font-size: 16px; line-height: 32px; }
 }
 
 @media screen and (max-width: 749px) {
