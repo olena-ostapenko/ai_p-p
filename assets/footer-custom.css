@@ -55,10 +55,14 @@
   height: 13px;
 }
 
+.pf-nav__tag {
+  margin-bottom: 12px;
+}
+
 /* ── Main grid ────────────────────────────────────────────── */
 .pf-main {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 280px 1fr 1fr 1fr;
   gap: 32px;
   margin-bottom: 40px;
 }
