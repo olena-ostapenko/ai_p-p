@@ -10,21 +10,22 @@
 
 /* ── Top bar: logo + tags ─────────────────────────────────── */
 .pf-top {
-  display: flex;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 32px;
   align-items: center;
-  justify-content: space-between;
   padding-top: 8px;
   padding-bottom: 32px;
   margin-bottom: 48px;
-  flex-wrap: wrap;
-  gap: 16px;
   position: relative;
 }
 
-/* Tags aligned to center of logo vertically */
+/* Tags span last 3 columns */
 .pf-top .pf-tags {
-  align-self: center;
-  margin-top: 0;
+  grid-column: 2 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .pf-logo {
