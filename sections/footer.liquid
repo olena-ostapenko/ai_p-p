@@ -108,7 +108,7 @@
       {%- comment -%} Nav blocks {%- endcomment -%}
       {%- for block in section.blocks -%}
         {%- if block.type == 'link_list' -%}
-          <div class="pf-nav" {{ block.shopify_attributes }}>
+          <div class="pf-nav" style="{% if block.settings.col_width > 0 %}width:{{ block.settings.col_width }}px;flex-shrink:0;{% endif %}" {{ block.shopify_attributes }}>
             {%- if block.settings.heading != blank -%}
               <h3 class="pf-nav__heading">{{ block.settings.heading }}</h3>
             {%- endif -%}
@@ -187,6 +187,13 @@
           "id": "menu",
           "default": "footer",
           "label": "Menu"
+        },
+        {
+          "type": "range",
+          "id": "col_width",
+          "label": "Column width (0 = auto)",
+          "min": 0, "max": 400, "step": 10, "unit": "px",
+          "default": 0
         }
       ]
     }
