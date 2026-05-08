@@ -187,13 +187,16 @@
 
 @media screen and (max-width: 749px) {
   .pf-top {
-    flex-direction: column;
-    align-items: flex-start;
+    grid-template-columns: 1fr;
+  }
+  .pf-tag-cell {
+    justify-content: center;
   }
   .pf-main {
     grid-template-columns: 1fr;
   }
-  .pf-tags {
-    flex-wrap: wrap;
+  .pf-nav {
+    align-items: center;
+    text-align: center;
   }
 }
