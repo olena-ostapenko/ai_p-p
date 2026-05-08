@@ -14,13 +14,6 @@
     "footer": {
       "type": "footer",
       "blocks": {
-        "link_list_jALy6p": {
-          "type": "link_list",
-          "settings": {
-            "heading": "Info",
-            "menu": "info"
-          }
-        },
         "link_list_YaGCkU": {
           "type": "link_list",
           "settings": {
@@ -34,12 +27,19 @@
             "heading": "Discover",
             "menu": "discover"
           }
+        },
+        "link_list_jALy6p": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Info",
+            "menu": "info"
+          }
         }
       },
       "block_order": [
-        "link_list_jALy6p",
         "link_list_YaGCkU",
-        "link_list_awPFaP"
+        "link_list_awPFaP",
+        "link_list_jALy6p"
       ],
       "settings": {
         "brand_desc": "Turn any pet photo into a one-of-a-kind portrait, apparel, or gift — professionally designed and perfected with unlimited revisions",
