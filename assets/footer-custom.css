@@ -112,8 +112,8 @@
 .pf-nav {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  text-align: right;
+  align-items: flex-start;
+  justify-self: end;
 }
 .pf-nav__heading {
   font-size: 16px;
