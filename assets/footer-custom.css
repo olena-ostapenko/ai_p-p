@@ -74,6 +74,7 @@
 }
 
 /* ── Brand column ─────────────────────────────────────────── */
+.pf-brand { margin-right: 60px; }
 .pf-brand__desc {
   font-size: 14px;
   line-height: 1.6;
