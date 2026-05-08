@@ -14,7 +14,6 @@
   align-items: center;
   justify-content: space-between;
   padding-bottom: 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
   margin-bottom: 40px;
   flex-wrap: wrap;
   gap: 16px;
@@ -119,7 +118,6 @@
 
 /* ── Bottom bar ───────────────────────────────────────────── */
 .pf-bottom {
-  border-top: 1px solid rgba(255,255,255,0.2);
   padding-top: 20px;
   display: flex;
   align-items: center;
