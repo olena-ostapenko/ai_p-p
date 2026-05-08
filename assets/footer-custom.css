@@ -13,10 +13,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 20px;
-  margin-bottom: 40px;
+  padding-top: 8px;
+  padding-bottom: 32px;
+  margin-bottom: 48px;
   flex-wrap: wrap;
   gap: 16px;
+  position: relative;
 }
 
 .pf-logo {
@@ -32,8 +34,10 @@
 
 .pf-tags {
   display: flex;
-  gap: 32px;
+  gap: 40px;
   align-items: center;
+  position: relative;
+  z-index: 2;
 }
 
 .pf-tag {
