@@ -120,6 +120,8 @@
               </ul>
             {%- endif -%}
           </div>
+        {%- elsif block.type == 'spacer' -%}
+          <div class="pf-spacer" style="height:{{ block.settings.height }}px;" {{ block.shopify_attributes }}></div>
         {%- endif -%}
       {%- endfor -%}
 
@@ -157,6 +159,19 @@
 {
   "name": "Footer",
   "blocks": [
+    {
+      "type": "spacer",
+      "name": "Spacer",
+      "settings": [
+        {
+          "type": "range",
+          "id": "height",
+          "min": 0, "max": 200, "step": 4, "unit": "px",
+          "label": "Height",
+          "default": 40
+        }
+      ]
+    },
     {
       "type": "link_list",
       "name": "Navigation column",
