@@ -43,16 +43,18 @@
                alt="{{ shop.name }}" width="280" height="auto" loading="lazy">
         </a>
       </div>
-      <div class="pf-tags">
-        {%- for block in section.blocks -%}
-          {%- if block.type == 'link_list' and block.settings.tag != blank -%}
-            <span class="pf-tag">
-              <img src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/paw.svg?v=1776943183" alt="" width="13" height="13">
-              {{ block.settings.tag }}
-            </span>
-          {%- endif -%}
-        {%- endfor -%}
-      </div>
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'link_list' -%}
+          <div class="pf-tag-cell">
+            {%- if block.settings.tag != blank -%}
+              <span class="pf-tag">
+                <img src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/paw.svg?v=1776943183" alt="" width="13" height="13">
+                {{ block.settings.tag }}
+              </span>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
       {%- if section.settings.show_decorative_line -%}
         <div class="pf-top__decorative-line" aria-hidden="true"></div>
       {%- endif -%}

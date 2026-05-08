@@ -20,12 +20,10 @@
   position: relative;
 }
 
-/* Tags span last 3 columns */
-.pf-top .pf-tags {
-  grid-column: 2 / -1;
+/* Each tag cell aligns with its nav column */
+.pf-tag-cell {
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 .pf-logo {
