@@ -19,6 +19,7 @@
           "settings": {
             "heading": "Useful links",
             "menu": "useful-links",
+            "tag": "Unique",
             "col_width": 0
           }
         },
@@ -27,6 +28,7 @@
           "settings": {
             "heading": "Discover",
             "menu": "discover",
+            "tag": "",
             "col_width": 0
           }
         },
@@ -35,6 +37,7 @@
           "settings": {
             "heading": "Info",
             "menu": "info",
+            "tag": "",
             "col_width": 0
           }
         }
@@ -49,9 +52,6 @@
         "brand_desc_width": 250,
         "payment_enable": true,
         "show_policy": true,
-        "tag_1": "Unique",
-        "tag_2": "Personalized",
-        "tag_3": "Emotional",
         "show_decorative_line": true,
         "decorative_line_thickness": 2,
         "decorative_line_color": "#ffffff",
