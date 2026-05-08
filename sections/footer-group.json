@@ -28,7 +28,7 @@
           "settings": {
             "heading": "Discover",
             "menu": "discover",
-            "tag": "",
+            "tag": "Personalized",
             "col_width": 0
           }
         },
@@ -37,7 +37,7 @@
           "settings": {
             "heading": "Info",
             "menu": "info",
-            "tag": "",
+            "tag": "Emotional",
             "col_width": 0
           }
         }
