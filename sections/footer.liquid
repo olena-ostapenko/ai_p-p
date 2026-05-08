@@ -44,24 +44,14 @@
         </a>
       </div>
       <div class="pf-tags">
-        {%- if section.settings.tag_1 != blank -%}
-          <span class="pf-tag">
-            <img src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/paw.svg?v=1776943183" alt="" width="13" height="13">
-            {{ section.settings.tag_1 }}
-          </span>
-        {%- endif -%}
-        {%- if section.settings.tag_2 != blank -%}
-          <span class="pf-tag">
-            <img src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/paw.svg?v=1776943183" alt="" width="13" height="13">
-            {{ section.settings.tag_2 }}
-          </span>
-        {%- endif -%}
-        {%- if section.settings.tag_3 != blank -%}
-          <span class="pf-tag">
-            <img src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/paw.svg?v=1776943183" alt="" width="13" height="13">
-            {{ section.settings.tag_3 }}
-          </span>
-        {%- endif -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'link_list' and block.settings.tag != blank -%}
+            <span class="pf-tag">
+              <img src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/paw.svg?v=1776943183" alt="" width="13" height="13">
+              {{ block.settings.tag }}
+            </span>
+          {%- endif -%}
+        {%- endfor -%}
       </div>
       {%- if section.settings.show_decorative_line -%}
         <div class="pf-top__decorative-line" aria-hidden="true"></div>
@@ -176,6 +166,11 @@
           "label": "Menu"
         },
         {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag (above heading)"
+        },
+        {
           "type": "range",
           "id": "col_width",
           "label": "Column width (0 = auto)",
@@ -211,28 +206,7 @@
       "default": true,
       "label": "Show policy links"
     },
-    {
-      "type": "header",
-      "content": "Tags"
-    },
-    {
-      "type": "text",
-      "id": "tag_1",
-      "label": "Tag 1",
-      "default": "Unique"
-    },
-    {
-      "type": "text",
-      "id": "tag_2",
-      "label": "Tag 2",
-      "default": "Personalized"
-    },
-    {
-      "type": "text",
-      "id": "tag_3",
-      "label": "Tag 3",
-      "default": "Emotional"
-    },
+
     {
       "type": "header",
       "content": "Decorative line"
