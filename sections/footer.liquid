@@ -74,7 +74,7 @@
       {%- comment -%} Brand column {%- endcomment -%}
       <div class="pf-brand">
         {%- if section.settings.brand_desc != blank -%}
-          <p class="pf-brand__desc">{{ section.settings.brand_desc }}</p>
+          <p class="pf-brand__desc" {% if section.settings.brand_desc_width > 0 %}style="max-width:{{ section.settings.brand_desc_width }}px;"{% endif %}>{{ section.settings.brand_desc }}</p>
         {%- endif -%}
         <div class="pf-socials">
           {%- if settings.social_facebook_link != blank -%}
@@ -120,8 +120,7 @@
               </ul>
             {%- endif -%}
           </div>
-        {%- elsif block.type == 'spacer' -%}
-          <div class="pf-spacer" style="height:{{ block.settings.height }}px;" {{ block.shopify_attributes }}></div>
+
         {%- endif -%}
       {%- endfor -%}
 
@@ -159,19 +158,7 @@
 {
   "name": "Footer",
   "blocks": [
-    {
-      "type": "spacer",
-      "name": "Spacer",
-      "settings": [
-        {
-          "type": "range",
-          "id": "height",
-          "min": 0, "max": 200, "step": 4, "unit": "px",
-          "label": "Height",
-          "default": 40
-        }
-      ]
-    },
+
     {
       "type": "link_list",
       "name": "Navigation column",
@@ -204,6 +191,13 @@
       "id": "brand_desc",
       "label": "Brand description",
       "default": "Turn any pet photo into a one-of-a-kind portrait, apparel, or gift — professionally designed and perfected with unlimited revisions"
+    },
+    {
+      "type": "range",
+      "id": "brand_desc_width",
+      "label": "Description width (0 = auto)",
+      "min": 0, "max": 500, "step": 10, "unit": "px",
+      "default": 0
     },
     {
       "type": "checkbox",
