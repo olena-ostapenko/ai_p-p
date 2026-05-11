@@ -136,7 +136,7 @@
         </style>
       {%- endif -%}
     {%- endif -%}
-    <div class="localization-wrapper">
+    {% comment %} <div class="localization-wrapper">
       {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
         <localization-form class="small-hide medium-hide">
           {%- form 'localization', id: 'AnnouncementCountryForm', class: 'localization-form' -%}
@@ -158,7 +158,84 @@
           {%- endform -%}
         </localization-form>
       {%- endif -%}
-    </div>
+    </div> {% endcomment %}
+
+<div class="localization-wrapper custom-language-switcher">
+  {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+    <localization-form>
+      {%- form 'localization', id: 'AnnouncementLanguageForm', class: 'localization-form' -%}
+        <div class="disclosure">
+          <button type="button" class="disclosure__button localization-form__select" aria-expanded="false" aria-controls="AnnouncementLanguageList" aria-describedby="AnnouncementLanguageLabel">
+            {{ localization.language.endonym_name | capitalize }}
+            {{ 'icon-caret.svg' | inline_asset_content }}
+          </button>
+          <div class="disclosure__list-wrapper" hidden>
+            <ul id="AnnouncementLanguageList" role="list" class="disclosure__list list-unstyled">
+              {%- for language in localization.available_languages -%}
+                <li class="disclosure__item" tabindex="-1">
+                  <a class="link link--text disclosure__link caption-large focus-inset{% if language.iso_code == localization.language.iso_code %} disclosure__link--active{% endif %}" href="#" hreflang="{{ language.iso_code }}" lang="{{ language.iso_code }}" {% if language.iso_code == localization.language.iso_code %} aria-current="true"{% endif %} data-value="{{ language.iso_code }}">
+                    {{ language.endonym_name | capitalize }}
+                  </a>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        </div>
+        <input type="hidden" name="locale_code" value="{{ localization.language.iso_code }}">
+      {%- endform -%}
+    </localization-form>
+  {%- endif -%}
+</div>
+
+<style>
+  /* Робимо батьківський контейнер відносним */
+  .utility-bar__grid {
+    position: relative;
+  }
+
+  /* Позиціонуємо перемикач мов */
+  .custom-language-switcher {
+    position: absolute !important;
+    right: 30%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+  }
+
+  /* Стилізація самої кнопки (щоб виглядала охайно в Dawn) */
+  .custom-language-switcher .localization-form__select {
+    padding: 0 1rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.3rem; /* Розмір тексту як в Dawn */
+  }
+
+  .custom-language-switcher .icon-caret {
+    width: 1rem;
+  }
+
+  /* Адаптивність: на мобільних 30% може бути забагато, 
+     можливо, варто скинути позиціювання */
+  @media screen and (max-width: 749px) {
+    .custom-language-switcher {
+      position: static !important;
+      transform: none;
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+    }
+  }
+</style>
+
+
+
+
+
+    {% comment %} end {% endcomment %}
   </div>
 </div>
 
