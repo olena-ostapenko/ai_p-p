@@ -23,7 +23,7 @@
       position: absolute;
       left: 0;
       right: 0;
-      top: {{ section.settings.decorative_line_position }}%;
+      top: {{ section.settings.decorative_line_position }}px;
       height: {{ section.settings.decorative_line_thickness }}px;
       background-color: {{ section.settings.decorative_line_color }};
       pointer-events: none;
@@ -31,7 +31,7 @@
     }
     @media screen and (max-width: 749px) {
       .pf-top__decorative-line {
-        top: {{ section.settings.decorative_line_position_mobile }}%;
+        top: {{ section.settings.decorative_line_position_mobile }}px;
       }
       .pf-logo {
         position: relative;
@@ -291,16 +291,16 @@
     {
       "type": "range",
       "id": "decorative_line_position",
-      "min": 0, "max": 100, "step": 1, "unit": "%",
-      "label": "Vertical position (desktop)",
-      "default": 50
+      "min": 0, "max": 200, "step": 2, "unit": "px",
+      "label": "Line position from top (desktop)",
+      "default": 60
     },
     {
       "type": "range",
       "id": "decorative_line_position_mobile",
-      "min": 0, "max": 100, "step": 1, "unit": "%",
-      "label": "Vertical position (mobile)",
-      "default": 30
+      "min": 0, "max": 200, "step": 2, "unit": "px",
+      "label": "Line position from top (mobile)",
+      "default": 60
     },
     {
       "type": "header",
