@@ -1,0 +1,109 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "header": {
+      "menu": "Меню"
+    },
+    "cart": {
+      "title": "Кошик",
+      "empty": "Ваш кошик порожній",
+      "checkout": "Оформити замовлення",
+      "note": "Примітка до замовлення",
+      "estimated_total": "Орієнтовна сума",
+      "update": "Оновити кошик"
+    },
+    "featured_collection": {
+      "view_all": "Переглянути все"
+    },
+    "collection_template": {
+      "empty": "Товари в цій колекції відсутні."
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Додати до кошика",
+      "sold_out": "Немає в наявності",
+      "unavailable": "Недоступно",
+      "on_sale": "Знижка",
+      "share": "Поділитися",
+      "description": "Опис",
+      "vendor": "Виробник",
+      "sku": "Артикул",
+      "quantity": {
+        "label": "Кількість"
+      },
+      "inventory_in_stock": "В наявності",
+      "inventory_out_of_stock": "Немає в наявності"
+    },
+    "facets": {
+      "sort_by_label": "Сортувати за",
+      "filter_and_sort": "Фільтр і сортування",
+      "clear_all": "Очистити все"
+    }
+  },
+  "general": {
+    "search": {
+      "search": "Пошук"
+    },
+    "continue_shopping": "Продовжити покупки",
+    "pagination": {
+      "next": "Наступна",
+      "previous": "Попередня"
+    },
+    "password_page": {
+      "login_form_heading": "Введіть пароль",
+      "login_form_submit": "Увійти"
+    }
+  },
+  "accessibility": {
+    "close": "Закрити"
+  },
+  "customer": {
+    "log_in": "Увійти",
+    "log_out": "Вийти",
+    "register": {
+      "title": "Реєстрація",
+      "submit": "Зареєструватися"
+    },
+    "login_page": {
+      "title": "Вхід",
+      "forgot_password": "Забули пароль?"
+    },
+    "addresses": {
+      "title": "Ваші адреси"
+    },
+    "account": {
+      "title": "Мій обліковий запис"
+    },
+    "orders": {
+      "title": "Мої замовлення",
+      "none": "Ви ще не робили замовлень."
+    }
+  },
+  "templates": {
+    "search": {
+      "title": "Результати пошуку",
+      "no_results": "На жаль, нічого не знайдено."
+    },
+    "404": {
+      "title": "Сторінку не знайдено",
+      "subtext": "Перевірте URL або поверніться на головну сторінку."
+    }
+  },
+  "newsletter": {
+    "button_label": "Підписатися",
+    "success": "Дякуємо за підписку!"
+  },
+  "localization": {
+    "country_label": "Країна/регіон",
+    "language_label": "Мова"
+  }
+}
