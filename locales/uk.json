@@ -18,7 +18,13 @@
       "checkout": "Оформити замовлення",
       "note": "Примітка до замовлення",
       "estimated_total": "Орієнтовна сума",
-      "update": "Оновити кошик"
+      "update": "Оновити кошик",
+      "headings": {
+        "product": "Товар",
+        "price": "Ціна",
+        "quantity": "Кількість",
+        "total": "Разом"
+      }
     },
     "featured_collection": {
       "view_all": "Переглянути все"
@@ -41,12 +47,15 @@
         "label": "Кількість"
       },
       "inventory_in_stock": "В наявності",
-      "inventory_out_of_stock": "Немає в наявності"
+      "inventory_out_of_stock": "Немає в наявності",
+      "choose_options": "Вибрати опції",
+      "view_full_details": "Детальніше"
     },
     "facets": {
       "sort_by_label": "Сортувати за",
       "filter_and_sort": "Фільтр і сортування",
-      "clear_all": "Очистити все"
+      "clear_all": "Очистити все",
+      "filter_button": "Фільтр"
     }
   },
   "general": {
@@ -61,6 +70,13 @@
     "password_page": {
       "login_form_heading": "Введіть пароль",
       "login_form_submit": "Увійти"
+    },
+    "cart": {
+      "view": "Переглянути кошик"
+    },
+    "share": {
+      "copy_to_clipboard": "Копіювати посилання",
+      "success_message": "Посилання скопійовано"
     }
   },
   "accessibility": {
@@ -71,21 +87,63 @@
     "log_out": "Вийти",
     "register": {
       "title": "Реєстрація",
-      "submit": "Зареєструватися"
+      "submit": "Зареєструватися",
+      "first_name": "Ім'я",
+      "last_name": "Прізвище",
+      "email": "Електронна пошта",
+      "password": "Пароль"
     },
     "login_page": {
       "title": "Вхід",
-      "forgot_password": "Забули пароль?"
+      "forgot_password": "Забули пароль?",
+      "email": "Електронна пошта",
+      "password": "Пароль",
+      "sign_in": "Увійти",
+      "create_account": "Створити обліковий запис",
+      "cancel": "Скасувати"
     },
     "addresses": {
-      "title": "Ваші адреси"
+      "title": "Ваші адреси",
+      "first_name": "Ім'я",
+      "last_name": "Прізвище",
+      "company": "Компанія",
+      "address1": "Адреса 1",
+      "address2": "Адреса 2",
+      "city": "Місто",
+      "country": "Країна",
+      "zip": "Поштовий індекс",
+      "phone": "Телефон",
+      "add": "Додати адресу",
+      "update": "Оновити адресу",
+      "cancel": "Скасувати",
+      "delete": "Видалити",
+      "edit": "Редагувати",
+      "set_default": "Зробити основною",
+      "default": "Основна адреса"
     },
     "account": {
-      "title": "Мій обліковий запис"
+      "title": "Мій обліковий запис",
+      "details": "Деталі облікового запису",
+      "view_addresses": "Переглянути адреси"
     },
     "orders": {
       "title": "Мої замовлення",
-      "none": "Ви ще не робили замовлень."
+      "none": "Ви ще не робили замовлень.",
+      "order_number": "Замовлення",
+      "date": "Дата",
+      "total": "Сума",
+      "payment_status": "Статус оплати",
+      "fulfillment_status": "Статус доставки"
+    },
+    "order": {
+      "title": "Замовлення {{ name }}",
+      "subtotal": "Підсумок",
+      "total": "Разом",
+      "shipping": "Доставка",
+      "tax": "Податок",
+      "quantity": "Кількість",
+      "price": "Ціна",
+      "product": "Товар"
     }
   },
   "templates": {
@@ -96,11 +154,23 @@
     "404": {
       "title": "Сторінку не знайдено",
       "subtext": "Перевірте URL або поверніться на головну сторінку."
+    },
+    "contact": {
+      "form": {
+        "title": "Зв'яжіться з нами",
+        "name": "Ім'я",
+        "email": "Електронна пошта",
+        "phone": "Телефон",
+        "comment": "Повідомлення",
+        "send": "Надіслати",
+        "post_success": "Дякуємо! Ваше повідомлення отримано."
+      }
     }
   },
   "newsletter": {
     "button_label": "Підписатися",
-    "success": "Дякуємо за підписку!"
+    "success": "Дякуємо за підписку!",
+    "label": "Електронна пошта"
   },
   "localization": {
     "country_label": "Країна/регіон",
