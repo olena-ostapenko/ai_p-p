@@ -42,6 +42,11 @@
     justify-content: center;
     margin-bottom: 8px;
   }
+  .pf-brand { margin-right: 0; }
+  .pf-socials { justify-content: center; }
+  .pf-nav { align-items: flex-start; text-align: left; }
+  .pf-nav__heading { text-align: left; }
+  .pf-nav__list a { text-align: left; }
 }
 
 .pf-logo {
