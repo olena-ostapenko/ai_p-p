@@ -361,8 +361,12 @@
     {%- endif -%}
   }
 
+.hero-banner-{{ section.id }} .hero-banner__subtitle,
+.hero-banner-{{ section.id }} .hero-banner__subtitle p,
+.hero-banner-{{ section.id }} .hero-banner__subtitle h1,
+.hero-banner-{{ section.id }} .hero-banner__subtitle h2,
 .hero-banner-{{ section.id }} .hero-banner__subtitle strong {
-  color: {{ section.settings.decoration_color }};
+  color: {{ section.settings.subtitle_color }};
 }
 
 .hero-banner-{{ section.id }} .hero-banner__title strong {
@@ -868,6 +872,12 @@
       "step": 1,
       "unit": "px",
       "default": 16
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle color",
+      "default": "#e9a753"
     },
     {
       "type": "header",
