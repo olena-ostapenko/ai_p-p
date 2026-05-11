@@ -55,9 +55,10 @@
                alt="{{ shop.name }}" width="280" height="auto" loading="lazy">
         </a>
       </div>
+      {%- assign nav_index = 0 -%}
       {%- for block in section.blocks -%}
         {%- if block.type == 'link_list' -%}
-          <div class="pf-tag-cell">
+          <div class="pf-tag-cell" data-tag-index="{{ nav_index }}">
             {%- if block.settings.tag != blank -%}
               <span class="pf-tag">
                 <img src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/paw.svg?v=1776943183" alt="" width="13" height="13">
@@ -65,6 +66,7 @@
               </span>
             {%- endif -%}
           </div>
+          {%- assign nav_index = nav_index | plus: 1 -%}
         {%- endif -%}
       {%- endfor -%}
       {%- if section.settings.show_decorative_line -%}
@@ -110,9 +112,10 @@
       </div>
 
       {%- comment -%} Nav blocks {%- endcomment -%}
+      {%- assign nav_index2 = 0 -%}
       {%- for block in section.blocks -%}
         {%- if block.type == 'link_list' -%}
-          <div class="pf-nav" style="{% if block.settings.col_width > 0 %}width:{{ block.settings.col_width }}px;flex-shrink:0;{% endif %}" {{ block.shopify_attributes }}>
+          <div class="pf-nav" data-nav-index="{{ nav_index2 }}" style="{% if block.settings.col_width > 0 %}width:{{ block.settings.col_width }}px;flex-shrink:0;{% endif %}" {{ block.shopify_attributes }}>
             {%- if block.settings.heading != blank -%}
               <h3 class="pf-nav__heading">{{ block.settings.heading }}</h3>
             {%- endif -%}
@@ -124,7 +127,7 @@
               </ul>
             {%- endif -%}
           </div>
-
+          {%- assign nav_index2 = nav_index2 | plus: 1 -%}
         {%- endif -%}
       {%- endfor -%}
 
@@ -157,6 +160,39 @@
 
   </div>
 </footer>
+
+<script>
+  (function() {
+    function moveTags() {
+      const isMobile = window.innerWidth <= 749;
+      const tagCells = document.querySelectorAll('.pf-tag-cell');
+      const navBlocks = document.querySelectorAll('.pf-nav[data-nav-index]');
+
+      tagCells.forEach(cell => {
+        const idx = cell.dataset.tagIndex;
+        const nav = document.querySelector('.pf-nav[data-nav-index="' + idx + '"]');
+        if (!nav) return;
+
+        if (isMobile) {
+          // Move tag cell inside nav as first child
+          if (cell.parentNode !== nav) {
+            nav.insertBefore(cell, nav.firstChild);
+          }
+        } else {
+          // Move back to pf-top
+          const pfTop = document.querySelector('.pf-top');
+          const decorLine = pfTop.querySelector('.pf-top__decorative-line');
+          if (cell.parentNode !== pfTop) {
+            pfTop.insertBefore(cell, decorLine || null);
+          }
+        }
+      });
+    }
+
+    moveTags();
+    window.addEventListener('resize', moveTags);
+  })();
+</script>
 
 {% schema %}
 {
