@@ -26,6 +26,24 @@
   align-items: center;
 }
 
+/* Mobile copies hidden on desktop */
+.pf-tag-cell--mobile {
+  display: none;
+}
+
+@media screen and (max-width: 749px) {
+  /* Hide desktop tag cells in pf-top */
+  .pf-top .pf-tag-cell:not(.pf-tag-cell--mobile) {
+    display: none;
+  }
+  /* Show mobile copies inside nav */
+  .pf-tag-cell--mobile {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+}
+
 .pf-logo {
   position: relative;
   z-index: 2;
