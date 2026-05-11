@@ -47,6 +47,18 @@
 
   .hero-banner-{{ section.id }} .hero-banner__title {
     margin-bottom: {{ section.settings.title_margin_bottom }}px;
+    font-size: var(--section-heading-size-mobile, 26px);
+    font-weight: 800;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-align: var(--section-heading-align-mobile, center);
+  }
+
+  @media screen and (min-width: 750px) {
+    .hero-banner-{{ section.id }} .hero-banner__title {
+      font-size: var(--section-heading-size-desktop, 44px);
+      text-align: var(--section-heading-align-desktop, left);
+    }
   }
 
   /* If admin selects H2 in richtext — apply section heading styles */
