@@ -108,9 +108,48 @@
               <img src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/logos_pinterest.svg?v=1778224562" alt="Pinterest" width="34" height="34">
             </a>
           {%- endif -%}
-        </div>
+        </div >
         {% comment %} add translate button {% endcomment %}
-        <div> </div>
+        <div> 
+{% if localization.available_languages.size > 1 %}
+  <div class="pf-language-switcher">
+    {% form 'localization' %}
+      <select name="locale_code" onchange="this.form.submit()">
+        {% for language in localization.available_languages %}
+          <option
+            value="{{ language.iso_code }}"
+            {% if language.iso_code == localization.language.iso_code %}
+              selected
+            {% endif %}
+          >
+            {{ language.endonym_name }}
+          </option>
+        {% endfor %}
+      </select>
+    {% endform %}
+  </div>
+{% endif %}
+{% style %}
+.pf-language-switcher {
+  margin-top: 20px;
+}
+
+.pf-language-switcher select {
+  background: transparent;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.pf-language-switcher select option {
+  color: #000;
+}
+{% endstyle %}
+
+        </div>
       </div>
 
       {%- comment -%} Nav blocks {%- endcomment -%}
