@@ -43,9 +43,11 @@
     margin-bottom: 8px;
   }
   .pf-brand { margin-right: 0; }
+  .pf-brand__desc { max-width: 100% !important; }
   .pf-socials { justify-content: center; }
-  .pf-nav { align-items: flex-start; text-align: left; }
-  .pf-nav__heading { text-align: left; }
+  .pf-nav { align-items: flex-start; text-align: left; width: 100%; }
+  .pf-nav__heading { text-align: left; width: 100%; }
+  .pf-nav__list { width: 100%; }
   .pf-nav__list a { text-align: left; }
 }
 
