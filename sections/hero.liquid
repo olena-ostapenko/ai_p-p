@@ -357,6 +357,32 @@
   color: {{ section.settings.decoration_color }};
 }
 
+/* Title rendered as richtext <p><strong> — match h2 styles */
+.hero-banner-{{ section.id }} .hero-banner__title p,
+.hero-banner-{{ section.id }} .hero-banner__title h1,
+.hero-banner-{{ section.id }} .hero-banner__title h2 {
+  font-size: var(--section-heading-size-mobile, 26px);
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: var(--section-heading-align-mobile, center);
+  margin: 0 0 4px;
+  text-transform: uppercase;
+}
+
+@media screen and (min-width: 750px) {
+  .hero-banner-{{ section.id }} .hero-banner__title p,
+  .hero-banner-{{ section.id }} .hero-banner__title h1,
+  .hero-banner-{{ section.id }} .hero-banner__title h2 {
+    font-size: var(--section-heading-size-desktop, 44px);
+    text-align: var(--section-heading-align-desktop, left);
+  }
+}
+
+.hero-banner-{{ section.id }} .hero-banner__title p strong,
+.hero-banner-{{ section.id }} .hero-banner__title p b {
+  font-weight: 800;
+}
+
   /* Decorative elements */
   .hero-banner-{{ section.id }} {
     position: relative;
