@@ -29,6 +29,18 @@
       pointer-events: none;
       z-index: 1;
     }
+    @media screen and (max-width: 749px) {
+      .pf-top__decorative-line {
+        top: {{ section.settings.decorative_line_position_mobile }}%;
+      }
+      .pf-logo {
+        position: relative;
+        z-index: 2;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+      }
+    }
   {%- endif -%}
 {%- endstyle -%}
 
@@ -236,8 +248,15 @@
       "type": "range",
       "id": "decorative_line_position",
       "min": 0, "max": 100, "step": 1, "unit": "%",
-      "label": "Vertical position",
+      "label": "Vertical position (desktop)",
       "default": 50
+    },
+    {
+      "type": "range",
+      "id": "decorative_line_position_mobile",
+      "min": 0, "max": 100, "step": 1, "unit": "%",
+      "label": "Vertical position (mobile)",
+      "default": 30
     },
     {
       "type": "header",
