@@ -115,7 +115,7 @@
         "decor_line_offset_x_uk": 10,
         "decor_line_offset_y_uk": 18,
         "paw_letter_index": 3,
-        "paw_offset_x": 0,
+        "paw_offset_x": -1,
         "paw_offset_y": 38,
         "paw_letter_index_uk": 3,
         "paw_offset_x_uk": 0,
