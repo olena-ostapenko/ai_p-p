@@ -251,7 +251,6 @@
   }
 
   #shopify-section-{{ section.id }} .hero-banner__paw {
-    display: inline-block;
     width: 13px;
     height: 12px;
     background-image: url('https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_paw.svg?v=1777450948');
@@ -259,8 +258,8 @@
     background-size: contain;
     background-position: center;
     position: absolute;
-    left: {{ section.settings.decor_paw_offset_x }}%;
-    top: {{ section.settings.decor_paw_offset_y }}%;
+    pointer-events: none;
+    display: none;
   }
 
   {%- comment -%} Ukrainian locale overrides for desktop {%- endcomment -%}
@@ -268,10 +267,6 @@
   #shopify-section-{{ section.id }} .hero-banner__subtitle::before {
     bottom: {{ section.settings.decor_line_offset_y_uk }}px;
     left: {{ section.settings.decor_line_offset_x_uk }}%;
-  }
-  #shopify-section-{{ section.id }} .hero-banner__paw {
-    left: {{ section.settings.decor_paw_offset_x_uk }}%;
-    top: {{ section.settings.decor_paw_offset_y_uk }}%;
   }
   {%- endif -%}
   {%- endif -%}
@@ -371,8 +366,6 @@
     #shopify-section-{{ section.id }} .hero-banner__paw {
       width: 12px;
       height: 11px;
-      left: {{ section.settings.decor_paw_offset_x_mobile }}%;
-      top: {{ section.settings.decor_paw_offset_y_mobile }}%;
     }
 
     {%- comment -%} Ukrainian locale overrides for mobile {%- endcomment -%}
@@ -380,10 +373,6 @@
     #shopify-section-{{ section.id }} .hero-banner__subtitle::before {
       bottom: {{ section.settings.decor_line_offset_y_mobile_uk }}px;
       left: {{ section.settings.decor_line_offset_x_mobile_uk }}%;
-    }
-    #shopify-section-{{ section.id }} .hero-banner__paw {
-      left: {{ section.settings.decor_paw_offset_x_mobile_uk }}%;
-      top: {{ section.settings.decor_paw_offset_y_mobile_uk }}%;
     }
     {%- endif -%}
     {%- endif -%}
@@ -672,6 +661,136 @@
   })();
 </script>
 
+<script>
+  (function() {
+    var sectionId = '{{ section.id }}';
+    var locale = '{{ request.locale.iso_code }}';
+    var isMobile = window.innerWidth < 750;
+
+    // Settings from schema
+    var settings = {
+      letterIndex:     {{ section.settings.paw_letter_index | default: 3 }},
+      offsetX:         {{ section.settings.paw_offset_x | default: 0 }},
+      offsetY:         {{ section.settings.paw_offset_y | default: -5 }},
+      letterIndexUk:   {{ section.settings.paw_letter_index_uk | default: 3 }},
+      offsetXUk:       {{ section.settings.paw_offset_x_uk | default: 0 }},
+      offsetYUk:       {{ section.settings.paw_offset_y_uk | default: -5 }},
+      letterIndexMob:  {{ section.settings.paw_letter_index_mobile | default: 3 }},
+      offsetXMob:      {{ section.settings.paw_offset_x_mobile | default: 0 }},
+      offsetYMob:      {{ section.settings.paw_offset_y_mobile | default: -5 }},
+      letterIndexMobUk:{{ section.settings.paw_letter_index_mobile_uk | default: 3 }},
+      offsetXMobUk:    {{ section.settings.paw_offset_x_mobile_uk | default: 0 }},
+      offsetYMobUk:    {{ section.settings.paw_offset_y_mobile_uk | default: -5 }},
+    };
+
+    function positionPaw() {
+      var section = document.getElementById('shopify-section-' + sectionId);
+      if (!section) return;
+
+      var subtitle = section.querySelector('.hero-banner__subtitle');
+      var paw = section.querySelector('.hero-banner__paw');
+      if (!subtitle || !paw) return;
+
+      // Get plain text of subtitle (strip HTML tags)
+      var text = subtitle.innerText || subtitle.textContent || '';
+      // Remove whitespace chars
+      text = text.replace(/\s+/g, ' ').trim();
+
+      isMobile = window.innerWidth < 750;
+      var isUk = locale === 'uk';
+
+      var letterIdx, offX, offY;
+      if (isMobile && isUk) {
+        letterIdx = settings.letterIndexMobUk;
+        offX = settings.offsetXMobUk;
+        offY = settings.offsetYMobUk;
+      } else if (isMobile) {
+        letterIdx = settings.letterIndexMob;
+        offX = settings.offsetXMob;
+        offY = settings.offsetYMob;
+      } else if (isUk) {
+        letterIdx = settings.letterIndexUk;
+        offX = settings.offsetXUk;
+        offY = settings.offsetYUk;
+      } else {
+        letterIdx = settings.letterIndex;
+        offX = settings.offsetX;
+        offY = settings.offsetY;
+      }
+
+      // Wrap target letter in a span to get its position
+      var idx = Math.max(0, (letterIdx || 1) - 1);
+      var originalHTML = subtitle.innerHTML;
+
+      // Find text nodes and wrap the Nth visible character
+      var charCount = 0;
+      var wrapped = false;
+
+      function wrapChar(node) {
+        if (wrapped) return;
+        if (node.nodeType === 3) { // text node
+          var chars = node.textContent;
+          for (var i = 0; i < chars.length; i++) {
+            if (chars[i].trim() === '') continue;
+            if (charCount === idx) {
+              // Split text node and insert span
+              var before = document.createTextNode(chars.slice(0, i));
+              var span = document.createElement('span');
+              span.className = 'paw-anchor';
+              span.style.position = 'relative';
+              span.textContent = chars[i];
+              var after = document.createTextNode(chars.slice(i + 1));
+              var parent = node.parentNode;
+              parent.insertBefore(before, node);
+              parent.insertBefore(span, node);
+              parent.insertBefore(after, node);
+              parent.removeChild(node);
+              wrapped = true;
+              return;
+            }
+            charCount++;
+          }
+        } else if (node.nodeType === 1 && node.className !== 'hero-banner__paw') {
+          var children = Array.from(node.childNodes);
+          children.forEach(wrapChar);
+        }
+      }
+
+      wrapChar(subtitle);
+
+      var anchor = subtitle.querySelector('.paw-anchor');
+      if (!anchor) {
+        // Restore if something went wrong
+        subtitle.innerHTML = originalHTML;
+        return;
+      }
+
+      // Get position of anchor letter relative to subtitle
+      var anchorRect = anchor.getBoundingClientRect();
+      var subtitleRect = subtitle.getBoundingClientRect();
+
+      var left = (anchorRect.left - subtitleRect.left) + (anchorRect.width / 2) - (paw.offsetWidth / 2) + offX;
+      var top  = (anchorRect.top  - subtitleRect.top)  - paw.offsetHeight - 2 + offY;
+
+      // Restore original HTML
+      subtitle.innerHTML = originalHTML;
+      // Re-get paw after innerHTML reset
+      paw = section.querySelector('.hero-banner__paw');
+
+      paw.style.display = 'block';
+      paw.style.left = left + 'px';
+      paw.style.top  = top  + 'px';
+    }
+
+    document.addEventListener('DOMContentLoaded', positionPaw);
+    window.addEventListener('resize', positionPaw);
+
+    // Re-run after Shopify theme editor updates
+    document.addEventListener('shopify:section:load', positionPaw);
+    document.addEventListener('shopify:section:select', positionPaw);
+  })();
+</script>
+
 {% schema %}
 {
   "name": "Hero Banner",
@@ -906,44 +1025,46 @@
       "content": "Paw Desktop"
     },
     {
-      "type": "range",
-      "id": "decor_paw_offset_x",
-      "label": "Paw — horizontal offset (EN)",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "default": 50
+      "type": "number",
+      "id": "paw_letter_index",
+      "label": "Paw — letter number (EN)",
+      "info": "Which letter to place paw above (1 = first letter)",
+      "default": 3
     },
     {
-      "type": "range",
-      "id": "decor_paw_offset_y",
-      "label": "Paw — vertical offset (EN)",
-      "min": -100,
-      "max": 0,
-      "step": 1,
-      "unit": "%",
-      "default": -50
+      "type": "number",
+      "id": "paw_offset_x",
+      "label": "Paw — offset X in px (EN)",
+      "info": "Horizontal fine-tune: negative = left, positive = right",
+      "default": 0
     },
     {
-      "type": "range",
-      "id": "decor_paw_offset_x_uk",
-      "label": "Paw — horizontal offset (UK)",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "default": 50
+      "type": "number",
+      "id": "paw_offset_y",
+      "label": "Paw — offset Y in px (EN)",
+      "info": "Vertical fine-tune: negative = up, positive = down",
+      "default": -5
     },
     {
-      "type": "range",
-      "id": "decor_paw_offset_y_uk",
-      "label": "Paw — vertical offset (UK)",
-      "min": -100,
-      "max": 0,
-      "step": 1,
-      "unit": "%",
-      "default": -50
+      "type": "number",
+      "id": "paw_letter_index_uk",
+      "label": "Paw — letter number (UK)",
+      "info": "Which letter to place paw above (1 = first letter)",
+      "default": 3
+    },
+    {
+      "type": "number",
+      "id": "paw_offset_x_uk",
+      "label": "Paw — offset X in px (UK)",
+      "info": "Horizontal fine-tune: negative = left, positive = right",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "paw_offset_y_uk",
+      "label": "Paw — offset Y in px (UK)",
+      "info": "Vertical fine-tune: negative = up, positive = down",
+      "default": -5
     },
     {
       "type": "header",
@@ -994,44 +1115,42 @@
       "content": "Paw Mobile"
     },
     {
-      "type": "range",
-      "id": "decor_paw_offset_x_mobile",
-      "label": "Paw — horizontal offset (EN)",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "default": 50
+      "type": "number",
+      "id": "paw_letter_index_mobile",
+      "label": "Paw — letter number (EN)",
+      "info": "Which letter to place paw above (1 = first letter)",
+      "default": 3
     },
     {
-      "type": "range",
-      "id": "decor_paw_offset_y_mobile",
-      "label": "Paw — vertical offset (EN)",
-      "min": -100,
-      "max": 0,
-      "step": 1,
-      "unit": "%",
-      "default": -50
+      "type": "number",
+      "id": "paw_offset_x_mobile",
+      "label": "Paw — offset X in px (EN)",
+      "default": 0
     },
     {
-      "type": "range",
-      "id": "decor_paw_offset_x_mobile_uk",
-      "label": "Paw — horizontal offset (UK)",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "unit": "%",
-      "default": 50
+      "type": "number",
+      "id": "paw_offset_y_mobile",
+      "label": "Paw — offset Y in px (EN)",
+      "default": -5
     },
     {
-      "type": "range",
-      "id": "decor_paw_offset_y_mobile_uk",
-      "label": "Paw — vertical offset (UK)",
-      "min": -100,
-      "max": 0,
-      "step": 1,
-      "unit": "%",
-      "default": -50
+      "type": "number",
+      "id": "paw_letter_index_mobile_uk",
+      "label": "Paw — letter number (UK)",
+      "info": "Which letter to place paw above (1 = first letter)",
+      "default": 3
+    },
+    {
+      "type": "number",
+      "id": "paw_offset_x_mobile_uk",
+      "label": "Paw — offset X in px (UK)",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "paw_offset_y_mobile_uk",
+      "label": "Paw — offset Y in px (UK)",
+      "default": -5
     },
     {
       "type": "richtext",
