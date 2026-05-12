@@ -665,10 +665,10 @@
       letterIndexUk:   {{ section.settings.paw_letter_index_uk | default: 3 }},
       offsetXUk:       {{ section.settings.paw_offset_x_uk | default: 0 }},
       offsetYUk:       {{ section.settings.paw_offset_y_uk | default: -5 }},
-      letterIndexMob:  {{ section.settings.paw_letter_index_mobile | default: 3 }},
+      letterIndexMob:  {{ section.settings.paw_letter_index | default: 3 }},
       offsetXMob:      {{ section.settings.paw_offset_x_mobile | default: 0 }},
       offsetYMob:      {{ section.settings.paw_offset_y_mobile | default: -5 }},
-      letterIndexMobUk:{{ section.settings.paw_letter_index_mobile_uk | default: 3 }},
+      letterIndexMobUk:{{ section.settings.paw_letter_index_uk | default: 3 }},
       offsetXMobUk:    {{ section.settings.paw_offset_x_mobile_uk | default: 0 }},
       offsetYMobUk:    {{ section.settings.paw_offset_y_mobile_uk | default: -5 }},
     };
@@ -960,142 +960,7 @@
       "label": "Enable subtitle decorators (curve + paw)",
       "default": true
     },
-    {
-      "type": "header",
-      "content": "Line — Desktop"
-    },
-    {
-      "type": "range",
-      "id": "decor_line_offset_x",
-      "label": "Line — horizontal offset",
-      "min": -50,
-      "max": 50,
-      "step": 1,
-      "unit": "%",
-      "default": 10
-    },
-    {
-      "type": "range",
-      "id": "decor_line_offset_y",
-      "label": "Line — vertical offset",
-      "min": -20,
-      "max": 60,
-      "step": 1,
-      "unit": "px",
-      "default": 18
-    },
-    {
-      "type": "header",
-      "content": "Paw Desktop"
-    },
-    {
-      "type": "number",
-      "id": "paw_letter_index",
-      "label": "Paw — letter number (EN)",
-      "info": "Which letter to place paw above (1 = first letter)",
-      "default": 3
-    },
-    {
-      "type": "number",
-      "id": "paw_offset_x",
-      "label": "Paw — offset X in px (EN)",
-      "info": "Horizontal fine-tune: negative = left, positive = right",
-      "default": 0
-    },
-    {
-      "type": "number",
-      "id": "paw_offset_y",
-      "label": "Paw — offset Y in px (EN)",
-      "info": "Vertical fine-tune: negative = up, positive = down",
-      "default": -5
-    },
-    {
-      "type": "number",
-      "id": "paw_letter_index_uk",
-      "label": "Paw — letter number (UK)",
-      "info": "Which letter to place paw above (1 = first letter)",
-      "default": 3
-    },
-    {
-      "type": "number",
-      "id": "paw_offset_x_uk",
-      "label": "Paw — offset X in px (UK)",
-      "info": "Horizontal fine-tune: negative = left, positive = right",
-      "default": 0
-    },
-    {
-      "type": "number",
-      "id": "paw_offset_y_uk",
-      "label": "Paw — offset Y in px (UK)",
-      "info": "Vertical fine-tune: negative = up, positive = down",
-      "default": -5
-    },
-    {
-      "type": "header",
-      "content": "Line — Mobile"
-    },
-    {
-      "type": "range",
-      "id": "decor_line_offset_x_mobile",
-      "label": "Line — horizontal offset",
-      "min": -50,
-      "max": 50,
-      "step": 1,
-      "unit": "%",
-      "default": 10
-    },
-    {
-      "type": "range",
-      "id": "decor_line_offset_y_mobile",
-      "label": "Line — vertical offset",
-      "min": -20,
-      "max": 60,
-      "step": 1,
-      "unit": "px",
-      "default": 21
-    },
-    {
-      "type": "header",
-      "content": "Paw Mobile"
-    },
-    {
-      "type": "number",
-      "id": "paw_letter_index_mobile",
-      "label": "Paw — letter number (EN)",
-      "info": "Which letter to place paw above (1 = first letter)",
-      "default": 3
-    },
-    {
-      "type": "number",
-      "id": "paw_offset_x_mobile",
-      "label": "Paw — offset X in px (EN)",
-      "default": 0
-    },
-    {
-      "type": "number",
-      "id": "paw_offset_y_mobile",
-      "label": "Paw — offset Y in px (EN)",
-      "default": -5
-    },
-    {
-      "type": "number",
-      "id": "paw_letter_index_mobile_uk",
-      "label": "Paw — letter number (UK)",
-      "info": "Which letter to place paw above (1 = first letter)",
-      "default": 3
-    },
-    {
-      "type": "number",
-      "id": "paw_offset_x_mobile_uk",
-      "label": "Paw — offset X in px (UK)",
-      "default": 0
-    },
-    {
-      "type": "number",
-      "id": "paw_offset_y_mobile_uk",
-      "label": "Paw — offset Y in px (UK)",
-      "default": -5
-    },
+
     {
       "type": "richtext",
       "id": "subtitle",
@@ -1550,6 +1415,127 @@
       "step": 10,
       "unit": "px",
       "default": 400
+    {
+      "type": "header",
+      "content": "Line Desktop"
+    },
+    {
+      "type": "range",
+      "id": "decor_line_offset_x",
+      "label": "Line — horizontal offset",
+      "min": -50,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "decor_line_offset_y",
+      "label": "Line — vertical offset",
+      "min": -20,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Line Mobile"
+    },
+    {
+      "type": "range",
+      "id": "decor_line_offset_x_mobile",
+      "label": "Line — horizontal offset",
+      "min": -50,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "decor_line_offset_y_mobile",
+      "label": "Line — vertical offset",
+      "min": -20,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 21
+    },
+    {
+      "type": "header",
+      "content": "Paw Desktop"
+    },
+    {
+      "type": "number",
+      "id": "paw_letter_index",
+      "label": "Paw — letter number (EN)",
+      "info": "Which letter to place paw above (1 = first letter)",
+      "default": 3
+    },
+    {
+      "type": "number",
+      "id": "paw_offset_x",
+      "label": "Paw — offset X in px (EN)",
+      "info": "Negative = left, positive = right",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "paw_offset_y",
+      "label": "Paw — offset Y in px (EN)",
+      "info": "Negative = up, positive = down",
+      "default": -5
+    },
+    {
+      "type": "number",
+      "id": "paw_letter_index_uk",
+      "label": "Paw — letter number (UK)",
+      "info": "Which letter to place paw above (1 = first letter)",
+      "default": 3
+    },
+    {
+      "type": "number",
+      "id": "paw_offset_x_uk",
+      "label": "Paw — offset X in px (UK)",
+      "info": "Negative = left, positive = right",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "paw_offset_y_uk",
+      "label": "Paw — offset Y in px (UK)",
+      "info": "Negative = up, positive = down",
+      "default": -5
+    },
+    {
+      "type": "header",
+      "content": "Paw Mobile"
+    },
+    {
+      "type": "number",
+      "id": "paw_offset_x_mobile",
+      "label": "Paw — offset X in px (EN)",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "paw_offset_y_mobile",
+      "label": "Paw — offset Y in px (EN)",
+      "default": -5
+    },
+    {
+      "type": "number",
+      "id": "paw_offset_x_mobile_uk",
+      "label": "Paw — offset X in px (UK)",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "paw_offset_y_mobile_uk",
+      "label": "Paw — offset Y in px (UK)",
+      "default": -5
     }
   ],
   "blocks": [
