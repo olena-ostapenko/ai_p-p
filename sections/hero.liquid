@@ -250,15 +250,15 @@
     pointer-events: none;
   }
 
-  #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
-    content: '';
-    position: absolute;
+  #shopify-section-{{ section.id }} .hero-banner__paw {
+    display: inline-block;
     width: 13px;
     height: 12px;
     background-image: url('https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_paw.svg?v=1777450948');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+    position: absolute;
     left: {{ section.settings.decor_paw_offset_x }}%;
     top: -{{ section.settings.decor_paw_offset_y }}%;
   }
@@ -269,7 +269,7 @@
     bottom: {{ section.settings.decor_line_offset_y_uk }}px;
     left: {{ section.settings.decor_line_offset_x_uk }}%;
   }
-  #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
+  #shopify-section-{{ section.id }} .hero-banner__paw {
     left: {{ section.settings.decor_paw_offset_x_uk }}%;
     top: -{{ section.settings.decor_paw_offset_y_uk }}%;
   }
@@ -368,12 +368,11 @@
       left: {{ section.settings.decor_line_offset_x_mobile }}%;
     }
 
-    #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
+    #shopify-section-{{ section.id }} .hero-banner__paw {
       width: 12px;
       height: 11px;
       left: {{ section.settings.decor_paw_offset_x_mobile }}%;
       top: -{{ section.settings.decor_paw_offset_y_mobile }}%;
-      position: absolute;
     }
 
     {%- comment -%} Ukrainian locale overrides for mobile {%- endcomment -%}
@@ -382,10 +381,9 @@
       bottom: {{ section.settings.decor_line_offset_y_mobile_uk }}px;
       left: {{ section.settings.decor_line_offset_x_mobile_uk }}%;
     }
-    #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
+    #shopify-section-{{ section.id }} .hero-banner__paw {
       left: {{ section.settings.decor_paw_offset_x_mobile_uk }}%;
       top: -{{ section.settings.decor_paw_offset_y_mobile_uk }}%;
-      position: absolute;
     }
     {%- endif -%}
     {%- endif -%}
@@ -514,7 +512,10 @@
 
         {%- if section.settings.subtitle != blank -%}
           <div class="hero-banner__subtitle">
-            {{ section.settings.subtitle }} 
+            {{ section.settings.subtitle }}
+            {%- if section.settings.enable_subtitle_decor -%}
+            <span class="hero-banner__paw" aria-hidden="true"></span>
+            {%- endif -%}
           </div>
         {%- endif -%}
 
