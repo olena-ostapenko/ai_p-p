@@ -232,7 +232,7 @@
       {
         "type": "range",
         "id": "hero_title_size_desktop",
-        "label": "Title size desktop (EN)",
+        "label": "Title size desktop",
         "min": 20,
         "max": 80,
         "step": 1,
@@ -242,7 +242,7 @@
       {
         "type": "range",
         "id": "hero_title_size_mobile",
-        "label": "Title size mobile (EN)",
+        "label": "Title size mobile",
         "min": 16,
         "max": 60,
         "step": 1,
@@ -252,41 +252,7 @@
       {
         "type": "select",
         "id": "hero_title_font_weight",
-        "label": "Title font weight (EN)",
-        "options": [
-          { "value": "400", "label": "Regular" },
-          { "value": "500", "label": "Medium" },
-          { "value": "600", "label": "SemiBold" },
-          { "value": "700", "label": "Bold" },
-          { "value": "800", "label": "ExtraBold" },
-          { "value": "900", "label": "Black" }
-        ],
-        "default": "800"
-      },
-      {
-        "type": "range",
-        "id": "hero_title_size_desktop_uk",
-        "label": "Title size desktop (UK)",
-        "min": 20,
-        "max": 80,
-        "step": 1,
-        "unit": "px",
-        "default": 48
-      },
-      {
-        "type": "range",
-        "id": "hero_title_size_mobile_uk",
-        "label": "Title size mobile (UK)",
-        "min": 16,
-        "max": 60,
-        "step": 1,
-        "unit": "px",
-        "default": 32
-      },
-      {
-        "type": "select",
-        "id": "hero_title_font_weight_uk",
-        "label": "Title font weight (UK)",
+        "label": "Title font weight",
         "options": [
           { "value": "400", "label": "Regular" },
           { "value": "500", "label": "Medium" },
@@ -304,7 +270,7 @@
       {
         "type": "range",
         "id": "hero_subtitle_size_desktop",
-        "label": "Subtitle size desktop (EN)",
+        "label": "Subtitle size desktop",
         "min": 12,
         "max": 60,
         "step": 1,
@@ -314,7 +280,7 @@
       {
         "type": "range",
         "id": "hero_subtitle_size_mobile",
-        "label": "Subtitle size mobile (EN)",
+        "label": "Subtitle size mobile",
         "min": 12,
         "max": 48,
         "step": 1,
@@ -324,41 +290,7 @@
       {
         "type": "select",
         "id": "hero_subtitle_font_weight",
-        "label": "Subtitle font weight (EN)",
-        "options": [
-          { "value": "400", "label": "Regular" },
-          { "value": "500", "label": "Medium" },
-          { "value": "600", "label": "SemiBold" },
-          { "value": "700", "label": "Bold" },
-          { "value": "800", "label": "ExtraBold" },
-          { "value": "900", "label": "Black" }
-        ],
-        "default": "800"
-      },
-      {
-        "type": "range",
-        "id": "hero_subtitle_size_desktop_uk",
-        "label": "Subtitle size desktop (UK)",
-        "min": 12,
-        "max": 60,
-        "step": 1,
-        "unit": "px",
-        "default": 36
-      },
-      {
-        "type": "range",
-        "id": "hero_subtitle_size_mobile_uk",
-        "label": "Subtitle size mobile (UK)",
-        "min": 12,
-        "max": 48,
-        "step": 1,
-        "unit": "px",
-        "default": 28
-      },
-      {
-        "type": "select",
-        "id": "hero_subtitle_font_weight_uk",
-        "label": "Subtitle font weight (UK)",
+        "label": "Subtitle font weight",
         "options": [
           { "value": "400", "label": "Regular" },
           { "value": "500", "label": "Medium" },

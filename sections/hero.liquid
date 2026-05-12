@@ -61,17 +61,7 @@
     }
   }
 
-  {%- if request.locale.iso_code == 'uk' -%}
-  .hero-banner-{{ section.id }} .hero-banner__title {
-    font-size: {{ settings.hero_title_size_mobile_uk }}px;
-    font-weight: {{ settings.hero_title_font_weight_uk }};
-  }
-  @media screen and (min-width: 750px) {
-    .hero-banner-{{ section.id }} .hero-banner__title {
-      font-size: {{ settings.hero_title_size_desktop_uk }}px;
-    }
-  }
-  {%- endif -%}
+
 
   /* If admin selects H2 in richtext — apply section heading styles */
   .hero-banner-{{ section.id }} .hero-banner__title h2 {
@@ -96,12 +86,7 @@
     font-weight: {{ settings.hero_subtitle_font_weight }};
   }
 
-  {%- if request.locale.iso_code == 'uk' -%}
-  .hero-banner-{{ section.id }} .hero-banner__subtitle {
-    font-size: {{ settings.hero_subtitle_size_desktop_uk }}px;
-    font-weight: {{ settings.hero_subtitle_font_weight_uk }};
-  }
-  {%- endif -%}
+
 
   .hero-banner-{{ section.id }} .hero-banner__description,
   .hero-banner-{{ section.id }} .hero-banner__description p {
@@ -412,6 +397,7 @@
 .hero-banner-{{ section.id }} .hero-banner__subtitle h2,
 .hero-banner-{{ section.id }} .hero-banner__subtitle strong {
   color: {{ section.settings.subtitle_color }};
+  font-weight: {{ settings.hero_subtitle_font_weight }};
 }
 
 .hero-banner-{{ section.id }} .hero-banner__title strong {
