@@ -262,7 +262,7 @@
     vertical-align: middle;
     left: {{ section.settings.decor_paw_offset_x }}%;
     position: relative;
-    top: {{ section.settings.decor_paw_offset_y }}px;
+    transform: translateY({{ section.settings.decor_paw_offset_y }}px);
   }
 
   {%- comment -%} Ukrainian locale overrides for desktop {%- endcomment -%}
@@ -273,7 +273,7 @@
   }
   #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
     left: {{ section.settings.decor_paw_offset_x_uk }}%;
-    top: {{ section.settings.decor_paw_offset_y_uk }}px;
+    transform: translateY({{ section.settings.decor_paw_offset_y_uk }}px);
   }
   {%- endif -%}
   {%- endif -%}
@@ -374,7 +374,7 @@
       width: 12px;
       height: 12px;
       left: {{ section.settings.decor_paw_offset_x_mobile }}%;
-      top: {{ section.settings.decor_paw_offset_y_mobile }}px;
+      transform: translateY({{ section.settings.decor_paw_offset_y_mobile }}px);
     }
 
     {%- comment -%} Ukrainian locale overrides for mobile {%- endcomment -%}
@@ -385,7 +385,7 @@
     }
     #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
       left: {{ section.settings.decor_paw_offset_x_mobile_uk }}%;
-      top: {{ section.settings.decor_paw_offset_y_mobile_uk }}px;
+      transform: translateY({{ section.settings.decor_paw_offset_y_mobile_uk }}px);
     }
     {%- endif -%}
     {%- endif -%}
