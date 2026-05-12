@@ -684,17 +684,12 @@
     };
 
     function positionPaw() {
-      var section = document.getElementById('shopify-section-' + sectionId);
-      if (!section) return;
+      var sectionEl = document.getElementById('shopify-section-' + sectionId);
+      if (!sectionEl) return;
 
-      var subtitle = section.querySelector('.hero-banner__subtitle');
-      var paw = section.querySelector('.hero-banner__paw');
+      var subtitle = sectionEl.querySelector('.hero-banner__subtitle');
+      var paw = sectionEl.querySelector('.hero-banner__paw');
       if (!subtitle || !paw) return;
-
-      // Get plain text of subtitle (strip HTML tags)
-      var text = subtitle.innerText || subtitle.textContent || '';
-      // Remove whitespace chars
-      text = text.replace(/\s+/g, ' ').trim();
 
       isMobile = window.innerWidth < 750;
       var isUk = locale === 'uk';
@@ -718,64 +713,63 @@
         offY = settings.offsetY;
       }
 
-      // Wrap target letter in a span to get its position
       var idx = Math.max(0, (letterIdx || 1) - 1);
-      var originalHTML = subtitle.innerHTML;
 
-      // Find text nodes and wrap the Nth visible character
-      var charCount = 0;
-      var wrapped = false;
-
-      function wrapChar(node) {
-        if (wrapped) return;
-        if (node.nodeType === 3) { // text node
+      // Get all text nodes inside subtitle (excluding paw span)
+      var allChars = [];
+      function collectChars(node) {
+        if (node.nodeType === 3) {
           var chars = node.textContent;
           for (var i = 0; i < chars.length; i++) {
-            if (chars[i].trim() === '') continue;
-            if (charCount === idx) {
-              // Split text node and insert span
-              var before = document.createTextNode(chars.slice(0, i));
-              var span = document.createElement('span');
-              span.className = 'paw-anchor';
-              span.style.position = 'relative';
-              span.textContent = chars[i];
-              var after = document.createTextNode(chars.slice(i + 1));
-              var parent = node.parentNode;
-              parent.insertBefore(before, node);
-              parent.insertBefore(span, node);
-              parent.insertBefore(after, node);
-              parent.removeChild(node);
-              wrapped = true;
-              return;
+            if (chars[i].trim() !== '') {
+              allChars.push({ node: node, charIndex: i, char: chars[i] });
             }
-            charCount++;
           }
-        } else if (node.nodeType === 1 && node.className !== 'hero-banner__paw') {
-          var children = Array.from(node.childNodes);
-          children.forEach(wrapChar);
+        } else if (node.nodeType === 1 && !node.classList.contains('hero-banner__paw')) {
+          Array.from(node.childNodes).forEach(collectChars);
         }
       }
+      collectChars(subtitle);
 
-      wrapChar(subtitle);
+      console.log('[Paw] subtitle text:', allChars.map(c => c.char).join(''));
+      console.log('[Paw] targeting letter index:', idx, '= char:', allChars[idx] ? allChars[idx].char : 'NOT FOUND');
 
-      var anchor = subtitle.querySelector('.paw-anchor');
-      if (!anchor) {
-        // Restore if something went wrong
-        subtitle.innerHTML = originalHTML;
+      if (!allChars[idx]) {
+        paw.style.display = 'none';
         return;
       }
 
-      // Get position of anchor letter relative to subtitle
-      var anchorRect = anchor.getBoundingClientRect();
+      // Wrap the target char in a temporary span
+      var target = allChars[idx];
+      var textNode = target.node;
+      var charPos = target.charIndex;
+      var originalHTML = subtitle.innerHTML;
+
+      var before = document.createTextNode(textNode.textContent.slice(0, charPos));
+      var span = document.createElement('span');
+      span.className = 'paw-anchor';
+      span.style.cssText = 'display:inline-block;position:relative;';
+      span.textContent = textNode.textContent[charPos];
+      var after = document.createTextNode(textNode.textContent.slice(charPos + 1));
+
+      var parent = textNode.parentNode;
+      parent.insertBefore(before, textNode);
+      parent.insertBefore(span, textNode);
+      parent.insertBefore(after, textNode);
+      parent.removeChild(textNode);
+
+      // Measure
+      var anchorRect = span.getBoundingClientRect();
       var subtitleRect = subtitle.getBoundingClientRect();
 
       var left = (anchorRect.left - subtitleRect.left) + (anchorRect.width / 2) - (paw.offsetWidth / 2) + offX;
       var top  = (anchorRect.top  - subtitleRect.top)  - paw.offsetHeight - 2 + offY;
 
-      // Restore original HTML
+      console.log('[Paw] position: left=' + left + 'px, top=' + top + 'px');
+
+      // Restore HTML
       subtitle.innerHTML = originalHTML;
-      // Re-get paw after innerHTML reset
-      paw = section.querySelector('.hero-banner__paw');
+      paw = sectionEl.querySelector('.hero-banner__paw');
 
       paw.style.display = 'block';
       paw.style.left = left + 'px';
