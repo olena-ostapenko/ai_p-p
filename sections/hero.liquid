@@ -260,7 +260,7 @@
     background-size: contain;
     background-position: center;
     vertical-align: middle;
-    left: {{ section.settings.decor_paw_offset_x }}px;
+    left: {{ section.settings.decor_paw_offset_x }}%;
     position: relative;
     top: {{ section.settings.decor_paw_offset_y }}px;
   }
@@ -272,7 +272,7 @@
     left: {{ section.settings.decor_line_offset_x_uk }}%;
   }
   #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
-    left: {{ section.settings.decor_paw_offset_x_uk }}px;
+    left: {{ section.settings.decor_paw_offset_x_uk }}%;
     top: {{ section.settings.decor_paw_offset_y_uk }}px;
   }
   {%- endif -%}
@@ -373,7 +373,7 @@
     #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
       width: 12px;
       height: 12px;
-      left: {{ section.settings.decor_paw_offset_x_mobile }}px;
+      left: {{ section.settings.decor_paw_offset_x_mobile }}%;
       top: {{ section.settings.decor_paw_offset_y_mobile }}px;
     }
 
@@ -384,7 +384,7 @@
       left: {{ section.settings.decor_line_offset_x_mobile_uk }}%;
     }
     #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
-      left: {{ section.settings.decor_paw_offset_x_mobile_uk }}px;
+      left: {{ section.settings.decor_paw_offset_x_mobile_uk }}%;
       top: {{ section.settings.decor_paw_offset_y_mobile_uk }}px;
     }
     {%- endif -%}
@@ -909,10 +909,10 @@
       "id": "decor_paw_offset_x",
       "label": "Paw — horizontal offset (EN)",
       "min": 0,
-      "max": 400,
-      "step": 4,
-      "unit": "px",
-      "default": 100
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 50
     },
     {
       "type": "range",
@@ -929,10 +929,10 @@
       "id": "decor_paw_offset_x_uk",
       "label": "Paw — horizontal offset (UK)",
       "min": 0,
-      "max": 400,
-      "step": 4,
-      "unit": "px",
-      "default": 100
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 50
     },
     {
       "type": "range",
@@ -997,9 +997,9 @@
       "id": "decor_paw_offset_x_mobile",
       "label": "Paw — horizontal offset (EN)",
       "min": 0,
-      "max": 400,
-      "step": 4,
-      "unit": "px",
+      "max": 100,
+      "step": 1,
+      "unit": "%",
       "default": 50
     },
     {
@@ -1017,9 +1017,9 @@
       "id": "decor_paw_offset_x_mobile_uk",
       "label": "Paw — horizontal offset (UK)",
       "min": 0,
-      "max": 400,
-      "step": 4,
-      "unit": "px",
+      "max": 100,
+      "step": 1,
+      "unit": "%",
       "default": 50
     },
     {
