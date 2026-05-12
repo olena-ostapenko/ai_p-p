@@ -227,7 +227,7 @@
       },
       {
         "type": "header",
-        "content": "Section Main Hero — Title"
+        "content": "Section Main Hero"
       },
       {
         "type": "range",
@@ -263,10 +263,7 @@
         ],
         "default": "800"
       },
-      {
-        "type": "header",
-        "content": "Section Main Hero — Subtitle"
-      },
+
       {
         "type": "range",
         "id": "hero_subtitle_size_desktop",

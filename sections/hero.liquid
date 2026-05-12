@@ -47,8 +47,8 @@
 
   .hero-banner-{{ section.id }} .hero-banner__title {
     margin-bottom: {{ section.settings.title_margin_bottom }}px;
-    font-size: {{ settings.hero_title_size_mobile }}px;
-    font-weight: {{ settings.hero_title_font_weight }};
+    font-size: {%- if section.settings.use_hero_typography -%}{{ settings.hero_title_size_mobile }}{%- else -%}{{ settings.section_heading_size_mobile }}{%- endif -%}px;
+    font-weight: {%- if section.settings.use_hero_typography -%}{{ settings.hero_title_font_weight }}{%- else -%}700{%- endif -%};
     line-height: 1.2;
     text-transform: uppercase;
     text-align: var(--section-heading-align-mobile, center);
@@ -56,7 +56,7 @@
 
   @media screen and (min-width: 750px) {
     .hero-banner-{{ section.id }} .hero-banner__title {
-      font-size: {{ settings.hero_title_size_desktop }}px;
+      font-size: {%- if section.settings.use_hero_typography -%}{{ settings.hero_title_size_desktop }}{%- else -%}{{ settings.section_heading_size_desktop }}{%- endif -%}px;
       text-align: var(--section-heading-align-desktop, left);
     }
   }
@@ -82,8 +82,8 @@
 
   .hero-banner-{{ section.id }} .hero-banner__subtitle {
     margin-bottom: {{ section.settings.subtitle_margin_bottom }}px;
-    font-size: {{ settings.hero_subtitle_size_desktop }}px;
-    font-weight: {{ settings.hero_subtitle_font_weight }};
+    font-size: {%- if section.settings.use_hero_typography -%}{{ settings.hero_subtitle_size_desktop }}{%- else -%}{{ section.settings.subtitle_size }}{%- endif -%}px;
+    font-weight: {%- if section.settings.use_hero_typography -%}{{ settings.hero_subtitle_font_weight }}{%- else -%}700{%- endif -%};
   }
 
 
@@ -397,7 +397,7 @@
 .hero-banner-{{ section.id }} .hero-banner__subtitle h2,
 .hero-banner-{{ section.id }} .hero-banner__subtitle strong {
   color: {{ section.settings.subtitle_color }};
-  font-weight: {{ settings.hero_subtitle_font_weight }};
+  font-weight: {%- if section.settings.use_hero_typography -%}{{ settings.hero_subtitle_font_weight }}{%- else -%}700{%- endif -%};
 }
 
 .hero-banner-{{ section.id }} .hero-banner__title strong {
@@ -819,13 +819,15 @@
     },
     {
       "type": "header",
-      "content": "⚙️ Section Main Hero — Typography"
+      "content": "Title"
     },
     {
-      "type": "header",
-      "content": "🔤 Title (EN)"
+      "type": "checkbox",
+      "id": "use_hero_typography",
+      "label": "Use Section Main Hero typography",
+      "info": "If enabled — uses Section Main Hero settings from Theme Settings. If disabled — uses Section headings.",
+      "default": true
     },
-
     {
       "type": "richtext",
       "id": "title",
@@ -841,78 +843,6 @@
       "step": 2,
       "unit": "px",
       "default": 16
-    },
-    {
-      "type": "range",
-      "id": "title_size_desktop",
-      "label": "Title font size desktop (EN)",
-      "min": 20,
-      "max": 80,
-      "step": 1,
-      "unit": "px",
-      "default": 48
-    },
-    {
-      "type": "range",
-      "id": "title_size_mobile",
-      "label": "Title font size mobile (EN)",
-      "min": 16,
-      "max": 60,
-      "step": 1,
-      "unit": "px",
-      "default": 32
-    },
-    {
-      "type": "select",
-      "id": "title_font_weight",
-      "label": "Title font weight (EN)",
-      "options": [
-        { "value": "400", "label": "Regular (400)" },
-        { "value": "500", "label": "Medium (500)" },
-        { "value": "600", "label": "SemiBold (600)" },
-        { "value": "700", "label": "Bold (700)" },
-        { "value": "800", "label": "ExtraBold (800)" },
-        { "value": "900", "label": "Black (900)" }
-      ],
-      "default": "800"
-    },
-    {
-      "type": "header",
-      "content": "🔤 Title (UK)"
-    },
-    {
-      "type": "range",
-      "id": "title_size_desktop_uk",
-      "label": "Title font size desktop (UK)",
-      "min": 20,
-      "max": 80,
-      "step": 1,
-      "unit": "px",
-      "default": 48
-    },
-    {
-      "type": "range",
-      "id": "title_size_mobile_uk",
-      "label": "Title font size mobile (UK)",
-      "min": 16,
-      "max": 60,
-      "step": 1,
-      "unit": "px",
-      "default": 32
-    },
-    {
-      "type": "select",
-      "id": "title_font_weight_uk",
-      "label": "Title font weight (UK)",
-      "options": [
-        { "value": "400", "label": "Regular (400)" },
-        { "value": "500", "label": "Medium (500)" },
-        { "value": "600", "label": "SemiBold (600)" },
-        { "value": "700", "label": "Bold (700)" },
-        { "value": "800", "label": "ExtraBold (800)" },
-        { "value": "900", "label": "Black (900)" }
-      ],
-      "default": "800"
     },
     {
       "type": "range",
