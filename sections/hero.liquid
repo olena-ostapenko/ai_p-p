@@ -253,8 +253,8 @@
   #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
     content: '';
     display: inline-block;
-    width: 0.75em;
-    height: 0.75em;
+    width: 13px;
+    height: 13px;
     background-image: url('https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_paw.svg?v=1777450948');
     background-repeat: no-repeat;
     background-size: contain;
@@ -371,8 +371,8 @@
     }
 
     #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
-      width: 0.55em;
-      height: 0.55em;
+      width: 12px;
+      height: 12px;
       left: {{ section.settings.decor_paw_offset_x_mobile }}px;
       top: {{ section.settings.decor_paw_offset_y_mobile }}px;
     }
@@ -404,30 +404,22 @@
   color: {{ section.settings.decoration_color }};
 }
 
-/* Title rendered as richtext <p><strong> — match h2 styles */
+/* Title p/h1/h2 inherit from parent .hero-banner__title */
 .hero-banner-{{ section.id }} .hero-banner__title p,
 .hero-banner-{{ section.id }} .hero-banner__title h1,
 .hero-banner-{{ section.id }} .hero-banner__title h2 {
-  font-size: var(--section-heading-size-mobile, 26px);
-  font-weight: 800;
-  line-height: 1.2;
-  text-align: var(--section-heading-align-mobile, center);
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-align: inherit;
   margin: 0 0 4px;
   text-transform: uppercase;
 }
 
-@media screen and (min-width: 750px) {
-  .hero-banner-{{ section.id }} .hero-banner__title p,
-  .hero-banner-{{ section.id }} .hero-banner__title h1,
-  .hero-banner-{{ section.id }} .hero-banner__title h2 {
-    font-size: var(--section-heading-size-desktop, 44px);
-    text-align: var(--section-heading-align-desktop, left);
-  }
-}
-
 .hero-banner-{{ section.id }} .hero-banner__title p strong,
 .hero-banner-{{ section.id }} .hero-banner__title p b {
-  font-weight: 800;
+  font-weight: inherit;
+  color: {{ section.settings.decoration_color }};
 }
 
   /* Decorative elements */
@@ -866,7 +858,7 @@
     },
     {
       "type": "header",
-      "content": "🖥 Desktop — Line (curve)"
+      "content": "Line — Desktop"
     },
     {
       "type": "range",
@@ -910,7 +902,7 @@
     },
     {
       "type": "header",
-      "content": "🖥 Desktop — Paw"
+      "content": "Paw Desktop"
     },
     {
       "type": "range",
@@ -954,7 +946,7 @@
     },
     {
       "type": "header",
-      "content": "📱 Mobile — Line (curve)"
+      "content": "Line — Mobile"
     },
     {
       "type": "range",
@@ -998,7 +990,7 @@
     },
     {
       "type": "header",
-      "content": "📱 Mobile — Paw"
+      "content": "Paw Mobile"
     },
     {
       "type": "range",
