@@ -360,6 +360,10 @@
       margin-bottom: {{ section.settings.description_margin_bottom_mobile }}px;
     }
 
+    .hero-banner-{{ section.id }} .hero-banner__description p {
+      margin-top: 0;
+    }
+
     /* Декоративні елементи */
     {%- if section.settings.enable_subtitle_decor -%}
     #shopify-section-{{ section.id }} .hero-banner__subtitle::before {
