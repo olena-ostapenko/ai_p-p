@@ -767,35 +767,25 @@
     }
 
     function initPaw() {
+      // Only position after fonts are fully loaded — no intermediate positions
       if (document.fonts && document.fonts.ready) {
         document.fonts.ready.then(function() {
           positionPaw();
-          // Extra call after full page load to catch late renders
-          window.addEventListener('load', function() {
-            setTimeout(positionPaw, 100);
-            setTimeout(positionPaw, 500);
-          });
         });
       } else {
-        positionPaw();
-        window.addEventListener('load', function() {
-          setTimeout(positionPaw, 300);
-        });
+        // Fallback: wait for window load
+        window.addEventListener('load', positionPaw);
       }
     }
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initPaw);
-    } else if (document.readyState === 'interactive') {
-      initPaw();
-    } else {
-      // Already fully loaded
+    // Single entry point — never call positionPaw before fonts ready
+    window.addEventListener('load', function() {
       if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(function() { positionPaw(); });
+        document.fonts.ready.then(positionPaw);
       } else {
         positionPaw();
       }
-    }
+    });
 
     window.addEventListener('resize', positionPaw);
     document.addEventListener('shopify:section:load', initPaw);
