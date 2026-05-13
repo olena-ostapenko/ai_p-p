@@ -253,8 +253,8 @@
   }
   :lang(uk) #shopify-section-{{ section.id }} .hero-banner__subtitle::before,
   :lang(uk) .hero-banner-{{ section.id }} .hero-banner__subtitle::before {
-    top: calc(100% - {{ section.settings.decor_line_offset_y_uk }}px);
-    left: {{ section.settings.decor_line_offset_x_uk }}%;
+    top: calc(100% - {{ section.settings.decor_line_offset_y_uk }}px) !important;
+    left: {{ section.settings.decor_line_offset_x_uk }}% !important;
   }
 
   #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
@@ -377,8 +377,8 @@
     }
     :lang(uk) #shopify-section-{{ section.id }} .hero-banner__subtitle::before,
     :lang(uk) .hero-banner-{{ section.id }} .hero-banner__subtitle::before {
-      top: calc(100% - {{ section.settings.decor_line_offset_y_mobile_uk }}px);
-      left: {{ section.settings.decor_line_offset_x_mobile_uk }}%;
+      top: calc(100% - {{ section.settings.decor_line_offset_y_mobile_uk }}px) !important;
+      left: {{ section.settings.decor_line_offset_x_mobile_uk }}% !important;
     }
 
     #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
