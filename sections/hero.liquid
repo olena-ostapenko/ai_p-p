@@ -529,16 +529,25 @@
         {%- endif -%}
 
         {%- if section.settings.subtitle != blank -%}
-          {%- if section.settings.enable_subtitle_decor and section.settings.paw_letter_pos > 0 -%}
-            {%- assign paw_pos = section.settings.paw_letter_pos | minus: 1 -%}
-            {%- assign subtitle_raw = section.settings.subtitle | strip_html | strip -%}
-            {%- assign total_len = subtitle_raw | size -%}
-            {%- assign before_paw = subtitle_raw | slice: 0, paw_pos -%}
-            {%- assign paw_letter = subtitle_raw | slice: paw_pos, 1 -%}
-            {%- assign after_start = paw_pos | plus: 1 -%}
-            {%- assign after_len = total_len | minus: after_start -%}
-            {%- assign after_paw = subtitle_raw | slice: after_start, after_len -%}
-            {%- capture subtitle_html %}<h1><strong>{{ before_paw }}<span class="paw-letter">{{ paw_letter }}</span>{{ after_paw }}</strong></h1>{%- endcapture -%}
+          {%- if section.settings.enable_subtitle_decor -%}
+            {%- if request.locale.iso_code == 'uk' -%}
+              {%- assign paw_pos_val = section.settings.paw_letter_pos_uk -%}
+            {%- else -%}
+              {%- assign paw_pos_val = section.settings.paw_letter_pos -%}
+            {%- endif -%}
+            {%- if paw_pos_val > 0 -%}
+              {%- assign paw_pos = paw_pos_val | minus: 1 -%}
+              {%- assign subtitle_raw = section.settings.subtitle | strip_html | strip -%}
+              {%- assign total_len = subtitle_raw | size -%}
+              {%- assign before_paw = subtitle_raw | slice: 0, paw_pos -%}
+              {%- assign paw_letter = subtitle_raw | slice: paw_pos, 1 -%}
+              {%- assign after_start = paw_pos | plus: 1 -%}
+              {%- assign after_len = total_len | minus: after_start -%}
+              {%- assign after_paw = subtitle_raw | slice: after_start, after_len -%}
+              {%- capture subtitle_html %}<h1><strong>{{ before_paw }}<span class="paw-letter">{{ paw_letter }}</span>{{ after_paw }}</strong></h1>{%- endcapture -%}
+            {%- else -%}
+              {%- assign subtitle_html = section.settings.subtitle -%}
+            {%- endif -%}
           {%- else -%}
             {%- assign subtitle_html = section.settings.subtitle -%}
           {%- endif -%}
@@ -1353,9 +1362,16 @@
     {
       "type": "number",
       "id": "paw_letter_pos",
-      "label": "Paw — letter number in subtitle",
-      "info": "Which letter to center paw over (1 = first letter). E.g. for 'A WORK OF ART!' — O in WORK is letter 4",
+      "label": "Paw — letter number (EN)",
+      "info": "Which letter to center paw over (1 = first). E.g. for 'A WORK OF ART!' — O = 4",
       "default": 4
+    },
+    {
+      "type": "number",
+      "id": "paw_letter_pos_uk",
+      "label": "Paw — letter number (UK)",
+      "info": "Which letter to center paw over for Ukrainian subtitle",
+      "default": 10
     },
     {
       "type": "range",
