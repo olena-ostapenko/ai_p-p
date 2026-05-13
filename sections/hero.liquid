@@ -373,6 +373,10 @@
       font-size: {{ settings.hero_subtitle_size_mobile }}px;
     }
 
+    :lang(uk) .hero-banner-{{ section.id }} .hero-banner__subtitle .subtitle-break {
+      display: block;
+    }
+
     .hero-banner-{{ section.id }} .hero-banner__description {
       margin-bottom: {{ section.settings.description_margin_bottom_mobile }}px;
       text-align: center;
@@ -550,7 +554,13 @@
               {%- assign after_start = paw_pos | plus: 1 -%}
               {%- assign after_len = total_len | minus: after_start -%}
               {%- assign after_paw = subtitle_raw | slice: after_start, after_len -%}
-              {%- capture subtitle_html %}<h1><strong>{{ before_paw }}<span class="paw-letter">{{ paw_letter }}</span>{{ after_paw }}</strong></h1>{%- endcapture -%}
+              {%- if request.locale.iso_code == 'uk' -%}
+                {%- assign subtitle_parts = after_paw | split: ' ' -%}
+                {%- assign subtitle_after_processed = after_paw | replace: 'твір ', 'твір <span class="subtitle-break"></span>' -%}
+                {%- capture subtitle_html %}<h1><strong>{{ before_paw }}<span class="paw-letter">{{ paw_letter }}</span>{{ subtitle_after_processed }}</strong></h1>{%- endcapture -%}
+              {%- else -%}
+                {%- capture subtitle_html %}<h1><strong>{{ before_paw }}<span class="paw-letter">{{ paw_letter }}</span>{{ after_paw }}</strong></h1>{%- endcapture -%}
+              {%- endif -%}
             {%- else -%}
               {%- assign subtitle_html = subtitle_source -%}
             {%- endif -%}
