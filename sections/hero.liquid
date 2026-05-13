@@ -260,24 +260,7 @@
     left: {{ section.settings.decor_line_offset_x_uk }}% !important;
   }
 
-  #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
-    content: '';
-    display: block;
-    width: 13px;
-    height: 12px;
-    background-image: url('https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_paw.svg?v=1777450948');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    position: absolute;
-    left: {{ section.settings.paw_offset_x }}px;
-    top: {{ section.settings.paw_offset_y }}px;
-  }
-  :lang(uk) #shopify-section-{{ section.id }} .hero-banner__subtitle::after,
-  :lang(uk) .hero-banner-{{ section.id }} .hero-banner__subtitle::after {
-    left: {{ section.settings.paw_offset_x_uk }}px;
-    top: {{ section.settings.paw_offset_y_uk }}px;
-  }
+
 
   {%- comment -%} Ukrainian locale overrides for desktop {%- endcomment -%}
   {%- endif -%}
@@ -388,17 +371,7 @@
       left: {{ section.settings.decor_line_offset_x_mobile_uk }}% !important;
     }
 
-    #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
-      width: 8px;
-      height: 9px;
-      left: {{ section.settings.paw_offset_x_mobile }}px;
-      top: {{ section.settings.paw_offset_y_mobile }}px;
-    }
-    :lang(uk) #shopify-section-{{ section.id }} .hero-banner__subtitle::after,
-    :lang(uk) .hero-banner-{{ section.id }} .hero-banner__subtitle::after {
-      left: {{ section.settings.paw_offset_x_mobile_uk }}px;
-      top: {{ section.settings.paw_offset_y_mobile_uk }}px;
-    }
+
 
     {%- comment -%} Ukrainian locale overrides for mobile {%- endcomment -%}
     {%- endif -%}
@@ -1426,66 +1399,6 @@
       "step": 1,
       "unit": "px",
       "default": 21
-    },
-    {
-      "type": "header",
-      "content": "Paw Desktop"
-    },
-    {
-      "type": "number",
-      "id": "paw_offset_x",
-      "label": "Paw — left offset in px (EN)",
-      "info": "Negative = left, positive = right",
-      "default": 0
-    },
-    {
-      "type": "number",
-      "id": "paw_offset_y",
-      "label": "Paw — top offset in px (EN)",
-      "info": "Negative = up, positive = down",
-      "default": 0
-    },
-    {
-      "type": "number",
-      "id": "paw_offset_x_uk",
-      "label": "Paw — left offset in px (UK)",
-      "info": "Negative = left, positive = right",
-      "default": 0
-    },
-    {
-      "type": "number",
-      "id": "paw_offset_y_uk",
-      "label": "Paw — top offset in px (UK)",
-      "info": "Negative = up, positive = down",
-      "default": 0
-    },
-    {
-      "type": "header",
-      "content": "Paw Mobile"
-    },
-    {
-      "type": "number",
-      "id": "paw_offset_x_mobile",
-      "label": "Paw — left offset in px (EN)",
-      "default": 0
-    },
-    {
-      "type": "number",
-      "id": "paw_offset_y_mobile",
-      "label": "Paw — top offset in px (EN)",
-      "default": 0
-    },
-    {
-      "type": "number",
-      "id": "paw_offset_x_mobile_uk",
-      "label": "Paw — left offset in px (UK)",
-      "default": 0
-    },
-    {
-      "type": "number",
-      "id": "paw_offset_y_mobile_uk",
-      "label": "Paw — top offset in px (UK)",
-      "default": 0
     }
   ],
   "blocks": [
