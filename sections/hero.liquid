@@ -766,12 +766,28 @@
       paw.style.top  = top  + 'px';
     }
 
-    document.addEventListener('DOMContentLoaded', positionPaw);
+    // Wait for fonts to load before positioning (critical for accurate letter coords)
+    function initPaw() {
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function() {
+          positionPaw();
+        });
+      } else {
+        positionPaw();
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPaw);
+    } else {
+      initPaw();
+    }
+
     window.addEventListener('resize', positionPaw);
 
     // Re-run after Shopify theme editor updates
-    document.addEventListener('shopify:section:load', positionPaw);
-    document.addEventListener('shopify:section:select', positionPaw);
+    document.addEventListener('shopify:section:load', initPaw);
+    document.addEventListener('shopify:section:select', initPaw);
   })();
 </script>
 
