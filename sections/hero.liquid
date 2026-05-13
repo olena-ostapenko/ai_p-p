@@ -563,7 +563,7 @@
                 {%- assign uk_paw_letter = after_break | slice: uk_paw_pos, 1 -%}
                 {%- assign uk_after_start = uk_paw_pos | plus: 1 -%}
                 {%- assign uk_after = after_break | slice: uk_after_start, after_break_len -%}
-                {%- capture subtitle_html %}<h1><strong>{{ before_break }}витвір<span class="subtitle-break"></span>{{ uk_before }}<span class="paw-letter">{{ uk_paw_letter }}</span>{{ uk_after }}</strong></h1>{%- endcapture -%}
+                {%- capture subtitle_html %}<h1><strong>{{ before_break }}витвір<span class="subtitle-break"> </span>{{ uk_before }}<span class="paw-letter">{{ uk_paw_letter }}</span>{{ uk_after }}</strong></h1>{%- endcapture -%}
               {%- else -%}
                 {%- capture subtitle_html %}<h1><strong>{{ before_paw }}<span class="paw-letter">{{ paw_letter }}</span>{{ after_paw }}</strong></h1>{%- endcapture -%}
               {%- endif -%}
