@@ -766,26 +766,38 @@
       paw.style.top  = top  + 'px';
     }
 
-    // Wait for fonts to load before positioning (critical for accurate letter coords)
     function initPaw() {
       if (document.fonts && document.fonts.ready) {
         document.fonts.ready.then(function() {
           positionPaw();
+          // Extra call after full page load to catch late renders
+          window.addEventListener('load', function() {
+            setTimeout(positionPaw, 100);
+            setTimeout(positionPaw, 500);
+          });
         });
       } else {
         positionPaw();
+        window.addEventListener('load', function() {
+          setTimeout(positionPaw, 300);
+        });
       }
     }
 
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initPaw);
-    } else {
+    } else if (document.readyState === 'interactive') {
       initPaw();
+    } else {
+      // Already fully loaded
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function() { positionPaw(); });
+      } else {
+        positionPaw();
+      }
     }
 
     window.addEventListener('resize', positionPaw);
-
-    // Re-run after Shopify theme editor updates
     document.addEventListener('shopify:section:load', initPaw);
     document.addEventListener('shopify:section:select', initPaw);
   })();
