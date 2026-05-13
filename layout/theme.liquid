@@ -309,6 +309,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap&subset=cyrillic,latin" rel="stylesheet">
     <style>
+      /* Force Montserrat globally for all languages */
+      body,
+      h1, h2, h3, h4, h5, h6,
+      p, a, span, li, button,
+      input, textarea, select, label {
+        font-family: 'Montserrat', sans-serif !important;
+      }
+
       /* Force Montserrat with Cyrillic support for Ukrainian locale */
       :lang(uk) body,
       :lang(uk) h1,
