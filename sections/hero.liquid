@@ -251,12 +251,11 @@
     background-size: 100% 100%;
     pointer-events: none;
   }
-  {%- if request.locale.iso_code == 'uk' -%}
-  #shopify-section-{{ section.id }} .hero-banner__subtitle::before {
+  :lang(uk) #shopify-section-{{ section.id }} .hero-banner__subtitle::before,
+  :lang(uk) .hero-banner-{{ section.id }} .hero-banner__subtitle::before {
     bottom: {{ section.settings.decor_line_offset_y_uk }}px;
     left: {{ section.settings.decor_line_offset_x_uk }}%;
   }
-  {%- endif -%}
 
   #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
     content: '';
@@ -272,12 +271,11 @@
     top: {{ section.settings.paw_offset_y }}px;
     vertical-align: middle;
   }
-  {%- if request.locale.iso_code == 'uk' -%}
-  #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
+  :lang(uk) #shopify-section-{{ section.id }} .hero-banner__subtitle::after,
+  :lang(uk) .hero-banner-{{ section.id }} .hero-banner__subtitle::after {
     left: {{ section.settings.paw_offset_x_uk }}px;
     top: {{ section.settings.paw_offset_y_uk }}px;
   }
-  {%- endif -%}
 
   {%- comment -%} Ukrainian locale overrides for desktop {%- endcomment -%}
   {%- endif -%}
@@ -377,12 +375,11 @@
       bottom: {{ section.settings.decor_line_offset_y_mobile }}px;
       left: {{ section.settings.decor_line_offset_x_mobile }}%;
     }
-    {%- if request.locale.iso_code == 'uk' -%}
-    #shopify-section-{{ section.id }} .hero-banner__subtitle::before {
+    :lang(uk) #shopify-section-{{ section.id }} .hero-banner__subtitle::before,
+    :lang(uk) .hero-banner-{{ section.id }} .hero-banner__subtitle::before {
       bottom: {{ section.settings.decor_line_offset_y_mobile_uk }}px;
       left: {{ section.settings.decor_line_offset_x_mobile_uk }}%;
     }
-    {%- endif -%}
 
     #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
       width: 8px;
@@ -390,12 +387,11 @@
       left: {{ section.settings.paw_offset_x_mobile }}px;
       top: {{ section.settings.paw_offset_y_mobile }}px;
     }
-    {%- if request.locale.iso_code == 'uk' -%}
-    #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
+    :lang(uk) #shopify-section-{{ section.id }} .hero-banner__subtitle::after,
+    :lang(uk) .hero-banner-{{ section.id }} .hero-banner__subtitle::after {
       left: {{ section.settings.paw_offset_x_mobile_uk }}px;
       top: {{ section.settings.paw_offset_y_mobile_uk }}px;
     }
-    {%- endif -%}
 
     {%- comment -%} Ukrainian locale overrides for mobile {%- endcomment -%}
     {%- endif -%}
