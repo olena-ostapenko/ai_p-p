@@ -156,7 +156,7 @@
         "enable_subtitle_decor": true,
         "paw_letter_pos": 4,
         "paw_size_css": 3,
-        "paw_offset_top_css": 130,
+        "paw_offset_top_css": 50,
         "decor_line_offset_x": -16,
         "decor_line_offset_y": 0,
         "decor_line_offset_x_uk": -10,
