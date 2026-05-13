@@ -160,7 +160,7 @@
         "decor_line_offset_y_uk": 30,
         "decor_line_offset_x_mobile": 6,
         "decor_line_offset_y_mobile": 30,
-        "decor_line_offset_x_mobile_uk": 50,
+        "decor_line_offset_x_mobile_uk": -50,
         "decor_line_offset_y_mobile_uk": 30,
         "paw_offset_x": 119,
         "paw_offset_y": -48,
