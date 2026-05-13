@@ -260,9 +260,10 @@
     background-position: center;
     top: 50%;
     left: 50%;
-    margin-top: calc({{ section.settings.paw_size_css }} * -0.05em);
-    margin-left: calc({{ section.settings.paw_size_css }} * -0.05em + {%- if request.locale.iso_code == 'uk' -%}{{ section.settings.paw_offset_x_css_uk }}{%- else -%}{{ section.settings.paw_offset_x_css }}{%- endif -%}px);
-    transform: translateY({%- if request.locale.iso_code == 'uk' -%}-{{ section.settings.paw_offset_top_css_uk }}{%- else -%}-{{ section.settings.paw_offset_top_css }}{%- endif -%}%);
+    transform: translate(
+      calc(-50% + {%- if request.locale.iso_code == 'uk' -%}{{ section.settings.paw_offset_x_css_uk }}{%- else -%}{{ section.settings.paw_offset_x_css }}{%- endif -%}px),
+      calc(-50% - {%- if request.locale.iso_code == 'uk' -%}{{ section.settings.paw_offset_top_css_uk }}{%- else -%}{{ section.settings.paw_offset_top_css }}{%- endif -%}px)
+    );
     pointer-events: none;
   }
 
@@ -1402,13 +1403,13 @@
     {
       "type": "range",
       "id": "paw_offset_top_css",
-      "label": "Paw vertical position",
-      "min": 0,
-      "max": 200,
-      "step": 5,
-      "unit": "%",
-      "info": "100% = centered on letter, higher = more above",
-      "default": 130
+      "label": "Paw vertical offset (EN)",
+      "min": -30,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "info": "0 = centered on letter, negative = up, positive = down",
+      "default": 0
     },
     {
       "type": "range",
@@ -1424,12 +1425,13 @@
     {
       "type": "range",
       "id": "paw_offset_top_css_uk",
-      "label": "Paw vertical position (UK)",
-      "min": 0,
-      "max": 200,
-      "step": 5,
-      "unit": "%",
-      "default": 130
+      "label": "Paw vertical offset (UK)",
+      "min": -30,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "info": "0 = centered on letter, negative = up, positive = down",
+      "default": 0
     },
     {
       "type": "range",
