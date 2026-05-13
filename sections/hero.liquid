@@ -242,6 +242,27 @@
     overflow: visible;
   }
 
+  /* Paw icon centered over target letter */
+  #shopify-section-{{ section.id }} .hero-banner__subtitle .paw-letter {
+    position: relative;
+    display: inline-block;
+  }
+
+  #shopify-section-{{ section.id }} .hero-banner__subtitle .paw-letter::before {
+    content: '';
+    position: absolute;
+    width: {{ section.settings.paw_size_css }}em;
+    height: {{ section.settings.paw_size_css }}em;
+    background-image: url('https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_paw.svg?v=1777450948');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -{{ section.settings.paw_offset_top_css }}%);
+    pointer-events: none;
+  }
+
   #shopify-section-{{ section.id }} .hero-banner__subtitle::before {
     content: '';
     position: absolute;
@@ -508,14 +529,19 @@
         {%- endif -%}
 
         {%- if section.settings.subtitle != blank -%}
-          {%- assign paw_size = section.settings.paw_size | default: 0.32 -%}
-          {%- assign paw_vertical = section.settings.paw_vertical | default: 0.1 -%}
-          {%- assign paw_margin_l = section.settings.paw_margin_l | default: 0.23 -%}
-          {%- assign paw_margin_r = section.settings.paw_margin_r | default: -0.55 -%}
-          {%- assign paw_icon = '<img src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_paw.svg?v=1777450948" style="width:' | append: paw_size | append: 'em;height:' | append: paw_size | append: 'em;vertical-align:' | append: paw_vertical | append: 'em;display:inline-block;margin:0 ' | append: paw_margin_r | append: 'em 0 ' | append: paw_margin_l | append: 'em;" alt="">' -%}
-          {%- assign subtitle_with_paw = section.settings.subtitle | replace: '||', paw_icon -%}
+          {%- if section.settings.enable_subtitle_decor and section.settings.paw_letter_pos > 0 -%}
+            {%- assign subtitle_text = section.settings.subtitle | strip_html -%}
+            {%- assign paw_pos = section.settings.paw_letter_pos | minus: 1 -%}
+            {%- assign before_paw = subtitle_text | slice: 0, paw_pos -%}
+            {%- assign paw_letter = subtitle_text | slice: paw_pos -%}
+            {%- assign paw_letter = paw_letter | slice: 0, 1 -%}
+            {%- assign after_paw = subtitle_text | slice: paw_pos | remove_first: paw_letter -%}
+            {%- assign subtitle_html = '<h1><strong>' | append: before_paw | append: '<span class="paw-letter">' | append: paw_letter | append: '</span>' | append: after_paw | append: '</strong></h1>' -%}
+          {%- else -%}
+            {%- assign subtitle_html = section.settings.subtitle -%}
+          {%- endif -%}
           <div class="hero-banner__subtitle">
-            {{ subtitle_with_paw }} 
+            {{ subtitle_html }}
           </div>
         {%- endif -%}
 
@@ -1324,27 +1350,32 @@
     },
     {
       "type": "number",
-      "id": "paw_size",
-      "label": "Paw size (em)",
-      "default": 0
+      "id": "paw_letter_pos",
+      "label": "Paw — letter number in subtitle",
+      "info": "Which letter to center paw over (1 = first letter). E.g. for 'A WORK OF ART!' — O in WORK is letter 4",
+      "default": 4
     },
     {
-      "type": "number",
-      "id": "paw_vertical",
-      "label": "Paw vertical offset (em)",
-      "default": 0
+      "type": "range",
+      "id": "paw_size_css",
+      "label": "Paw size",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "x",
+      "info": "Multiplier relative to letter size (3 = 3× letter height)",
+      "default": 3
     },
     {
-      "type": "number",
-      "id": "paw_margin_l",
-      "label": "Paw margin left (em)",
-      "default": 0
-    },
-    {
-      "type": "number",
-      "id": "paw_margin_r",
-      "label": "Paw margin right (em, negative = overlap O)",
-      "default": 0
+      "type": "range",
+      "id": "paw_offset_top_css",
+      "label": "Paw vertical position",
+      "min": 0,
+      "max": 200,
+      "step": 5,
+      "unit": "%",
+      "info": "100% = centered on letter, higher = more above",
+      "default": 130
     },
     {
       "type": "header",
