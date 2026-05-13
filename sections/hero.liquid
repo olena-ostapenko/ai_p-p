@@ -260,7 +260,7 @@
     background-position: center;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -{{ section.settings.paw_offset_top_css }}%);
+    transform: translate(calc(-50% + {{ section.settings.paw_offset_x_css }}px), -{{ section.settings.paw_offset_top_css }}%);
     pointer-events: none;
   }
 
@@ -1407,6 +1407,17 @@
       "unit": "%",
       "info": "100% = centered on letter, higher = more above",
       "default": 130
+    },
+    {
+      "type": "range",
+      "id": "paw_offset_x_css",
+      "label": "Paw horizontal offset",
+      "min": -20,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "info": "Fine-tune: negative = left, positive = right",
+      "default": 0
     },
     {
       "type": "header",
