@@ -247,6 +247,8 @@
   #shopify-section-{{ section.id }} .hero-banner__subtitle .paw-letter {
     position: relative;
     display: inline-block !important;
+    word-break: keep-all;
+    white-space: nowrap;
   }
 
   #shopify-section-{{ section.id }} .hero-banner__subtitle .paw-letter::before {
@@ -368,7 +370,7 @@
 
     .hero-banner-{{ section.id }} .hero-banner__subtitle {
       margin-bottom: {{ section.settings.subtitle_margin_bottom_mobile }}px;
-      font-size: clamp(16px, {{ settings.hero_subtitle_size_mobile }}px, 8vw);
+      font-size: {{ settings.hero_subtitle_size_mobile }}px;
     }
 
     .hero-banner-{{ section.id }} .hero-banner__description {
