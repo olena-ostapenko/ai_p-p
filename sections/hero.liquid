@@ -258,12 +258,9 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(
-      calc(-50% + {%- if request.locale.iso_code == 'uk' -%}{{ section.settings.paw_offset_x_css_uk }}{%- else -%}{{ section.settings.paw_offset_x_css }}{%- endif -%}px),
-      calc(-50% - {%- if request.locale.iso_code == 'uk' -%}{{ section.settings.paw_offset_top_css_uk }}{%- else -%}{{ section.settings.paw_offset_top_css }}{%- endif -%}px)
-    );
+    top: {%- if request.locale.iso_code == 'uk' -%}{{ section.settings.paw_offset_top_css_uk }}{%- else -%}{{ section.settings.paw_offset_top_css }}{%- endif -%}%;
+    left: {%- if request.locale.iso_code == 'uk' -%}{{ section.settings.paw_offset_x_css_uk }}{%- else -%}{{ section.settings.paw_offset_x_css }}{%- endif -%}%;
+    transform: translate(-50%, -50%);
     pointer-events: none;
   }
 
@@ -1403,46 +1400,46 @@
     {
       "type": "range",
       "id": "paw_offset_top_css",
-      "label": "Paw vertical offset (EN)",
-      "min": -30,
-      "max": 30,
+      "label": "Paw top position (EN)",
+      "min": 0,
+      "max": 100,
       "step": 1,
-      "unit": "px",
-      "info": "0 = centered on letter, negative = up, positive = down",
-      "default": 0
+      "unit": "%",
+      "info": "% from top of letter. Use DevTools to find value",
+      "default": 36
     },
     {
       "type": "range",
       "id": "paw_offset_x_css",
-      "label": "Paw horizontal offset (EN)",
-      "min": -20,
-      "max": 20,
+      "label": "Paw left position (EN)",
+      "min": 0,
+      "max": 100,
       "step": 1,
-      "unit": "px",
-      "info": "Negative = left, positive = right",
-      "default": 0
+      "unit": "%",
+      "info": "% from left of letter. Use DevTools to find value",
+      "default": 33
     },
     {
       "type": "range",
       "id": "paw_offset_top_css_uk",
-      "label": "Paw vertical offset (UK)",
-      "min": -30,
-      "max": 30,
+      "label": "Paw top position (UK)",
+      "min": 0,
+      "max": 100,
       "step": 1,
-      "unit": "px",
-      "info": "0 = centered on letter, negative = up, positive = down",
-      "default": 0
+      "unit": "%",
+      "info": "% from top of letter",
+      "default": 36
     },
     {
       "type": "range",
       "id": "paw_offset_x_css_uk",
-      "label": "Paw horizontal offset (UK)",
-      "min": -20,
-      "max": 20,
+      "label": "Paw left position (UK)",
+      "min": 0,
+      "max": 100,
       "step": 1,
-      "unit": "px",
-      "info": "Negative = left, positive = right",
-      "default": 0
+      "unit": "%",
+      "info": "% from left of letter",
+      "default": 33
     },
     {
       "type": "header",
