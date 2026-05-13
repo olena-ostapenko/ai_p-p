@@ -155,7 +155,7 @@
         "img3_width": 400,
         "img4_width": 400,
         "decor_line_offset_x": 8,
-        "decor_line_offset_y": -10,
+        "decor_line_offset_y": 10,
         "decor_line_offset_x_mobile": 10,
         "decor_line_offset_y_mobile": 21,
         "paw_offset_x": 119,
