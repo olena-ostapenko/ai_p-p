@@ -532,9 +532,12 @@
           {%- if section.settings.enable_subtitle_decor and section.settings.paw_letter_pos > 0 -%}
             {%- assign paw_pos = section.settings.paw_letter_pos | minus: 1 -%}
             {%- assign subtitle_raw = section.settings.subtitle | strip_html | strip -%}
+            {%- assign total_len = subtitle_raw | size -%}
             {%- assign before_paw = subtitle_raw | slice: 0, paw_pos -%}
             {%- assign paw_letter = subtitle_raw | slice: paw_pos, 1 -%}
-            {%- assign after_paw = subtitle_raw | slice: paw_pos | remove_first: paw_letter -%}
+            {%- assign after_start = paw_pos | plus: 1 -%}
+            {%- assign after_len = total_len | minus: after_start -%}
+            {%- assign after_paw = subtitle_raw | slice: after_start, after_len -%}
             {%- capture subtitle_html %}<h1><strong>{{ before_paw }}<span class="paw-letter">{{ paw_letter }}</span>{{ after_paw }}</strong></h1>{%- endcapture -%}
           {%- else -%}
             {%- assign subtitle_html = section.settings.subtitle -%}
