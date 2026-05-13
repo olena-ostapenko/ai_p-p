@@ -246,7 +246,9 @@
   /* Paw icon centered over target letter */
   #shopify-section-{{ section.id }} .hero-banner__subtitle .paw-letter {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   #shopify-section-{{ section.id }} .hero-banner__subtitle .paw-letter::before {
@@ -259,8 +261,8 @@
     background-size: contain;
     background-position: center;
     top: 50%;
-    left: 50%;
-    transform: translate(calc(-50% + {%- if request.locale.iso_code == 'uk' -%}{{ section.settings.paw_offset_x_css_uk }}{%- else -%}{{ section.settings.paw_offset_x_css }}{%- endif -%}px), -{%- if request.locale.iso_code == 'uk' -%}{{ section.settings.paw_offset_top_css_uk }}{%- else -%}{{ section.settings.paw_offset_top_css }}{%- endif -%}%);
+    left: calc(50% + {%- if request.locale.iso_code == 'uk' -%}{{ section.settings.paw_offset_x_css_uk }}{%- else -%}{{ section.settings.paw_offset_x_css }}{%- endif -%}px);
+    transform: translate(-50%, -{%- if request.locale.iso_code == 'uk' -%}{{ section.settings.paw_offset_top_css_uk }}{%- else -%}{{ section.settings.paw_offset_top_css }}{%- endif -%}%);
     pointer-events: none;
   }
 
