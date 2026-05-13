@@ -160,14 +160,14 @@
         "decor_line_offset_y_uk": 30,
         "decor_line_offset_x_mobile": 6,
         "decor_line_offset_y_mobile": 30,
-        "decor_line_offset_x_mobile_uk": 25,
+        "decor_line_offset_x_mobile_uk": 0,
         "decor_line_offset_y_mobile_uk": 30,
         "paw_offset_x": 119,
         "paw_offset_y": -48,
         "paw_offset_x_uk": 398,
         "paw_offset_y_uk": -48,
-        "paw_offset_x_mobile": -56,
-        "paw_offset_y_mobile": -34,
+        "paw_offset_x_mobile": -57,
+        "paw_offset_y_mobile": -51,
         "paw_offset_x_mobile_uk": -40,
         "paw_offset_y_mobile_uk": -34
       }
