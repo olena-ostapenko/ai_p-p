@@ -555,9 +555,9 @@
               {%- assign after_len = total_len | minus: after_start -%}
               {%- assign after_paw = subtitle_raw | slice: after_start, after_len -%}
               {%- if request.locale.iso_code == 'uk' -%}
-                {%- assign subtitle_parts = after_paw | split: ' ' -%}
-                {%- assign subtitle_after_processed = after_paw | replace: 'твір ', 'твір <span class="subtitle-break"></span>' -%}
-                {%- capture subtitle_html %}<h1><strong>{{ before_paw }}<span class="paw-letter">{{ paw_letter }}</span>{{ subtitle_after_processed }}</strong></h1>{%- endcapture -%}
+                {%- assign before_break = subtitle_raw | split: 'витвір' | first -%}
+                {%- assign after_break = subtitle_raw | split: 'витвір' | last -%}
+                {%- capture subtitle_html %}<h1><strong>{{ before_break }}витвір<span class="subtitle-break"></span>{{ after_break | lstrip }}</strong></h1>{%- endcapture -%}
               {%- else -%}
                 {%- capture subtitle_html %}<h1><strong>{{ before_paw }}<span class="paw-letter">{{ paw_letter }}</span>{{ after_paw }}</strong></h1>{%- endcapture -%}
               {%- endif -%}
