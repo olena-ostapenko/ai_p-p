@@ -153,7 +153,7 @@
         "img2_width": 400,
         "img3_width": 400,
         "img4_width": 400,
-        "enable_subtitle_decor": false,
+        "enable_subtitle_decor": true,
         "decor_line_offset_x": -16,
         "decor_line_offset_y": 30,
         "decor_line_offset_x_uk": -10,
