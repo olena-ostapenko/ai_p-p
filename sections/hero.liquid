@@ -54,7 +54,7 @@
     text-align: var(--section-heading-align-mobile, center);
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 1200px) {
     .hero-banner-{{ section.id }} .hero-banner__title {
       font-size: {%- if section.settings.use_hero_typography -%}{{ settings.hero_title_size_desktop }}{%- else -%}{{ settings.section_heading_size_desktop }}{%- endif -%}px;
       text-align: var(--section-heading-align-desktop, left);
@@ -73,7 +73,7 @@
     text-transform: uppercase;
   }
 
-  @media screen and (min-width: 750px) {
+  @media screen and (min-width: 1200px) {
     .hero-banner-{{ section.id }} .hero-banner__title h2 {
       font-size: var(--section-heading-size-desktop, 36px);
       text-align: var(--section-heading-align-desktop, left);
@@ -281,7 +281,7 @@
   {%- endif -%}
 
 
- @media screen and (max-width: 749px) {
+ @media screen and (max-width: 1199px) {
     /* Контейнер секції */
     .hero-banner-{{ section.id }} .hero-banner__container {
       padding-top: {{ section.settings.section_padding_top_mobile }}px;
@@ -553,7 +553,7 @@
           assign img2 = section.settings.image_2
           assign img3 = section.settings.image_3
           assign img4 = section.settings.image_4
-          assign img_sizes = '(max-width: 749px) ' | append: section.settings.image_width_mobile | append: 'px, ' | append: section.settings.image_width | append: 'px'
+          assign img_sizes = '(max-width: 1199px) ' | append: section.settings.image_width_mobile | append: 'px, ' | append: section.settings.image_width | append: 'px'
 
           if layout == '1'
             assign visible_count = 1
