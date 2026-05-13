@@ -90,7 +90,6 @@
     position: relative;
     display: block;
     overflow: visible;
-    white-space: nowrap;
   }
 
 
@@ -369,7 +368,7 @@
 
     .hero-banner-{{ section.id }} .hero-banner__subtitle {
       margin-bottom: {{ section.settings.subtitle_margin_bottom_mobile }}px;
-      font-size: {{ settings.hero_subtitle_size_mobile }}px;
+      font-size: clamp(16px, {{ settings.hero_subtitle_size_mobile }}px, 8vw);
     }
 
     .hero-banner-{{ section.id }} .hero-banner__description {
@@ -416,8 +415,7 @@
   padding: 0;
   font-size: inherit;
   line-height: inherit;
-  word-break: keep-all;
-  overflow-wrap: normal;
+  white-space: nowrap;
 }
 
 .hero-banner-{{ section.id }} .hero-banner__title strong {
