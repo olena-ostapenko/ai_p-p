@@ -508,7 +508,11 @@
         {%- endif -%}
 
         {%- if section.settings.subtitle != blank -%}
-          {%- assign paw_icon = '<img src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_paw.svg?v=1777450948" style="width:0.32em;height:0.32em;vertical-align:0.1em;display:inline-block;margin:0 -0.55em 0 0.23em;" alt="">' -%}
+          {%- assign paw_size = section.settings.paw_size | default: 0.32 -%}
+          {%- assign paw_vertical = section.settings.paw_vertical | default: 0.1 -%}
+          {%- assign paw_margin_l = section.settings.paw_margin_l | default: 0.23 -%}
+          {%- assign paw_margin_r = section.settings.paw_margin_r | default: -0.55 -%}
+          {%- assign paw_icon = '<img src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_paw.svg?v=1777450948" style="width:' | append: paw_size | append: 'em;height:' | append: paw_size | append: 'em;vertical-align:' | append: paw_vertical | append: 'em;display:inline-block;margin:0 ' | append: paw_margin_r | append: 'em 0 ' | append: paw_margin_l | append: 'em;" alt="">' -%}
           {%- assign subtitle_with_paw = section.settings.subtitle | replace: '||', paw_icon -%}
           <div class="hero-banner__subtitle">
             {{ subtitle_with_paw }} 
@@ -1313,6 +1317,34 @@
       "id": "enable_subtitle_decor",
       "label": "Enable subtitle decorators (curve + paw)",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "Paw position"
+    },
+    {
+      "type": "number",
+      "id": "paw_size",
+      "label": "Paw size (em)",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "paw_vertical",
+      "label": "Paw vertical offset (em)",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "paw_margin_l",
+      "label": "Paw margin left (em)",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "paw_margin_r",
+      "label": "Paw margin right (em, negative = overlap O)",
+      "default": 0
     },
     {
       "type": "header",
