@@ -309,9 +309,10 @@
     /* Image col — full width on mobile */
     .hero-banner-{{ section.id }} .hero-banner__image-col {
       width: 100% !important;
-      max-width: 100% !important;
+      max-width: {{ section.settings.image_width_mobile }}px !important;
       flex: 0 0 100% !important;
       overflow: hidden;
+      margin: 0 auto;
     }
 
     /* Single image */
@@ -360,11 +361,12 @@
 
     .hero-banner-{{ section.id }} .hero-banner__subtitle {
       margin-bottom: {{ section.settings.subtitle_margin_bottom_mobile }}px;
-      font-size: {{ section.settings.subtitle_size_mobile }}px;
+      font-size: {{ settings.hero_subtitle_size_mobile }}px;
     }
 
     .hero-banner-{{ section.id }} .hero-banner__description {
       margin-bottom: {{ section.settings.description_margin_bottom_mobile }}px;
+      text-align: center;
     }
 
     .hero-banner-{{ section.id }} .hero-banner__description p {
