@@ -508,7 +508,7 @@
         {%- endif -%}
 
         {%- if section.settings.subtitle != blank -%}
-          {%- assign paw_icon = '<img src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_paw.svg?v=1777450948" style="width:0.9em;height:0.9em;vertical-align:middle;display:inline-block;" alt="o">' -%}
+          {%- assign paw_icon = '<img src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_paw.svg?v=1777450948" style="width:0.4em;height:0.4em;vertical-align:super;display:inline-block;margin:0 -0.55em 0 0.1em;" alt="">' -%}
           {%- assign subtitle_with_paw = section.settings.subtitle | replace: '||', paw_icon -%}
           <div class="hero-banner__subtitle">
             {{ subtitle_with_paw }} 
