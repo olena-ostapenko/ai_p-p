@@ -301,6 +301,9 @@
     .hero-banner-{{ section.id }} .hero-banner__text-col {
       width: 100%;
       text-align: center;
+      padding-left: {{ section.settings.section_padding_horizontal_mobile }}px;
+      padding-right: {{ section.settings.section_padding_horizontal_mobile }}px;
+      box-sizing: border-box;
     }
 
     /* Image col — full width on mobile */
