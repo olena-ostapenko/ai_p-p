@@ -156,7 +156,7 @@
         "enable_subtitle_decor": true,
         "decor_line_offset_x": -16,
         "decor_line_offset_y": 30,
-        "decor_line_offset_x_uk": 6,
+        "decor_line_offset_x_uk": 16,
         "decor_line_offset_y_uk": 30,
         "decor_line_offset_x_mobile": 6,
         "decor_line_offset_y_mobile": 30,
