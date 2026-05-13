@@ -109,7 +109,7 @@
         "title": "<h1>Turn Your Pet's</h1><h1>Photo Into</h1>",
         "title_margin_bottom": 0,
         "title_margin_bottom_mobile": 0,
-        "subtitle": "<h1><strong>A W||ORK OF ART!</strong></h1>",
+        "subtitle": "<h1><strong>A WORK OF ART!</strong></h1>",
         "subtitle_margin_bottom": 68,
         "subtitle_margin_bottom_mobile": 36,
         "subtitle_size": 20,
@@ -154,6 +154,9 @@
         "img3_width": 400,
         "img4_width": 400,
         "enable_subtitle_decor": true,
+        "paw_letter_pos": 4,
+        "paw_size_css": 3,
+        "paw_offset_top_css": 130,
         "decor_line_offset_x": -16,
         "decor_line_offset_y": 0,
         "decor_line_offset_x_uk": -10,
@@ -161,15 +164,7 @@
         "decor_line_offset_x_mobile": 8,
         "decor_line_offset_y_mobile": 0,
         "decor_line_offset_x_mobile_uk": 6,
-        "decor_line_offset_y_mobile_uk": -20,
-        "paw_offset_x": 119,
-        "paw_offset_y": 22,
-        "paw_offset_x_uk": 398,
-        "paw_offset_y_uk": -48,
-        "paw_offset_x_mobile": 81,
-        "paw_offset_y_mobile": 14,
-        "paw_offset_x_mobile_uk": -40,
-        "paw_offset_y_mobile_uk": -34
+        "decor_line_offset_y_mobile_uk": -20
       }
     },
     "brands_eP4pY4": {
@@ -707,6 +702,9 @@
         "img3_width": 400,
         "img4_width": 400,
         "enable_subtitle_decor": false,
+        "paw_letter_pos": 4,
+        "paw_size_css": 3,
+        "paw_offset_top_css": 130,
         "decor_line_offset_x": 10,
         "decor_line_offset_y": 18,
         "decor_line_offset_x_uk": 10,
@@ -714,15 +712,7 @@
         "decor_line_offset_x_mobile": 10,
         "decor_line_offset_y_mobile": 21,
         "decor_line_offset_x_mobile_uk": 10,
-        "decor_line_offset_y_mobile_uk": 21,
-        "paw_offset_x": 0,
-        "paw_offset_y": -5,
-        "paw_offset_x_uk": 0,
-        "paw_offset_y_uk": -5,
-        "paw_offset_x_mobile": 0,
-        "paw_offset_y_mobile": -5,
-        "paw_offset_x_mobile_uk": 0,
-        "paw_offset_y_mobile_uk": -5
+        "decor_line_offset_y_mobile_uk": 21
       }
     },
     "multicolumn_yQrrpf": {
@@ -961,6 +951,9 @@
         "image_4": "shopify://shop_images/order_4.png",
         "img4_width": 230,
         "enable_subtitle_decor": false,
+        "paw_letter_pos": 4,
+        "paw_size_css": 3,
+        "paw_offset_top_css": 130,
         "decor_line_offset_x": 10,
         "decor_line_offset_y": 18,
         "decor_line_offset_x_uk": 10,
@@ -968,15 +961,7 @@
         "decor_line_offset_x_mobile": 10,
         "decor_line_offset_y_mobile": 21,
         "decor_line_offset_x_mobile_uk": 10,
-        "decor_line_offset_y_mobile_uk": 21,
-        "paw_offset_x": 0,
-        "paw_offset_y": -5,
-        "paw_offset_x_uk": 0,
-        "paw_offset_y_uk": -5,
-        "paw_offset_x_mobile": 0,
-        "paw_offset_y_mobile": -5,
-        "paw_offset_x_mobile_uk": 0,
-        "paw_offset_y_mobile_uk": -5
+        "decor_line_offset_y_mobile_uk": 21
       }
     },
     "collapsible_content_yea6LW": {
