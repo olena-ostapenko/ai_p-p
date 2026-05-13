@@ -251,6 +251,12 @@
     background-size: 100% 100%;
     pointer-events: none;
   }
+  {%- if request.locale.iso_code == 'uk' -%}
+  #shopify-section-{{ section.id }} .hero-banner__subtitle::before {
+    bottom: {{ section.settings.decor_line_offset_y_uk }}px;
+    left: {{ section.settings.decor_line_offset_x_uk }}%;
+  }
+  {%- endif -%}
 
   #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
     content: '';
@@ -371,6 +377,12 @@
       bottom: {{ section.settings.decor_line_offset_y_mobile }}px;
       left: {{ section.settings.decor_line_offset_x_mobile }}%;
     }
+    {%- if request.locale.iso_code == 'uk' -%}
+    #shopify-section-{{ section.id }} .hero-banner__subtitle::before {
+      bottom: {{ section.settings.decor_line_offset_y_mobile_uk }}px;
+      left: {{ section.settings.decor_line_offset_x_mobile_uk }}%;
+    }
+    {%- endif -%}
 
     #shopify-section-{{ section.id }} .hero-banner__subtitle::after {
       width: 8px;
@@ -1317,7 +1329,7 @@
     {
       "type": "range",
       "id": "decor_line_offset_x",
-      "label": "Line — horizontal offset",
+      "label": "Line — horizontal offset (EN)",
       "min": -50,
       "max": 50,
       "step": 1,
@@ -1327,7 +1339,27 @@
     {
       "type": "range",
       "id": "decor_line_offset_y",
-      "label": "Line — vertical offset",
+      "label": "Line — vertical offset (EN)",
+      "min": -20,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "decor_line_offset_x_uk",
+      "label": "Line — horizontal offset (UK)",
+      "min": -50,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "decor_line_offset_y_uk",
+      "label": "Line — vertical offset (UK)",
       "min": -20,
       "max": 60,
       "step": 1,
@@ -1341,7 +1373,7 @@
     {
       "type": "range",
       "id": "decor_line_offset_x_mobile",
-      "label": "Line — horizontal offset",
+      "label": "Line — horizontal offset (EN)",
       "min": -50,
       "max": 50,
       "step": 1,
@@ -1351,7 +1383,27 @@
     {
       "type": "range",
       "id": "decor_line_offset_y_mobile",
-      "label": "Line — vertical offset",
+      "label": "Line — vertical offset (EN)",
+      "min": -20,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 21
+    },
+    {
+      "type": "range",
+      "id": "decor_line_offset_x_mobile_uk",
+      "label": "Line — horizontal offset (UK)",
+      "min": -50,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "decor_line_offset_y_mobile_uk",
+      "label": "Line — vertical offset (UK)",
       "min": -20,
       "max": 60,
       "step": 1,
