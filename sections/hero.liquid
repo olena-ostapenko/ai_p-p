@@ -101,7 +101,7 @@
   }
 
   .hero-banner-{{ section.id }} .hero-desc-highlight {
-    color: #FFD700;
+    color: {{ section.settings.accent_color }};
     font-weight: inherit;
   }
 
@@ -415,7 +415,7 @@
 .hero-banner-{{ section.id }} .hero-banner__subtitle h1,
 .hero-banner-{{ section.id }} .hero-banner__subtitle h2,
 .hero-banner-{{ section.id }} .hero-banner__subtitle strong {
-  color: {{ section.settings.subtitle_color }};
+  color: {{ section.settings.accent_color }};
   font-weight: {%- if section.settings.use_hero_typography -%}{{ settings.hero_subtitle_font_weight }}{%- else -%}700{%- endif -%};
 }
 
@@ -768,6 +768,13 @@
       "default": "scheme-1"
     },
     {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "info": "Applied to: Subtitle color, Subtitle color (UK), Highlighted words in description",
+      "default": "#E9A753"
+    },
+    {
       "type": "header",
       "content": "Layout"
     },
@@ -984,12 +991,7 @@
       "unit": "px",
       "default": 16
     },
-    {
-      "type": "color",
-      "id": "subtitle_color",
-      "label": "Subtitle color",
-      "default": "#e9a753"
-    },
+
     {
       "type": "select",
       "id": "subtitle_font_weight",
@@ -1018,12 +1020,7 @@
       "unit": "px",
       "default": 36
     },
-    {
-      "type": "color",
-      "id": "subtitle_color_uk",
-      "label": "Subtitle color (UK)",
-      "default": "#e9a753"
-    },
+
     {
       "type": "select",
       "id": "subtitle_font_weight_uk",
