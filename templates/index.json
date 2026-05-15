@@ -94,6 +94,7 @@
       "name": "Hero Banner",
       "settings": {
         "color_scheme": "scheme-4",
+        "accent_color": "#e9a753",
         "image_position": "left",
         "col_width_text": 60,
         "col_width_image": 40,
@@ -646,6 +647,7 @@
       "name": "Hero Banner",
       "settings": {
         "color_scheme": "scheme-4",
+        "accent_color": "#e9a753",
         "image_position": "left",
         "col_width_text": 60,
         "col_width_image": 40,
@@ -667,9 +669,9 @@
         "subtitle_margin_bottom_mobile": 8,
         "subtitle_size": 22,
         "subtitle_size_mobile": 18,
-        "subtitle_font_weight": "800",
+        "subtitle_font_weight": "700",
         "subtitle_size_uk": 36,
-        "subtitle_font_weight_uk": "800",
+        "subtitle_font_weight_uk": "700",
         "description": "<p>Turn your pet into<strong> a one-of-a-kind pillow </strong>made just for you</p><p>Soft, cozy, and completely personalized — our custom-shaped pillows are designed to capture your pet’s unique look and personality.<br/><br/></p>",
         "description_highlight_words": "a one-of-a-kind pillow",
         "description_margin_bottom": 28,
@@ -896,6 +898,7 @@
       "name": "Hero Banner",
       "settings": {
         "color_scheme": "scheme-4",
+        "accent_color": "#e9a753",
         "image_position": "left",
         "col_width_text": 60,
         "col_width_image": 40,
