@@ -49,7 +49,10 @@
       "inventory_in_stock": "В наявності",
       "inventory_out_of_stock": "Немає в наявності",
       "choose_options": "Вибрати опції",
-      "view_full_details": "Детальніше"
+      "view_full_details": "Детальніше",
+                "price": {
+                            "from_price_html": "Від {{ price }}"
+                                      }
     },
     "facets": {
       "sort_by_label": "Сортувати за",
