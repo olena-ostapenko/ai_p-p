@@ -247,3 +247,9 @@
 @media screen and (min-width: 1300px) {
   .sh-nav { display: inline-flex; }
 }
+
+/* Home page — base paragraph size */
+.template-index p {
+  font-size: 20px;
+  font-weight: 500;
+}
