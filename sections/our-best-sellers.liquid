@@ -71,7 +71,7 @@
                   </div>
                   <h3 class="sh-card__title">{{ product.title | truncate: 26 }}</h3>
                   <div class="sh-card__desc">{{ product.description }}</div>
-          <p class="sh-card__price">{%- if product.price_varies -%}{%- assign min_price = product.price_min | money -%}{{ 'products.product.price.from_price_html' | t: price: min_price }}{%- else -%}{{ product.price | money }}{%- endif -%}</p> %} }} %} }} %} %}
+          <p class="sh-card__price">{%- if product.price_varies -%}{%- assign min_price = product.price_min | money -%}{{ 'products.product.price.from_price_html' | t: price: min_price }}{%- else -%}{{ product.price | money }}{%- endif -%}</p> 
                 </div>
               </article>
             {%- endfor -%}
