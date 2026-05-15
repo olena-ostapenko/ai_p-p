@@ -51,7 +51,7 @@
       "choose_options": "Вибрати опції",
       "view_full_details": "Детальніше",
                 "price": {
-                            "from_price_html": "Від {{ price }}"
+                            "from_price_html": "<em>Від</em> {{ price }}"
                                       }
     },
     "facets": {
