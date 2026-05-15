@@ -100,6 +100,11 @@
     text-transform: {{ section.settings.description_text_transform }};
   }
 
+  .hero-banner-{{ section.id }} .hero-desc-highlight {
+    color: #FFD700;
+    font-weight: inherit;
+  }
+
   /* Image wrapper — border overlay */
   .hero-banner-{{ section.id }} .hero-banner__image-wrapper {
     position: relative;
@@ -583,8 +588,19 @@
         {%- endif -%}
 
         {%- if section.settings.description != blank -%}
+          {%- assign desc_html = section.settings.description -%}
+          {%- if section.settings.description_highlight_words != blank -%}
+            {%- assign highlight_words = section.settings.description_highlight_words | split: ',' -%}
+            {%- for word in highlight_words -%}
+              {%- assign trimmed = word | strip -%}
+              {%- if trimmed != blank -%}
+                {%- assign wrapped = '<span class="hero-desc-highlight">' | append: trimmed | append: '</span>' -%}
+                {%- assign desc_html = desc_html | replace: trimmed, wrapped -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
           <div class="hero-banner__description">
-            {{ section.settings.description }}
+            {{ desc_html }}
           </div>
         {%- endif -%}
 
@@ -1031,6 +1047,12 @@
       "id": "description",
       "label": "Description",
       "default": "<p>Turn any pet photo into a <strong>One-Of-A-Kind</strong> Portrait, Apparel, Or Gift — Professionally Designed And Perfected With Unlimited Revisions</p>"
+    },
+    {
+      "type": "text",
+      "id": "description_highlight_words",
+      "label": "Highlighted words in description (comma-separated)",
+      "info": "Enter words from description separated by commas. They will be highlighted in yellow."
     },
     {
       "type": "range",
