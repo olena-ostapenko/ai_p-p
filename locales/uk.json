@@ -55,6 +55,7 @@
                                       }
     },
     "facets": {
+      "from": "Від",
       "sort_by_label": "Сортувати за",
       "filter_and_sort": "Фільтр і сортування",
       "clear_all": "Очистити все",
