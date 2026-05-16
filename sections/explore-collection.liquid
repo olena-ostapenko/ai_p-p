@@ -1,0 +1,215 @@
+{{ 'section-home.css' | asset_url | stylesheet_tag }}
+{{ 'explore-collections.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    background-color: {{ section.settings.color_scheme.settings.background }};
+    color: {{ section.settings.color_scheme.settings.text }};
+  }
+
+  .ec-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ec-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .ec-{{ section.id }} .sh-grid {
+    --sh-columns: {{ section.settings.columns_per_row }};
+  }
+{%- endstyle -%}
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <clipPath id="ec-card-shape" clipPathUnits="objectBoundingBox">
+      <path d="M0.971731 0H0.028269C0.012656 0 0 0.008977 0 0.02005V0.97995C0 0.991023 0.012663 1 0.028275 1H0.740714C0.755442 1 0.767569 0.991875 0.769788 0.981551C0.791905 0.878734 0.891413 0.866917 0.968908 0.869298C0.985604 0.869812 1 0.860654 1 0.848805V0.02005C1 0.008977 0.987343 0 0.971731 0Z"/>
+    </clipPath>
+  </defs>
+</svg>
+
+<div class="ec-{{ section.id }}-padding ec-{{ section.id }} ec-section">
+  <div class="page-width">
+
+    {%- if section.settings.title != blank or section.settings.subtitle != blank -%}
+      <div class="sh-section__header">
+        {%- if section.settings.title != blank -%}
+          <h2 class="section-figma__heading">{{ section.settings.title }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subtitle != blank -%}
+          <div class="sh-section__subtitle rte">{{ section.settings.subtitle }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <ul class="sh-grid list-unstyled" role="list">
+        {%- for block in section.blocks -%}
+          {%- assign collection = block.settings.collection -%}
+          <li class="sh-grid__item" {{ block.shopify_attributes }}>
+              <div class="ec-card__paw" aria-hidden="true">
+                    <img src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_paw_b7908f55-fa7a-465b-adde-ffe6d50be06d.svg?v=1777536439" alt="" width="40" height="40" loading="lazy">
+                  </div>
+            <div class="ec-card__wrap">
+            <a
+              class="sh-card sh-card--shaped color-{{ settings.collection_card_color_scheme }} gradient"
+              {% if collection != blank %}href="{{ collection.url }}"{% else %}href="#"{% endif %}
+            >
+              {%- liquid
+                assign columns = section.settings.columns_per_row
+                assign sizes = '(min-width: 990px) calc((100vw - 130px) / ' | append: columns | append: '), (min-width: 750px) calc((100vw - 120px) / 2), calc(50vw - 20px)'
+              -%}
+
+              {%- if collection != blank and collection.image -%}
+                <span class="sh-card__image-wrap">
+                  {{
+                    collection.image
+                    | image_url: width: 600
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '300, 400, 500, 600',
+                      sizes: sizes,
+                      alt: collection.title | escape
+                  }}
+                
+                </span>
+              {%- elsif collection != blank and collection.products.first and collection.products.first.featured_image -%}
+                <span class="sh-card__image-wrap">
+                  {{
+                    collection.products.first.featured_image
+                    | image_url: width: 600
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '300, 400, 500, 600',
+                      sizes: sizes,
+                      alt: collection.title | escape
+                  }}
+                  <div class="ec-card__paw" aria-hidden="true">
+                    <img src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_paw_b7908f55-fa7a-465b-adde-ffe6d50be06d.svg?v=1777536439" alt="" width="40" height="40" loading="lazy">
+                  </div>
+                </span>
+              {%- else -%}
+                <span class="sh-card__image-wrap">
+                  {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                  <div class="ec-card__paw" aria-hidden="true">
+                    <img src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_paw_b7908f55-fa7a-465b-adde-ffe6d50be06d.svg?v=1777536439" alt="" width="40" height="40" loading="lazy">
+                  </div>
+                </span>
+              {%- endif -%}
+
+              <div class="sh-card__body">
+                <h3 class="sh-card__title">
+                  {%- if collection != blank -%}
+                    {{ collection.title }}
+                  {%- else -%}
+                    {{ 'onboarding.collection_title' | t }}
+                  {%- endif -%}
+                </h3>
+                {%- if collection != blank and collection.description != blank -%}
+                  <p class="sh-card__desc">{{ collection.description | strip_html | truncatewords: 8 }}</p>
+                {%- elsif collection == blank -%}
+                  <p class="sh-card__desc">{{ 'onboarding.collection_description' | t }}</p>
+                {%- endif -%}
+              </div>
+
+            </a>
+            </div>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- else -%}
+      <div style="text-align:center; padding: 4rem 0; opacity: 0.5;">
+        <p>{{ 'sections.collection_list.empty' | t }}</p>
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Explore Collections",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>EXPLORE OUR COLLECTIONS</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "<p>Find the perfect way to turn your pet into something truly special</p>"
+    },
+    {
+      "type": "range",
+      "id": "columns_per_row",
+      "label": "Collections per row",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Explore Collections",
+      "blocks": [
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" },
+        { "type": "collection" }
+      ]
+    }
+  ]
+}
+{% endschema %}

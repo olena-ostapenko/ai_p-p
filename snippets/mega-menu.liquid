@@ -1,0 +1,128 @@
+{%- case block.type -%}
+
+  {%- when 'image_grid' -%}
+    {%- liquid
+      assign img_item_count = 0
+      for i in (1..8)
+        assign img_key   = 'item_' | append: i | append: '_image'
+        assign title_key = 'item_' | append: i | append: '_title'
+        assign img       = block.settings[img_key]
+        assign img_title = block.settings[title_key]
+        if img != blank or img_title != blank
+          assign img_item_count = img_item_count | plus: 1
+        endif
+      endfor
+      assign grid_cols = img_item_count
+      if grid_cols > 4
+        assign grid_cols = 4
+      endif
+      assign img_radius = block.settings.img_border_radius | default: 0
+    -%}
+    <div class="mega-menu__image-grid" style="--grid-cols: {{ grid_cols }}; --img-radius: {{ img_radius }}px; --img-filter: {% if block.settings.img_shadow %}drop-shadow(1px 1px 3px rgba(0,0,0,0.26)) drop-shadow(4px 4px 6px rgba(0,0,0,0.22)) drop-shadow(8px 10px 7px rgba(0,0,0,0.13)) drop-shadow(14px 17px 9px rgba(0,0,0,0.04)){% else %}none{% endif %};">
+      {%- for i in (1..8) -%}
+        {%- liquid
+          assign img_key   = 'item_' | append: i | append: '_image'
+          assign title_key = 'item_' | append: i | append: '_title'
+          assign url_key   = 'item_' | append: i | append: '_url'
+          assign img       = block.settings[img_key]
+          assign img_title = block.settings[title_key]
+          assign img_url   = block.settings[url_key]
+        -%}
+        {%- if img != blank or img_title != blank -%}
+          <a
+            href="{{ img_url | default: '#' }}"
+            class="mega-menu__image-item"
+          >
+            {%- if img != blank -%}
+              {{-
+                img
+                | image_url: width: 400
+                | image_tag:
+                  class: 'mega-menu__image-item-img',
+                  widths: '190, 280, 400',
+                  loading: 'lazy'
+              -}}
+            {%- endif -%}
+            {%- if img_title != blank -%}
+              <span class="mega-menu__image-item-title">{{ img_title | escape }}</span>
+            {%- endif -%}
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  {%- when 'mega_columns_grid' -%}
+    {%- liquid
+      assign col_img_count = 0
+      for i in (1..8)
+        assign img_key = 'img_' | append: i | append: '_image'
+        if block.settings[img_key] != blank
+          assign col_img_count = col_img_count | plus: 1
+        endif
+      endfor
+      assign col_img_cols = col_img_count
+      if col_img_cols > 4
+        assign col_img_cols = 4
+      endif
+    -%}
+    <div class="mega-menu__columns-layout">
+      <div class="mega-menu__columns-menus">
+        {%- for i in (1..6) -%}
+          {%- liquid
+            assign menu_key    = 'menu_' | append: i
+            assign menu_handle = block.settings[menu_key]
+            assign col_menu    = linklists[menu_handle]
+          -%}
+          {%- if menu_handle != blank and col_menu.links.size > 0 -%}
+            <div class="mega-menu__column">
+              <p class="mega-menu__column-title caption-with-letter-spacing">
+                {{- col_menu.title | escape -}}
+              </p>
+              <ul class="mega-menu__column-list list-unstyled" role="list">
+                {%- for col_link in col_menu.links -%}
+                  <li>
+                    <a
+                      href="{{ col_link.url }}"
+                      class="mega-menu__column-link link link--text{% if col_link.current %} mega-menu__link--active{% endif %}"
+                      {% if col_link.current %}aria-current="page"{% endif %}
+                    >
+                      {{- col_link.title | escape -}}
+                    </a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      <div class="mega-menu__columns-images" style="--col-img-cols: {{ col_img_cols }};">
+        {%- for i in (1..8) -%}
+          {%- liquid
+            assign img_key   = 'img_' | append: i | append: '_image'
+            assign title_key = 'img_' | append: i | append: '_title'
+            assign url_key   = 'img_' | append: i | append: '_url'
+            assign img       = block.settings[img_key]
+            assign img_title = block.settings[title_key]
+            assign img_url   = block.settings[url_key]
+          -%}
+          {%- if img != blank -%}
+            <a href="{{ img_url | default: '#' }}" class="mega-menu__col-img-item">
+              {{-
+                img
+                | image_url: width: 400
+                | image_tag:
+                  class: 'mega-menu__col-img-item-img',
+                  widths: '200, 300, 400',
+                  loading: 'lazy'
+              -}}
+              {%- if img_title != blank -%}
+                <span class="mega-menu__col-img-item-title">{{ img_title | escape }}</span>
+              {%- endif -%}
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+{%- endcase -%}

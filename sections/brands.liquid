@@ -1,0 +1,306 @@
+{%- style -%} 
+  #shopify-section-{{ section.id }} {
+    background-color: {{ section.settings.color_scheme.settings.background }};
+  }
+
+  #shopify-section-{{ section.id }} .brands__container {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    padding-left: {{ section.settings.padding_horizontal }}px;
+    padding-right: {{ section.settings.padding_horizontal }}px;
+  }
+
+  #shopify-section-{{ section.id }} .brands__track {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: {{ section.settings.gap }}px;
+  }
+
+  /* ───── ITEM ───── */
+  #shopify-section-{{ section.id }} .brands__item {
+    flex: 0 0 auto;
+    height: {{ section.settings.item_height }}px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+
+    padding-top: {{ section.settings.item_padding_vertical }}px;
+    padding-bottom: {{ section.settings.item_padding_vertical }}px;
+    padding-left: {{ section.settings.item_padding_horizontal }}px;
+    padding-right: {{ section.settings.item_padding_horizontal }}px;
+
+    transition: box-shadow 0.3s ease;
+
+    {%- if section.settings.img_shadow %}
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08),
+                  0 1px 4px rgba(0, 0, 0, 0.04);
+    {%- endif %}
+  }
+
+  /* ───── OPTIONAL BLOCK STYLE ───── */
+  {%- if section.settings.block_style -%}
+  #shopify-section-{{ section.id }} .brands__item {
+    background-color: {{ section.settings.block_bg }};
+    border-radius: {{ section.settings.block_border_radius }}px;
+
+  }
+  {%- endif -%}
+
+  /* ───── IMAGE WRAPPER ───── */
+  #shopify-section-{{ section.id }} .brands__image-wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ───── IMAGE ───── */
+  #shopify-section-{{ section.id }} .brands__image-wrapper img {
+    display: block;
+    height: auto;
+    max-height: calc(100% - 4px);
+    width: auto;
+    object-fit: contain;
+  }
+
+  /* ───── MOBILE ───── */
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} .brands__container {
+      padding-top: {{ section.settings.padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.padding_bottom_mobile }}px;
+      padding-left: 0;
+      padding-right: 0;
+      overflow: hidden;
+    }
+
+    #shopify-section-{{ section.id }} .brands__track {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      gap: {{ section.settings.gap_mobile }}px;
+      padding-left: {{ section.settings.padding_horizontal_mobile }}px;
+      padding-right: {{ section.settings.padding_horizontal_mobile }}px;
+      scrollbar-width: none;
+    }
+
+    #shopify-section-{{ section.id }} .brands__track::-webkit-scrollbar {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }} .brands__item {
+      scroll-snap-align: start;
+    }
+  }
+{%- endstyle -%}
+
+<div class="brands__container">
+  <div class="brands__track">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'brand' -%}
+        <div class="brands__item" {{ block.shopify_attributes }}>
+          
+          <div class="brands__image-wrapper">
+            {%- if block.settings.image != blank -%}
+              {%- assign img_alt = block.settings.image.alt | escape -%}
+
+              {%- capture img_style -%}
+                max-width: {{ block.settings.image_width }}px;
+              {%- endcapture -%}
+
+              {{ block.settings.image
+              | image_url: width: 600
+              | image_tag:
+                  loading: 'lazy',
+                  widths: '100, 150, 200, 300, 400, 600',
+                  sizes: '100vw',
+                  alt: img_alt,
+                  style: img_style
+              }}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </div>
+
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Brands",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Color Scheme"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0, "max": 120, "step": 4, "unit": "px", "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0, "max": 120, "step": 4, "unit": "px", "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "label": "Padding horizontal",
+      "min": 0, "max": 80, "step": 4, "unit": "px", "default": 24
+    },
+
+    {
+      "type": "header",
+      "content": "Mobile Settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding top (mobile)",
+      "min": 0, "max": 80, "step": 4, "unit": "px", "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding bottom (mobile)",
+      "min": 0, "max": 80, "step": 4, "unit": "px", "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal_mobile",
+      "label": "Padding horizontal (mobile)",
+      "min": 0, "max": 40, "step": 4, "unit": "px", "default": 16
+    },
+
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "item_height",
+      "label": "Item height",
+      "min": 20, "max": 200, "step": 2, "unit": "px", "default": 80
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap (desktop)",
+      "min": 0, "max": 80, "step": 4, "unit": "px", "default": 24
+    },
+    {
+      "type": "range",
+      "id": "gap_mobile",
+      "label": "Gap (mobile)",
+      "min": 0, "max": 60, "step": 4, "unit": "px", "default": 16
+    },
+
+    {
+      "type": "header",
+      "content": "Item padding"
+    },
+    {
+      "type": "range",
+      "id": "item_padding_vertical",
+      "label": "Top/Bottom",
+      "min": 0, "max": 40, "step": 2, "unit": "px", "default": 8
+    },
+    {
+      "type": "range",
+      "id": "item_padding_horizontal",
+      "label": "Left/Right",
+      "min": 0, "max": 40, "step": 2, "unit": "px", "default": 12
+    },
+
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "checkbox",
+      "id": "img_shadow",
+      "label": "Shadow",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "block_style",
+      "label": "Block style",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "block_bg",
+      "label": "Background",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "block_border_radius",
+      "label": "Border radius",
+      "min": 0, "max": 60, "step": 2, "unit": "px", "default": 12
+    },
+    {
+      "type": "range",
+      "id": "block_padding",
+      "label": "Padding",
+      "min": 0, "max": 60, "step": 2, "unit": "px", "default": 16
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "Brand",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Logo"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "label": "Max width (optional limit)",
+          "min": 40, "max": 140, "step": 1, "unit": "px", "default": 120
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Brands",
+      "blocks": [
+        { "type": "brand" },
+        { "type": "brand" },
+        { "type": "brand" },
+        { "type": "brand" }
+      ]
+    }
+  ]
+}
+{% endschema %}

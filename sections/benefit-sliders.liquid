@@ -1,0 +1,526 @@
+{{ 'benefit-sliders.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    background-color: {{ section.settings.color_scheme.settings.background }};
+    color: {{ section.settings.color_scheme.settings.text }};
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  .bs-{{ section.id }} .bs-title__accent {
+    color: {{ section.settings.color_scheme.settings.button }};
+  }
+
+  .bs-{{ section.id }} .section-figma__heading {
+    text-align: {{ section.settings.title_align }} !important;
+  }
+
+  .bs-{{ section.id }} .bs-header {
+    margin-bottom: {{ section.settings.title_margin_bottom }}px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .bs-{{ section.id }} .bs-header {
+      margin-bottom: {{ section.settings.title_margin_bottom_mobile }}px;
+    }
+  }
+
+  .bs-{{ section.id }} .bs-feature__icon-wrap {
+    background-color: {{ section.settings.color_scheme.settings.button }};
+  }
+
+  .bs-{{ section.id }} .bs-slider__nav,
+  .bs-{{ section.id }} .bs-slider__nav .icon,
+  .bs-{{ section.id }} .bs-slider__nav .icon svg {
+    color: {{ section.settings.nav_color }} !important;
+    fill: {{ section.settings.nav_color }} !important;
+  }
+
+  .bs-{{ section.id }} .bs-btn {
+    background-color: {{ section.settings.btn_color }};
+    color: {{ section.settings.btn_text_color }};
+    border-radius: {{ section.settings.btn_radius }}px;
+  }
+
+  .bs-{{ section.id }} .bs-footer {
+    text-align: {{ section.settings.btn_align }};
+  }
+
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'slider' -%}
+      {%- assign safe = block.id | replace: '-', '_' -%}
+      .bs-slider--{{ safe }} .bs-slider__track {
+        height: {{ block.settings.slider_height }}px;
+      }
+      .bs-slider--{{ safe }} .bs-slider__nav {
+        top: {{ block.settings.nav_offset }}%;
+      }
+      .bs-slider--{{ safe }} .bs-slide {
+        aspect-ratio: {{ block.settings.slide_ratio }};
+      }
+    {%- endif -%}
+  {%- endfor -%}
+{%- endstyle -%}
+
+{%- liquid
+  assign layout = section.settings.layout
+  assign accent_words = section.settings.title_accent_words | strip | split: ','
+-%}
+
+<div class="bs-section bs-{{ section.id }}{% if layout == 'sliders_first' %} bs--sliders-first{% endif %}">
+
+  {%- comment -%} Header {%- endcomment -%}
+  {%- if section.settings.title != blank -%}
+    <div class="page-width">
+      <div class="bs-header bs-header--{{ section.settings.title_align }}">
+        {%- liquid
+          assign plain_title = section.settings.title | replace: '</p>', '<br>' | replace: '<p>', '' | replace: '</h2>', '<br>' | replace: '<h2>', '' | replace: '</h1>', '<br>' | replace: '<h1>', '' | strip
+          assign rendered_title = plain_title
+          for aw in accent_words
+            assign aw_trim = aw | strip
+            if aw_trim != blank
+              assign up   = aw_trim | upcase
+              assign cap  = aw_trim | capitalize
+              assign low  = aw_trim | downcase
+              assign wu = '<span class="bs-title__accent">' | append: up  | append: '</span>'
+              assign wc = '<span class="bs-title__accent">' | append: cap | append: '</span>'
+              assign wl = '<span class="bs-title__accent">' | append: low | append: '</span>'
+              assign rendered_title = rendered_title | replace: up,  wu
+              assign rendered_title = rendered_title | replace: cap, wc
+              assign rendered_title = rendered_title | replace: low, wl
+            endif
+          endfor
+        -%}
+        <h2 class="section-figma__heading">{{ rendered_title }}</h2>
+      </div>
+    </div>
+  {%- endif -%}
+
+  {%- comment -%} Two-column grid {%- endcomment -%}
+  <div class="bs-grid page-width">
+
+    {%- comment -%} Benefit column {%- endcomment -%}
+    <div class="bs-col bs-col--benefit">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'benefit' -%}
+          {%- assign icon_size = block.settings.icon_size | default: 56 -%}
+          <div class="bs-feature" {{ block.shopify_attributes }}>
+            {%- if block.settings.show_icon -%}
+              <div class="bs-feature__icon-wrap" style="width:{{ icon_size }}px;height:{{ icon_size }}px;min-width:{{ icon_size }}px;">
+                {%- if block.settings.icon != blank -%}
+                  {{ block.settings.icon | image_url: width: 120 | image_tag: loading: 'lazy', alt: block.settings.title }}
+                {%- else -%}
+                  <svg viewBox="0 0 24 24" fill="none" style="width:55%;height:55%">
+                    <circle cx="12" cy="12" r="10" stroke="rgb(var(--color-button-text,255,255,255))" stroke-width="2"/>
+                  </svg>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+            <div class="bs-feature__body">
+              {%- if block.settings.title != blank -%}
+                <p class="bs-feature__title">{{ block.settings.title }}</p>
+              {%- endif -%}
+              {%- if block.settings.description != blank -%}
+                <p class="bs-feature__desc">{{ block.settings.description }}</p>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- comment -%} Slider column {%- endcomment -%}
+    <div class="bs-col bs-col--sliders">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'slider' -%}
+          {%- assign safe = block.id | replace: '-', '_' -%}
+          {%- if layout == 'sliders_first' -%}{%- assign slides_side = 'left' -%}{%- else -%}{%- assign slides_side = 'right' -%}{%- endif -%}
+          <div class="bs-slider-wrap">
+            <div class="bs-slider bs-slider--{{ safe }} bs-slider--overflow-{{ slides_side }}" {{ block.shopify_attributes }}>
+              <button class="bs-slider__nav bs-slider__nav--prev" data-bs-prev="{{ safe }}" aria-label="Previous">
+                <span class="icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+              </button>
+              <button class="bs-slider__nav bs-slider__nav--next" data-bs-next="{{ safe }}" aria-label="Next">
+                <span class="icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+              </button>
+              <div class="bs-slider__track" id="bs-track-{{ safe }}">
+                {%- for i in (1..12) -%}
+                  {%- assign img_key = 'image_' | append: i -%}
+                  {%- assign cur_img = block.settings[img_key] -%}
+                  {%- if cur_img != blank -%}
+                    <div class="bs-slide">
+                      {{ cur_img | image_url: width: 800 | image_tag: loading: 'lazy', alt: '', class: 'bs-slide__img' }}
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            </div>
+            {%- comment -%} Nav buttons outside overflow element but inside wrap {%- endcomment -%}
+
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  </div>
+
+  {%- comment -%} Footer button {%- endcomment -%}
+  {%- if section.settings.btn_label != blank -%}
+    <div class="page-width">
+      <div class="bs-footer">
+        <a href="{{ section.settings.btn_link | default: '#' }}" class="bs-btn">
+          {{ section.settings.btn_label }}
+        </a>
+      </div>
+    </div>
+  {%- endif -%}
+
+</div>
+
+<script>
+  (() => {
+    document.querySelectorAll('.bs-slider-wrap').forEach(wrap => {
+      const slider = wrap.querySelector('.bs-slider');
+      const track  = wrap.querySelector('.bs-slider__track');
+      if (!track || !slider) return;
+
+      const prev = slider.querySelector('.bs-slider__nav--prev');
+      const next = slider.querySelector('.bs-slider__nav--next');
+
+      function getSlideW() {
+        const slide = track.querySelector('.bs-slide');
+        if (!slide) return 0;
+        return slide.offsetWidth + parseInt(getComputedStyle(track).gap || 12);
+      }
+
+      // Center nav vertically on track height
+      function positionNav() {
+        const trackH = track.offsetHeight;
+        const navH = prev ? prev.offsetHeight : 54;
+        const top = Math.max(0, (trackH - navH) / 2);
+        [prev, next].forEach(btn => { if (btn) btn.style.top = top + 'px'; });
+      }
+      positionNav();
+      window.addEventListener('resize', positionNav);
+
+      if (prev) prev.addEventListener('click', () => track.scrollBy({ left: -getSlideW(), behavior: 'smooth' }));
+      if (next) next.addEventListener('click', () => track.scrollBy({ left:  getSlideW(), behavior: 'smooth' }));
+    });
+
+    // On mobile: remove negative margin from slider col
+    function fixMobileSlider() {
+      if (window.innerWidth < 990) {
+        document.querySelectorAll('.bs-col--sliders').forEach(col => {
+          col.style.marginRight = '0';
+          col.style.marginLeft = '0';
+          col.style.overflow = 'hidden';
+        });
+      } else {
+        document.querySelectorAll('.bs-col--sliders').forEach(col => {
+          col.style.marginRight = '';
+          col.style.marginLeft = '';
+          col.style.overflow = '';
+        });
+      }
+    }
+    fixMobileSlider();
+    window.addEventListener('resize', fixMobileSlider);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Benefit & Sliders",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>OVER 333,333 HAPPY PET PARENTS</p>"
+    },
+    {
+      "type": "range",
+      "id": "title_margin_bottom",
+      "label": "Gap: title to columns (desktop)",
+      "min": 0, "max": 80, "step": 4, "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "title_margin_bottom_mobile",
+      "label": "Gap: title to columns (mobile)",
+      "min": 0, "max": 60, "step": 4, "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "title_align",
+      "label": "Title alignment",
+      "options": [
+        { "value": "left",   "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "text",
+      "id": "title_accent_words",
+      "label": "Accent words (comma separated)",
+      "info": "Words from title to highlight in button color. E.g.: HAPPY,333"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Column order",
+      "options": [
+        { "value": "benefit_first", "label": "Benefit left, Sliders right" },
+        { "value": "sliders_first", "label": "Sliders left, Benefit right" }
+      ],
+      "default": "benefit_first"
+    },
+    {
+      "type": "header",
+      "content": "Navigation"
+    },
+    {
+      "type": "color",
+      "id": "nav_color",
+      "label": "Nav button icon color",
+      "default": "#F4844E"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "btn_color",
+      "label": "Button background",
+      "default": "#E9A753"
+    },
+    {
+      "type": "color",
+      "id": "btn_text_color",
+      "label": "Button text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "btn_radius",
+      "label": "Button border radius",
+      "min": 0, "max": 50, "step": 2, "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "btn_align",
+      "label": "Button alignment",
+      "options": [
+        { "value": "left",   "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right",  "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0, "max": 100, "step": 4, "unit": "px",
+      "label": "Padding top",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0, "max": 100, "step": 4, "unit": "px",
+      "label": "Padding bottom",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit item",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_icon",
+          "label": "Show icon circle",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "icon_size",
+          "label": "Icon circle size",
+          "min": 32, "max": 80, "step": 4, "unit": "px",
+          "default": 56
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Quick artwork delivery"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Get your custom artwork preview within 1–2 days"
+        }
+      ]
+    },
+    {
+      "type": "slider",
+      "name": "Slider",
+      "settings": [
+        {
+          "type": "select",
+          "id": "slide_ratio",
+          "label": "Slide aspect ratio",
+          "options": [
+            { "value": "1 / 1",  "label": "1:1 Square" },
+            { "value": "4 / 3",  "label": "4:3 Landscape" },
+            { "value": "3 / 2",  "label": "3:2 Landscape" },
+            { "value": "16 / 9", "label": "16:9 Wide" },
+            { "value": "3 / 4",  "label": "3:4 Portrait" }
+          ],
+          "default": "4 / 3"
+        },
+        {
+          "type": "range",
+          "id": "slider_height",
+          "label": "Slider height",
+          "min": 150, "max": 500, "step": 10, "unit": "px",
+          "default": 280
+        },
+        {
+          "type": "range",
+          "id": "nav_offset",
+          "label": "Nav button vertical position (%)",
+          "min": 0, "max": 100, "step": 5, "unit": "%",
+          "default": 50
+        },
+        {
+          "type": "header",
+          "content": "Images (up to 12)"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "Image 1"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "Image 2"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_3",
+          "label": "Image 3"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_4",
+          "label": "Image 4"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_5",
+          "label": "Image 5"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_6",
+          "label": "Image 6"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_7",
+          "label": "Image 7"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_8",
+          "label": "Image 8"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_9",
+          "label": "Image 9"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_10",
+          "label": "Image 10"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_11",
+          "label": "Image 11"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_12",
+          "label": "Image 12"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Benefit & Sliders",
+      "blocks": [
+        { "type": "benefit", "settings": { "title": "Quick artwork delivery", "description": "Get your custom artwork preview within 1–2 days" } },
+        { "type": "benefit", "settings": { "title": "Edit as much as you like", "description": "We'll refine your design until it's exactly right" } },
+        { "type": "benefit", "settings": { "title": "Made to make you smile", "description": "We're not satisfied until you love it" } },
+        { "type": "slider" },
+        { "type": "slider" }
+      ]
+    }
+  ]
+}
+{% endschema %}

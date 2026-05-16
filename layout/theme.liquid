@@ -220,6 +220,12 @@
         --variant-pills-shadow-horizontal-offset: {{ settings.variant_pills_shadow_horizontal_offset }}px;
         --variant-pills-shadow-vertical-offset: {{ settings.variant_pills_shadow_vertical_offset }}px;
         --variant-pills-shadow-blur-radius: {{ settings.variant_pills_shadow_blur }}px;
+
+        --section-heading-size-desktop: {{ settings.section_heading_size_desktop }}px;
+        --section-heading-size-mobile: {{ settings.section_heading_size_mobile }}px;
+        --section-heading-align-desktop: {{ settings.section_heading_align_desktop }};
+        --section-heading-align-mobile: {{ settings.section_heading_align_mobile }};
+        --section-heading-margin-bottom: {{ settings.section_heading_margin_bottom }}px;
       }
 
       *,
@@ -241,16 +247,19 @@
         min-height: 100%;
         margin: 0;
         font-size: 1.5rem;
-        letter-spacing: 0.06rem;
+        letter-spacing: 0;
         line-height: calc(1 + 0.8 / var(--font-body-scale));
         font-family: var(--font-body-family);
         font-style: var(--font-body-style);
         font-weight: var(--font-body-weight);
+        text-transform: capitalize;
       }
 
       @media screen and (min-width: 750px) {
         body {
-          font-size: 1.6rem;
+          /* font-size: 1.6rem; */
+    font-size:20px;
+     line-height: 27px;
         }
       }
     {% endstyle %}
@@ -296,7 +305,44 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+          /* Montserrat: @font-face з Latin+Cyrillic WOFF2, font-display:block — без залежності від Google Fonts CSS API */
+              @font-face { font-family: 'Montserrat'; font-style: normal; font-weight: 100; font-display: block; src: url('https://fonts.gstatic.com/s/montserrat/v31/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Xw9aXo.woff2') format('woff2'); }
+                  @font-face { font-family: 'Montserrat'; font-style: italic; font-weight: 100; font-display: block; src: url('https://fonts.gstatic.com/s/montserrat/v31/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq6R8WXx0pg.woff2') format('woff2'); }
+                      @font-face { font-family: 'Montserrat'; font-style: normal; font-weight: 200; font-display: block; src: url('https://fonts.gstatic.com/s/montserrat/v31/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvr6Hw9aXo.woff2') format('woff2'); }
+                          @font-face { font-family: 'Montserrat'; font-style: italic; font-weight: 200; font-display: block; src: url('https://fonts.gstatic.com/s/montserrat/v31/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jqyR9WXx0pg.woff2') format('woff2'); }
+                              @font-face { font-family: 'Montserrat'; font-style: normal; font-weight: 300; font-display: block; src: url('https://fonts.gstatic.com/s/montserrat/v31/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCs16Hw9aXo.woff2') format('woff2'); }
+                                  @font-face { font-family: 'Montserrat'; font-style: italic; font-weight: 300; font-display: block; src: url('https://fonts.gstatic.com/s/montserrat/v31/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq_p9WXx0pg.woff2') format('woff2'); }
+                                      @font-face { font-family: 'Montserrat'; font-style: normal; font-weight: 400; font-display: block; src: url('https://fonts.gstatic.com/s/montserrat/v31/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Hw9aXo.woff2') format('woff2'); }
+                                          @font-face { font-family: 'Montserrat'; font-style: italic; font-weight: 400; font-display: block; src: url('https://fonts.gstatic.com/s/montserrat/v31/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq6R9WXx0pg.woff2') format('woff2'); }
+                                              @font-face { font-family: 'Montserrat'; font-style: normal; font-weight: 500; font-display: block; src: url('https://fonts.gstatic.com/s/montserrat/v31/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtZ6Hw9aXo.woff2') format('woff2'); }
+                                                  @font-face { font-family: 'Montserrat'; font-style: italic; font-weight: 500; font-display: block; src: url('https://fonts.gstatic.com/s/montserrat/v31/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq5Z9WXx0pg.woff2') format('woff2'); }
+                                                      @font-face { font-family: 'Montserrat'; font-style: normal; font-weight: 600; font-display: block; src: url('https://fonts.gstatic.com/s/montserrat/v31/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCu173w9aXo.woff2') format('woff2'); }
+                                                          @font-face { font-family: 'Montserrat'; font-style: italic; font-weight: 600; font-display: block; src: url('https://fonts.gstatic.com/s/montserrat/v31/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq3p6WXx0pg.woff2') format('woff2'); }
+                                                              @font-face { font-family: 'Montserrat'; font-style: normal; font-weight: 700; font-display: block; src: url('https://fonts.gstatic.com/s/montserrat/v31/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCuM73w9aXo.woff2') format('woff2'); }
+                                                                  @font-face { font-family: 'Montserrat'; font-style: italic; font-weight: 700; font-display: block; src: url('https://fonts.gstatic.com/s/montserrat/v31/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jq0N6WXx0pg.woff2') format('woff2'); }
+                                                                      @font-face { font-family: 'Montserrat'; font-style: normal; font-weight: 800; font-display: block; src: url('https://fonts.gstatic.com/s/montserrat/v31/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvr73w9aXo.woff2') format('woff2'); }
+                                                                          @font-face { font-family: 'Montserrat'; font-style: italic; font-weight: 800; font-display: block; src: url('https://fonts.gstatic.com/s/montserrat/v31/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jqyR6WXx0pg.woff2') format('woff2'); }
+                                                                              @font-face { font-family: 'Montserrat'; font-style: normal; font-weight: 900; font-display: block; src: url('https://fonts.gstatic.com/s/montserrat/v31/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvC73w9aXo.woff2') format('woff2'); }
+                                                                                  @font-face { font-family: 'Montserrat'; font-style: italic; font-weight: 900; font-display: block; src: url('https://fonts.gstatic.com/s/montserrat/v31/JTUFjIg1_i6t8kCHKm459Wx7xQYXK0vOoz6jqw16WXx0pg.woff2') format('woff2'); }
+                                                                                    </style>
+        <style>
+          /* Force Montserrat for all elements and all languages */
+      *, *::before, *::after {
+        font-family: 'Montserrat', sans-serif !important;
+      }
+
+      /* Fix: body has text-transform:capitalize globally — reset for Ukrainian body text */
+      :lang(uk) .hero-banner__description,
+      :lang(uk) .hero-banner__description p {
+        text-transform: none !important;
+      }
+              /* Ukrainian header inline-menu — smaller font to prevent 2-line wrapping */
+                      :lang(uk) .header__inline-menu .header__menu-item {
+                                font-size: 0.8em;
+                                          letter-spacing: -0.02em;
+                                                  }
+    </style>
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
@@ -373,5 +419,109 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+  <script>
+    // Fix special characters in AirReviews review text
+    function fixAirReviewsText() {
+      document.querySelectorAll('.Avada-ReviewContent__LimitLength').forEach(el => {
+        if (el.dataset.fixed) return;
+        el.dataset.fixed = '1';
+        // Walk text nodes and fix special chars
+        const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+        let node;
+        while (node = walker.nextNode()) {
+          node.textContent = node.textContent
+            .replace(/\u2026/g, '...')
+            .replace(/[\u0080-\u009F]/g, '')
+            .replace(/[\uFFFD\uFFFE\uFFFF]/g, '');
+        }
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fixAirReviewsText);
+    } else {
+      fixAirReviewsText();
+    }
+    const observer = new MutationObserver(fixAirReviewsText);
+    observer.observe(document.body, { childList: true, subtree: true });
+  </script>
+  {%- comment -%} Build product title → collection map for AirReviews {%- endcomment -%}
+  <script>
+    const productCollectionMap = {
+      {%- for product in collections.all.products limit: 200 -%}
+        {%- assign col_title = '' -%}
+        {%- for col in product.collections -%}
+          {%- assign col_lower = col.title | downcase -%}
+          {%- unless col_lower contains 'all' or col_lower contains 'frontpage' or col_lower contains 'best sell' -%}
+            {%- assign col_title = col.title -%}
+            {%- break -%}
+          {%- endunless -%}
+        {%- endfor -%}
+        {%- if col_title != '' -%}
+          {{ product.title | json }}: {{ col_title | json }},
+        {%- endif -%}
+      {%- endfor -%}
+    };
+  </script>
+  <script>
+    async function replaceProductWithCollection() {
+      const blocks = document.querySelectorAll('.AirReviews-Blocks__ProductsInner:not([data-col-done])');
+      for (const block of blocks) {
+        const nameEl = block.querySelector('.AirReviews-Blocks__ProductName div');
+        if (!nameEl) continue;
+        const productTitle = nameEl.textContent.trim();
+        if (!productTitle) continue;
+        block.dataset.colDone = '1';
+
+        try {
+          // First check Liquid-generated map (fast, no API call)
+          let collectionTitle = productCollectionMap[productTitle] || null;
+
+          if (!collectionTitle) {
+            const res = await fetch('/search/suggest.json?q=' + encodeURIComponent(productTitle) + '&resources[type]=product&resources[limit]=1');
+            const data = await res.json();
+            const product = data.resources?.results?.products?.[0];
+            if (!product) continue;
+
+            const pRes = await fetch('/products/' + product.handle + '.js');
+            const pData = await pRes.json();
+
+            const cRes = await fetch('/collections.json?product_id=' + pData.id + '&limit=10');
+            const cData = await cRes.json();
+
+            const excludedTitles = ['all products', 'all', 'frontpage', 'home page', 'best sellar', 'best seller', 'best sellers'];
+            const excludedHandles = ['all', 'frontpage', 'best-sell', 'home'];
+            const filtered = (cData.collections || []).filter(c => {
+              const t = c.title.toLowerCase();
+              const h = c.handle.toLowerCase();
+              return !excludedTitles.includes(t) &&
+                     !excludedHandles.some(ex => h.includes(ex));
+            });
+            // Sort: prefer shorter/more specific collection names
+            filtered.sort((a, b) => a.title.length - b.title.length);
+            collectionTitle = filtered[0]?.title || cData.collections?.[0]?.title;
+
+          }
+
+          if (collectionTitle) {
+            block.style.display = 'none';
+            // Check if collection name already inserted
+            const next = block.nextSibling;
+            if (!next || !next.classList?.contains('air-reviews-collection-name')) {
+              colObserver.disconnect();
+              const colEl = document.createElement('div');
+              colEl.className = 'air-reviews-collection-name';
+              colEl.textContent = collectionTitle;
+              block.parentNode.insertBefore(colEl, block.nextSibling);
+              colObserver.observe(document.body, { childList: true, subtree: true });
+            }
+          }
+        } catch(e) {}
+      }
+    }
+
+    const colObserver = new MutationObserver(replaceProductWithCollection);
+    colObserver.observe(document.body, { childList: true, subtree: true });
+    document.addEventListener('DOMContentLoaded', replaceProductWithCollection);
+  </script>
   </body>
 </html>

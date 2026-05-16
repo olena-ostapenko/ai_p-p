@@ -7,13 +7,14 @@
   media="print"
   onload="this.media='all'"
 >
-
+{% comment %} new  {% endcomment %}
 {%- if settings.predictive_search_enabled -%}
   <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
 
 {%- if section.settings.menu_type_desktop == 'mega' -%}
   <link rel="stylesheet" href="{{ 'component-mega-menu.css' | asset_url }}" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="{{ 'mega-menu-custom.css' | asset_url }}">
 {%- endif -%}
 
 <style>
@@ -49,6 +50,8 @@
   .list-menu--inline {
     display: inline-flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    width:100%;
   }
 
   summary.list-menu__item {
@@ -74,6 +77,82 @@
       padding-top: 0.5rem;
     }
   }
+
+  @media screen and (min-width: 990px) {
+    .header--mega-menu.header--middle-left {
+      grid-template-areas:
+        'heading icons'
+        'navigation navigation';
+      grid-template-columns: auto 1fr;
+    }
+
+    .header--mega-menu.header--middle-center {
+      grid-template-areas:
+        '. heading icons'
+        'navigation navigation navigation';
+      grid-template-columns: 1fr auto 1fr;
+    }
+
+    .header--mega-menu .header__inline-menu {
+      margin-left: 0;
+    }
+  }
+
+  .header__icon .custom-icon-wrapper {
+    display: none;
+    align-items: start;
+    justify-content: center;
+  }
+
+  .has-custom-icon .custom-icon-wrapper {
+    display: inline-flex;
+  }
+
+  .header__icon--account.has-custom-icon account-icon,
+  .header__icon--account.has-custom-icon > .svg-wrapper,
+  .header__icon--cart.has-custom-icon > .svg-wrapper {
+    display: none;
+  }
+
+  .header__icon--search.has-custom-icon > span > .svg-wrapper:first-child {
+    display: none;
+  }
+
+  .custom-icon-img {
+    width: 2.4rem;
+    height: 2.4rem;
+    object-fit: contain;
+    display: block;
+  }
+
+  .cart-count-bubble {
+    bottom: 3.8rem;
+  }
+
+  @media screen and (max-width: 989px) {
+    .header__decorative-line {
+      display: none;
+    }
+  }
+
+  .header__heading-logo-wrapper--mobile {
+    display: none;
+  }
+
+  @media screen and (max-width: 989px) {
+    .header__heading-logo-wrapper--desktop {
+      display: none;
+    }
+    .header__heading-logo-wrapper--mobile {
+      display: block;
+    }
+  }
+
+  .mega-menu-hover__panel {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
 </style>
 
 {%- style -%}
@@ -98,6 +177,43 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .header__inline-menu .header__menu-item {
+    font-size: {{ section.settings.menu_font_size }}px;
+    font-weight: {{ section.settings.menu_font_weight }};
+    padding:0!important;
+  }
+
+  {%- if section.settings.custom_icon_cart != blank -%}
+    .header__icon--cart.has-custom-icon::before {
+      content: '';
+      width: 2.4rem;
+      height: 2.4rem;
+      background-image: url('{{ section.settings.custom_icon_cart | image_url: width: 48 }}');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      flex-shrink: 0;
+      position: relative;
+      top: -10px;
+    }
+  {%- endif -%}
+
+  {%- if section.settings.show_decorative_line -%}
+    .header {
+      position: relative;
+    }
+    .header__decorative-line {
+      position: absolute;
+      left: 5rem;
+      right: 5rem;
+      top: {{ section.settings.decorative_line_position }}%;
+      height: {{ section.settings.decorative_line_thickness }}px;
+      background-color: {{ section.settings.decorative_line_color }};
+      pointer-events: none;
+      z-index: 1;
+    }
+  {%- endif -%}
 {%- endstyle -%}
 
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
@@ -136,7 +252,7 @@
       assign localization_forms = true
     endif
   -%}
-  <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
+  <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu_type_desktop == 'mega' %} header--mega-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
     {%- liquid
       if section.settings.menu != blank
         render 'header-drawer'
@@ -153,11 +269,11 @@
       {%- endif -%}
       <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
         {%- if settings.logo != blank -%}
-          <div class="header__heading-logo-wrapper">
-            {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
-            {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
-            {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
-            {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+          {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+          {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+          {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
+          {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+          <div class="header__heading-logo-wrapper{% if settings.logo_mobile != blank %} header__heading-logo-wrapper--desktop{% endif %}">
             {{
               settings.logo
               | image_url: width: 600
@@ -171,6 +287,23 @@
                 preload: true
             }}
           </div>
+          {%- if settings.logo_mobile != blank -%}
+            {%- assign mobile_logo_height = settings.logo_mobile_width | divided_by: settings.logo_mobile.aspect_ratio -%}
+            {% capture mobile_widths %}{{ settings.logo_mobile_width }}, {{ settings.logo_mobile_width | times: 2 }}{% endcapture %}
+            <div class="header__heading-logo-wrapper header__heading-logo-wrapper--mobile">
+              {{
+                settings.logo_mobile
+                | image_url: width: 300
+                | image_tag:
+                  class: 'header__heading-logo motion-reduce',
+                  widths: mobile_widths,
+                  height: mobile_logo_height,
+                  width: settings.logo_mobile_width,
+                  alt: logo_alt,
+                  preload: true
+              }}
+            </div>
+          {%- endif -%}
         {%- else -%}
           <span class="h2">{{ shop.name }}</span>
         {%- endif -%}
@@ -196,11 +329,11 @@
       {%- endif -%}
       <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
         {%- if settings.logo != blank -%}
-          <div class="header__heading-logo-wrapper">
-            {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
-            {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
-            {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
-            {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+          {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+          {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
+          {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
+          {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
+          <div class="header__heading-logo-wrapper{% if settings.logo_mobile != blank %} header__heading-logo-wrapper--desktop{% endif %}">
             {{
               settings.logo
               | image_url: width: 600
@@ -214,6 +347,23 @@
                 preload: true
             }}
           </div>
+          {%- if settings.logo_mobile != blank -%}
+            {%- assign mobile_logo_height = settings.logo_mobile_width | divided_by: settings.logo_mobile.aspect_ratio -%}
+            {% capture mobile_widths %}{{ settings.logo_mobile_width }}, {{ settings.logo_mobile_width | times: 2 }}{% endcapture %}
+            <div class="header__heading-logo-wrapper header__heading-logo-wrapper--mobile">
+              {{
+                settings.logo_mobile
+                | image_url: width: 300
+                | image_tag:
+                  class: 'header__heading-logo',
+                  widths: mobile_widths,
+                  height: mobile_logo_height,
+                  width: settings.logo_mobile_width,
+                  alt: logo_alt,
+                  preload: true
+              }}
+            </div>
+          {%- endif -%}
         {%- else -%}
           <span class="h2">{{ shop.name }}</span>
         {%- endif -%}
@@ -252,7 +402,7 @@
       {%- if shop.customer_accounts_enabled -%}
         <a
           href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
-          class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}"
+          class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}{% if section.settings.custom_icon_account != blank %} has-custom-icon{% endif %}"
           rel="nofollow"
         >
           {%- if section.settings.enable_customer_avatar -%}
@@ -265,6 +415,11 @@
             </account-icon>
           {%- else -%}
             <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+          {%- endif -%}
+          {%- if section.settings.custom_icon_account != blank -%}
+            <span class="custom-icon-wrapper">
+              {{- section.settings.custom_icon_account | image_url: width: 48 | image_tag: class: 'custom-icon-img', width: 24, height: 24, alt: '' -}}
+            </span>
           {%- endif -%}
           <span class="visually-hidden">
             {%- liquid
@@ -285,7 +440,7 @@
         {%- endcase -%}
       {%- endfor -%}
 
-      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset{% if section.settings.custom_icon_cart != blank %} has-custom-icon{% endif %}" id="cart-icon-bubble">
         {% if cart == empty %}
           <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
         {% else %}
@@ -302,6 +457,9 @@
         {%- endif -%}
       </a>
     </div>
+    {%- if section.settings.show_decorative_line -%}
+      <div class="header__decorative-line" aria-hidden="true"></div>
+    {%- endif -%}
   </header>
 </{{ header_tag }}>
 
@@ -470,7 +628,7 @@
 {
   "name": "t:sections.header.name",
   "class": "section-header",
-  "max_blocks": 3,
+  "max_blocks": 30,
   "settings": [
     {
       "type": "select",
@@ -540,6 +698,37 @@
       "label": "t:sections.header.settings.menu_type_desktop.label"
     },
     {
+      "type": "header",
+      "content": "Menu typography"
+    },
+    {
+      "type": "range",
+      "id": "menu_font_size",
+      "min": 10,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "menu_font_weight",
+      "label": "Font weight",
+      "default": "400",
+      "options": [
+        { "value": "100", "label": "100 — Thin" },
+        { "value": "200", "label": "200 — Extra Light" },
+        { "value": "300", "label": "300 — Light" },
+        { "value": "400", "label": "400 — Regular" },
+        { "value": "500", "label": "500 — Medium" },
+        { "value": "600", "label": "600 — Semi Bold" },
+        { "value": "700", "label": "700 — Bold" },
+        { "value": "800", "label": "800 — Extra Bold" },
+        { "value": "900", "label": "900 — Black" }
+      ]
+    },
+    {
       "type": "select",
       "id": "sticky_header_type",
       "options": [
@@ -571,6 +760,42 @@
     },
     {
       "type": "header",
+      "content": "Decorative line"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_decorative_line",
+      "default": false,
+      "label": "Show decorative line"
+    },
+    {
+      "type": "range",
+      "id": "decorative_line_thickness",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "label": "Line thickness",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "decorative_line_color",
+      "label": "Line color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "decorative_line_position",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Vertical position",
+      "default": 50
+    },
+    {
+      "type": "header",
       "content": "t:sections.header.settings.header__1.content"
     },
     {
@@ -589,6 +814,7 @@
       "type": "header",
       "content": "t:sections.header.settings.header__utilities.content"
     },
+    
     {
       "type": "checkbox",
       "id": "enable_country_selector",
@@ -612,6 +838,25 @@
     },
     {
       "type": "header",
+      "content": "Custom icons"
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_icon_search",
+      "label": "Search icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_icon_account",
+      "label": "Account icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_icon_cart",
+      "label": "Cart icon"
+    },
+    {
+      "type": "header",
       "content": "t:sections.all.spacing"
     },
     {
@@ -632,7 +877,7 @@
       "type": "range",
       "id": "padding_top",
       "min": 0,
-      "max": 36,
+      "max": 40,
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_top",
@@ -642,7 +887,7 @@
       "type": "range",
       "id": "padding_bottom",
       "min": 0,
-      "max": 36,
+      "max": 40,
       "step": 4,
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
@@ -652,6 +897,96 @@
   "blocks": [
     {
       "type": "@app"
+    },
+    {
+      "type": "image_grid",
+      "name": "Mega Menu – Image Grid",
+      "settings": [
+        {
+          "type": "text",
+          "id": "nav_item_handle",
+          "label": "Nav item handle",
+          "info": "Exact handle of the top-level menu item (e.g. \"sale\" or \"collections\")"
+        },
+        { "type": "range", "id": "img_border_radius", "min": 0, "max": 50, "step": 1, "unit": "px", "label": "Image border radius", "default": 0 },
+        { "type": "checkbox", "id": "img_shadow", "label": "Image drop shadow", "default": true },
+        { "type": "header", "content": "Item 1" },
+        { "type": "image_picker", "id": "item_1_image", "label": "Image" },
+        { "type": "text", "id": "item_1_title", "label": "Title" },
+        { "type": "url", "id": "item_1_url", "label": "Link" },
+        { "type": "header", "content": "Item 2" },
+        { "type": "image_picker", "id": "item_2_image", "label": "Image" },
+        { "type": "text", "id": "item_2_title", "label": "Title" },
+        { "type": "url", "id": "item_2_url", "label": "Link" },
+        { "type": "header", "content": "Item 3" },
+        { "type": "image_picker", "id": "item_3_image", "label": "Image" },
+        { "type": "text", "id": "item_3_title", "label": "Title" },
+        { "type": "url", "id": "item_3_url", "label": "Link" },
+        { "type": "header", "content": "Item 4" },
+        { "type": "image_picker", "id": "item_4_image", "label": "Image" },
+        { "type": "text", "id": "item_4_title", "label": "Title" },
+        { "type": "url", "id": "item_4_url", "label": "Link" },
+        { "type": "header", "content": "Item 5" },
+        { "type": "image_picker", "id": "item_5_image", "label": "Image" },
+        { "type": "text", "id": "item_5_title", "label": "Title" },
+        { "type": "url", "id": "item_5_url", "label": "Link" },
+        { "type": "header", "content": "Item 6" },
+        { "type": "image_picker", "id": "item_6_image", "label": "Image" },
+        { "type": "text", "id": "item_6_title", "label": "Title" },
+        { "type": "url", "id": "item_6_url", "label": "Link" },
+        { "type": "header", "content": "Item 7" },
+        { "type": "image_picker", "id": "item_7_image", "label": "Image" },
+        { "type": "text", "id": "item_7_title", "label": "Title" },
+        { "type": "url", "id": "item_7_url", "label": "Link" },
+        { "type": "header", "content": "Item 8" },
+        { "type": "image_picker", "id": "item_8_image", "label": "Image" },
+        { "type": "text", "id": "item_8_title", "label": "Title" },
+        { "type": "url", "id": "item_8_url", "label": "Link" }
+      ]
+    },
+    {
+      "type": "mega_columns_grid",
+      "name": "Mega Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "nav_item_handle",
+          "label": "Nav item handle",
+          "info": "Exact handle of the top-level menu item (e.g. \"new-arrivals\")"
+        },
+        { "type": "header", "content": "Column menus (up to 6)" },
+        { "type": "link_list", "id": "menu_1", "label": "Menu column 1" },
+        { "type": "link_list", "id": "menu_2", "label": "Menu column 2" },
+        { "type": "link_list", "id": "menu_3", "label": "Menu column 3" },
+        { "type": "link_list", "id": "menu_4", "label": "Menu column 4" },
+        { "type": "link_list", "id": "menu_5", "label": "Menu column 5" },
+        { "type": "link_list", "id": "menu_6", "label": "Menu column 6" },
+        { "type": "header", "content": "Side images (up to 8)" },
+        { "type": "image_picker", "id": "img_1_image", "label": "Image 1" },
+        { "type": "text", "id": "img_1_title", "label": "Image 1 title" },
+        { "type": "url", "id": "img_1_url", "label": "Image 1 link" },
+        { "type": "image_picker", "id": "img_2_image", "label": "Image 2" },
+        { "type": "text", "id": "img_2_title", "label": "Image 2 title" },
+        { "type": "url", "id": "img_2_url", "label": "Image 2 link" },
+        { "type": "image_picker", "id": "img_3_image", "label": "Image 3" },
+        { "type": "text", "id": "img_3_title", "label": "Image 3 title" },
+        { "type": "url", "id": "img_3_url", "label": "Image 3 link" },
+        { "type": "image_picker", "id": "img_4_image", "label": "Image 4" },
+        { "type": "text", "id": "img_4_title", "label": "Image 4 title" },
+        { "type": "url", "id": "img_4_url", "label": "Image 4 link" },
+        { "type": "image_picker", "id": "img_5_image", "label": "Image 5" },
+        { "type": "text", "id": "img_5_title", "label": "Image 5 title" },
+        { "type": "url", "id": "img_5_url", "label": "Image 5 link" },
+        { "type": "image_picker", "id": "img_6_image", "label": "Image 6" },
+        { "type": "text", "id": "img_6_title", "label": "Image 6 title" },
+        { "type": "url", "id": "img_6_url", "label": "Image 6 link" },
+        { "type": "image_picker", "id": "img_7_image", "label": "Image 7" },
+        { "type": "text", "id": "img_7_title", "label": "Image 7 title" },
+        { "type": "url", "id": "img_7_url", "label": "Image 7 link" },
+        { "type": "image_picker", "id": "img_8_image", "label": "Image 8" },
+        { "type": "text", "id": "img_8_title", "label": "Image 8 title" },
+        { "type": "url", "id": "img_8_url", "label": "Image 8 link" }
+      ]
     }
   ]
 }

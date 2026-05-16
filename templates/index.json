@@ -86,114 +86,1085 @@
         "padding_vertical": 6
       }
     },
-    "image_banner": {
-      "type": "image-banner",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
-          }
-        },
-        "button": {
-          "type": "buttons",
-          "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "heading",
-        "button"
+    "hero_LRcXcf": {
+      "type": "hero",
+      "custom_css": [
+        "@media screen and (min-width: 750px) {.hero-banner__description {max-width: 550px; }}"
       ],
-      "disabled": true,
+      "name": "Hero Banner",
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "image_behavior": "none",
-        "desktop_content_position": "bottom-center",
-        "desktop_content_alignment": "center",
-        "show_text_box": false,
-        "color_scheme": "scheme-3",
-        "stack_images_on_mobile": false,
-        "mobile_content_alignment": "center",
-        "show_text_below": false
+        "color_scheme": "scheme-4",
+        "accent_color": "#e9a753",
+        "image_position": "left",
+        "col_width_text": 60,
+        "col_width_image": 40,
+        "columns_gap": 0,
+        "columns_gap_mobile": 0,
+        "section_padding_top": 40,
+        "section_padding_bottom": 76,
+        "section_padding_horizontal": 0,
+        "section_padding_top_mobile": 40,
+        "section_padding_bottom_mobile": 20,
+        "section_padding_horizontal_mobile": 20,
+        "use_hero_typography": true,
+        "title": "<h1>Turn Your Pet's</h1><h1>Photo Into</h1>",
+        "title_margin_bottom": 0,
+        "title_margin_bottom_mobile": 0,
+        "subtitle": "<h1><strong>A Work Of Art!</strong></h1>",
+        "subtitle_uk": "<p>На витвір мистецтва!</p>",
+        "subtitle_margin_bottom": 68,
+        "subtitle_margin_bottom_mobile": 36,
+        "subtitle_size": 20,
+        "subtitle_size_mobile": 16,
+        "subtitle_font_weight": "800",
+        "subtitle_size_uk": 36,
+        "subtitle_font_weight_uk": "800",
+        "description": "<p>Turn any pet photo into a <strong>one-of-a-kind </strong>portrait, apparel, or gift — professionally designed and perfected with unlimited revisions</p>",
+        "description_highlight_words": "",
+        "description_margin_bottom": 28,
+        "description_margin_bottom_mobile": 20,
+        "description_text_transform": "none",
+        "button_label": "",
+        "button_link": "",
+        "button_open_new_tab": false,
+        "button_bg_color": "#e9a753",
+        "button_text_color": "#ffffff",
+        "button_padding_vertical": 14,
+        "button_padding_horizontal": 32,
+        "button_border_radius": 4,
+        "gallery_layout": "1",
+        "gallery_gap": 8,
+        "gallery_row1_height": 280,
+        "gallery_row2_height": 220,
+        "gallery_border_radius": true,
+        "gallery_border_radius_px": 12,
+        "gallery_chess": "default",
+        "gallery_chess_offset": 40,
+        "gallery_col_ratio": "1fr 1fr",
+        "img1_width": 400,
+        "image": "shopify://shop_images/Custom_Portrait_for_Pets_3_500x_1.jpg",
+        "image_width": 410,
+        "image_width_mobile": 300,
+        "image_border_radius": true,
+        "image_border_radius_px": 12,
+        "enable_image_border": true,
+        "decoration_color": "#e9a753",
+        "border_thickness": 10,
+        "decoration_border_radius": 16,
+        "img2_width": 400,
+        "img3_width": 400,
+        "img4_width": 400,
+        "enable_subtitle_decor": true,
+        "paw_letter_pos": 4,
+        "paw_letter_pos_uk": 3,
+        "paw_size_css": 3,
+        "paw_offset_top_css": 50,
+        "paw_offset_x_css": 50,
+        "paw_offset_top_css_uk": 50,
+        "paw_offset_x_css_uk": 55,
+        "decor_line_offset_x": -16,
+        "decor_line_offset_y": 0,
+        "decor_line_offset_x_uk": -16,
+        "decor_line_offset_y_uk": 0,
+        "decor_line_offset_x_mobile": 8,
+        "decor_line_offset_y_mobile": 0,
+        "decor_line_offset_x_mobile_uk": 6,
+        "decor_line_offset_y_mobile_uk": 0
       }
     },
-    "featured_product_PWRebz": {
-      "type": "featured-product",
+    "brands_eP4pY4": {
+      "type": "brands",
       "blocks": {
-        "text_gxBLAJ": {
-          "type": "text",
+        "brand_PCyiPt": {
+          "type": "brand",
           "settings": {
-            "text": "{{ section.settings.product.vendor }}",
-            "text_style": "uppercase"
+            "image": "shopify://shop_images/VOGUE_LOGO_1.png",
+            "image_width": 111
           }
         },
-        "title_mcf9dU": {
-          "type": "title",
+        "brand_YBrggD": {
+          "type": "brand",
           "settings": {
-            "heading_size": "h1"
+            "image": "shopify://shop_images/BuzzFeed_Logo_10.2019.svg_1.png",
+            "image_width": 126
           }
         },
-        "price_XhX46K": {
-          "type": "price",
-          "settings": {}
-        },
-        "variant_picker_x8RtDi": {
-          "type": "variant_picker",
+        "brand_nfjYrJ": {
+          "type": "brand",
           "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
+            "image": "shopify://shop_images/HGTV-logo-featured_1.png",
+            "image_width": 140
           }
         },
-        "quantity_selector_qGij7U": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "buy_buttons_xBgbqa": {
-          "type": "buy_buttons",
+        "brand_3QprKa": {
+          "type": "brand",
           "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
+            "image": "shopify://shop_images/cdaa4100407831d9cff65a717fbef43a84b06254-960x480_1.png",
+            "image_width": 137
           }
         },
-        "share_nhNXih": {
-          "type": "share",
+        "brand_xte3Wh": {
+          "type": "brand",
           "settings": {
-            "share_label": "Share"
+            "image": "shopify://shop_images/Glamour-Logo_grey_svg.png",
+            "image_width": 123
+          }
+        },
+        "brand_pJRXp4": {
+          "type": "brand",
+          "settings": {
+            "image": "shopify://shop_images/Gooponlinelogo_1.png",
+            "image_width": 97
           }
         }
       },
       "block_order": [
-        "text_gxBLAJ",
-        "title_mcf9dU",
-        "price_XhX46K",
-        "variant_picker_x8RtDi",
-        "quantity_selector_qGij7U",
-        "buy_buttons_xBgbqa",
-        "share_nhNXih"
+        "brand_PCyiPt",
+        "brand_YBrggD",
+        "brand_nfjYrJ",
+        "brand_3QprKa",
+        "brand_xte3Wh",
+        "brand_pJRXp4"
       ],
-      "name": "t:sections.featured-product.presets.name",
+      "name": "Brands",
       "settings": {
-        "product": "bath-mat",
         "color_scheme": "",
-        "secondary_background": false,
-        "media_size": "medium",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "media_position": "left",
-        "image_zoom": "lightbox",
-        "hide_variants": false,
-        "enable_video_looping": false,
+        "padding_top": 52,
+        "padding_bottom": 52,
+        "padding_horizontal": 24,
+        "padding_top_mobile": 24,
+        "padding_bottom_mobile": 24,
+        "padding_horizontal_mobile": 16,
+        "item_height": 54,
+        "gap": 24,
+        "gap_mobile": 16,
+        "item_padding_vertical": 2,
+        "item_padding_horizontal": 12,
+        "img_shadow": true,
+        "block_style": true,
+        "block_bg": "#ffffff",
+        "block_border_radius": 10,
+        "block_padding": 10
+      }
+    },
+    "our_best_sellers_RoJgkQ": {
+      "type": "our-best-sellers",
+      "settings": {
+        "collection": "best-sellar",
+        "title": "Our Best Selllers",
+        "button_label": "Create yours",
+        "section_bg": "#fbfbfb",
+        "cta_bg": "#f4844e",
+        "star_color": "#e9a753",
+        "products_to_show": 8,
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "explore_collection_chWMTM": {
+      "type": "explore-collection",
+      "blocks": {
+        "collection_739nqj": {
+          "type": "collection",
+          "settings": {
+            "collection": "framed-unframed-prints"
+          }
+        },
+        "collection_VMc9xf": {
+          "type": "collection",
+          "settings": {
+            "collection": "canvas-portraits"
+          }
+        },
+        "collection_DpWcLg": {
+          "type": "collection",
+          "settings": {
+            "collection": "custom-pet-apparel"
+          }
+        },
+        "collection_xr9ELD": {
+          "type": "collection",
+          "settings": {
+            "collection": "cushions"
+          }
+        },
+        "collection_TT4NEd": {
+          "type": "collection",
+          "settings": {
+            "collection": "phone-cases"
+          }
+        },
+        "collection_KtcawT": {
+          "type": "collection",
+          "settings": {
+            "collection": "mugs"
+          }
+        },
+        "collection_EnLTfy": {
+          "type": "collection",
+          "settings": {
+            "collection": "tote-bags"
+          }
+        },
+        "collection_E6dh3R": {
+          "type": "collection",
+          "settings": {
+            "collection": "gift-cards"
+          }
+        }
+      },
+      "block_order": [
+        "collection_739nqj",
+        "collection_VMc9xf",
+        "collection_DpWcLg",
+        "collection_xr9ELD",
+        "collection_TT4NEd",
+        "collection_KtcawT",
+        "collection_EnLTfy",
+        "collection_E6dh3R"
+      ],
+      "name": "Explore Collections",
+      "settings": {
+        "color_scheme": "scheme-4",
+        "title": "<p>EXPLORE OUR COLLECTIONS</p>",
+        "subtitle": "<p>Find the perfect way to turn your pet into something truly special</p>",
+        "columns_per_row": 4,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "why_choose_us_Fn3EXt": {
+      "type": "why-choose-us",
+      "blocks": {
+        "feature_yQrnfT": {
+          "type": "feature",
+          "settings": {
+            "show_icon": true,
+            "icon_size": 40,
+            "icon": "shopify://shop_images/material-symbols_palette.svg",
+            "title": "Handcrafted by Real Artists",
+            "description": "Every portrait is carefully created by professional artists to capture your pet’s unique personality"
+          }
+        },
+        "feature_Y9YEgt": {
+          "type": "feature",
+          "settings": {
+            "show_icon": true,
+            "icon_size": 40,
+            "icon": "shopify://shop_images/solar_star-shine-bold.svg",
+            "title": "Unlimited Revisions",
+            "description": "We work with you until you absolutely love the final result — no limits on edits"
+          }
+        },
+        "feature_N7K7YG": {
+          "type": "feature",
+          "settings": {
+            "show_icon": true,
+            "icon_size": 40,
+            "icon": "shopify://shop_images/si_lightning-fill.png",
+            "title": "Fast & Easy Process",
+            "description": "Upload your photo, preview your artwork in 1–2 days, and approve it for production"
+          }
+        },
+        "feature_EUjjDp": {
+          "type": "feature",
+          "settings": {
+            "show_icon": true,
+            "icon_size": 40,
+            "icon": "shopify://shop_images/mdi_heart.png",
+            "title": "Premium Quality Products",
+            "description": "From canvas to apparel, every item is made with high-quality materials designed to last"
+          }
+        },
+        "photo_niB9VA": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/Custom_Portrait_for_Pets_2_500x_1_1.jpg",
+            "size": 92,
+            "anchor_x": "left",
+            "pos_x": 0,
+            "anchor_y": "top",
+            "pos_y": 49,
+            "show_on_mobile": false,
+            "badge_name": "",
+            "badge_review": "",
+            "badge_position": "left"
+          }
+        },
+        "photo_4Maxkd": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/77d36f1c0a5501988ae1bd5acd3c327c.jpg",
+            "size": 132,
+            "anchor_x": "left",
+            "pos_x": 55,
+            "anchor_y": "top",
+            "pos_y": 0,
+            "show_on_mobile": false,
+            "badge_name": "",
+            "badge_review": "",
+            "badge_position": "left"
+          }
+        },
+        "photo_PnCaHV": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/77d36f1c0a5501988ae1bd5acd3c327c.jpg",
+            "size": 152,
+            "anchor_x": "left",
+            "pos_x": 42,
+            "anchor_y": "top",
+            "pos_y": 80,
+            "show_on_mobile": false,
+            "badge_name": "",
+            "badge_review": "",
+            "badge_position": "left"
+          }
+        },
+        "photo_Vm7fFG": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/Custom_Portrait_for_Pets_3_500x_1.jpg",
+            "size": 200,
+            "anchor_x": "left",
+            "pos_x": 16,
+            "anchor_y": "top",
+            "pos_y": 51,
+            "show_on_mobile": true,
+            "badge_name": "",
+            "badge_review": "",
+            "badge_position": "left"
+          }
+        },
+        "photo_QFR7xc": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/Custom_Portrait_for_Pets_2_500x_2_291f1ea0-6de2-4c24-9c8a-c59052e5e278.jpg",
+            "size": 280,
+            "anchor_x": "left",
+            "pos_x": 6,
+            "anchor_y": "top",
+            "pos_y": 0,
+            "show_on_mobile": true,
+            "badge_avatar": "shopify://shop_images/Rectangle_131.jpg",
+            "badge_name": "David",
+            "badge_review": "I am happy!",
+            "badge_position": "left"
+          }
+        },
+        "photo_6BLjxm": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/chose_1.jpg",
+            "size": 324,
+            "anchor_x": "right",
+            "pos_x": 0,
+            "anchor_y": "top",
+            "pos_y": 24,
+            "show_on_mobile": true,
+            "badge_avatar": "shopify://shop_images/michael-dam-mEZ3PoFGs_k-unsplash.jpg",
+            "badge_name": "Julia",
+            "badge_review": "It`s amazing!!",
+            "badge_position": "right"
+          }
+        }
+      },
+      "block_order": [
+        "feature_yQrnfT",
+        "feature_Y9YEgt",
+        "feature_N7K7YG",
+        "feature_EUjjDp",
+        "photo_niB9VA",
+        "photo_4Maxkd",
+        "photo_PnCaHV",
+        "photo_Vm7fFG",
+        "photo_QFR7xc",
+        "photo_6BLjxm"
+      ],
+      "name": "Why Choose Us",
+      "settings": {
+        "color_scheme": "scheme-5",
+        "desktop_order": "photos_left",
+        "mobile_order": "photos_first",
+        "title": "WHY SHOULD CHOOSE US",
+        "title_accent_word": "US",
+        "blocks_gap": 24,
+        "badge_bg": "#f2f2f2",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "hero_TrTNDG": {
+      "type": "hero",
+      "blocks": {
+        "decor_cm8krH": {
+          "type": "decor",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/spike.png",
+            "size": 60,
+            "pos_x": 52,
+            "pos_y": 7,
+            "rotation": 0,
+            "opacity": 80
+          }
+        },
+        "decor_b4GFNK": {
+          "type": "decor",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/spike.png",
+            "size": 60,
+            "pos_x": 40,
+            "pos_y": 68,
+            "rotation": 0,
+            "opacity": 80
+          }
+        },
+        "decor_xQGgne": {
+          "type": "decor",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/spike.png",
+            "size": 60,
+            "pos_x": 47,
+            "pos_y": 44,
+            "rotation": 0,
+            "opacity": 80
+          }
+        },
+        "decor_xLJKmT": {
+          "type": "decor",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/spike.png",
+            "size": 60,
+            "pos_x": 55,
+            "pos_y": 83,
+            "rotation": 0,
+            "opacity": 80
+          }
+        },
+        "decor_k9pTkQ": {
+          "type": "decor",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Vector-1.svg",
+            "size": 30,
+            "pos_x": 52,
+            "pos_y": 59,
+            "rotation": 0,
+            "opacity": 80
+          }
+        },
+        "decor_7WHFcc": {
+          "type": "decor",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/mdi_heart_1db04b03-b28f-4755-a509-8b4b82a7bce0.png",
+            "size": 25,
+            "pos_x": 48,
+            "pos_y": 62,
+            "rotation": 0,
+            "opacity": 80
+          }
+        },
+        "decor_large_ijBhfg": {
+          "type": "decor_large",
+          "settings": {
+            "image": "shopify://shop_images/Group.png",
+            "size": 804,
+            "pos_x": 15,
+            "pos_y": -15,
+            "rotation": 0,
+            "opacity": 80
+          }
+        },
+        "decor_UPbwCD": {
+          "type": "decor",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/paw_4.svg",
+            "size": 110,
+            "pos_x": 40,
+            "pos_y": 73,
+            "rotation": 0,
+            "opacity": 50
+          }
+        },
+        "decor_pqc9P4": {
+          "type": "decor",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/paw_3.png",
+            "size": 105,
+            "pos_x": 25,
+            "pos_y": 77,
+            "rotation": 0,
+            "opacity": 80
+          }
+        },
+        "decor_large_Wn7T8F": {
+          "type": "decor_large",
+          "settings": {
+            "image": "shopify://shop_images/circle_3f04192d-6ff7-4fc0-b922-69fa2820017c.svg",
+            "size": 1200,
+            "pos_x": 50,
+            "pos_y": -60,
+            "rotation": 0,
+            "opacity": 80
+          }
+        },
+        "decor_large_dQBgjT": {
+          "type": "decor_large",
+          "settings": {
+            "image": "shopify://shop_images/circle_1.svg",
+            "size": 595,
+            "pos_x": 0,
+            "pos_y": -80,
+            "rotation": 0,
+            "opacity": 80
+          }
+        }
+      },
+      "block_order": [
+        "decor_cm8krH",
+        "decor_b4GFNK",
+        "decor_xQGgne",
+        "decor_xLJKmT",
+        "decor_k9pTkQ",
+        "decor_7WHFcc",
+        "decor_large_ijBhfg",
+        "decor_UPbwCD",
+        "decor_pqc9P4",
+        "decor_large_Wn7T8F",
+        "decor_large_dQBgjT"
+      ],
+      "custom_css": [
+        ".hero-banner__subtitle p {font-weight: 600;}",
+        ".hero-banner__description {max-width: 514px; width: 100%;}"
+      ],
+      "name": "Hero Banner",
+      "settings": {
+        "color_scheme": "scheme-4",
+        "accent_color": "#e9a753",
+        "image_position": "left",
+        "col_width_text": 60,
+        "col_width_image": 40,
+        "columns_gap": 48,
+        "columns_gap_mobile": 24,
+        "section_padding_top": 44,
+        "section_padding_bottom": 44,
+        "section_padding_horizontal": 0,
+        "section_padding_top_mobile": 32,
+        "section_padding_bottom_mobile": 32,
+        "section_padding_horizontal_mobile": 20,
+        "use_hero_typography": true,
+        "title": "<h2>Custom Shaped Pillows</h2>",
+        "title_margin_bottom": 16,
+        "title_margin_bottom_mobile": 12,
+        "subtitle": "",
+        "subtitle_uk": "<p>На витвір мистецтва!</p>",
+        "subtitle_margin_bottom": 68,
+        "subtitle_margin_bottom_mobile": 8,
+        "subtitle_size": 22,
+        "subtitle_size_mobile": 18,
+        "subtitle_font_weight": "700",
+        "subtitle_size_uk": 36,
+        "subtitle_font_weight_uk": "700",
+        "description": "<p>Turn your pet into<strong> a one-of-a-kind pillow </strong>made just for you</p><p>Soft, cozy, and completely personalized — our custom-shaped pillows are designed to capture your pet’s unique look and personality.<br/><br/></p>",
+        "description_highlight_words": "a one-of-a-kind pillow",
+        "description_margin_bottom": 28,
+        "description_margin_bottom_mobile": 20,
+        "description_text_transform": "none",
+        "button_label": "Create yours",
+        "button_link": "",
+        "button_open_new_tab": true,
+        "button_bg_color": "#f4844e",
+        "button_text_color": "#ffffff",
+        "button_padding_vertical": 14,
+        "button_padding_horizontal": 32,
+        "button_border_radius": 30,
+        "gallery_layout": "1",
+        "gallery_gap": 8,
+        "gallery_row1_height": 280,
+        "gallery_row2_height": 220,
+        "gallery_border_radius": true,
+        "gallery_border_radius_px": 12,
+        "gallery_chess": "default",
+        "gallery_chess_offset": 40,
+        "gallery_col_ratio": "1fr 1fr",
+        "img1_width": 400,
+        "image": "shopify://shop_images/Custom_Portrait_for_Pets_2_500x_7.jpg",
+        "image_width": 400,
+        "image_width_mobile": 300,
+        "image_border_radius": true,
+        "image_border_radius_px": 12,
+        "enable_image_border": false,
+        "decoration_color": "#f4844e",
+        "border_thickness": 1,
+        "decoration_border_radius": 0,
+        "img2_width": 400,
+        "img3_width": 400,
+        "img4_width": 400,
+        "enable_subtitle_decor": false,
+        "paw_letter_pos": 4,
+        "paw_letter_pos_uk": 10,
+        "paw_size_css": 3,
+        "paw_offset_top_css": 36,
+        "paw_offset_x_css": 0,
+        "paw_offset_top_css_uk": 36,
+        "paw_offset_x_css_uk": 0,
+        "decor_line_offset_x": 10,
+        "decor_line_offset_y": 18,
+        "decor_line_offset_x_uk": 10,
+        "decor_line_offset_y_uk": 18,
+        "decor_line_offset_x_mobile": 10,
+        "decor_line_offset_y_mobile": 21,
+        "decor_line_offset_x_mobile_uk": 10,
+        "decor_line_offset_y_mobile_uk": 21
+      }
+    },
+    "multicolumn_yQrrpf": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_fnDnqx": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/b_1.png",
+            "title": "Upload a photo of your pet",
+            "text": "<p><strong>Soft, cozy, and completely personalized</strong> — our custom-shaped pillows are designed to capture your pet’s unique look and personality.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_BmAgwQ": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/b_2.png",
+            "title": "Approve your custom pet art",
+            "text": "<p>Receive your artwork proof <strong>1-2 days</strong> after placing your order. Request any edits or approve for printing and shipping.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_PrPQ4c": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/b_3.png",
+            "title": "Cherish them forever!",
+            "text": "<p>Showcase your best friend on your wall or gift to a loved one. Remember to share on Instagram, please tag @portraitandpaws</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_fnDnqx",
+        "column_BmAgwQ",
+        "column_PrPQ4c"
+      ],
+      "custom_css": [
+        ".multicolumn.background-primary .multicolumn-card {background-color: transparent;}",
+        ".multicolumn-card__info {text-align: center;}"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "<h2>How to order your custom </h2><h2>pet portrait</h2>",
+        "title_accent_words": "pet portrait",
+        "title_accent_color": "#e9a753",
+        "heading_size": "h1",
+        "show_step_badges": true,
+        "badge_color": "#f9efe5",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "scheme-1",
+        "mobile_row_gap": 32,
+        "mobile_col_gap": 16,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "gallery_collection_bxYrAA": {
+      "type": "gallery-collection",
+      "blocks": {
+        "card_mjAJnG": {
+          "type": "card",
+          "settings": {
+            "collection": "modern",
+            "custom_title": "",
+            "image": "shopify://shop_images/Ollie.jpg",
+            "description": "Clean & minimal portraits"
+          }
+        },
+        "card_Tcn6UR": {
+          "type": "card",
+          "settings": {
+            "collection": "watercolor",
+            "custom_title": "",
+            "image": "shopify://shop_images/rufus.jpg",
+            "description": "Soft and artistic look"
+          }
+        },
+        "card_nAFAci": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "custom_title": "Renaissance",
+            "image": "shopify://shop_images/renaissance.jpg",
+            "description": "Royal & classic paintings"
+          }
+        },
+        "card_emePJb": {
+          "type": "card",
+          "settings": {
+            "collection": "modern",
+            "custom_title": "Renaissance",
+            "image": "shopify://shop_images/renaissance.jpg",
+            "description": "Royal & classic paintings"
+          }
+        },
+        "card_7wLBxk": {
+          "type": "card",
+          "settings": {
+            "collection": "modern",
+            "custom_title": "",
+            "image": "shopify://shop_images/Rufus_menu.jpg",
+            "description": "Clean & minimal portraits"
+          }
+        },
+        "card_AyfdK8": {
+          "type": "card",
+          "settings": {
+            "collection": "watercolor",
+            "custom_title": "",
+            "image": "shopify://shop_images/rufus.jpg",
+            "description": "Soft and artistic look"
+          }
+        },
+        "card_TUXDeq": {
+          "type": "card",
+          "settings": {
+            "collection": "modern",
+            "custom_title": "Renaissance",
+            "image": "shopify://shop_images/renaissance.jpg",
+            "description": "Royal & classic paintings"
+          }
+        },
+        "card_qrRAGJ": {
+          "type": "card",
+          "settings": {
+            "collection": "modern",
+            "custom_title": "Renaissance",
+            "image": "shopify://shop_images/renaissance.jpg",
+            "description": "Royal & classic paintings"
+          }
+        }
+      },
+      "block_order": [
+        "card_mjAJnG",
+        "card_Tcn6UR",
+        "card_nAFAci",
+        "card_emePJb",
+        "card_7wLBxk",
+        "card_AyfdK8",
+        "card_TUXDeq",
+        "card_qrRAGJ"
+      ],
+      "name": "Gallery Collection",
+      "settings": {
+        "color_scheme": "",
+        "title": "<p>SHOP BY DESIGN</p>",
+        "title_align": "center",
+        "title_align_desktop": "center",
+        "cards_per_row": 4,
+        "rows_count": 2,
+        "card_text_align": "center",
+        "card_bg": "#f9efe5",
+        "desc_color": "#c3937d",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "hero_wh8xKr": {
+      "type": "hero",
+      "name": "Hero Banner",
+      "settings": {
+        "color_scheme": "scheme-4",
+        "accent_color": "#e9a753",
+        "image_position": "left",
+        "col_width_text": 60,
+        "col_width_image": 40,
+        "columns_gap": 60,
+        "columns_gap_mobile": 12,
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "section_padding_horizontal": 0,
+        "section_padding_top_mobile": 32,
+        "section_padding_bottom_mobile": 32,
+        "section_padding_horizontal_mobile": 16,
+        "use_hero_typography": true,
+        "title": "<h2>Custom embroidered clothing made for you</h2>",
+        "title_margin_bottom": 16,
+        "title_margin_bottom_mobile": 12,
+        "subtitle": "<h1><strong>A Work Of Art!</strong></h1>",
+        "subtitle_uk": "<p>На витвір мистецтва!</p>",
+        "subtitle_margin_bottom": 68,
+        "subtitle_margin_bottom_mobile": 8,
+        "subtitle_size": 20,
+        "subtitle_size_mobile": 16,
+        "subtitle_font_weight": "800",
+        "subtitle_size_uk": 36,
+        "subtitle_font_weight_uk": "800",
+        "description": "<p>Wear your pet close to your heart with custom embroidered apparel. Each piece is carefully crafted to capture your pet’s unique look and personality.</p><p></p><p>From cozy hoodies to everyday t-shirts and hats — create something truly personal and one-of-a-kind.</p>",
+        "description_highlight_words": "",
+        "description_margin_bottom": 28,
+        "description_margin_bottom_mobile": 20,
+        "description_text_transform": "none",
+        "button_label": "Create yours",
+        "button_link": "",
+        "button_open_new_tab": false,
+        "button_bg_color": "#f4844e",
+        "button_text_color": "#ffffff",
+        "button_padding_vertical": 14,
+        "button_padding_horizontal": 32,
+        "button_border_radius": 30,
+        "gallery_layout": "4-grid",
+        "gallery_gap": 28,
+        "gallery_row1_height": 330,
+        "gallery_row2_height": 250,
+        "gallery_border_radius": true,
+        "gallery_border_radius_px": 14,
+        "gallery_chess": "default",
+        "gallery_chess_offset": 40,
+        "gallery_col_ratio": "1fr 1fr",
+        "img1_width": 250,
+        "image": "shopify://shop_images/order_1.jpg",
+        "image_width": 250,
+        "image_width_mobile": 300,
+        "image_border_radius": true,
+        "image_border_radius_px": 10,
+        "enable_image_border": true,
+        "decoration_color": "#ffffff",
+        "border_thickness": 10,
+        "decoration_border_radius": 12,
+        "image_2": "shopify://shop_images/order_2.jpg",
+        "img2_width": 310,
+        "image_3": "shopify://shop_images/order_3.jpg",
+        "img3_width": 330,
+        "image_4": "shopify://shop_images/order_4.png",
+        "img4_width": 230,
+        "enable_subtitle_decor": false,
+        "paw_letter_pos": 4,
+        "paw_letter_pos_uk": 10,
+        "paw_size_css": 3,
+        "paw_offset_top_css": 36,
+        "paw_offset_x_css": 0,
+        "paw_offset_top_css_uk": 36,
+        "paw_offset_x_css_uk": 0,
+        "decor_line_offset_x": 10,
+        "decor_line_offset_y": 18,
+        "decor_line_offset_x_uk": 10,
+        "decor_line_offset_y_uk": 18,
+        "decor_line_offset_x_mobile": 10,
+        "decor_line_offset_y_mobile": 21,
+        "decor_line_offset_x_mobile_uk": 10,
+        "decor_line_offset_y_mobile_uk": 21
+      }
+    },
+    "collapsible_content_yea6LW": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_rxTjzx": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What if I don’t like the result?",
+            "icon": "none",
+            "row_content": "<p>Custom embroidered clothing</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_j46HdJ": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What if I don’t like the result?",
+            "icon": "none",
+            "row_content": "<p>Custom embroidered clothing</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_zhp7im": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What if I don’t like the result?",
+            "icon": "none",
+            "row_content": "<p>Custom embroidered clothing</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_GkrYeR": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What if I don’t like the result?",
+            "icon": "none",
+            "row_content": "<p>Custom embroidered clothing</p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_rxTjzx",
+        "collapsible_row_j46HdJ",
+        "collapsible_row_zhp7im",
+        "collapsible_row_GkrYeR"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "",
+        "heading": "FAQ",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "scheme-1",
+        "color_scheme": "scheme-1",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "177807321658d0df96": {
+      "type": "apps",
+      "blocks": {
+        "ag_product_reviews_app_block_all_review_BCVqg8": {
+          "type": "shopify://apps/ag-product-reviews/blocks/app-block-all-review/c4e1e9ca-4d46-4e76-bc39-7e42417cb327",
+          "settings": {
+            "air_allReviewsBlock_heading": "ReviewS",
+            "air_allReviewsBlock_useSimpleSummary": true,
+            "air_allReviewsBlock_maxReview": 8,
+            "air_allReviewsBlock_summaryBgColor": "#f8f8f8",
+            "air_allReviewsBlock_bgColor": "#ffffff",
+            "air_allReviewsBlock_onlyMedia": false,
+            "air_allReviewsBlock_mediaFirst": false,
+            "air_allReviewsBlock_onlyPositive": false,
+            "air_allReviewsBlock_hideProductThumbnails": false,
+            "air_allReviewsBlock_selectedProduct": []
+          }
+        }
+      },
+      "block_order": [
+        "ag_product_reviews_app_block_all_review_BCVqg8"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "benefit_sliders_zbqEkT": {
+      "type": "benefit-sliders",
+      "blocks": {
+        "benefit_KYCC7E": {
+          "type": "benefit",
+          "settings": {
+            "show_icon": false,
+            "icon_size": 56,
+            "title": "Our Promise:",
+            "description": ""
+          }
+        },
+        "benefit_GWJrcJ": {
+          "type": "benefit",
+          "settings": {
+            "show_icon": true,
+            "icon_size": 40,
+            "icon": "shopify://shop_images/si_lightning-fill.png",
+            "title": "Quick artwork delivery",
+            "description": "Get your custom artwork preview within 1–2 days"
+          }
+        },
+        "benefit_DrejFA": {
+          "type": "benefit",
+          "settings": {
+            "show_icon": true,
+            "icon_size": 40,
+            "icon": "shopify://shop_images/mdi_heart.png",
+            "title": "Edit as much as you like",
+            "description": "We'll refine your design until it's exactly right"
+          }
+        },
+        "benefit_TiCzYj": {
+          "type": "benefit",
+          "settings": {
+            "show_icon": true,
+            "icon_size": 40,
+            "icon": "shopify://shop_images/boxicons_smile.svg",
+            "title": "Made to make you smile",
+            "description": "We're not satisfied until you love it"
+          }
+        },
+        "slider_BFdgUc": {
+          "type": "slider",
+          "settings": {
+            "slide_ratio": "4 / 3",
+            "slider_height": 190,
+            "nav_offset": 30,
+            "image_1": "shopify://shop_images/chose_1.jpg",
+            "image_2": "shopify://shop_images/hedgehog_q.jpg",
+            "image_3": "shopify://shop_images/order_2.jpg",
+            "image_4": "shopify://shop_images/77d36f1c0a5501988ae1bd5acd3c327c.jpg",
+            "image_5": "shopify://shop_images/order_4.png",
+            "image_6": "shopify://shop_images/Custom_Portrait_for_Pets_2_500x_2.jpg"
+          }
+        },
+        "slider_3myhej": {
+          "type": "slider",
+          "settings": {
+            "slide_ratio": "4 / 3",
+            "slider_height": 150,
+            "nav_offset": 70,
+            "image_1": "shopify://shop_images/order_2.jpg",
+            "image_2": "shopify://shop_images/Custom_Portrait_for_Pets_3_500x_1.jpg",
+            "image_3": "shopify://shop_images/Custom_Portrait_for_Pets_2_500x_2_291f1ea0-6de2-4c24-9c8a-c59052e5e278.jpg",
+            "image_4": "shopify://shop_images/Custom_Portrait_for_Pets_2_500x_1_2.jpg",
+            "image_5": "shopify://shop_images/Custom_Portrait_for_Pets_2_500x_1_1.jpg",
+            "image_6": "shopify://shop_images/Custom_Portrait_for_Pets_3_500x_4.jpg",
+            "image_7": "shopify://shop_images/Modern_Pet_Portrait_with_Name_Black_Frame_White_Background_1000x_4_1.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "benefit_KYCC7E",
+        "benefit_GWJrcJ",
+        "benefit_DrejFA",
+        "benefit_TiCzYj",
+        "slider_BFdgUc",
+        "slider_3myhej"
+      ],
+      "name": "Benefit & Sliders",
+      "settings": {
+        "color_scheme": "scheme-5",
+        "title": "<p>OVER 333,333 HAPPY PET PARENTS</p>",
+        "title_margin_bottom": 56,
+        "title_margin_bottom_mobile": 20,
+        "title_align": "center",
+        "title_accent_words": "HAPPY",
+        "layout": "benefit_first",
+        "nav_color": "#f4844e",
+        "btn_label": "Show more reviws",
+        "btn_link": "",
+        "btn_color": "#f4844e",
+        "btn_text_color": "#ffffff",
+        "btn_radius": 30,
+        "btn_align": "center",
+        "padding_top": 80,
+        "padding_bottom": 92
       }
     },
     "featured_collection": {
@@ -224,38 +1195,22 @@
         "padding_top": 44,
         "padding_bottom": 36
       }
-    },
-    "our_best_sellers_RoJgkQ": {
-      "type": "our-best-sellers",
-      "settings": {
-        "collection": "all",
-        "title": "Our Best Selllers",
-        "heading_size": "h1",
-        "products_to_show": 8,
-        "columns_desktop": 4,
-        "columns_mobile": "2",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": true,
-        "full_width": false,
-        "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "show_view_all": false,
-        "view_all_style": "solid",
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
     }
   },
   "order": [
     "marquee_TBgwDA",
-    "image_banner",
-    "featured_product_PWRebz",
+    "hero_LRcXcf",
+    "brands_eP4pY4",
     "our_best_sellers_RoJgkQ",
+    "explore_collection_chWMTM",
+    "why_choose_us_Fn3EXt",
+    "hero_TrTNDG",
+    "multicolumn_yQrrpf",
+    "gallery_collection_bxYrAA",
+    "hero_wh8xKr",
+    "collapsible_content_yea6LW",
+    "177807321658d0df96",
+    "benefit_sliders_zbqEkT",
     "featured_collection"
   ]
 }

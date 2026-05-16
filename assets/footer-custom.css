@@ -1,0 +1,227 @@
+/* ============================================================
+   footer-custom.css — Portrait & Paws custom footer
+   ============================================================ */
+
+.pf-footer {
+  background-color: #2D4A4A;
+  color: #ffffff;
+  padding: 48px 0 32px;
+}
+
+/* ── Top bar: logo + tags ─────────────────────────────────── */
+.pf-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 32px;
+  align-items: center;
+  padding-top: 8px;
+  padding-bottom: 32px;
+
+  position: relative;
+}
+
+/* Each tag cell aligns with its nav column */
+.pf-tag-cell {
+  display: flex;
+  align-items: center;
+}
+
+/* Mobile copies hidden on desktop */
+.pf-tag-cell--mobile {
+  display: none;
+}
+
+@media screen and (max-width: 749px) {
+  /* Hide desktop tag cells in pf-top */
+  .pf-top .pf-tag-cell:not(.pf-tag-cell--mobile) {
+    display: none;
+  }
+  /* Show mobile copies inside nav */
+  .pf-tag-cell--mobile {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+  .pf-brand { margin-right: 0; }
+  .pf-brand__desc { max-width: 100% !important; }
+  .pf-socials { justify-content: center; }
+  .pf-nav { align-items: flex-start; text-align: left; width: 100%; }
+  .pf-nav__heading { text-align: left; width: 100%; }
+  .pf-nav__list { width: 100%; }
+  .pf-nav__list a { text-align: left; }
+}
+
+.pf-logo {
+  position: relative;
+  z-index: 2;
+}
+
+.pf-logo img {
+  width: 280px;
+  height: auto;
+  display: block;
+}
+
+.pf-tags {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.pf-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 32px;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+
+.pf-tag img {
+  width: 13px;
+  height: 13px;
+}
+
+.pf-nav__tag {
+  margin-bottom: 12px;
+}
+
+/* ── Main grid ────────────────────────────────────────────── */
+.pf-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+/* ── Brand column ─────────────────────────────────────────── */
+.pf-brand { margin-right: 60px; }
+.pf-brand__desc {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 24px;
+}
+
+.pf-socials {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.pf-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 49px;
+  height: 49px;
+  border-radius: 50%;
+  background: #ffffff;
+  flex-shrink: 0;
+  transition: opacity 0.2s;
+}
+
+.pf-social:hover { opacity: 0.85; }
+
+.pf-social img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+/* ── Nav columns ──────────────────────────────────────────── */
+.pf-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.pf-nav__heading {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 16px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.pf-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.pf-nav__list a {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 40px;
+  display: block;
+  transition: color 0.2s;
+}
+
+.pf-nav__list a:hover { color: #ffffff; }
+
+/* ── Bottom bar ───────────────────────────────────────────── */
+.pf-bottom {
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pf-bottom__copy {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+}
+
+.pf-bottom__copy a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+}
+
+.pf-payment ul {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media screen and (max-width: 989px) {
+  .pf-main {
+    grid-template-columns: 1fr 1fr;
+  }
+  .pf-tag { font-size: 15px; line-height: 24px; }
+  .pf-brand__desc { font-size: 16px; }
+  .pf-nav__heading { font-size: 18px; }
+  .pf-nav__list a { font-size: 16px; line-height: 32px; }
+}
+
+@media screen and (max-width: 749px) {
+  .pf-top {
+    grid-template-columns: 1fr;
+  }
+  .pf-tag-cell {
+    justify-content: center;
+  }
+  .pf-main {
+    grid-template-columns: 1fr;
+  }
+  .pf-nav {
+    align-items: center;
+    text-align: center;
+  }
+}

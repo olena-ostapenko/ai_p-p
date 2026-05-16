@@ -1,0 +1,1705 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    background-color: {{ section.settings.color_scheme.settings.background }};
+    color: {{ section.settings.color_scheme.settings.text }};
+  }
+
+  .hero-banner-{{ section.id }} .hero-banner__container {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: {{ section.settings.section_padding_top }}px {{ section.settings.section_padding_horizontal }}px {{ section.settings.section_padding_bottom }}px;
+  }
+
+  .hero-banner-{{ section.id }} .hero-banner__grid {
+    display: flex;
+    flex-direction: {% if section.settings.image_position == 'left' %}row{% else %}row-reverse{% endif %};
+    align-items: center;
+    gap: {{ section.settings.columns_gap }}px;
+  }
+
+  .hero-banner-{{ section.id }} .hero-banner__text-col {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .hero-banner-{{ section.id }} .hero-banner__text-col {
+    flex: 0 0 {{ section.settings.col_width_text }}%;
+    width: {{ section.settings.col_width_text }}%;
+    min-width: 0;
+  }
+
+  {%- if section.settings.gallery_layout == '1' -%}
+  /* Single image — column sized by image_width setting */
+  .hero-banner-{{ section.id }} .hero-banner__image-col {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 0;
+    overflow: visible;
+  }
+  {%- else -%}
+  /* Gallery — column sized by col_width_image % */
+  .hero-banner-{{ section.id }} .hero-banner__image-col {
+    flex: 0 0 {{ section.settings.col_width_image }}%;
+    width: {{ section.settings.col_width_image }}%;
+    min-width: 0;
+  }
+  {%- endif -%}
+
+  .hero-banner-{{ section.id }} .hero-banner__title {
+    margin-bottom: {{ section.settings.title_margin_bottom }}px;
+    font-size: {%- if section.settings.use_hero_typography -%}{{ settings.hero_title_size_mobile }}{%- else -%}{{ settings.section_heading_size_mobile }}{%- endif -%}px;
+    font-weight: {%- if section.settings.use_hero_typography -%}{{ settings.hero_title_font_weight }}{%- else -%}700{%- endif -%};
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-align: var(--section-heading-align-mobile, center);
+  }
+
+  @media screen and (min-width: 1200px) {
+    .hero-banner-{{ section.id }} .hero-banner__title {
+      font-size: {%- if section.settings.use_hero_typography -%}{{ settings.hero_title_size_desktop }}{%- else -%}{{ settings.section_heading_size_desktop }}{%- endif -%}px;
+      text-align: var(--section-heading-align-desktop, left);
+    }
+  }
+
+
+
+  /* If admin selects H2 in richtext — apply section heading styles */
+  .hero-banner-{{ section.id }} .hero-banner__title h2 {
+    font-size: var(--section-heading-size-mobile, 26px);
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: var(--section-heading-align-mobile, center);
+    margin: 0 0 var(--section-heading-margin-bottom, 12px);
+    text-transform: uppercase;
+  }
+
+  @media screen and (min-width: 1200px) {
+    .hero-banner-{{ section.id }} .hero-banner__title h2 {
+      font-size: var(--section-heading-size-desktop, 36px);
+      text-align: var(--section-heading-align-desktop, left);
+    }
+  }
+
+  .hero-banner-{{ section.id }} .hero-banner__subtitle {
+    margin-bottom: {{ section.settings.subtitle_margin_bottom }}px;
+    font-size: {%- if section.settings.use_hero_typography -%}{{ settings.hero_subtitle_size_desktop }}{%- else -%}{{ section.settings.subtitle_size }}{%- endif -%}px;
+    font-weight: {%- if section.settings.use_hero_typography -%}{{ settings.hero_subtitle_font_weight }}{%- else -%}700{%- endif -%};
+    line-height: 1.2;
+    text-transform: uppercase;
+    font-family: {{ settings.type_header_font.family }}, sans-serif;
+    position: relative;
+    display: block;
+    overflow: visible;
+  }
+
+
+
+  .hero-banner-{{ section.id }} .hero-banner__description,
+  .hero-banner-{{ section.id }} .hero-banner__description p {
+    margin-bottom: {{ section.settings.description_margin_bottom }}px;
+    text-transform: {{ section.settings.description_text_transform }};
+  }
+
+  .hero-banner-{{ section.id }} .hero-desc-highlight {
+    color: {{ section.settings.accent_color }};
+    font-weight: inherit;
+  }
+
+  /* Image wrapper — border overlay */
+  .hero-banner-{{ section.id }} .hero-banner__image-wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+  }
+
+  {%- if section.settings.enable_image_border -%}
+  .hero-banner-{{ section.id }} .hero-banner__image-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: -0.5rem;
+    border: {{ section.settings.border_thickness }}px solid {{ section.settings.decoration_color }};
+    border-radius: {{ section.settings.decoration_border_radius }}px;
+    pointer-events: none;
+  }
+  {%- endif -%}
+
+  .hero-banner-{{ section.id }} .hero-banner__image img {
+    width: {{ section.settings.image_width }}px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: {% if section.settings.image_border_radius %}{{ section.settings.image_border_radius_px }}px{% else %}0{% endif %};
+  }
+  .hero-banner-{{ section.id }} .hero-banner__image {
+    border-radius: {% if section.settings.image_border_radius %}{{ section.settings.image_border_radius_px }}px{% else %}0{% endif %};
+    overflow: hidden;
+  }
+
+  /* Gallery layout — flex, images keep natural size */
+  {%- assign layout = section.settings.gallery_layout -%}
+
+  .hero-banner-{{ section.id }} .hero-banner__gallery {
+    display: flex;
+    gap: {{ section.settings.gallery_gap }}px;
+    width: fit-content;
+    max-width: 100%;
+    padding: {{ section.settings.border_thickness }}px;
+    box-sizing: border-box;
+  }
+
+  {%- if layout == '2-vertical' -%}
+    /* Stack vertically */
+    .hero-banner-{{ section.id }} .hero-banner__gallery {
+      flex-direction: column;
+    }
+  {%- elsif layout == '3-top1' -%}
+    /* 1 full-width top, 2 bottom */
+    .hero-banner-{{ section.id }} .hero-banner__gallery {
+      flex-direction: column;
+    }
+    .hero-banner-{{ section.id }} .hero-gallery__row {
+      display: flex;
+      gap: {{ section.settings.gallery_gap }}px;
+    }
+  {%- elsif layout == '3-top2' -%}
+    /* 2 top, 1 full-width bottom */
+    .hero-banner-{{ section.id }} .hero-banner__gallery {
+      flex-direction: column;
+    }
+    .hero-banner-{{ section.id }} .hero-gallery__row {
+      display: flex;
+      gap: {{ section.settings.gallery_gap }}px;
+    }
+  {%- elsif layout == '4-grid' -%}
+    /* 2 columns, 2 rows */
+    .hero-banner-{{ section.id }} .hero-banner__gallery {
+      flex-direction: column;
+    }
+    .hero-banner-{{ section.id }} .hero-gallery__row {
+      display: flex;
+      gap: {{ section.settings.gallery_gap }}px;
+    }
+  {%- endif -%}
+
+  {%- assign chess = section.settings.gallery_chess -%}
+  {%- if chess == 'chess' -%}
+    .hero-banner-{{ section.id }} .hero-gallery__item:nth-child(even) {
+      margin-top: {{ section.settings.gallery_chess_offset }}px;
+    }
+  {%- elsif chess == 'chess-reverse' -%}
+    .hero-banner-{{ section.id }} .hero-gallery__item:nth-child(odd) {
+      margin-top: {{ section.settings.gallery_chess_offset }}px;
+    }
+  {%- endif -%}
+
+  .hero-banner-{{ section.id }} .hero-gallery__item {
+    border-radius: {% if section.settings.gallery_border_radius %}{{ section.settings.gallery_border_radius_px }}px{% else %}0{% endif %};
+    position: relative;
+    /* no overflow:hidden — border ::before uses negative inset and must be visible */
+    flex-shrink: 0;
+  }
+
+  .hero-banner-{{ section.id }} .hero-gallery__item img,
+  .hero-banner-{{ section.id }} .hero-gallery__item .placeholder-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: {% if section.settings.gallery_border_radius %}{{ section.settings.gallery_border_radius_px }}px{% else %}0{% endif %};
+    position: relative;
+    z-index: 1;
+    /* clip image to border-radius */
+    overflow: hidden;
+  }
+
+  /* Individual image widths */
+  .hero-banner-{{ section.id }} .hero-gallery__item--1 { width: {{ section.settings.img1_width }}px; }
+  .hero-banner-{{ section.id }} .hero-gallery__item--2 { width: {{ section.settings.img2_width }}px; }
+  .hero-banner-{{ section.id }} .hero-gallery__item--3 { width: {{ section.settings.img3_width }}px; }
+  .hero-banner-{{ section.id }} .hero-gallery__item--4 { width: {{ section.settings.img4_width }}px; }
+
+  {%- if section.settings.enable_image_border -%}
+  .hero-banner-{{ section.id }} .hero-gallery__item img {
+    outline: {{ section.settings.border_thickness }}px solid {{ section.settings.decoration_color }};
+    outline-offset: -1px;
+  }
+  {%- endif -%}
+
+  .hero-banner-{{ section.id }} .hero-banner__button {
+    display: inline-block;
+    background-color: {{ section.settings.button_bg_color }};
+    color: {{ section.settings.button_text_color }};
+    padding: {{ section.settings.button_padding_vertical }}px {{ section.settings.button_padding_horizontal }}px;
+    border-radius: {{ section.settings.button_border_radius }}px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+  }
+
+  .hero-banner-{{ section.id }} .hero-banner__button:hover {
+    opacity: 0.85;
+  }
+
+
+  /* decor subtitle */
+  {%- if section.settings.enable_subtitle_decor -%}
+  #shopify-section-{{ section.id }} .hero-banner__subtitle {
+    position: relative;
+    display: block;
+    overflow: visible;
+  }
+
+  /* Paw icon centered over target letter */
+  #shopify-section-{{ section.id }} .hero-banner__subtitle .paw-letter {
+    position: relative;
+    display: inline-block !important;
+    word-break: keep-all;
+    white-space: nowrap;
+  }
+
+  #shopify-section-{{ section.id }} .hero-banner__subtitle .paw-letter::before {
+    content: '';
+    position: absolute;
+    width: calc({{ section.settings.paw_size_css }} * 0.1em);
+    height: calc({{ section.settings.paw_size_css }} * 0.1em);
+    background-image: url('https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_paw.svg?v=1777450948');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    top: {%- if request.locale.iso_code == 'uk' -%}{{ section.settings.paw_offset_top_css_uk }}{%- else -%}{{ section.settings.paw_offset_top_css }}{%- endif -%}%;
+    left: {%- if request.locale.iso_code == 'uk' -%}{{ section.settings.paw_offset_x_css_uk }}{%- else -%}{{ section.settings.paw_offset_x_css }}{%- endif -%}%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ section.id }} .hero-banner__subtitle::before {
+    content: '';
+    position: absolute;
+    top: calc(100% - {{ section.settings.decor_line_offset_y }}px);
+    left: {{ section.settings.decor_line_offset_x }}%;
+    width: 100%;
+    height: 20px;
+    background-image: url('https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_curve.svg?v=1777451004');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    pointer-events: none;
+  }
+  :lang(uk) #shopify-section-{{ section.id }} .hero-banner__subtitle::before,
+  :lang(uk) .hero-banner-{{ section.id }} .hero-banner__subtitle::before {
+    top: calc(100% - {{ section.settings.decor_line_offset_y_uk }}px) !important;
+    left: {{ section.settings.decor_line_offset_x_uk }}% !important;
+  }
+
+
+
+  {%- comment -%} Ukrainian locale overrides for desktop {%- endcomment -%}
+  {%- endif -%}
+
+
+ @media screen and (max-width: 1199px) {
+    /* Контейнер секції */
+    .hero-banner-{{ section.id }} .hero-banner__container {
+      padding-top: {{ section.settings.section_padding_top_mobile }}px;
+      padding-bottom: {{ section.settings.section_padding_bottom_mobile }}px;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    /* Налаштування сітки */
+    .hero-banner-{{ section.id }} .hero-banner__grid {
+      flex-direction: column;
+      gap: {{ section.settings.columns_gap_mobile }}px;
+      align-items: center; /* Центруємо колонки по горизонталі */
+    }
+
+    /* Текстова колонка */
+    .hero-banner-{{ section.id }} .hero-banner__text-col {
+      width: 100%;
+      text-align: center;
+      padding-left: {{ section.settings.section_padding_horizontal_mobile }}px;
+      padding-right: {{ section.settings.section_padding_horizontal_mobile }}px;
+      box-sizing: border-box;
+    }
+
+    /* Image col — full width on mobile */
+    .hero-banner-{{ section.id }} .hero-banner__image-col {
+      width: 100% !important;
+      max-width: {{ section.settings.image_width_mobile }}px !important;
+      flex: 0 0 100% !important;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    /* Single image */
+    .hero-banner-{{ section.id }} .hero-banner__image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Gallery — full width, rows scale proportionally */
+    .hero-banner-{{ section.id }} .hero-banner__gallery {
+      width: 100% !important;
+      flex-direction: column;
+      transform: none !important;
+    }
+
+    .hero-banner-{{ section.id }} .hero-gallery__row {
+      width: 100%;
+      display: flex;
+      gap: {{ section.settings.gallery_gap }}px;
+      align-items: flex-end;
+    }
+
+    .hero-banner-{{ section.id }} .hero-gallery__row:nth-child(2) {
+      align-items: flex-start;
+    }
+
+    .hero-banner-{{ section.id }} .hero-gallery__item--1,
+    .hero-banner-{{ section.id }} .hero-gallery__item--2,
+    .hero-banner-{{ section.id }} .hero-gallery__item--3,
+    .hero-banner-{{ section.id }} .hero-gallery__item--4 {
+      flex: 1;
+      width: auto !important;
+      min-width: 0;
+    }
+
+    .hero-banner-{{ section.id }} .hero-gallery__item img {
+      width: 100% !important;
+      height: auto !important;
+    }
+
+    /* Маргінали для тексту */
+    .hero-banner-{{ section.id }} .hero-banner__title {
+      margin-bottom: {{ section.settings.title_margin_bottom_mobile }}px;
+    }
+
+    .hero-banner-{{ section.id }} .hero-banner__subtitle {
+      margin-bottom: {{ section.settings.subtitle_margin_bottom_mobile }}px;
+      font-size: {{ settings.hero_subtitle_size_mobile }}px;
+    }
+
+    :lang(uk) .hero-banner-{{ section.id }} .hero-banner__subtitle .subtitle-break {
+      display: block;
+    }
+
+    .hero-banner-{{ section.id }} .hero-banner__description {
+      margin-bottom: {{ section.settings.description_margin_bottom_mobile }}px;
+      text-align: center;
+    }
+
+    .hero-banner-{{ section.id }} .hero-banner__description p {
+      margin-top: 0;
+    }
+
+    /* Декоративні елементи */
+    {%- if section.settings.enable_subtitle_decor -%}
+    #shopify-section-{{ section.id }} .hero-banner__subtitle::before {
+      height: 12px;
+      top: calc(100% - {{ section.settings.decor_line_offset_y_mobile }}px);
+      left: {{ section.settings.decor_line_offset_x_mobile }}%;
+    }
+    :lang(uk) #shopify-section-{{ section.id }} .hero-banner__subtitle::before,
+    :lang(uk) .hero-banner-{{ section.id }} .hero-banner__subtitle::before {
+      top: calc(100% - {{ section.settings.decor_line_offset_y_mobile_uk }}px) !important;
+      left: {{ section.settings.decor_line_offset_x_mobile_uk }}% !important;
+    }
+
+
+
+    {%- comment -%} Ukrainian locale overrides for mobile {%- endcomment -%}
+    {%- endif -%}
+  }
+
+.hero-banner-{{ section.id }} .hero-banner__subtitle,
+.hero-banner-{{ section.id }} .hero-banner__subtitle p,
+.hero-banner-{{ section.id }} .hero-banner__subtitle h1,
+.hero-banner-{{ section.id }} .hero-banner__subtitle h2,
+.hero-banner-{{ section.id }} .hero-banner__subtitle strong {
+  color: {{ section.settings.accent_color }};
+  font-weight: {%- if section.settings.use_hero_typography -%}{{ settings.hero_subtitle_font_weight }}{%- else -%}700{%- endif -%};
+}
+
+.hero-banner-{{ section.id }} .hero-banner__subtitle h1,
+.hero-banner-{{ section.id }} .hero-banner__subtitle h2,
+.hero-banner-{{ section.id }} .hero-banner__subtitle p {
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  line-height: inherit;
+  white-space: nowrap;
+}
+
+.hero-banner-{{ section.id }} .hero-banner__title strong {
+  color: {{ section.settings.decoration_color }};
+}
+
+/* Title p/h1/h2 inherit from parent .hero-banner__title */
+.hero-banner-{{ section.id }} .hero-banner__title p,
+.hero-banner-{{ section.id }} .hero-banner__title h1,
+.hero-banner-{{ section.id }} .hero-banner__title h2 {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-align: inherit;
+  margin: 0 0 4px;
+  text-transform: uppercase;
+}
+
+.hero-banner-{{ section.id }} .hero-banner__title p strong,
+.hero-banner-{{ section.id }} .hero-banner__title p b {
+  font-weight: inherit;
+  color: {{ section.settings.decoration_color }};
+}
+
+  /* Decorative elements */
+  .hero-banner-{{ section.id }} {
+    position: relative;
+    isolation: isolate;
+    /* overflow:hidden removed — was clipping image outlines/borders */
+  }
+
+  /* Clip decorative elements without affecting image borders */
+  .hero-banner-{{ section.id }} .hero-banner__container {
+    overflow: visible;
+  }
+
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'decor' -%}
+      {%- assign safe_id = block.id | replace: '-', '_' -%}
+      .hero-decor--{{ safe_id }} {
+        position: absolute;
+        left: {{ block.settings.pos_x }}%;
+        top: {{ block.settings.pos_y }}%;
+        width: {{ block.settings.size }}px;
+        height: {{ block.settings.size }}px;
+        transform: rotate({{ block.settings.rotation }}deg);
+        opacity: {{ block.settings.opacity | divided_by: 100.0 }};
+        pointer-events: none;
+        z-index: 0;
+      }
+      .hero-decor--{{ safe_id }} img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'decor_large' -%}
+      {%- assign safe_id = block.id | replace: '-', '_' -%}
+      .hero-decor-lg--{{ safe_id }} {
+        position: absolute;
+        left: {{ block.settings.pos_x }}%;
+        top: {{ block.settings.pos_y }}%;
+        width: {{ block.settings.size }}px;
+        height: {{ block.settings.size }}px;
+        transform: rotate({{ block.settings.rotation }}deg);
+        opacity: {{ block.settings.opacity | divided_by: 100.0 }};
+        pointer-events: none;
+        z-index: 0;
+      }
+      .hero-decor-lg--{{ safe_id }} img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+    {%- endif -%}
+  {%- endfor -%}
+
+{%- endstyle -%}
+
+<div class="hero-banner-{{ section.id }}">
+
+  {%- comment -%} Decorative elements {%- endcomment -%}
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'decor' -%}
+      {%- assign safe_id = block.id | replace: '-', '_' -%}
+      <div class="hero-decor--{{ safe_id }}" {{ block.shopify_attributes }} aria-hidden="true">
+        {%- if block.settings.image != blank -%}
+          {{ block.settings.image | image_url: width: 200 | image_tag: loading: 'lazy', alt: '' }}
+        {%- endif -%}
+      </div>
+    {%- elsif block.type == 'decor_large' -%}
+      {%- assign safe_id = block.id | replace: '-', '_' -%}
+      <div class="hero-decor-lg--{{ safe_id }}" {{ block.shopify_attributes }} aria-hidden="true">
+        {%- if block.settings.image != blank -%}
+          {{ block.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', alt: '' }}
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+
+  <div class="hero-banner__container" style="position:relative;z-index:2;">
+    <div class="hero-banner__grid page-width">
+
+      {%- comment -%} Text Column {%- endcomment -%}
+      <div class="hero-banner__text-col">
+        {%- if section.settings.title != blank -%}
+          <div class="hero-banner__title">{{ section.settings.title }}</div>
+        {%- endif -%}
+
+        {%- if section.settings.subtitle != blank -%}
+          {%- if section.settings.enable_subtitle_decor -%}
+            {%- if request.locale.iso_code == 'uk' -%}
+              {%- assign paw_pos_val = section.settings.paw_letter_pos_uk -%}
+              {%- assign subtitle_source = section.settings.subtitle_uk -%}
+            {%- else -%}
+              {%- assign paw_pos_val = section.settings.paw_letter_pos -%}
+              {%- assign subtitle_source = section.settings.subtitle -%}
+            {%- endif -%}
+            {%- if paw_pos_val > 0 -%}
+              {%- assign paw_pos = paw_pos_val | minus: 1 -%}
+              {%- assign subtitle_raw = subtitle_source | strip_html | strip -%}
+              {%- assign total_len = subtitle_raw | size -%}
+              {%- assign before_paw = subtitle_raw | slice: 0, paw_pos -%}
+              {%- assign paw_letter = subtitle_raw | slice: paw_pos, 1 -%}
+              {%- assign after_start = paw_pos | plus: 1 -%}
+              {%- assign after_len = total_len | minus: after_start -%}
+              {%- assign after_paw = subtitle_raw | slice: after_start, after_len -%}
+              {%- if request.locale.iso_code == 'uk' -%}
+                {%- assign before_break = subtitle_raw | split: 'витвір' | first -%}
+                {%- assign after_break = subtitle_raw | split: 'витвір' | last | lstrip -%}
+                {%- assign after_break_len = after_break | size -%}
+                {%- assign uk_paw_pos = section.settings.paw_letter_pos_uk | minus: 1 -%}
+                {%- assign uk_before = after_break | slice: 0, uk_paw_pos -%}
+                {%- assign uk_paw_letter = after_break | slice: uk_paw_pos, 1 -%}
+                {%- assign uk_after_start = uk_paw_pos | plus: 1 -%}
+                {%- assign uk_after = after_break | slice: uk_after_start, after_break_len -%}
+                {%- capture subtitle_html %}<h1><strong>{{ before_break }}витвір<span class="subtitle-break"> </span>{{ uk_before }}<span class="paw-letter">{{ uk_paw_letter }}</span>{{ uk_after }}</strong></h1>{%- endcapture -%}
+              {%- else -%}
+                {%- capture subtitle_html %}<h1><strong>{{ before_paw }}<span class="paw-letter">{{ paw_letter }}</span>{{ after_paw }}</strong></h1>{%- endcapture -%}
+              {%- endif -%}
+            {%- else -%}
+              {%- assign subtitle_html = subtitle_source -%}
+            {%- endif -%}
+          {%- else -%}
+            {%- if request.locale.iso_code == 'uk' and section.settings.subtitle_uk != blank -%}
+              {%- assign subtitle_html = section.settings.subtitle_uk -%}
+            {%- else -%}
+              {%- assign subtitle_html = section.settings.subtitle -%}
+            {%- endif -%}
+          {%- endif -%}
+          <div class="hero-banner__subtitle">
+            {{ subtitle_html }}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.description != blank -%}
+          {%- assign desc_html = section.settings.description -%}
+          {%- if section.settings.description_highlight_words != blank -%}
+            {%- assign highlight_words = section.settings.description_highlight_words | split: ',' -%}
+            {%- for word in highlight_words -%}
+              {%- assign trimmed = word | strip -%}
+              {%- if trimmed != blank -%}
+                {%- assign wrapped = '<span class="hero-desc-highlight">' | append: trimmed | append: '</span>' -%}
+                {%- assign desc_html = desc_html | replace: trimmed, wrapped -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+          <div class="hero-banner__description">
+            {{ desc_html }}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.button_label != blank -%}
+          <a
+            href="{{ section.settings.button_link | default: '#' }}"
+            class="hero-banner__button"
+            {% if section.settings.button_open_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+          >
+            {{ section.settings.button_label }}
+          </a>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Image Column {%- endcomment -%}
+      <div class="hero-banner__image-col">
+        {%- liquid
+          assign layout = section.settings.gallery_layout
+          assign imgs = ''
+          assign img1 = section.settings.image
+          assign img2 = section.settings.image_2
+          assign img3 = section.settings.image_3
+          assign img4 = section.settings.image_4
+          assign img_sizes = '(max-width: 1199px) ' | append: section.settings.image_width_mobile | append: 'px, ' | append: section.settings.image_width | append: 'px'
+
+          if layout == '1'
+            assign visible_count = 1
+          elsif layout == '2-vertical'
+            assign visible_count = 2
+          elsif layout == '3-top1' or layout == '3-top2'
+            assign visible_count = 3
+          elsif layout == '4-grid'
+            assign visible_count = 4
+          endif
+        -%}
+
+        {%- comment -%} Build images array {%- endcomment -%}
+        {%- assign gallery_images = '' | split: '' -%}
+        {%- if img1 != blank -%}{%- assign gallery_images = gallery_images | push: img1 -%}{%- endif -%}
+        {%- if img2 != blank and visible_count >= 2 -%}{%- assign gallery_images = gallery_images | push: img2 -%}{%- endif -%}
+        {%- if img3 != blank and visible_count >= 3 -%}{%- assign gallery_images = gallery_images | push: img3 -%}{%- endif -%}
+        {%- if img4 != blank and visible_count >= 4 -%}{%- assign gallery_images = gallery_images | push: img4 -%}{%- endif -%}
+
+        <div class="hero-banner__gallery">
+          {%- if layout == '1' -%}
+            <div class="hero-gallery__item hero-gallery__item--1">
+              {%- if img1 != blank -%}
+                {{ img1 | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '300, 400, 500, 600, 800, 1000, 1200', sizes: img_sizes, alt: img1.alt | escape }}
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </div>
+
+          {%- elsif layout == '2-vertical' -%}
+            {%- for i in (1..2) -%}
+              {%- assign cur_img = img1 -%}{%- if i == 2 -%}{%- assign cur_img = img2 -%}{%- endif -%}
+              <div class="hero-gallery__item hero-gallery__item--{{ i }}">
+                {%- if cur_img != blank -%}{{ cur_img | image_url: width: 800 | image_tag: loading: 'lazy' }}{%- else -%}{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}{%- endif -%}
+              </div>
+            {%- endfor -%}
+
+          {%- elsif layout == '3-top1' -%}
+            <div class="hero-gallery__row">
+              <div class="hero-gallery__item hero-gallery__item--1">
+                {%- if img1 != blank -%}{{ img1 | image_url: width: 1000 | image_tag: loading: 'lazy' }}{%- else -%}{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}{%- endif -%}
+              </div>
+            </div>
+            <div class="hero-gallery__row">
+              {%- for i in (2..3) -%}
+                {%- assign cur_img = img2 -%}{%- if i == 3 -%}{%- assign cur_img = img3 -%}{%- endif -%}
+                <div class="hero-gallery__item hero-gallery__item--{{ i }}">
+                  {%- if cur_img != blank -%}{{ cur_img | image_url: width: 600 | image_tag: loading: 'lazy' }}{%- else -%}{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}{%- endif -%}
+                </div>
+              {%- endfor -%}
+            </div>
+
+          {%- elsif layout == '3-top2' -%}
+            <div class="hero-gallery__row">
+              {%- for i in (1..2) -%}
+                {%- assign cur_img = img1 -%}{%- if i == 2 -%}{%- assign cur_img = img2 -%}{%- endif -%}
+                <div class="hero-gallery__item hero-gallery__item--{{ i }}">
+                  {%- if cur_img != blank -%}{{ cur_img | image_url: width: 600 | image_tag: loading: 'lazy' }}{%- else -%}{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}{%- endif -%}
+                </div>
+              {%- endfor -%}
+            </div>
+            <div class="hero-gallery__row">
+              <div class="hero-gallery__item hero-gallery__item--3">
+                {%- if img3 != blank -%}{{ img3 | image_url: width: 1000 | image_tag: loading: 'lazy' }}{%- else -%}{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}{%- endif -%}
+              </div>
+            </div>
+
+          {%- elsif layout == '4-grid' -%}
+            <div class="hero-gallery__row">
+              {%- for i in (1..2) -%}
+                {%- assign cur_img = img1 -%}{%- if i == 2 -%}{%- assign cur_img = img2 -%}{%- endif -%}
+                <div class="hero-gallery__item hero-gallery__item--{{ i }}">
+                  {%- if cur_img != blank -%}{{ cur_img | image_url: width: 600 | image_tag: loading: 'lazy' }}{%- else -%}{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}{%- endif -%}
+                </div>
+              {%- endfor -%}
+            </div>
+            <div class="hero-gallery__row">
+              {%- for i in (3..4) -%}
+                {%- assign cur_img = img3 -%}{%- if i == 4 -%}{%- assign cur_img = img4 -%}{%- endif -%}
+                <div class="hero-gallery__item hero-gallery__item--{{ i }}">
+                  {%- if cur_img != blank -%}{{ cur_img | image_url: width: 600 | image_tag: loading: 'lazy' }}{%- else -%}{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}{%- endif -%}
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  (() => {
+    function scaleHeroGallery() {
+      const section = document.getElementById('shopify-section-{{ section.id }}');
+      if (!section) return;
+      const col = section.querySelector('.hero-banner__image-col');
+      const gallery = section.querySelector('.hero-banner__gallery');
+      if (!col || !gallery) return;
+
+      if (window.innerWidth > 749) {
+        gallery.style.transform = '';
+        gallery.style.transformOrigin = '';
+        col.style.height = '';
+        return;
+      }
+
+      gallery.style.transform = '';
+      const galleryW = gallery.scrollWidth;
+      const colW = col.clientWidth;
+
+      if (galleryW > colW && galleryW > 0) {
+        const scale = colW / galleryW;
+        gallery.style.transformOrigin = 'top left';
+        gallery.style.transform = 'scale(' + scale + ')';
+        col.style.height = Math.round(gallery.scrollHeight * scale) + 'px';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', scaleHeroGallery);
+    window.addEventListener('resize', scaleHeroGallery);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Color Scheme"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color text",
+      "default": "#E9A753"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        { "value": "right", "label": "Text left, Image right" },
+        { "value": "left",  "label": "Image left, Text right" }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "range",
+      "id": "col_width_text",
+      "label": "Text column width (%)",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "col_width_image",
+      "label": "Image column width (%)",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "columns_gap",
+      "label": "Gap between columns (desktop)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "columns_gap_mobile",
+      "label": "Gap between columns (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Section Padding (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_horizontal",
+      "label": "Padding horizontal",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "header",
+      "content": "Section Padding (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top_mobile",
+      "label": "Padding top (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom_mobile",
+      "label": "Padding bottom (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "section_padding_horizontal_mobile",
+      "label": "Padding horizontal (mobile)",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_hero_typography",
+      "label": "Use Section Main Hero typography",
+      "info": "If enabled — uses Section Main Hero settings from Theme Settings. If disabled — uses Section headings.",
+      "default": true
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p><strong>Turn Your Pet's Photo Into</strong></p><p><strong>A Work Of Art!</strong></p>"
+    },
+    {
+      "type": "range",
+      "id": "title_margin_bottom",
+      "label": "Title margin bottom (desktop)",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "title_margin_bottom_mobile",
+      "label": "Title margin bottom (mobile)",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Subtitle"
+    },
+
+
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subtitle (EN)",
+      "default": "<p>One-Of-A-Kind Portraits, Apparel & Gifts</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle_uk",
+      "label": "Subtitle (UK)",
+      "default": "<p>На витвір мистецтва!</p>"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_margin_bottom",
+      "label": "Subtitle margin bottom (desktop)",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "subtitle_margin_bottom_mobile",
+      "label": "Subtitle margin bottom (mobile)",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size",
+      "label": "Subtitle font size (desktop)",
+      "min": 12,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size_mobile",
+      "label": "Subtitle font size (mobile)",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+
+    {
+      "type": "select",
+      "id": "subtitle_font_weight",
+      "label": "Subtitle font weight (EN)",
+      "options": [
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "SemiBold (600)" },
+        { "value": "700", "label": "Bold (700)" },
+        { "value": "800", "label": "ExtraBold (800)" },
+        { "value": "900", "label": "Black (900)" }
+      ],
+      "default": "800"
+    },
+    {
+      "type": "header",
+      "content": "🔤 Subtitle (UK)"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_size_uk",
+      "label": "Subtitle font size desktop (UK)",
+      "min": 12,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 36
+    },
+
+    {
+      "type": "select",
+      "id": "subtitle_font_weight_uk",
+      "label": "Subtitle font weight (UK)",
+      "options": [
+        { "value": "400", "label": "Regular (400)" },
+        { "value": "500", "label": "Medium (500)" },
+        { "value": "600", "label": "SemiBold (600)" },
+        { "value": "700", "label": "Bold (700)" },
+        { "value": "800", "label": "ExtraBold (800)" },
+        { "value": "900", "label": "Black (900)" }
+      ],
+      "default": "800"
+    },
+    {
+      "type": "header",
+      "content": "Description"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>Turn any pet photo into a <strong>One-Of-A-Kind</strong> Portrait, Apparel, Or Gift — Professionally Designed And Perfected With Unlimited Revisions</p>"
+    },
+    {
+      "type": "text",
+      "id": "description_highlight_words",
+      "label": "Highlighted words in description (comma-separated)",
+      "info": "Enter words from description separated by commas. They will be highlighted in yellow."
+    },
+    {
+      "type": "range",
+      "id": "description_margin_bottom",
+      "label": "Description margin bottom (desktop)",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "description_margin_bottom_mobile",
+      "label": "Description margin bottom (mobile)",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "select",
+      "id": "description_text_transform",
+      "label": "Description text case",
+      "options": [
+        { "value": "none",       "label": "Default" },
+        { "value": "uppercase",  "label": "UPPERCASE" },
+        { "value": "lowercase",  "label": "lowercase" },
+        { "value": "capitalize", "label": "Capitalize Each Word" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "header",
+      "content": "Button"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_open_new_tab",
+      "label": "Open link in new tab",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background color",
+      "default": "#C89A2A"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical",
+      "label": "Button padding vertical",
+      "min": 4,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal",
+      "label": "Button padding horizontal",
+      "min": 8,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Button border radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Image gallery"
+    },
+    {
+      "type": "select",
+      "id": "gallery_layout",
+      "label": "Gallery layout",
+      "options": [
+        { "value": "1",        "label": "1 image" },
+        { "value": "2-vertical", "label": "2 images — stacked" },
+        { "value": "3-top1",   "label": "3 images — 1 top, 2 bottom" },
+        { "value": "3-top2",   "label": "3 images — 2 top, 1 bottom" },
+        { "value": "4-grid",   "label": "4 images — 2×2 grid" }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "range",
+      "id": "gallery_gap",
+      "label": "Gap between images",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "gallery_row1_height",
+      "label": "Row 1 height",
+      "min": 100,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "default": 280
+    },
+    {
+      "type": "range",
+      "id": "gallery_row2_height",
+      "label": "Row 2 height",
+      "min": 100,
+      "max": 600,
+      "step": 10,
+      "unit": "px",
+      "default": 220
+    },
+    {
+      "type": "checkbox",
+      "id": "gallery_border_radius",
+      "label": "Enable border radius on gallery images",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "gallery_border_radius_px",
+      "label": "Gallery images border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "select",
+      "id": "gallery_chess",
+      "label": "Image alignment",
+      "options": [
+        { "value": "default",       "label": "Default — aligned top" },
+        { "value": "chess",         "label": "Chess — even images offset down" },
+        { "value": "chess-reverse", "label": "Chess reverse — odd images offset down" }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "range",
+      "id": "gallery_chess_offset",
+      "label": "Chess offset",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "select",
+      "id": "gallery_col_ratio",
+      "label": "Column proportions (2-col layouts)",
+      "info": "Controls width ratio between left and right columns",
+      "options": [
+        { "value": "1fr 1fr",   "label": "1:1 — Equal" },
+        { "value": "3fr 2fr",   "label": "3:2 — Left wider" },
+        { "value": "2fr 3fr",   "label": "2:3 — Right wider" },
+        { "value": "2fr 1fr",   "label": "2:1 — Left much wider" },
+        { "value": "1fr 2fr",   "label": "1:2 — Right much wider" }
+      ],
+      "default": "1fr 1fr"
+    },
+    {
+      "type": "header",
+      "content": "Image 1 (gallery)"
+    },
+    {
+      "type": "range",
+      "id": "img1_width",
+      "label": "Image 1 width",
+      "min": 100,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "default": 400
+    },
+    {
+      "type": "header",
+      "content": "Image (single layout)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "label": "Image width",
+      "info": "Height scales proportionally. On mobile the image always fills full width.",
+      "min": 100,
+      "max": 900,
+      "step": 10,
+      "unit": "px",
+      "default": 500
+    },
+    {
+  "type": "range",
+  "id": "image_width_mobile",
+  "label": "Image width (mobile)",
+  "min": 100,
+  "max": 500,
+  "step": 10,
+  "unit": "px",
+  "default": 300
+},
+    {
+      "type": "checkbox",
+      "id": "image_border_radius",
+      "label": "Enable image border radius",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius_px",
+      "label": "Image border radius",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Border (all images)"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_image_border",
+      "label": "Show border frame around image",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "decoration_color",
+      "label": "Border color",
+      "default": "#C89A2A"
+    },
+    {
+      "type": "range",
+      "id": "border_thickness",
+      "label": "Border thickness",
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "decoration_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "range",
+      "id": "img2_width",
+      "label": "Image 2 width",
+      "min": 100,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "default": 400
+    },
+    {
+      "type": "header",
+      "content": "Image 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "range",
+      "id": "img3_width",
+      "label": "Image 3 width",
+      "min": 100,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "default": 400
+    },
+    {
+      "type": "header",
+      "content": "Image 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image 4"
+    },
+    {
+      "type": "range",
+      "id": "img4_width",
+      "label": "Image 4 width",
+      "min": 100,
+      "max": 800,
+      "step": 10,
+      "unit": "px",
+      "default": 400
+    },
+    {
+      "type": "header",
+      "content": "Decorators"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_subtitle_decor",
+      "label": "Enable subtitle decorators (curve + paw)",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Paw position"
+    },
+    {
+      "type": "number",
+      "id": "paw_letter_pos",
+      "label": "Paw — letter number (EN)",
+      "info": "Which letter to center paw over (1 = first). E.g. for 'A WORK OF ART!' — O = 4",
+      "default": 4
+    },
+    {
+      "type": "number",
+      "id": "paw_letter_pos_uk",
+      "label": "Paw — letter number (UK)",
+      "info": "Which letter to center paw over for Ukrainian subtitle",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "paw_size_css",
+      "label": "Paw size",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "info": "% of letter size: 100 = same as letter, 30 = small paw",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "paw_offset_top_css",
+      "label": "Paw top position (EN)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "info": "% from top of letter. Use DevTools to find value",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "paw_offset_x_css",
+      "label": "Paw left position (EN)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "info": "% from left of letter. Use DevTools to find value",
+      "default": 33
+    },
+    {
+      "type": "range",
+      "id": "paw_offset_top_css_uk",
+      "label": "Paw top position (UK)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "info": "% from top of letter",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "paw_offset_x_css_uk",
+      "label": "Paw left position (UK)",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "info": "% from left of letter",
+      "default": 33
+    },
+    {
+      "type": "header",
+      "content": "Line Desktop"
+    },
+    {
+      "type": "range",
+      "id": "decor_line_offset_x",
+      "label": "Line — horizontal offset (EN)",
+      "min": -50,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "decor_line_offset_y",
+      "label": "Line — vertical offset (EN)",
+      "min": -20,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "range",
+      "id": "decor_line_offset_x_uk",
+      "label": "Line — horizontal offset (UK)",
+      "min": -50,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "decor_line_offset_y_uk",
+      "label": "Line — vertical offset (UK)",
+      "min": -20,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Line Mobile"
+    },
+    {
+      "type": "range",
+      "id": "decor_line_offset_x_mobile",
+      "label": "Line — horizontal offset (EN)",
+      "min": -50,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "decor_line_offset_y_mobile",
+      "label": "Line — vertical offset (EN)",
+      "min": -20,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 21
+    },
+    {
+      "type": "range",
+      "id": "decor_line_offset_x_mobile_uk",
+      "label": "Line — horizontal offset (UK)",
+      "min": -50,
+      "max": 50,
+      "step": 1,
+      "unit": "%",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "decor_line_offset_y_mobile_uk",
+      "label": "Line — vertical offset (UK)",
+      "min": -20,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "default": 21
+    }
+  ],
+  "blocks": [
+    {
+      "type": "decor",
+      "name": "Decorative element",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image (SVG or PNG)"
+        },
+        {
+          "type": "range",
+          "id": "size",
+          "label": "Size",
+          "min": 20,
+          "max": 520,
+          "step": 5,
+          "unit": "px",
+          "default": 60
+        },
+        {
+          "type": "range",
+          "id": "pos_x",
+          "label": "Horizontal position",
+          "info": "0% = left edge, 100% = right edge",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "pos_y",
+          "label": "Vertical position",
+          "info": "0% = top, 100% = bottom",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "rotation",
+          "label": "Rotation",
+          "min": 0,
+          "max": 360,
+          "step": 5,
+          "unit": "°",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "opacity",
+          "label": "Opacity",
+          "min": 10,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 50
+        }
+      ]
+    }
+    ,
+    {
+      "type": "decor_large",
+      "name": "Decor element (large)",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image (SVG or PNG)"
+        },
+        {
+          "type": "range",
+          "id": "size",
+          "label": "Size",
+          "min": 100,
+          "max": 1200,
+          "step": 11,
+          "unit": "px",
+          "default": 595
+        },
+        {
+          "type": "range",
+          "id": "pos_x",
+          "label": "Horizontal position",
+          "info": "0% = left, 100% = right. Can be negative to go off-screen.",
+          "min": -100,
+          "max": 150,
+          "step": 5,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "pos_y",
+          "label": "Vertical position",
+          "info": "0% = top, 100% = bottom.",
+          "min": -100,
+          "max": 150,
+          "step": 5,
+          "unit": "%",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "rotation",
+          "label": "Rotation",
+          "min": 0,
+          "max": 360,
+          "step": 5,
+          "unit": "°",
+          "default": 0
+        },
+        {
+          "type": "range",
+          "id": "opacity",
+          "label": "Opacity",
+          "min": 10,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 20
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner"
+    }
+  ]
+}
+{% endschema %}

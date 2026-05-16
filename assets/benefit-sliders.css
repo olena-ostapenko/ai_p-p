@@ -1,0 +1,247 @@
+/* ============================================================
+   benefit-sliders.css
+   ============================================================ */
+
+/* ── Section wrapper ────────────────────────────────────── */
+.bs-section { width: 100%; }
+
+/* ── Header ─────────────────────────────────────────────── */
+.bs-header { margin-bottom: var(--section-heading-margin-bottom, 24px); }
+.bs-header--center { text-align: center; }
+.bs-header--left   { text-align: left; }
+.bs-section .section-figma__heading p { margin: 0; }
+
+/* ── Two-column grid ─────────────────────────────────────── */
+.bs-grid {
+  display: flex;
+  align-items: flex-start;
+  gap: 48px;
+}
+
+/* Sliders first — reverse order */
+.bs--sliders-first .bs-grid {
+  flex-direction: row-reverse;
+}
+
+.bs-col--benefit  { flex: 0 0 auto; width: 430px; max-width: 100%; }
+.bs-col--sliders {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  /* Extend to right edge of viewport */
+  margin-right: calc(-1 * (100vw - var(--page-width, 1200px)) / 2 - var(--page-width-padding, 24px));
+}
+
+.bs--sliders-first .bs-col--sliders {
+  margin-right: 0;
+  margin-left: calc(-1 * (100vw - var(--page-width, 1200px)) / 2 - var(--page-width-padding, 24px));
+}
+
+/* ── Benefit items ───────────────────────────────────────── */
+.bs-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.bs-feature:last-child { margin-bottom: 0; }
+
+.bs-feature__icon-wrap {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.bs-feature__icon-wrap img,
+.bs-feature__icon-wrap svg { width: 55%; height: 55%; object-fit: contain; }
+
+.bs-feature__title {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0 0 4px;
+  color: rgb(var(--color-foreground));
+}
+.bs-feature__desc {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+  margin: 0;
+  color: rgb(var(--color-foreground));
+}
+
+/* ── Slider ─────────────────────────────────────────────── */
+.bs-slider-wrap {
+  position: relative;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.bs-slider-wrap:last-child { margin-bottom: 0; }
+
+.bs-slider {
+  position: relative;
+  width: 100%;
+  /* overflow:clip lets absolute nav buttons clip to col width
+     but does NOT create scroll container — track can still overflow */
+  overflow: clip;
+}
+
+/* Track — scroll within expanded col */
+.bs-slider--overflow-right .bs-slider__track,
+.bs-slider--overflow-left .bs-slider__track {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.bs-slider__track::-webkit-scrollbar { display: none; }
+
+.bs-slider__track {
+  display: flex;
+  gap: 12px;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+/* Blur on inner edge slides */
+.bs-slide {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  position: relative;
+  border-radius: var(--product-card-corner-radius, 0.8rem);
+  overflow: hidden;
+  transition: filter 0.3s ease;
+  aspect-ratio: 4 / 3;
+  height: 100%;
+}
+
+.bs-slide__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Inner edge blur — applied via JS */
+.bs-slide--edge {
+  filter: blur(0px);
+}
+
+/* Gradient fade on inner edge */
+.bs-slider--overflow-right,
+.bs-slider--overflow-left {
+  position: relative;
+}
+
+.bs-slider--overflow-right::before,
+.bs-slider--overflow-left::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Benefit-first: sliders on right → fade on left inner edge */
+.bs-slider--overflow-right::before {
+  left: 0;
+  background: linear-gradient(to right,
+    rgb(var(--color-background)) 0%,
+    transparent 100%
+  );
+}
+
+/* Sliders-first: sliders on left → fade on right inner edge */
+.bs-slider--overflow-left::after {
+  right: 0;
+  background: linear-gradient(to left,
+    rgb(var(--color-background)) 0%,
+    transparent 100%
+  );
+}
+
+/* ── Nav buttons — same style as Our Best Sellers ─────── */
+/* Positioned relative to .bs-slider-wrap (col width, not overflow track) */
+.bs-slider__nav {
+  position: absolute;
+  top: 0;
+  width: 58px;
+  height: 50px;
+  border-radius: var(--buttons-radius, 10px);
+  border: 0;
+  background: #ffffff;
+  box-shadow:
+    0 1px 2px rgba(0,0,0,0.10),
+    0 3px 3px rgba(0,0,0,0.09),
+    0 7px 4px rgba(0,0,0,0.05),
+    0 12px 5px rgba(0,0,0,0.01);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transform: translateY(var(--bs-nav-top, 0px));
+}
+.bs-slider__nav--prev { left: 8px; }
+.bs-slider__nav--next { right: 8px; left: auto; }
+/* Top set by JS */
+
+.bs-slider__nav .icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bs-slider__nav--next .icon { transform: rotate(-45deg); }
+.bs-slider__nav--prev .icon { transform: rotate(45deg); }
+
+/* ── Footer button ───────────────────────────────────────── */
+.bs-footer { margin-top: 40px; }
+.bs-btn {
+  display: inline-block;
+  padding: 14px 40px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+.bs-btn:hover { opacity: 0.85; }
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media screen and (max-width: 989px) {
+  .bs-grid {
+    flex-direction: column;
+    gap: 32px;
+  }
+  .bs--sliders-first .bs-grid { flex-direction: column; }
+  .bs-col--benefit { width: 100%; }
+
+  /* Reset desktop overflow extension on mobile */
+  .bs-col--sliders {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .bs-section {
+    overflow: hidden;
+  }
+
+  .bs-slider--overflow-right .bs-slider__track,
+  .bs-slider--overflow-left .bs-slider__track {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+}
+
+@media screen and (max-width: 989px) {
+  .bs-slider__nav {
+    display: none;
+  }
+}

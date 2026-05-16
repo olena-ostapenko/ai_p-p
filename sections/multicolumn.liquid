@@ -13,6 +13,122 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  /* Title accent */
+  .multicolumn-{{ section.id }} .mc-title__accent {
+    color: {{ section.settings.title_accent_color }};
+  }
+
+  /* Override Dawn h2 styles — use global section heading vars */
+  #shopify-section-{{ section.id }} h2.section-figma__heading {
+    font-size: var(--section-heading-size-mobile, 26px);
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: var(--section-heading-align-mobile, center);
+    margin: 0 0 var(--section-heading-margin-bottom, 12px);
+    text-transform: uppercase;
+  }
+
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} h2.section-figma__heading {
+      font-size: var(--section-heading-size-desktop, 36px);
+      text-align: var(--section-heading-align-desktop, left);
+    }
+  }
+
+  .multicolumn-{{ section.id }} .section-figma__heading p {
+    margin: 0;
+    display: block;
+  }
+
+  .multicolumn-{{ section.id }} .title-wrapper-with-link {
+    margin-bottom: var(--section-heading-margin-bottom, 12px);
+  }
+
+  /* Column card title & text */
+  .multicolumn-{{ section.id }} .multicolumn-card__info h3 {
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0 0 10px;
+    color: rgb(var(--color-foreground));
+  }
+
+  .multicolumn-{{ section.id }} .multicolumn-card__info .rte,
+  .multicolumn-{{ section.id }} .multicolumn-card__info .rte p {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: rgb(var(--color-foreground));
+  }
+
+  {%- if section.settings.show_step_badges -%}
+  /* Step badge circle */
+  .multicolumn-{{ section.id }} .mc-step-badge {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background-color: {{ section.settings.badge_color }};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .multicolumn-{{ section.id }} .mc-step-badge__number {
+    font-size: 28px;
+    font-weight: 700;
+    color: rgb(var(--color-foreground));
+    position: relative;
+    z-index: 1;
+    line-height: 1;
+  }
+
+  .multicolumn-{{ section.id }} .mc-step-badge__paw {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    width: 36px;
+    height: 36px;
+    opacity: 0.6;
+    transform: rotate(-20deg);
+    pointer-events: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    /* More gap between columns */
+    .multicolumn-{{ section.id }} .multicolumn-list {
+      row-gap: {{ section.settings.mobile_row_gap }}px;
+      column-gap: {{ section.settings.mobile_col_gap }}px;
+    }
+
+    .multicolumn-{{ section.id }} .mc-step-badge {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .multicolumn-{{ section.id }} .mc-step-badge__paw {
+      width: 36px;
+      height: 36px;
+    }
+    .multicolumn-{{ section.id }} .multicolumn-card__info h3 {
+      font-size: 19px;
+    }
+    .multicolumn-{{ section.id }} .multicolumn-card__info .rte,
+    .multicolumn-{{ section.id }} .multicolumn-card__info .rte p {
+      font-size: 16px;
+    }
+    .multicolumn-{{ section.id }} .mc-step-badge__number {
+      font-size: 22px;
+    }
+  }
+
+  .multicolumn-{{ section.id }} .mc-step-badge__paw img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  {%- endif -%}
 {%- endstyle -%}
 
 {%- liquid
@@ -21,20 +137,47 @@
   if section.settings.swipe_on_mobile and section.blocks.size > columns_mobile_int
     assign show_mobile_slider = true
   endif
+
+  assign accent_words = section.settings.title_accent_words | strip | split: ','
 -%}
 
-<div class="multicolumn color-{{ section.settings.color_scheme }} gradient{% unless section.settings.background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} background-{{ section.settings.background_style }}{% endunless %}{% if section.settings.title == blank %} no-heading{% endif %}">
+<div class="multicolumn multicolumn-{{ section.id }} color-{{ section.settings.color_scheme }} gradient{% unless section.settings.background_style == 'none' and settings.text_boxes_border_thickness > 0 or settings.text_boxes_shadow_opacity > 0 %} background-{{ section.settings.background_style }}{% endunless %}{% if section.settings.title == blank %} no-heading{% endif %}">
   <div
     class="page-width section-{{ section.id }}-padding isolate{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
     {% if settings.animations_reveal_on_scroll %}
       data-cascade
     {% endif %}
   >
+
     {%- unless section.settings.title == blank -%}
       <div class="title-wrapper-with-link title-wrapper--self-padded-mobile title-wrapper--no-top-margin multicolumn__title">
-        <h2 class="title inline-richtext {{ section.settings.heading_size }}">
-          {{ section.settings.title }}
-        </h2>
+        {%- if section.settings.title_accent_words != blank -%}
+          {%- comment -%}
+            Strip <p> tags, replace </p> with space, keep inline content.
+            Then wrap accent words in span.
+          {%- endcomment -%}
+          {%- assign plain_title = section.settings.title | replace: '</p>', '<br>' | replace: '<p>', '' | replace: '</h2>', '<br>' | replace: '<h2>', '' | replace: '</h1>', '<br>' | replace: '<h1>', '' | replace: '</h3>', '<br>' | replace: '<h3>', '' | strip -%}
+          {%- assign rendered_title = plain_title -%}
+          {%- for aw in accent_words -%}
+            {%- assign aw_trim = aw | strip -%}
+            {%- if aw_trim != blank -%}
+              {%- assign upper_word = aw_trim | upcase -%}
+              {%- assign cap_word   = aw_trim | capitalize -%}
+              {%- assign lower_word = aw_trim | downcase -%}
+              {%- assign wrap_upper = '<span class="mc-title__accent">' | append: upper_word | append: '</span>' -%}
+              {%- assign wrap_cap   = '<span class="mc-title__accent">' | append: cap_word   | append: '</span>' -%}
+              {%- assign wrap_lower = '<span class="mc-title__accent">' | append: lower_word | append: '</span>' -%}
+              {%- assign rendered_title = rendered_title | replace: upper_word, wrap_upper -%}
+              {%- assign rendered_title = rendered_title | replace: cap_word,   wrap_cap   -%}
+              {%- assign rendered_title = rendered_title | replace: lower_word, wrap_lower -%}
+            {%- endif -%}
+          {%- endfor -%}
+          <h2 class="section-figma__heading">{{ rendered_title }}</h2>
+        {%- else -%}
+          {%- assign plain_title = section.settings.title | replace: '</p>', '<br>' | replace: '<p>', '' | replace: '</h2>', '<br>' | replace: '<h2>', '' | replace: '</h1>', '<br>' | replace: '<h1>', '' | replace: '</h3>', '<br>' | replace: '<h3>', '' | strip -%}
+          <h2 class="section-figma__heading">{{ plain_title }}</h2>
+        {%- endif -%}
+
         {%- if section.settings.button_label != blank and show_mobile_slider -%}
           <a href="{{ section.settings.button_link }}" class="link underlined-link large-up-hide">
             {{- section.settings.button_label | escape -}}
@@ -42,6 +185,7 @@
         {%- endif -%}
       </div>
     {%- endunless -%}
+
     <slider-component class="slider-mobile-gutter">
       <ul
         class="multicolumn-list contains-content-container grid grid--{{ section.settings.columns_mobile }}-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop{% if show_mobile_slider %} slider slider--tablet grid--peek{% endif %}"
@@ -56,6 +200,7 @@
             endif
           endfor
         -%}
+
         {%- for block in section.blocks -%}
           {%- assign empty_column = '' -%}
           {%- if block.settings.image == blank
@@ -76,6 +221,20 @@
             {% endif %}
           >
             <div class="multicolumn-card content-container">
+
+              {%- comment -%} Step badge {%- endcomment -%}
+              {%- if section.settings.show_step_badges -%}
+                <div class="mc-step-badge">
+                  <span class="mc-step-badge__number">{{ forloop.index }}</span>
+                  <div class="mc-step-badge__paw" aria-hidden="true">
+                    <img
+                      src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/hero_paw_b7908f55-fa7a-465b-adde-ffe6d50be06d.svg?v=1777536439"
+                      alt="" width="28" height="28" loading="lazy"
+                    >
+                  </div>
+                </div>
+              {%- endif -%}
+
               {%- if block.settings.image != blank -%}
                 {% if section.settings.image_ratio == 'adapt' or section.settings.image_ratio == 'circle' %}
                   {% assign spaced_image = true %}
@@ -118,6 +277,7 @@
                   </div>
                 </div>
               {%- endif -%}
+
               <div class="multicolumn-card__info">
                 {%- if block.settings.title != blank -%}
                   <h3 class="inline-richtext">{{ block.settings.title }}</h3>
@@ -135,12 +295,11 @@
                     {% endif %}
                   >
                     {{- block.settings.link_label | escape -}}
-                    <span class="svg-wrapper"
-                      ><span class="icon-wrap">&nbsp;{{ 'icon-arrow.svg' | inline_asset_content }}</span></span
-                    >
+                    <span class="svg-wrapper"><span class="icon-wrap">&nbsp;{{ 'icon-arrow.svg' | inline_asset_content }}</span></span>
                   </a>
                 {%- endif -%}
               </div>
+
             </div>
           </li>
         {%- endfor -%}
@@ -148,12 +307,7 @@
 
       {%- if show_mobile_slider -%}
         <div class="slider-buttons large-up-hide">
-          <button
-            type="button"
-            class="slider-button slider-button--prev"
-            name="previous"
-            aria-label="{{ 'general.slider.previous_slide' | t }}"
-          >
+          <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="{{ 'general.slider.previous_slide' | t }}">
             <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
           </button>
           <div class="slider-counter caption">
@@ -162,17 +316,13 @@
             <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
             <span class="slider-counter--total">{{ section.blocks.size }}</span>
           </div>
-          <button
-            type="button"
-            class="slider-button slider-button--next"
-            name="next"
-            aria-label="{{ 'general.slider.next_slide' | t }}"
-          >
+          <button type="button" class="slider-button slider-button--next" name="next" aria-label="{{ 'general.slider.next_slide' | t }}">
             <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
           </button>
         </div>
       {%- endif -%}
     </slider-component>
+
     <div class="center{% if show_mobile_slider %} small-hide medium-hide{% endif %}">
       {%- if section.settings.button_label != blank -%}
         <a
@@ -187,6 +337,7 @@
         </a>
       {%- endif -%}
     </div>
+
   </div>
 </div>
 
@@ -200,59 +351,63 @@
   },
   "settings": [
     {
-      "type": "inline_richtext",
+      "type": "richtext",
       "id": "title",
-      "default": "t:sections.multicolumn.settings.title.default",
-      "label": "t:sections.multicolumn.settings.title.label"
+      "default": "<p>HOW TO ORDER YOUR CUSTOM PET PORTRAIT</p>",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "title_accent_words",
+      "label": "Accent words (comma separated)",
+      "info": "Enter words from the title to highlight, separated by commas. E.g.: PET,PORTRAIT"
+    },
+    {
+      "type": "color",
+      "id": "title_accent_color",
+      "label": "Accent color",
+      "default": "#E9A753"
     },
     {
       "type": "select",
       "id": "heading_size",
       "options": [
-        {
-          "value": "h2",
-          "label": "t:sections.all.heading_size.options__1.label"
-        },
-        {
-          "value": "h1",
-          "label": "t:sections.all.heading_size.options__2.label"
-        },
-        {
-          "value": "h0",
-          "label": "t:sections.all.heading_size.options__3.label"
-        },
-        {
-          "value": "hxl",
-          "label": "t:sections.all.heading_size.options__4.label"
-        },
-        {
-          "value": "hxxl",
-          "label": "t:sections.all.heading_size.options__5.label"
-        }
+        { "value": "h2", "label": "t:sections.all.heading_size.options__1.label" },
+        { "value": "h1", "label": "t:sections.all.heading_size.options__2.label" },
+        { "value": "h0", "label": "t:sections.all.heading_size.options__3.label" },
+        { "value": "hxl", "label": "t:sections.all.heading_size.options__4.label" },
+        { "value": "hxxl", "label": "t:sections.all.heading_size.options__5.label" }
       ],
       "default": "h1",
       "label": "t:sections.all.heading_size.label"
     },
     {
       "type": "header",
+      "content": "Step badges"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_step_badges",
+      "label": "Show step badges (number + paw)",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "badge_color",
+      "label": "Badge circle color",
+      "default": "#E9A753"
+    },
+    {
+      "type": "header",
       "content": "t:sections.multicolumn.settings.header_image.content"
-    },    
+    },
     {
       "type": "select",
       "id": "image_width",
       "options": [
-        {
-          "value": "third",
-          "label": "t:sections.multicolumn.settings.image_width.options__1.label"
-        },
-        {
-          "value": "half",
-          "label": "t:sections.multicolumn.settings.image_width.options__2.label"
-        },
-        {
-          "value": "full",
-          "label": "t:sections.multicolumn.settings.image_width.options__3.label"
-        }
+        { "value": "third", "label": "t:sections.multicolumn.settings.image_width.options__1.label" },
+        { "value": "half", "label": "t:sections.multicolumn.settings.image_width.options__2.label" },
+        { "value": "full", "label": "t:sections.multicolumn.settings.image_width.options__3.label" }
       ],
       "default": "full",
       "label": "t:sections.multicolumn.settings.image_width.label"
@@ -261,22 +416,10 @@
       "type": "select",
       "id": "image_ratio",
       "options": [
-        {
-          "value": "adapt",
-          "label": "t:sections.multicolumn.settings.image_ratio.options__1.label"
-        },
-        {
-          "value": "portrait",
-          "label": "t:sections.multicolumn.settings.image_ratio.options__2.label"
-        },
-        {
-          "value": "square",
-          "label": "t:sections.multicolumn.settings.image_ratio.options__3.label"
-        },
-        {
-          "value": "circle",
-          "label": "t:sections.multicolumn.settings.image_ratio.options__4.label"
-        }
+        { "value": "adapt", "label": "t:sections.multicolumn.settings.image_ratio.options__1.label" },
+        { "value": "portrait", "label": "t:sections.multicolumn.settings.image_ratio.options__2.label" },
+        { "value": "square", "label": "t:sections.multicolumn.settings.image_ratio.options__3.label" },
+        { "value": "circle", "label": "t:sections.multicolumn.settings.image_ratio.options__4.label" }
       ],
       "default": "adapt",
       "label": "t:sections.multicolumn.settings.image_ratio.label"
@@ -284,23 +427,23 @@
     {
       "type": "header",
       "content": "t:sections.multicolumn.settings.header_button.content"
-    },    
+    },
     {
       "type": "text",
       "id": "button_label",
       "default": "t:sections.multicolumn.settings.button_label.default",
-      "label": "t:sections.multicolumn.settings.button_label.label", 
+      "label": "t:sections.multicolumn.settings.button_label.label",
       "info": "t:sections.multicolumn.settings.button_label.info"
     },
     {
       "type": "url",
       "id": "button_link",
       "label": "t:sections.multicolumn.settings.button_link.label"
-    },    
+    },
     {
       "type": "header",
       "content": "t:sections.multicolumn.settings.header_layout.content"
-    },     
+    },
     {
       "type": "range",
       "id": "columns_desktop",
@@ -314,14 +457,8 @@
       "type": "select",
       "id": "column_alignment",
       "options": [
-        {
-          "value": "left",
-          "label": "t:sections.multicolumn.settings.column_alignment.options__1.label"
-        },
-        {
-          "value": "center",
-          "label": "t:sections.multicolumn.settings.column_alignment.options__2.label"
-        }
+        { "value": "left", "label": "t:sections.multicolumn.settings.column_alignment.options__1.label" },
+        { "value": "center", "label": "t:sections.multicolumn.settings.column_alignment.options__2.label" }
       ],
       "default": "left",
       "label": "t:sections.multicolumn.settings.column_alignment.label"
@@ -330,14 +467,8 @@
       "type": "select",
       "id": "background_style",
       "options": [
-        {
-          "value": "none",
-          "label": "t:sections.multicolumn.settings.background_style.options__1.label"
-        },
-        {
-          "value": "primary",
-          "label": "t:sections.multicolumn.settings.background_style.options__2.label"
-        }
+        { "value": "none", "label": "t:sections.multicolumn.settings.background_style.options__1.label" },
+        { "value": "primary", "label": "t:sections.multicolumn.settings.background_style.options__2.label" }
       ],
       "default": "primary",
       "label": "t:sections.multicolumn.settings.background_style.label"
@@ -347,23 +478,37 @@
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
-    },    
+    },
     {
       "type": "header",
       "content": "t:sections.multicolumn.settings.header_mobile.content"
     },
     {
+      "type": "range",
+      "id": "mobile_row_gap",
+      "label": "Mobile row gap",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "mobile_col_gap",
+      "label": "Mobile column gap",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "default": 16
+    },
+    {
       "type": "select",
       "id": "columns_mobile",
       "options": [
-        {
-          "value": "1",
-          "label": "t:sections.multicolumn.settings.columns_mobile.options__1.label"
-        },
-        {
-          "value": "2",
-          "label": "t:sections.multicolumn.settings.columns_mobile.options__2.label"
-        }
+        { "value": "1", "label": "t:sections.multicolumn.settings.columns_mobile.options__1.label" },
+        { "value": "2", "label": "t:sections.multicolumn.settings.columns_mobile.options__2.label" }
       ],
       "default": "1",
       "label": "t:sections.multicolumn.settings.columns_mobile.label"
@@ -439,15 +584,9 @@
     {
       "name": "t:sections.multicolumn.presets.name",
       "blocks": [
-        {
-          "type": "column"
-        },
-        {
-          "type": "column"
-        },
-        {
-          "type": "column"
-        }
+        { "type": "column" },
+        { "type": "column" },
+        { "type": "column" }
       ]
     }
   ]

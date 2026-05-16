@@ -13,16 +13,50 @@
   "sections": {
     "footer": {
       "type": "footer",
+      "blocks": {
+        "link_list_YaGCkU": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Useful links",
+            "menu": "useful-links",
+            "tag": "Unique",
+            "col_width": 0
+          }
+        },
+        "link_list_awPFaP": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Discover",
+            "menu": "discover",
+            "tag": "Personalized",
+            "col_width": 0
+          }
+        },
+        "link_list_jALy6p": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Info",
+            "menu": "info",
+            "tag": "Emotional",
+            "col_width": 0
+          }
+        }
+      },
+      "block_order": [
+        "link_list_YaGCkU",
+        "link_list_awPFaP",
+        "link_list_jALy6p"
+      ],
       "settings": {
-        "color_scheme": "scheme-1",
-        "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
-        "enable_follow_on_shop": true,
-        "show_social": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
+        "brand_desc": "Turn any pet photo into a one-of-a-kind portrait, apparel, or gift — professionally designed and perfected with unlimited revisions",
+        "brand_desc_width": 250,
         "payment_enable": true,
         "show_policy": true,
+        "show_decorative_line": true,
+        "decorative_line_thickness": 2,
+        "decorative_line_color": "#ffffff",
+        "decorative_line_position": 64,
+        "decorative_line_position_mobile": 64,
         "margin_top": 0,
         "padding_top": 36,
         "padding_bottom": 36

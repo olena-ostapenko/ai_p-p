@@ -1,0 +1,236 @@
+:root {
+  --mega-menu-radius: var(--popup-corner-radius, 0.4rem);
+  --mega-menu-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* ── Wrapper ─────────────────────────────────────────────── */
+.mega-menu-hover__wrapper {
+  position: relative;
+}
+
+/* ── Panel: absolute, sized to content, centered under item ── */
+.mega-menu-hover__panel {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms ease, visibility 200ms ease;
+  transition-delay: 150ms;
+  background: transparent !important;
+}
+
+/* First nav item: panel aligned to its left edge */
+.list-menu--inline > li:first-child .mega-menu-hover__panel {
+  left: 0;
+  transform: none;
+}
+
+/* Last nav item: panel aligned to its right edge */
+.list-menu--inline > li:last-child .mega-menu-hover__panel {
+  left: auto;
+  right: 0;
+  transform: none;
+}
+
+/* Wide panel (mega_columns_grid): fixed, centered on viewport */
+.list-menu--inline > li .mega-menu-hover__panel--wide {
+  position: fixed;
+  top: var(--header-height, 80px);
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+}
+
+/* Last nav item wide panel: absolute, right-aligned to the wrapper */
+.list-menu--inline > li:last-child .mega-menu-hover__panel--wide {
+  position: absolute;
+  top: 40px;
+  left: auto;
+  right: 0;
+  transform: none;
+}
+
+.mega-menu-hover__wrapper.is-open > .mega-menu-hover__panel {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transition-delay: 0ms;
+}
+
+/* ── Panel inner: actual visible background, sized to content ── */
+.mega-menu-hover__panel-inner {
+  background: rgb(var(--color-background));
+  box-shadow: var(--mega-menu-shadow);
+  border-radius: 15px;
+  width: fit-content;
+  min-width: 24rem;
+  max-width: min(90vw, var(--page-width, 120rem));
+  padding: 3rem;
+  margin: 0;
+}
+
+/* First li padding */
+.mega-menu-hover__wrapper:first-of-type .mega-menu-hover__panel-inner {
+  padding: 55px 94px 42px 94px; 
+}
+
+/* Remove Dawn default underline on top-level nav links */
+.header__inline-menu .header__menu-item.link {
+  text-decoration: none;
+}
+
+/* Override Dawn's hover underline on span for mega menu trigger */
+.mega-menu-hover__wrapper > .header__menu-item:hover span {
+  text-decoration: none;
+}
+
+/* Remove active/current underline on all header menu items */
+.header__active-menu-item,
+.header__menu-item:hover .header__active-menu-item {
+  text-decoration: none;
+  text-decoration-thickness: 0;
+  text-underline-offset: unset;
+}
+
+/* ── Image Grid ──────────────────────────────────────────── */
+.mega-menu__image-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.6rem;
+  width: calc(var(--grid-cols, 4) * 190px + (var(--grid-cols, 4) - 1) * 1.6rem);
+  max-width: 100%;
+}
+
+.mega-menu__image-item {
+  flex: 0 0 190px;
+  min-width: 0;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  transition: opacity 150ms ease;
+  container-type: inline-size;
+}
+
+.mega-menu__image-item:hover {
+  opacity: 0.8;
+}
+
+.mega-menu__image-item-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: var(--img-radius, 0px);
+  filter: var(--img-filter, none);
+}
+
+.mega-menu__image-item-title {
+  font-size: clamp(14px, 3.5cqi + 10.5px, 21px);
+  text-align: center;
+  font-weight: 600;
+  color: #000000;
+  text-transform: capitalize;
+}
+
+/* ── Columns + Images ────────────────────────────────────── */
+.mega-menu__columns-layout {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 3rem;
+  align-items: start;
+}
+
+.mega-menu__columns-menus {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 4rem;
+}
+
+.mega-menu__column-title {
+  font-size: 23px;
+  font-weight:600;
+  letter-spacing: 0;
+  text-transform: capitalize;
+  opacity: 1;
+  margin: 0 0 17px 0;
+  white-space: nowrap;
+  color: #000000;
+}
+
+.mega-menu__column-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.mega-menu__column-link {
+  text-decoration: none !important;
+  font-weight: 500;
+  color: #000000;
+  font-size: 21px;
+  white-space: nowrap;
+}
+
+.mega-menu__column-link:hover {
+  text-decoration: underline;
+}
+
+.mega-menu__columns-images {
+  display: grid;
+  grid-template-columns: repeat(var(--col-img-cols, 4), 132px);
+  gap: 1.2rem;
+  align-content: start;
+}
+
+.mega-menu__col-img-item {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: opacity 150ms ease;
+  container-type: inline-size;
+}
+
+.mega-menu__col-img-item:hover {
+  opacity: 0.8;
+}
+
+.mega-menu__col-img-item-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: calc(var(--mega-menu-radius) * 0.75);
+  box-shadow:
+    1px 1px 3px 0 rgba(0, 0, 0, 0.26),
+    4px 4px 6px 0 rgba(0, 0, 0, 0.22),
+    8px 10px 7px 0 rgba(0, 0, 0, 0.13),
+    14px 17px 9px 0 rgba(0, 0, 0, 0.04),
+    22px 27px 10px 0 rgba(0, 0, 0, 0);
+}
+
+.mega-menu__col-img-item-title {
+  font-size: clamp(14px, 3.5cqi + 10.5px, 21px);
+  text-align: center;
+  color: #000000;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+
+/* ── Mobile: hide hover panels ───────────────────────────── */
+@media screen and (max-width: 989px) {
+  .mega-menu-hover__wrapper > .mega-menu-hover__panel {
+    display: none;
+  }
+}
