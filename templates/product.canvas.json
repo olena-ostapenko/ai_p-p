@@ -1,0 +1,403 @@
+{
+  "sections": {
+    "hero": {
+      "type": "image-banner",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Turn any pet photo into a one-of-a-kind portrait",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "Apparel, or gift — professionally designed and perfected with unlimited revisions. Unique. Personalized. Emotional.",
+            "text_style": "subtitle"
+          }
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Create yours",
+            "button_link_1": "#main-product",
+            "button_style_secondary_1": false
+          }
+        }
+      },
+      "block_order": ["heading", "text", "buttons"],
+      "settings": {
+        "image_overlay_opacity": 20,
+        "image_height": "large",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-left",
+        "desktop_content_alignment": "left",
+        "show_text_box": true,
+        "color_scheme": "scheme-1",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "main-product": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "rating": {
+          "type": "rating",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "icon_with_text": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "horizontal",
+            "icon_1": "truck",
+            "heading_1": "Free shipping over $100",
+            "icon_2": "check_mark",
+            "heading_2": "100% Artwork Satisfaction Guarantee",
+            "icon_3": "return",
+            "heading_3": "Easy returns"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "framing_tab": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Framing & sizes",
+            "icon": "box",
+            "content": "<p>Choose framed (Black, Walnut, Birch) or unframed. Sizes available: Digital Download, 8\"x10\", 12\"x16\", 18\"x24\", 24\"x32\".</p>"
+          }
+        },
+        "shipping_tab": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Shipping & delivery",
+            "icon": "truck",
+            "content": "<p>Once you submit your order, our artists get to work on digitally-illustrating your portrait. Free shipping on orders over $100.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "rating",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "icon_with_text",
+        "description",
+        "framing_tab",
+        "shipping_tab"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "how-it-works": {
+      "type": "multicolumn",
+      "blocks": {
+        "step-1": {
+          "type": "column",
+          "settings": {
+            "title": "Choose your fave pet photo",
+            "text": "<p>Upload a photo of your pet with your order (we accept 98% of all photos!).</p>"
+          }
+        },
+        "step-2": {
+          "type": "column",
+          "settings": {
+            "title": "Customize & make it your own",
+            "text": "<p>Add your pup's name, customize the portrait style, and choose your frame & size.</p>"
+          }
+        },
+        "step-3": {
+          "type": "column",
+          "settings": {
+            "title": "Sit tight!",
+            "text": "<p>Once you submit your order, our artists get to work on digitally-illustrating your portrait.</p>"
+          }
+        }
+      },
+      "block_order": ["step-1", "step-2", "step-3"],
+      "settings": {
+        "title": "<p>How it Works</p>",
+        "heading_size": "h1",
+        "show_step_badges": true,
+        "image_width": "third",
+        "image_ratio": "circle",
+        "button_label": "Create yours",
+        "button_link": "#main-product",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "none",
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "feature-1": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Canvas Portraits of Your Pet",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Turn your pet's photo into a beautiful custom canvas artwork. Each PORTRAIT&PAWS 🐾 canvas portrait is designed to capture your pet's personality and transform it into a timeless piece of wall art.</p>",
+            "text_style": "body"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Create yours",
+            "button_link": "#main-product",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": ["heading", "text", "button"],
+      "settings": {
+        "height": "large",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "center",
+        "section_color_scheme": "scheme-1",
+        "color_scheme": "scheme-2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "feature-2": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Created by Real Artists",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Every PORTRAIT&PAWS 🐾 portrait is carefully illustrated by professional digital artists. Our team creates each piece using a detailed manual design process — never automated filters or apps.</p>",
+            "text_style": "body"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Create yours",
+            "button_link": "#main-product",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": ["heading", "text", "button"],
+      "settings": {
+        "height": "large",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "center",
+        "section_color_scheme": "scheme-1",
+        "color_scheme": "scheme-2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "feature-3": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Gallery-Quality Canvas",
+            "heading_size": "h1"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Printed on high-quality artist canvas and stretched over a durable wooden frame. Available framed or unframed and ready to display.</p>",
+            "text_style": "body"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "button_label": "Create yours",
+            "button_link": "#main-product",
+            "button_style_secondary": false
+          }
+        }
+      },
+      "block_order": ["heading", "text", "button"],
+      "settings": {
+        "height": "large",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "center",
+        "section_color_scheme": "scheme-1",
+        "color_scheme": "scheme-2",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "faq": {
+      "type": "collapsible-content",
+      "blocks": {
+        "row-1": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What if I don't like the result?",
+            "icon": "question_mark",
+            "row_content": "<p>We offer unlimited revisions. Our artists will work with you until you're 100% satisfied with your portrait.</p>"
+          }
+        },
+        "row-2": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How long does it take to receive my order?",
+            "icon": "stopwatch",
+            "row_content": "<p>Digital previews are ready in 2–3 business days. Printed canvases ship within 5–7 business days after approval.</p>"
+          }
+        },
+        "row-3": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What photo quality do you need?",
+            "icon": "eye",
+            "row_content": "<p>The clearer the better — but don't worry, our artists accept 98% of submitted photos. Daylight shots work best.</p>"
+          }
+        },
+        "row-4": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can I order multiple pets in one portrait?",
+            "icon": "heart",
+            "row_content": "<p>Absolutely! Choose your pet count when ordering and upload a separate photo for each pet.</p>"
+          }
+        },
+        "row-5": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "What sizes and frames are available?",
+            "icon": "ruler",
+            "row_content": "<p>Sizes: Digital Download, 8\"x10\", 12\"x16\", 18\"x24\", 24\"x32\". Frames: Black, Walnut, Birch, or unframed.</p>"
+          }
+        },
+        "row-6": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Do you ship internationally?",
+            "icon": "plane",
+            "row_content": "<p>Yes, we ship worldwide. Free shipping on orders over $100.</p>"
+          }
+        }
+      },
+      "block_order": ["row-1", "row-2", "row-3", "row-4", "row-5", "row-6"],
+      "settings": {
+        "heading": "FAQ",
+        "heading_size": "h1",
+        "heading_alignment": "center",
+        "layout": "row",
+        "container_color_scheme": "scheme-1",
+        "color_scheme": "scheme-1",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "main-product",
+    "how-it-works",
+    "feature-1",
+    "feature-2",
+    "feature-3",
+    "faq",
+    "related-products"
+  ]
+}
