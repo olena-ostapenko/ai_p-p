@@ -1,89 +1,266 @@
-{{ 'section-home.css' | asset_url | stylesheet_tag }}
-
 {%- style -%}
-  #shopify-section-{{ section.id }} {
-    background: {{ section.settings.section_bg }};
-    overflow: hidden;
-  }
-
-  .obs-{{ section.id }}-padding {
+  .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
-  @media screen and (min-width: 750px) {
-    .obs-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
+  .obs-figma {
+    background: {{ section.settings.section_bg }};
   }
 
-  /* Section-specific: nav color, stars color, CTA */
-  .obs-{{ section.id }} .sh-nav { color: {{ section.settings.cta_bg }}; }
-  .obs-{{ section.id }} .sh-stars { color: {{ section.settings.star_color }}; font-size: 24px; }
-  .obs-{{ section.id }} .sh-card__price { margin: 5px 0; color: #000; font-size: 17px; font-weight: 700; }
-  .obs-{{ section.id }} .sh-card__price em { font-style: normal; font-weight: 500; }
-  .obs-{{ section.id }} .sh-card__cta {
-    width: fit-content;
+  .obs-figma__inner {
+    position: relative;
+  }
+
+  .obs-figma__heading {
+    margin: 0;
+    color: #000000;
+    font-weight: 700;
+    font-size: {{ section.settings.heading_size_mobile }}px;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  .obs-figma__rail-wrap {
+    margin-top: 22px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .obs-figma__rail {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+
+  .obs-figma__rail::-webkit-scrollbar {
+    display: none;
+  }
+
+  .obs-figma__card {
+    flex: 0 0 283px;
+    width: 283px;
+    min-height: 443px;
+    scroll-snap-align: start;
+    background: #ffffff;
+    border-radius: 8px;
+    box-sizing: border-box;
+    padding: 8px 8px 12px;
+  }
+
+  .obs-figma__image {
+    width: 268px;
+    height: 272px;
+    border-radius: 11px;
+    overflow: hidden;
+    background: #f3f3f3;
+  }
+
+  .obs-figma__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .obs-figma__stars {
+    margin-top: 10px;
+    display: flex;
+    gap: 2px;
+    color: {{ section.settings.star_color }};
+    line-height: 1;
+    font-size: 24px;
+  }
+
+  .obs-figma__title {
+    margin: 0;
+    color: #000000;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 27px;
+  }
+
+  .obs-figma__subtitle {
+    margin: 0;
+    color: #000000;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 27px;
+  }
+
+  .obs-figma__price {
+    margin: 0;
+    color: #000000;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 27px;
+  }
+
+  .obs-figma__cta {
+    margin-top: 9px;
+    min-height: 35px;
+    min-width: 182px;
+    border-radius: 30px;
     background: {{ section.settings.cta_bg }};
     color: #ffffff;
     text-decoration: none;
-    border-radius: 30px;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 27px;
+    padding: 4px 28px;
     font-size: 19px;
     font-weight: 700;
+    line-height: 27px;
+    border: 1px solid transparent;
+    transition: opacity 0.2s ease;
+  }
+
+  .obs-figma__cta:hover {
+    opacity: 0.9;
+  }
+
+  .obs-figma__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 63px;
+    height: 54px;
+    border: 0;
+    border-radius: 10px;
+    background: #ffffff;
+    color: {{ section.settings.cta_bg }};
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.1),
+      0 3px 3px rgba(0, 0, 0, 0.09),
+      0 7px 4px rgba(0, 0, 0, 0.05),
+      0 12px 5px rgba(0, 0, 0, 0.01);
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  .obs-figma__nav--prev {
+    left: 0;
+  }
+
+  .obs-figma__nav--next {
+    right: 0;
+  }
+
+  .obs-figma__nav[disabled] {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .obs-figma__nav .icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .obs-figma__nav--next .icon {
+    transform: rotate(-90deg);
+  }
+
+  .obs-figma__nav--prev .icon {
+    transform: rotate(90deg);
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+
+    .obs-figma__heading {
+      font-size: {{ section.settings.heading_size_desktop }}px;
+      line-height: 54px;
+    }
+
+    .obs-figma__rail-wrap {
+      margin-top: 22px;
+    }
+
+    .obs-figma__nav {
+      display: inline-flex;
+    }
   }
 {%- endstyle -%}
 
-<div class="obs-{{ section.id }}-padding obs-{{ section.id }}">
-  <div class="page-width">
+<div class="obs-figma section-{{ section.id }}-padding">
+  <div class="page-width obs-figma__inner">
+    <h2 class="obs-figma__heading">{{ section.settings.title }}</h2>
 
-    <h2 class="section-figma__heading">{{ section.settings.title }}</h2>
+    <div class="obs-figma__rail-wrap">
+      <div class="obs-figma__rail" id="obs-rail-{{ section.id }}">
+        {%- if section.settings.collection != blank and section.settings.collection.products.size > 0 -%}
+          {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+            {%- assign product_desc = product.metafields.custom.short_description | default: product.description | strip_html | truncate: 26 -%}
+            <article class="obs-figma__card">
+              <a href="{{ product.url }}" class="obs-figma__image" aria-label="{{ product.title | escape }}">
+                {%- if product.featured_image != blank -%}
+                  {{
+                    product.featured_image
+                    | image_url: width: 536
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '268,536',
+                      sizes: '(max-width: 749px) 268px, 268px',
+                      alt: product.featured_image.alt
+                  }}
+                {%- else -%}
+                  {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
+              </a>
 
-    <div style="position: relative; display: flex; align-items: center;">
-      <button class="sh-nav sh-nav--prev" type="button" data-obs-prev="{{ section.id }}" disabled>
+              <div class="obs-figma__stars" aria-hidden="true">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+              </div>
+
+              <h3 class="obs-figma__title">{{ product.title | truncate: 24 }}</h3>
+              <p class="obs-figma__subtitle">{{ product_desc }}</p>
+              <p class="obs-figma__price">
+                From {{ product.price_min | money }}
+              </p>
+              <a class="obs-figma__cta" href="{{ product.url }}">
+                {{ section.settings.button_label }}
+              </a>
+            </article>
+          {%- endfor -%}
+        {%- else -%}
+          {%- for i in (1..4) -%}
+            <article class="obs-figma__card">
+              <div class="obs-figma__image">{{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+              <div class="obs-figma__stars" aria-hidden="true">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+              </div>
+              <h3 class="obs-figma__title">The Count</h3>
+              <p class="obs-figma__subtitle">Custom pet canvas</p>
+              <p class="obs-figma__price">From $70</p>
+              <span class="obs-figma__cta">{{ section.settings.button_label }}</span>
+            </article>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+      <button
+        class="obs-figma__nav obs-figma__nav--prev"
+        type="button"
+        aria-label="Previous products"
+        data-obs-prev="{{ section.id }}"
+        disabled
+      >
         <span class="icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
       </button>
-
-      <div class="sh-slider-wrap">
-        <div class="sh-slider" id="obs-rail-{{ section.id }}">
-          {%- if section.settings.collection != blank -%}
-            {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
-              <article class="sh-card color-{{ settings.card_color_scheme }} gradient">
-                <a href="{{ product.url }}" class="sh-card__image-wrap">
-                  {%- if product.featured_image != blank -%}
-                    {{ product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: product.title }}
-                  {%- else -%}
-                    {{ 'product-1' | placeholder_svg_tag }}
-                  {%- endif -%}
-                </a>
-                <div class="sh-card__body">
-                  <div class="sh-stars">
-                    {%- for i in (1..5) -%}
-                      <img
-                        src="https://cdn.shopify.com/s/files/1/0690/5433/3063/files/star_6f70947c-dc83-43ad-a444-913b32ad7465.svg?v=1777530521"
-                        alt="star" width="20" height="20" loading="lazy"
-                      >
-                    {%- endfor -%}
-                  </div>
-                  <h3 class="sh-card__title">{{ product.title | truncate: 26 }}</h3>
-                  <div class="sh-card__desc">{{ product.description }}</div>
-          <p class="sh-card__price">{%- if product.price_varies -%}{%- assign min_price = product.price_min | money -%}{{ 'products.product.price.from_price_html' | t: price: min_price }}{%- else -%}{{ product.price | money }}{%- endif -%}</p> 
-                </div>
-              </article>
-            {%- endfor -%}
-          {%- endif -%}
-        </div>
-      </div>
-
-      <button class="sh-nav sh-nav--next" type="button" data-obs-next="{{ section.id }}">
+      <button class="obs-figma__nav obs-figma__nav--next" type="button" aria-label="Next products" data-obs-next="{{ section.id }}">
         <span class="icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
       </button>
     </div>
-
   </div>
 </div>
 
@@ -95,96 +272,69 @@
     const nextBtn = document.querySelector(`[data-obs-next="${sectionId}"]`);
     if (!rail || !prevBtn || !nextBtn) return;
 
-    const updateNav = () => {
-      prevBtn.disabled = rail.scrollLeft <= 5;
-      nextBtn.disabled = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 5;
+    const getStep = () => {
+      const firstCard = rail.querySelector('.obs-figma__card');
+      if (!firstCard) return 303;
+      return firstCard.getBoundingClientRect().width + 20;
     };
 
-    const scrollSlider = (direction) => {
-      const cardWidth = rail.querySelector('.sh-card').offsetWidth + 20;
-      rail.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+    const updateNavState = () => {
+      const maxScrollLeft = rail.scrollWidth - rail.clientWidth - 1;
+      prevBtn.disabled = rail.scrollLeft <= 0;
+      nextBtn.disabled = rail.scrollLeft >= maxScrollLeft;
     };
 
-    prevBtn.addEventListener('click', () => scrollSlider(-1));
-    nextBtn.addEventListener('click', () => scrollSlider(1));
-    rail.addEventListener('scroll', updateNav);
-    window.addEventListener('resize', updateNav);
-    updateNav();
+    rail.addEventListener('scroll', updateNavState, { passive: true });
+    window.addEventListener('resize', updateNavState);
+
+    prevBtn.addEventListener('click', () => {
+      rail.scrollBy({ left: -getStep(), behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      rail.scrollBy({ left: getStep(), behavior: 'smooth' });
+    });
+
+    updateNavState();
   })();
 </script>
 
 {% schema %}
 {
-  "name": "Our Best Sellers",
+  "name": "Our Best Selllers",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
   "settings": [
-    {
-      "type": "collection",
-      "id": "collection",
-      "label": "Collection"
-    },
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Heading",
-      "default": "Our Best Sellers"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "label": "Button label",
-      "default": "Create yours"
-    },
-    {
-      "type": "color",
-      "id": "section_bg",
-      "label": "Section background",
-      "default": "#FBFBFB"
-    },
-    {
-      "type": "color",
-      "id": "cta_bg",
-      "label": "Main color",
-      "default": "#F4844E"
-    },
-    {
-      "type": "color",
-      "id": "star_color",
-      "label": "Stars color",
-      "default": "#E9A753"
-    },
-    {
-      "type": "range",
-      "id": "products_to_show",
-      "min": 4,
-      "max": 12,
-      "step": 1,
-      "default": 8,
-      "label": "Products to show"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 120,
-      "step": 4,
-      "unit": "px",
-      "default": 80,
-      "label": "Top padding"
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 120,
-      "step": 4,
-      "unit": "px",
-      "default": 80,
-      "label": "Bottom padding"
-    }
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "text", "id": "title", "label": "Heading", "default": "Our Best Selllers" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Create yours" },
+    { "type": "color", "id": "section_bg", "label": "Section background", "default": "#FBFBFB" },
+    { "type": "color", "id": "cta_bg", "label": "Button color", "default": "#F4844E" },
+    { "type": "color", "id": "star_color", "label": "Stars color", "default": "#E9A753" },
+    { "type": "range", "id": "products_to_show", "min": 4, "max": 12, "step": 1, "default": 8, "label": "Products to show" },
+    { "type": "range", "id": "heading_size_desktop", "min": 28, "max": 60, "step": 1, "default": 44, "label": "Heading size desktop" },
+    { "type": "range", "id": "heading_size_mobile", "min": 24, "max": 42, "step": 1, "default": 34, "label": "Heading size mobile" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 80, "label": "Top padding" },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 80, "label": "Bottom padding" }
   ],
   "presets": [
     {
-      "name": "Our Best Sellers"
+      "name": "Our Best Selllers",
+      "settings": {
+        "title": "Our Best Selllers",
+        "button_label": "Create yours",
+        "section_bg": "#FBFBFB",
+        "cta_bg": "#F4844E",
+        "star_color": "#E9A753",
+        "products_to_show": 8,
+        "heading_size_desktop": 44,
+        "heading_size_mobile": 34,
+        "padding_top": 88,
+        "padding_bottom": 88
+      }
     }
   ]
 }
