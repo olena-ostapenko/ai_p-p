@@ -1,0 +1,58 @@
+<div class="custom-text-tester section-{{ section.id }}">
+  <div class="page-width">
+    
+    {% if section.settings.text_content != blank %}
+      <p class="tester-text">{{ section.settings.text_content }}</p>
+    {% else %}
+      <p class="tester-text">Введіть текст в адмінці для перевірки!</p>
+    {% endif %}
+
+  </div>
+</div>
+
+{% style %}
+  .section-{{ section.id }} .tester-text {
+    color: {{ section.settings.text_color }};
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+    /* Логіка зміни регістру через CSS на основі вибору в адмінці */
+    text-transform: {{ section.settings.text_transform }};
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Тестер регістру тексту",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text_content",
+      "label": "Текст для відображення",
+      "default": "Привіт, Олено! Це тестовий текст."
+    },
+    {
+      "type": "select",
+      "id": "text_transform",
+      "label": "Регістр тексту",
+      "options": [
+        { "value": "none", "label": "Як у тексті (Звичайний)" },
+        { "value": "uppercase", "label": "Всі великі (UPPERCASE)" },
+        { "value": "lowercase", "label": "Всі маленькі (lowercase)" }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Колір тексту",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Тестер регістру тексту"
+    }
+  ]
+}
+{% endschema %}
